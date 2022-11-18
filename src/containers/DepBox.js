@@ -1,11 +1,16 @@
-import DepAllAppsBox from "./DepAllAppsBox"
+import DepAllAppsBox from "./DepAllAppsBox";
+import styled from '@emotion/styled';
+
+const DepBoxContainer = styled.div`
+  color: red
+`;
 
 const DepBox = () => {
   return(
-    <div>
+    <DepBoxContainer>
       Hello from DepBox
       <DepAllAppsBox/>
-    </div>
+    </DepBoxContainer>
     ) 
 }
 
