@@ -1,4 +1,4 @@
-import AppFolder from "../components/AppFolderIcon";
+import AppFolderIcon from "../components/AppFolderIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import styled from "@emotion/styled";
 
@@ -12,7 +12,13 @@ const DepAllAppsBox = ({ department }) => {
   return (
     <DepartmAppsBoxContainer>
       <h2>{ useCapitaliseFirstLetter(department.name) }</h2>
-      <AppFolder/>
+      {department.apps
+      &&
+        department.apps.map((app) => (
+          <AppFolderIcon app={ app }/>
+        ))
+      }
+
     </DepartmAppsBoxContainer>
   )
 }

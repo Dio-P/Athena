@@ -12,8 +12,32 @@ import { useState } from "react";
 function App() {
 
   const [alldepartments, setAllDepartments] = useState([
-    {name: "dpub"},
-    {name: "data lab"}
+    {
+      name: "dpub",
+      apps: [
+        {
+          name: "optimo",
+          test: "test"
+        },
+        {
+          name: "tipo",
+          test: "test"
+        },
+      ]
+    },
+    {
+      name: "data lab",
+      apps: [
+        {
+          name: "dataLab app1",
+          test: "test"
+        },
+        {
+          name: "dataLab app2",
+          test: "test"
+        },
+      ]
+    }
   ])
 
   return (
