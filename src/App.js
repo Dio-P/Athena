@@ -5,7 +5,7 @@ import {
   useNavigate
 } from "react-router-dom";
 import Header from "./containers/Header";
-import DepBox from "./containers/DepBox";
+import DepBox from "./containers/AllDepartmentsBox";
 import AppPage from "./components/AppPage";
 
 function App() {
