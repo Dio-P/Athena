@@ -3,16 +3,41 @@ import { Link } from "react-router-dom";
 import styled from '@emotion/styled';
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
-const AppFolderIcon = ({ app }) => {
-  const [thisApp, setThisApp] = useState({name: "optimo", test: "testing"})
+const AppFolderIcon = ({ app, department }) => {
+  const [thisDepartment, setThisDepartment] = useState();
+  const [thisApp, setThisApp] = useState("");
 
-  // useEffect(()=>{
-  //   setThisApp(app)
-  // }, [app])
+  useEffect(() => {
+    console.log("department", department);
+    setThisDepartment(department) 
+  }, [department]);
 
-  // useEffect(()=>{
-  //   console.log("thisApp", thisApp);
-  // }, [thisApp])
+  useEffect(() => {
+    setThisApp(app) 
+  }, [app]);
+
+  const defineLink = () => {
+    if(thisDepartment) {
+      return ""
+    }
+    if(thisApp) {
+      return `/appPage/:${thisApp.name}`
+    }
+    return ""
+  };
+
+  const defineName = () => {
+    if(thisDepartment && !thisApp) {
+      console.log("inside if thisDepartment true");
+      return thisDepartment.name
+    }
+    if(thisApp && !thisDepartment) {
+      console.log("inside if this app true");
+      return thisApp.name
+    }
+    return "..."
+  }
+
   const AppFolderIconContainer = styled.div`
     display: flex;
     align-content: center;
@@ -48,10 +73,10 @@ const AppFolderIcon = ({ app }) => {
   return(
       <AppFolderIconContainer>
         <DecoratedLink
-        to={`/appPage/:${thisApp.name}`}
+        to={defineLink}
         state={{...thisApp}}>
           <AppFolderButton> 
-            {useCapitaliseFirstLetter(thisApp.name)}
+            {useCapitaliseFirstLetter(defineName())}
           </AppFolderButton>
         </DecoratedLink>
       </AppFolderIconContainer>

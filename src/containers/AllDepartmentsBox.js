@@ -1,15 +1,34 @@
-import DepAllAppsBox from "./DepAllAppsBox";
+import DepartmAppsBox from "./DepartmAppsBox";
 import styled from '@emotion/styled';
+import { useState } from "react";
+import AppFolderIcon from "../components/AppFolderIcon";
 
 const AllDepartmentsBoxContainer = styled.div`
-  color: red
+  margin-left: 10px;
 `;
 
-const AllDepartmentsBox = () => {
+const AllDepartmentsBox = ({ alldepartments }) => {
+  const [department, setDepartment] = useState("");
+
+  const clickIcon = (department) => {
+    setDepartment(department)
+  }
+
   return(
     <AllDepartmentsBoxContainer>
-      Hello from AllDepartmentsBox
-      <DepAllAppsBox/>
+      <h2>Product Group</h2>
+        {(alldepartments && !department)
+        &&
+      <>
+        {alldepartments.map((department) => (
+          <AppFolderIcon onClick={clickIcon} department={ department }/>
+        ))}
+      </>
+        }
+      {department
+      &&
+        <DepartmAppsBox department={department} />
+      }
     </AllDepartmentsBoxContainer>
     ) 
 }
