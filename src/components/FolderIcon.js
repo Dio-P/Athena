@@ -38,6 +38,13 @@ const AppFolderIcon = ({ app, department }) => {
     return "..."
   }
 
+  const DecoratedLink = styled(Link)`
+    display: flex;
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: auto;
+  `;
+
   const AppFolderIconContainer = styled.div`
     display: flex;
     align-content: center;
@@ -51,15 +58,8 @@ const AppFolderIcon = ({ app, department }) => {
 
     `;
 
-  const DecoratedLink = styled(Link)`
-    margin: auto;
-    color: #FFFFFF;
-    text-decoration: none;
-
-
-  `;
-
   const AppFolderButton = styled.button`
+    margin: auto;
     background: none;
     color: inherit;
     border: none;
@@ -71,15 +71,15 @@ const AppFolderIcon = ({ app, department }) => {
   `;
 
   return(
-      <AppFolderIconContainer>
-        <DecoratedLink
-        to={defineLink}
-        state={{...thisApp}}>
+      <DecoratedLink
+      to={defineLink}
+      state={{...thisApp}}>
+        <AppFolderIconContainer>
           <AppFolderButton> 
             {useCapitaliseFirstLetter(defineName())}
           </AppFolderButton>
-        </DecoratedLink>
-      </AppFolderIconContainer>
+        </AppFolderIconContainer>
+      </DecoratedLink>
   ) 
 }
 

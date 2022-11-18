@@ -1,4 +1,4 @@
-import AppFolderIcon from "../components/AppFolderIcon";
+import FolderIcon from "../components/FolderIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import styled from "@emotion/styled";
 
@@ -15,7 +15,7 @@ const DepAllAppsBox = ({ department }) => {
       {department.apps
       &&
         department.apps.map((app) => (
-          <AppFolderIcon app={ app }/>
+          <FolderIcon app={ app }/>
         ))
       }
 
