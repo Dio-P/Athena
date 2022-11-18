@@ -17,10 +17,13 @@ const AppFolderIcon = ({ app, department }) => {
   }, [app]);
 
   const defineLink = () => {
-    if(thisDepartment) {
+    console.log("inside defineLink");
+    if(thisDepartment && !thisApp) {
+      console.log("inside defineLink thisDepartment true");
       return ""
     }
-    if(thisApp) {
+    if(thisApp && !thisDepartment) {
+      console.log("inside defineLink, thisApp true");
       return `/appPage/:${thisApp.name}`
     }
     return ""
@@ -28,11 +31,9 @@ const AppFolderIcon = ({ app, department }) => {
 
   const defineName = () => {
     if(thisDepartment && !thisApp) {
-      console.log("inside if thisDepartment true");
       return thisDepartment.name
     }
     if(thisApp && !thisDepartment) {
-      console.log("inside if this app true");
       return thisApp.name
     }
     return "..."
@@ -72,7 +73,7 @@ const AppFolderIcon = ({ app, department }) => {
 
   return(
       <DecoratedLink
-      to={defineLink}
+      to={()=>defineLink()}
       state={{...thisApp}}>
         <AppFolderIconContainer>
           <AppFolderButton> 
