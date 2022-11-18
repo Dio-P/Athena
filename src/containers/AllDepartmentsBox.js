@@ -11,6 +11,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
   const [department, setDepartment] = useState("");
 
   const clickIcon = (department) => {
+    console.log("inside on click ");
     setDepartment(department)
   }
 
@@ -21,7 +22,9 @@ const AllDepartmentsBox = ({ alldepartments }) => {
         &&
       <>
         {alldepartments.map((department) => (
-          <AppFolderIcon onClick={clickIcon} department={ department }/>
+          <div onClick={() => clickIcon(department)}>
+            <AppFolderIcon department={ department }/>
+          </div>
         ))}
       </>
         }
