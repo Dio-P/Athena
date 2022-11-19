@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 
 
 
-const AppPage = () => {
-  const location = useLocation();
-  const app = location.state;
+const AppPage = ({ app }) => {
+  // const location = useLocation();
+  // const app = location.state;
 
   const [thisApp, setThisApp] = useState("")
 
@@ -13,14 +13,14 @@ const AppPage = () => {
     setThisApp(app)
   }, [app])
 
-  useEffect(()=>{
-    console.log("thisApp", thisApp);
-  }, [thisApp])
+  // useEffect(()=>{
+  //   console.log("thisApp", thisApp);
+  // }, [thisApp])
 
   return (
     <div>
-      This is the AppPage for:
-      {thisApp.name}
+      <h4>{app.name}</h4>
+      
     </div>
   )
 }
