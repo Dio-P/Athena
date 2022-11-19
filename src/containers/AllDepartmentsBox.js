@@ -1,6 +1,6 @@
 import DepartmAppsBox from "./DepartmAppsBox";
 import styled from '@emotion/styled';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FolderIcon from "../components/FolderIcon";
 
 const AllDepartmentsBoxContainer = styled.div`
@@ -8,26 +8,16 @@ const AllDepartmentsBoxContainer = styled.div`
 `;
 
 const AllDepartmentsBox = ({ alldepartments }) => {
-  const [department, setDepartment] = useState(
-    {
-      name: "dpub",
-      apps: [
-        {
-          name: "optimo",
-          test: "test"
-        },
-        {
-          name: "tipo",
-          test: "test"
-        },
-      ]
-    }
-  );
+  const [department, setDepartment] = useState("");
 
   const clickIcon = (department) => {
     console.log("inside on click ");
     setDepartment(department)
   }
+
+  useEffect(() => {
+    setDepartment(alldepartments)
+  }, [])
 
   return(
     <AllDepartmentsBoxContainer>

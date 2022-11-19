@@ -7,38 +7,28 @@ import {
 import Header from "./containers/Header";
 import AllDepartmentsBox from "./containers/AllDepartmentsBox";
 import AppPage from "./components/AppPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
 
-  const [alldepartments, setAllDepartments] = useState([
-    {
-      name: "dpub",
-      apps: [
-        {
-          name: "optimo",
-          test: "test"
-        },
-        {
-          name: "tipo",
-          test: "test"
-        },
-      ]
-    },
-    {
-      name: "data lab",
-      apps: [
-        {
-          name: "dataLab app1",
-          test: "test"
-        },
-        {
-          name: "dataLab app2",
-          test: "test"
-        },
-      ]
-    }
-  ])
+  const [alldepartments, setAllDepartments] = useState();
+  const DEFAULT_DEPARTMENT = {
+    name: "dpub",
+    apps: [
+      {
+        name: "optimo",
+        test: "test"
+      },
+      {
+        name: "tipo",
+        test: "test"
+      },
+    ]
+  }
+
+  useEffect(() => {
+    setAllDepartments(DEFAULT_DEPARTMENT)
+  }, [])
 
   return (
     <div className="">
