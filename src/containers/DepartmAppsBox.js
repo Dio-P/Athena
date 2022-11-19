@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import FolderIcon from "../components/FolderIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
-import styled from "@emotion/styled";
 import AppPage from "../components/AppPage";
+import styled from "@emotion/styled";
 
 const DepAllAppsBox = ({ department }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
@@ -11,6 +11,10 @@ const DepAllAppsBox = ({ department }) => {
   const DepartmAppsBoxContainer = styled.div`
     margin-left: 10px;
     color: orange;
+  `;
+
+  const DepAppBoxPageTitle = styled.h2`
+    margin: 0px;
   `;
 
   const StyledButton = styled.button`
@@ -37,7 +41,9 @@ const DepAllAppsBox = ({ department }) => {
     <DepartmAppsBoxContainer>
       <div>
         <StyledButton onClick={clickingToHere} >
-          <h2>{ useCapitaliseFirstLetter(department.name) }</h2>
+          <DepAppBoxPageTitle>
+            { useCapitaliseFirstLetter(department.name) }
+          </DepAppBoxPageTitle>
         </StyledButton>
       </div>
       <>

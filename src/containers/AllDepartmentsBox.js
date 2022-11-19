@@ -7,6 +7,10 @@ const AllDepartmentsBoxContainer = styled.div`
   margin-left: 10px;
 `;
 
+const AllDepBoxTitle = styled.h3`
+margin: 0px;
+`;
+
 const AllDepartmentsBox = ({ alldepartments }) => {
   const [department, setDepartment] = useState("");
 
@@ -21,7 +25,9 @@ const AllDepartmentsBox = ({ alldepartments }) => {
 
   return(
     <AllDepartmentsBoxContainer>
-      <h2>Product Group</h2>
+      <AllDepBoxTitle>
+        Product Group
+      </AllDepBoxTitle>
         {/* {(alldepartments && !department)
         &&
       <>

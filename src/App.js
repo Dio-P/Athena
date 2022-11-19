@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const [alldepartments, setAllDepartments] = useState();
   const DEFAULT_DEPARTMENT = {
     name: "dpub",
     apps: [
@@ -25,6 +24,8 @@ function App() {
       },
     ]
   }
+
+  const [alldepartments, setAllDepartments] = useState(DEFAULT_DEPARTMENT);
 
   useEffect(() => {
     setAllDepartments(DEFAULT_DEPARTMENT)
