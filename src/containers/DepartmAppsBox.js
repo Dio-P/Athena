@@ -24,25 +24,33 @@ const DepAllAppsBox = ({ department }) => {
     outline: inherit;
   `;
 
+  useEffect(() => {
+    setAppToDisplay(""); 
+
+  }, [])
+
   const clickingToHere = () => {
-    console.log("inside clicking to here");
     setAppToDisplay(""); 
   }
 
   return (
     <DepartmAppsBoxContainer>
-      <StyledButton onClick={clickingToHere} >
-        <h2>{ useCapitaliseFirstLetter(department.name) }</h2>
-      </StyledButton>
-      {(department.apps && !appToDisplay)
-      &&
+      <div>
+        <StyledButton onClick={clickingToHere} >
+          <h2>{ useCapitaliseFirstLetter(department.name) }</h2>
+        </StyledButton>
+      </div>
+      <>
+        {(department.apps && !appToDisplay)
+        &&
           department.apps.map((app) => {
             return (
-            <StyledButton onClick={() => setAppToDisplay(app)} >
-              <FolderIcon app={ app }/>
-            </StyledButton>
+              <StyledButton onClick={() => setAppToDisplay(app)} >
+                <FolderIcon app={ app }/>
+              </StyledButton>
             )
-          })}
+        })}
+      </>
 
       {appToDisplay
       &&

@@ -8,7 +8,21 @@ const AllDepartmentsBoxContainer = styled.div`
 `;
 
 const AllDepartmentsBox = ({ alldepartments }) => {
-  const [department, setDepartment] = useState("");
+  const [department, setDepartment] = useState(
+    {
+      name: "dpub",
+      apps: [
+        {
+          name: "optimo",
+          test: "test"
+        },
+        {
+          name: "tipo",
+          test: "test"
+        },
+      ]
+    }
+  );
 
   const clickIcon = (department) => {
     console.log("inside on click ");
@@ -18,7 +32,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
   return(
     <AllDepartmentsBoxContainer>
       <h2>Product Group</h2>
-        {(alldepartments && !department)
+        {/* {(alldepartments && !department)
         &&
       <>
         {alldepartments.map((department) => (
@@ -27,7 +41,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
           </div>
         ))}
       </>
-        }
+        } */}
       {department
       &&
         <DepartmAppsBox department={department} />
