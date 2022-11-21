@@ -85,10 +85,12 @@ const AddNewConnectionBox = () => {
 
     const addhasBeenClicked = async() => {
         console.log("add has been clicked ");
+        const titleAndSource = await findDocsSource(url);
+        console.log("titleAndSource", titleAndSource);
         const newDoc = {
-            title: "",
+            title: titleAndSource,
             url: url,
-            source: await findDocsSource(url),
+            source: titleAndSource,
             creationDate: "someDate",
             folderToBeDisplayedIn: "folder1",
             concerningParts: [],
