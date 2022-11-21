@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import styled from "@emotion/styled";
+import findDocsSource from "../helpers/findDocsSource";
 
 const AddingConnectionBox = styled.div`
         margin: 10px;
@@ -78,12 +79,16 @@ const AddNewConnectionBox = () => {
         console.log("url", url);
     }, [url]);
 
-    const addhasBeenClicked = () => {
+    useEffect(() => {
+        console.log("newDoc", newDoc);
+    }, [newDoc]);
+
+    const addhasBeenClicked = async() => {
         console.log("add has been clicked ");
         const newDoc = {
             title: "",
             url: url,
-            source: "Confluence",
+            source: await findDocsSource(url),
             creationDate: "someDate",
             folderToBeDisplayedIn: "folder1",
             concerningParts: [],
