@@ -3,41 +3,41 @@ import { Link } from "react-router-dom";
 import styled from '@emotion/styled';
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
-const AppFolderIcon = ({ app, department }) => {
-  const [thisDepartment, setThisDepartment] = useState();
-  const [thisApp, setThisApp] = useState("");
-
-  const DecoratedLink = styled(Link)`
-  display: flex;
-  color: #FFFFFF;
-  text-decoration: none;
-  margin: auto;
+const DecoratedLink = styled(Link)`
+display: flex;
+color: #FFFFFF;
+text-decoration: none;
+margin: auto;
 `;
 
 const AppFolderIconContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: #6c98e0;
-  width: 115px;
-  height: 50px;
-  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-  border-radius: 15px 10%;
-  margin: 20px;
-  font-size: 18px;
+display: flex;
+align-content: center;
+background-color: #6c98e0;
+width: 115px;
+height: 50px;
+box-shadow: #2b2a28 0.5em 0.5em 0.3em;
+border-radius: 15px 10%;
+margin: 20px;
+font-size: 18px;
 
-  `;
+`;
 
 const AppFolderButton = styled.button`
-  margin: auto;
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
- 
+margin: auto;
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+
 `;
+
+const AppFolderIcon = ({ app, department }) => {
+  const [thisDepartment, setThisDepartment] = useState();
+  const [thisApp, setThisApp] = useState("");
 
   useEffect(() => {
     console.log("department", department);
@@ -72,9 +72,9 @@ const AppFolderButton = styled.button`
   }
 
   return(
-      <DecoratedLink
-      to={()=>defineLink()}
-      state={{...thisApp}}>
+      <DecoratedLink>
+      {/* to={()=>defineLink()}
+      state={{...thisApp}}> */}
         <AppFolderIconContainer>
           <AppFolderButton> 
             {useCapitaliseFirstLetter(defineName())}

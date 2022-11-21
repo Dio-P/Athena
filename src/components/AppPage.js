@@ -4,31 +4,31 @@ import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from '../hooks/useCapitaliseFirstLetter';
 import AddNewConnectionBox from './AddNewConnectionBox';
 
+const AppPageContainer = styled.div`
+margin-left: 10px;
+`;
+
+const AppPageTitle = styled.h1`
+margin: 0px;
+`;
+
+const AddDocButton = styled.button`
+margin: auto;
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+`;
+
 const AppPage = ({ app }) => {
   // const location = useLocation();
   // const app = location.state;
 
   const [thisApp, setThisApp] = useState("");
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
-
-  const AppPageContainer = styled.div`
-    margin-left: 10px;
-  `;
-
-  const AppPageTitle = styled.h1`
-    margin: 0px;
-  `;
-
-  const AddDocButton = styled.button`
-    margin: auto;
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-  `;
 
   useEffect(()=>{
     setThisApp(app)
@@ -48,7 +48,7 @@ const AppPage = ({ app }) => {
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
       <AddDocButton onClick={clickingToAddNewConnection}>
-        + Add
+        + Add URL
       </AddDocButton>
       {addNewConnectionBoxIsOpen
       &&

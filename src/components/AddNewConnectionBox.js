@@ -1,11 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 
-
-const AddNewConnectionBox = () => {
-    const [url, setUrl] = useState();
-
-    const AddingConnectionBox = styled.div`
+const AddingConnectionBox = styled.div`
         margin: 10px;
         border: solid black;
         zIndex: 1;
@@ -17,16 +13,23 @@ const AddNewConnectionBox = () => {
     
     `;
 
+const AddNewConnectionBox = () => {
+    const [url, setUrl] = useState("");
+
     useEffect(() => {
         console.log("url", url);
     }, [url]);
+
+    // const onChangeFired = useCallback((e) => {
+    //     setUrl(e.target.value) 
+    // }, [])
 
     return (
         <AddingConnectionBox>
             <FormContainer>
                 <div>
                     <label htmlFor="">URL</label>
-                    <input type="text" value={url} onChange={(e)=>setUrl(e.target.value)}/>
+                    <input type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
                 </div>
             </FormContainer>
         </AddingConnectionBox>
