@@ -8,7 +8,8 @@ const findDocsSource = (link) => {
     fragment !== ""
   ))
   console.log("linkParts", linkParts);
-  return linkParts[1]
+  const source = linkParts[1].split(".")[0]
+  return source
 }
 
 export default findDocsSource;
