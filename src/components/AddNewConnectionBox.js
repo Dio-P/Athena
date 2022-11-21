@@ -18,7 +18,12 @@ const UrlInputBox = styled.div`
 `;
 
 const InputContainer = styled.div`
+    border: solid black;
     border-width: 2px;
+    padding: 1px 2px;
+    width: 200px;
+    min-height: 20px;
+    height: 100%
 `;
 
 const Input = styled.input`
