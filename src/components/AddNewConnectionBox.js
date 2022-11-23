@@ -88,9 +88,9 @@ const AddNewConnectionBox = () => {
         const titleAndSource = await findDocsSource(url);
         console.log("titleAndSource", titleAndSource);
         const newDoc = {
-            title: titleAndSource,
+            title: titleAndSource.title,
             url: url,
-            source: titleAndSource,
+            source: titleAndSource.source,
             creationDate: "someDate",
             folderToBeDisplayedIn: "folder1",
             concerningParts: [],

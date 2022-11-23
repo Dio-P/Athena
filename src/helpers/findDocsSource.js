@@ -8,6 +8,10 @@ const findDocsSource = async (link) => {
   ))
 
   const lastLinkIndx = linkParts.length -1;
+  const formatedFrag = () => {
+    const lastLinkIndx = linkParts.length -1;
+    linkParts[lastLinkIndx].split("-").join();
+  }
   console.log("lastLinkIndx", lastLinkIndx);
   // fetch(https://github.com/Dio-P/Athena/blob/main/src/components/AddNewConnectionBox.js)
   // https://paper.dropbox.com/doc/Imposter-syndrome-workshop-ideas--BtYF4rZRzasgUTPjgE7J0osIAg-vIsKjOV2rmXL6H3g39LgZ
@@ -18,7 +22,7 @@ const findDocsSource = async (link) => {
     if(source==="paper"){
       const lastLinkFragment = linkParts[lastLinkIndx];
       console.log("lastLinkFragment!!!!!", lastLinkFragment);
-      return lastLinkFragment.split("--").split("-").join(" ")
+      return lastLinkFragment.split("--")[0].split("-").join(" ")
       
     }
     // if(source==="jira"){
@@ -32,7 +36,7 @@ const findDocsSource = async (link) => {
       
     }
     console.log("last thing in link array =", linkParts[lastLinkIndx]);
-    return linkParts[lastLinkIndx];
+    return linkParts[lastLinkIndx].split("-").join(" ");
   }
   
   
