@@ -16,11 +16,17 @@ function App() {
     apps: [
       {
         name: "optimo",
-        test: "test"
+        foldersToDisplay: [
+          { 1: "client"},
+          { 2: "server"},
+        ],
       },
       {
         name: "tipo",
-        test: "test"
+        foldersToDisplay: [
+          { 1: "client"},
+          { 2: "server"},
+        ],
       },
     ]
   }

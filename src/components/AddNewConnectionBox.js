@@ -70,17 +70,22 @@ const UrlInputBox = styled.div`
     margin: 3px;
 `;
 
-const AddNewConnectionBox = () => {
+const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
+    const [folderName, setFolderName] = useState("Choose a display folder");
+    const [folderInputOpen, setFolderInputOpen] = useState(false);
+    const [allFolders, setAllFolders] = useState([])
     const [newDoc, setNewDoc] = useState("");
-
-    useEffect(() => {
-        console.log("url", url);
-    }, [url]);
 
     useEffect(() => {
         console.log("newDoc", newDoc);
     }, [newDoc]);
+
+    useEffect(() => {
+        setAllFolders(app.foldersToDisplay.map((folder)=>(
+            Object.values(folder)
+        )))
+    }, [app]);
 
     const addhasBeenClicked = async() => {
         console.log("add has been clicked ");
@@ -100,9 +105,9 @@ const AddNewConnectionBox = () => {
         setNewDoc(newDoc)
     }
 
-    // const onChangeFired = useCallback((e) => {
-    //     setUrl(e.target.value) 
-    // }, [])
+    const folderInputClicked = () => {
+        setFolderInputOpen(true) 
+    }
 
     return (
         <AddingConnectionBox>
@@ -110,14 +115,27 @@ const AddNewConnectionBox = () => {
                 <div>
                     <label htmlFor="">URL</label>
                     <InputContainer>
-                        <Input type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
-                        {url
+                        <Input key={"urlInput"} type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
+                    </InputContainer>
+                            {folderInputOpen?
+                                <div>
+                                    {allFolders.map((folder)=> (
+                                        <p> { folder }</p>
+                                    ))}
+                                </div>
+                            :
+                                <div onClick={(e)=>folderInputClicked(e.target.value)}>
+                                    <p>{ folderName }</p>
+                                </div>
+
+                            }
+                       
+                        {/* {url
                         &&
                             <UrlInputBox onClick={addhasBeenClicked}>
                                 {`add: ${url}`}
                             </UrlInputBox>
-                        }
-                    </InputContainer>
+                        } */}
                 </div>
             </FormContainer>
         </AddingConnectionBox>

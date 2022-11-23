@@ -52,7 +52,7 @@ const AppPage = ({ app }) => {
       </AddDocButton>
       {addNewConnectionBoxIsOpen
       &&
-        <AddNewConnectionBox/>
+        <AddNewConnectionBox app={ app } />
       }
     </AppPageContainer>
   )
