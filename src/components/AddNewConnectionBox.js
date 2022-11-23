@@ -72,9 +72,12 @@ const UrlInputBox = styled.div`
 
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
+
     const [folderName, setFolderName] = useState("Choose a display folder");
     const [folderInputOpen, setFolderInputOpen] = useState(false);
     const [allFolders, setAllFolders] = useState([])
+
+    const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
 
     useEffect(() => {
@@ -128,6 +131,13 @@ const AddNewConnectionBox = ({ app }) => {
                                     <p>{ folderName }</p>
                                 </div>
 
+                            }
+                            {
+                            (url && folderName && part)
+                            ?
+                                <button onClick={addhasBeenClicked}>Add</button>
+                            :
+                                <button>Add</button>
                             }
                        
                         {/* {url
