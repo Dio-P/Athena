@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import styled from "@emotion/styled";
-import findDocsSource from "../helpers/findDocsSource";
+import findConnectionParameters from "../helpers/findConnectionParameters";
 
 const AddingConnectionBox = styled.div`
         margin: 10px;
@@ -21,6 +21,7 @@ const InputContainer = styled.div`
     border-radius: 10px;
     padding: 1px 2px;
     min-width: 200px;
+    max-width: 99%;
     width: max-content;    ;
     min-height: 20px;
     height: 100%
@@ -85,13 +86,15 @@ const AddNewConnectionBox = () => {
 
     const addhasBeenClicked = async() => {
         console.log("add has been clicked ");
-        const titleAndSource = await findDocsSource(url);
-        console.log("titleAndSource", titleAndSource);
+        const {
+            title,
+            source
+        } = await findConnectionParameters(url);
         const newDoc = {
-            title: titleAndSource.title,
+            title: title,
             url: url,
-            source: titleAndSource.source,
-            creationDate: "someDate",
+            source: source,
+            lastModified: "someDate",
             folderToBeDisplayedIn: "folder1",
             concerningParts: [],
             isLinkUpToDate: true, //tickbox checked

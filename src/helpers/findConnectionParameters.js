@@ -1,6 +1,6 @@
 
 
-const findDocsSource = async (link) => {
+const findConnectionParameters = async (link) => {
   const linkParts = link
   .split("/")
   .filter((fragment) => (
@@ -47,15 +47,28 @@ const findDocsSource = async (link) => {
 
   const findSource = () => {
     const firstLinkFragment = linkParts[1].split(".");
+    if(firstLinkFragment.includes("paper")){
+      return "paper";
+    }
+    if(firstLinkFragment.includes("github")){
+      return "github";
+    }
+    if(firstLinkFragment.includes("zeplin")){
+      return "zeplin";
+    }
+    if(firstLinkFragment.includes("confluence")){
+      return "confluence";
+    }
+
   }
   
   
   console.log("linkParts", linkParts);
-  const source = linkParts[1].split(".")[0];
+  const source = findSource();
   console.log("source", source);
   const title = await findTitle(source);
   console.log("title", title);
   return {source, title};
 }
 
-export default findDocsSource;
+export default findConnectionParameters;
