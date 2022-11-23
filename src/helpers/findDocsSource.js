@@ -44,6 +44,10 @@ const findDocsSource = async (link) => {
     console.log("last thing in link array =", linkParts[lastLinkIndx]);
     return linkParts[lastLinkIndx].split("-").join(" ");
   }
+
+  const findSource = () => {
+    const firstLinkFragment = linkParts[1].split(".");
+  }
   
   
   console.log("linkParts", linkParts);
