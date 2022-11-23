@@ -16,16 +16,14 @@ const FormContainer = styled.form`
 `;
 
 const InputContainer = styled.div`
+    text-align: center;
     margin-top: 4px;
     border: solid black;
     border-radius: 10px;
     padding: 1px 2px;
-    min-width: 200px;
-    max-width: 99%;
-    width: max-content;    ;
+    width: 99%;
     min-height: 20px;
-    height: 100%
-    border-radius: 15px 10%;
+    height: 100%;
 `;
 
 const Input = styled.input`

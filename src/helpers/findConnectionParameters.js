@@ -10,17 +10,14 @@ const findConnectionParameters = async (link) => {
   const lastLinkIndx = linkParts.length -1;
 
   const findTitle = (source) => {
+    const lastLinkFragment = linkParts[lastLinkIndx];
+
     if(source==="paper"){
-      const lastLinkFragment = linkParts[lastLinkIndx];
-      console.log("lastLinkFragment!!!!!", lastLinkFragment);
       return lastLinkFragment.split("--")[0].split("-").join(" ")
     }
     if(source==="confluence"){
-      const lastLinkFragment = linkParts[lastLinkIndx];
       return lastLinkFragment.split("+").join(" ")
-      
     }
-    console.log("last thing in link array =", linkParts[lastLinkIndx]);
     return linkParts[lastLinkIndx].split("-").join(" ");
   }
 
