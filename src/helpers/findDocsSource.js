@@ -8,9 +8,15 @@ const findDocsSource = async (link) => {
   ))
 
   const lastLinkIndx = linkParts.length -1;
+  
   const formatedFrag = () => {
+    const linkParts = link
+    .split("/")
+    .filter((fragment) => (
+      fragment !== ""
+    ))
     const lastLinkIndx = linkParts.length -1;
-    linkParts[lastLinkIndx].split("-").join();
+    linkParts[lastLinkIndx].split("-").join(" ");
   }
   console.log("lastLinkIndx", lastLinkIndx);
   // fetch(https://github.com/Dio-P/Athena/blob/main/src/components/AddNewConnectionBox.js)
