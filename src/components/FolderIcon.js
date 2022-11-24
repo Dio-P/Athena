@@ -10,6 +10,22 @@ text-decoration: none;
 margin: auto;
 `;
 
+const ClickedAppFolderIconContainer = styled.div`
+display: flex;
+align-content: center;
+background-color: #1ee685;
+min-width: 115px;
+min-height: 50px;
+max-width: 140px;
+max-height: 60px;
+width: 100%;
+height: 100%;
+box-shadow: #2b2a28 0.5em 0.5em 0.3em;
+border-radius: 15px 10%;
+margin: 20px;
+font-size: 18px;
+`;
+
 const AppFolderIconContainer = styled.div`
 display: flex;
 align-content: center;
@@ -24,7 +40,6 @@ box-shadow: #2b2a28 0.5em 0.5em 0.3em;
 border-radius: 15px 10%;
 margin: 20px;
 font-size: 18px;
-
 `;
 
 const AppFolderButton = styled.button`
@@ -39,19 +54,26 @@ outline: inherit;
 
 `;
 
-const FolderIcon = ({ app, department, folder, part }) => {
+const FolderIcon = ({ app, department, folder, part, clicked }) => {
   const [thisDepartment, setThisDepartment] = useState("");
   const [thisApp, setThisApp] = useState("");
-  const [thisFolder, setThisFolder] = useState("")
-  const [thisPart, setThisPart] = useState("")
+  const [thisClicked, setThisClicked] = useState(false);
+  const [thisFolder, setThisFolder] = useState("");
+  const [thisPart, setThisPart] = useState("");
 
   useEffect(() => {
     setThisDepartment(department) 
   }, [department]);
 
   useEffect(() => {
-    setThisApp(app) 
+    setThisApp(app)
   }, [app]);
+
+  useEffect(() => {
+    if(clicked){
+      setThisClicked(clicked)
+    }
+  }, [clicked]);
 
   const defineName = () => {
     if(thisDepartment && !thisApp && !folder && !part) {
@@ -71,13 +93,15 @@ const FolderIcon = ({ app, department, folder, part }) => {
     return undefined;
   }
 
+  const CustomButtonContainer = thisClicked? ClickedAppFolderIconContainer: AppFolderIconContainer;
+
   return(
       <DecoratedLink>
-        <AppFolderIconContainer>
+        <CustomButtonContainer>
           <AppFolderButton> 
             {useCapitaliseFirstLetter(defineName())}
           </AppFolderButton>
-        </AppFolderIconContainer>
+        </CustomButtonContainer>
       </DecoratedLink>
   ) 
 }

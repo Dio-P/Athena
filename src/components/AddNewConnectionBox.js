@@ -51,10 +51,12 @@ const UrlInputBox = styled.div`
 
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
+    const [iconClicked, setIconClicked] = useState(false);
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
-    const [newPartName, setNewPartName] = useState("");
+    const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
+    // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
     const [allFolders, setAllFolders] = useState([])
@@ -67,6 +69,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
     let nuOfNewFolder;
+    const allAppPartsHelper = {}
 
     if(allFolders){
         nuOfNewFolder = allFolders.length +2;
@@ -81,10 +84,17 @@ const AddNewConnectionBox = ({ app }) => {
         setAllFolders(app.foldersToDisplay.map((folder)=>(
             Object.values(folder)[0]
         )));
-        setAllAppParts(app.includesParts.map((part)=>(
-            part.name
-        )));
+        app.includesParts.map((part) => {
+            allAppPartsHelper[part.name]= part
+            allAppPartsHelper[part.name].clicked = false
+        });
+        setAllAppParts(allAppPartsHelper);
     }, [app]);
+
+    useEffect(() => {
+        console.log("allAppPartsHelper", allAppPartsHelper); 
+        console.log("allAppParts", allAppParts); 
+    }, [allAppParts])
 
     const addhasBeenClicked = async() => {
         console.log("add has been clicked ");
@@ -99,7 +109,7 @@ const AddNewConnectionBox = ({ app }) => {
             source: source,
             lastModified: "someDate",
             folderToBeDisplayedIn: "1",
-            concerningParts: [],
+            concerningParts: appPartsConcernedWithNewDoc,
             isLinkUpToDate: true, //tickbox checked
         }
         setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
@@ -119,7 +129,15 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const partIconClicked = (part) => {
-        setFolderName(part);
+        console.log("part icon clicked");
+        allAppParts[part.name]["clicked"] = true;
+        console.log("allAppParts", allAppParts);
+        // if(Object.keys(setOfClickedParts).includes(part.name)){
+        //     delete setOfClickedParts[part.name]
+        // }else {
+        //     setSetOfClickedParts({...setOfClickedParts, [part.name]: part})
+        // }
+        // setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, part]);
     }
 
 
@@ -149,19 +167,21 @@ const AddNewConnectionBox = ({ app }) => {
                         <div onClick={()=>addNewAppPartClicked()}>+ Add (app name) Part</div>
                             { !appPartInputOpen?
                                 <>
-                                {allAppParts.map((part)=> (
-                                    <FolderIcon
-                                        part={part}
-                                        onClick={ (part)=> setNewPartName([...newPartName, part]) } 
-                                        > 
-                                        { part }
-                                    </FolderIcon>
+                                {Object.values(allAppParts).map((part)=> (
+                                    <div onClick={ (part) => partIconClicked(part) }>
+                                        <FolderIcon
+                                            part={part.name}
+                                            clicked={allAppParts[part.name].clicked}
+                                            > 
+                                            { part }
+                                        </FolderIcon>
+                                    </div>
                                 ))}
                                 </>
                             :
                             <>
                                 <InputContainer>
-                                    <Input key={"newFolderInput"} type="text" name="newFolder" value={newPartName} onChange={(e)=> setNewPartName([...newPartName, e.target.value])}/>
+                                    <Input key={"newFolderInput"} type="text" name="newFolder" value={appPartsConcernedWithNewDoc} onChange={(e)=> setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, e.target.value])}/>
                                 </InputContainer>
                                 <p> Folder to display App in</p>
                                 <>
