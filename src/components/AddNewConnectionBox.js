@@ -27,40 +27,18 @@ const InputContainer = styled.div`
 `;
 
 const Input = styled.input`
-    border-radius: 8px;
-    min-width: 200px;
     width: 100%; 
+    border: solid black;
+    border-radius: 8px;
+    border-radius: 10px;
+    min-width: 200px;
+    min-height: 20px;
     height: 24px;
-    writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
-    text-rendering: auto;
-    color: fieldtext;
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
     text-align: center;
-    appearance: auto;
-    -webkit-rtl-ordering: logical;
     cursor: text;
-    background-color: field;
     margin: 0em;
     padding: 0px;
     border-width: 0px;
-    border-style: inset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial;
 `;
 
 const UrlInputBox = styled.div`
@@ -73,12 +51,24 @@ const UrlInputBox = styled.div`
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
 
+    const [allAppParts, setAllAppParts] = useState([]);
+    const [appPart, setAppPart] = useState({});
+    const [appPartInputOpen, setAppPartInputOpen] = useState(false);
+    
+    const [allFolders, setAllFolders] = useState([])
     const [folderName, setFolderName] = useState("Choose a display folder");
     const [folderInputOpen, setFolderInputOpen] = useState(false);
-    const [allFolders, setAllFolders] = useState([])
+
+    const [addnewFolderInputOpen, setAddnewFolderInputOpen] = useState(false);
+    const [newFolder, setNewFolder] = useState("")
 
     const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
+    let nuOfNewFolder;
+
+    if(allFolders){
+        nuOfNewFolder = allFolders.length +2;
+    }
 
     useEffect(() => {
         console.log("newDoc", newDoc);
@@ -87,7 +77,7 @@ const AddNewConnectionBox = ({ app }) => {
     useEffect(() => {
         setAllFolders(app.foldersToDisplay.map((folder)=>(
             Object.values(folder)
-        )))
+        )));
     }, [app]);
 
     const addhasBeenClicked = async() => {
@@ -96,20 +86,34 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
+        
         const newDoc = {
             title: title,
             url: url,
             source: source,
             lastModified: "someDate",
-            folderToBeDisplayedIn: "folder1",
+            folderToBeDisplayedIn: "1",
             concerningParts: [],
             isLinkUpToDate: true, //tickbox checked
         }
+        setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
         setNewDoc(newDoc)
     }
 
+    const addNewFolderClicked = () => {
+        setAddnewFolderInputOpen(!addnewFolderInputOpen);
+    }
+
     const folderInputClicked = () => {
-        setFolderInputOpen(true) 
+        setFolderInputOpen(!folderInputOpen);
+    }
+
+    const addingNewFolder = (value) => {
+        setFolderName(value)
+        //  setNewFolder(
+        //     {
+        //         [nuOfNewFolder]: value
+        //     });
     }
 
     return (
@@ -120,18 +124,53 @@ const AddNewConnectionBox = ({ app }) => {
                     <InputContainer>
                         <Input key={"urlInput"} type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
                     </InputContainer>
-                            {folderInputOpen?
-                                <div>
+                    <div>
+                        <>
+                            <div onClick={(e)=>folderInputClicked(e.target.value)}>Choose a display folder</div>
+                        </>
+                    
+                        {folderInputOpen
+                        &&
+                            <>
+                                <>
                                     {allFolders.map((folder)=> (
-                                        <p> { folder }</p>
+                                        <button> { folder }</button>
                                     ))}
-                                </div>
-                            :
-                                <div onClick={(e)=>folderInputClicked(e.target.value)}>
-                                    <p>{ folderName }</p>
-                                </div>
+                                </>
+                                <>
+                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
+                                    { addnewFolderInputOpen
+                                    &&
+                                    <InputContainer>
+                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
+                                    </InputContainer>
+                                    }
+                                </>
+                            </>
+                        }
 
-                            }
+                        {folderInputOpen
+                        &&
+                            <>
+                                <>
+                                    {allFolders.map((folder)=> (
+                                        <button> { folder }</button>
+                                    ))}
+                                </>
+                                <>
+                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
+                                    { addnewFolderInputOpen
+                                    &&
+                                    <InputContainer>
+                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
+                                    </InputContainer>
+                                    }
+                                </>
+                            </>
+                        }
+
+                        
+                    </div>
                             {
                             (url && folderName && part)
                             ?
