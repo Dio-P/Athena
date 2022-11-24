@@ -35,12 +35,13 @@ outline: inherit;
 
 `;
 
-const AppFolderIcon = ({ app, department }) => {
-  const [thisDepartment, setThisDepartment] = useState();
+const FolderIcon = ({ app, department, folder, part }) => {
+  const [thisDepartment, setThisDepartment] = useState("");
   const [thisApp, setThisApp] = useState("");
+  const [thisFolder, setThisFolder] = useState("")
+  const [thisPart, setThisPart] = useState("")
 
   useEffect(() => {
-    console.log("department", department);
     setThisDepartment(department) 
   }, [department]);
 
@@ -48,33 +49,26 @@ const AppFolderIcon = ({ app, department }) => {
     setThisApp(app) 
   }, [app]);
 
-  const defineLink = () => {
-    console.log("inside defineLink");
-    if(thisDepartment && !thisApp) {
-      console.log("inside defineLink thisDepartment true");
-      return ""
-    }
-    if(thisApp && !thisDepartment) {
-      console.log("inside defineLink, thisApp true");
-      return `/appPage/:${thisApp.name}`
-    }
-    return ""
-  };
-
   const defineName = () => {
-    if(thisDepartment && !thisApp) {
+    if(thisDepartment && !thisApp && !folder && !part) {
       return thisDepartment.name
     }
-    if(thisApp && !thisDepartment) {
+    if(thisApp && !thisDepartment && !folder && !part) {
       return thisApp.name
     }
-    return "..."
+    if(!thisApp && !thisDepartment && folder && !part) {
+      console.log("folder!", folder);
+      return folder
+    }
+    if(!thisApp && !thisDepartment && !folder && part) {
+      console.log("part!", part);
+      return part
+    }
+    return undefined;
   }
 
   return(
       <DecoratedLink>
-      {/* to={()=>defineLink()}
-      state={{...thisApp}}> */}
         <AppFolderIconContainer>
           <AppFolderButton> 
             {useCapitaliseFirstLetter(defineName())}
@@ -84,4 +78,4 @@ const AppFolderIcon = ({ app, department }) => {
   ) 
 }
 
-export default AppFolderIcon
+export default FolderIcon

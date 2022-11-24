@@ -17,7 +17,7 @@ function App() {
       {
         name: "optimo",
         foldersToDisplay: [
-          { 0: "general documentation"},
+          { 0: "general"},
           { 1: "client"},
           { 2: "server"},
         ],
@@ -39,7 +39,7 @@ function App() {
       {
         name: "tipo",
         foldersToDisplay: [
-          { 0: "general documentation"},
+          { 0: "general"},
           { 1: "client"},
           { 2: "server"},
         ],

@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
+import FolderIcon from "./FolderIcon";
 
 const AddingConnectionBox = styled.div`
         margin: 10px;
@@ -53,11 +54,11 @@ const AddNewConnectionBox = ({ app }) => {
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
-    const [newAppName, setNewAppName] = useState({});
+    const [newAppName, setNewAppName] = useState("");
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
     const [allFolders, setAllFolders] = useState([])
-    const [folderName, setFolderName] = useState("Choose a display folder");
+    const [folderName, setFolderName] = useState("");
     const [folderInputOpen, setFolderInputOpen] = useState(false);
 
     const [addnewFolderInputOpen, setAddnewFolderInputOpen] = useState(false);
@@ -76,11 +77,12 @@ const AddNewConnectionBox = ({ app }) => {
     }, [newDoc]);
 
     useEffect(() => {
+        console.log("app@", app);
         setAllFolders(app.foldersToDisplay.map((folder)=>(
-            Object.values(folder)
+            Object.values(folder)[0]
         )));
         setAllAppParts(app.includesParts.map((part)=>(
-            Object.values(part.name)
+            part.name
         )));
     }, [app]);
 
@@ -105,7 +107,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewAppPartClicked = () => {
-        setAppPartInputOpen(!addnewFolderInputOpen);
+        setAppPartInputOpen(!appPartInputOpen);
     }
 
     const addNewFolderClicked = () => {
@@ -133,57 +135,45 @@ const AddNewConnectionBox = ({ app }) => {
                         <Input key={"urlInput"} type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
                     </InputContainer>
                     <div>
-                     
-                            <div 
-                            // onClick={(e)=>folderInputClicked(e.target.value)}
-                            >
-                                <p>Choose an app part and display folder</p>
+                        <p>Choose an app part and display folder</p>
+                       
+                        <div onClick={()=>addNewAppPartClicked()}>+ Add (app name) Part</div>
+                            { !appPartInputOpen?
                                 <>
+                                {allAppParts.map((part)=> (
+                                    <FolderIcon part={part} > { part }</FolderIcon>
+                                ))}
+                                </>
+                            :
+                            <>
+                                <InputContainer>
+                                    <Input key={"newFolderInput"} type="text" name="newFolder" value={newAppName} onChange={(e)=> setNewAppName(e.target.value)}/>
+                                </InputContainer>
+                                <p> Folder to display App in</p>
                                 <>
-                                    {allAppParts.map((app)=> (
-                                        <button> { app }</button>
+                                    {allFolders.map((folder)=> (
+                                        <FolderIcon folder={ folder }> { folder }</FolderIcon>
                                     ))}
                                 </>
                                 <>
-                                    <div onClick={()=>addNewAppPartClicked()}>+ Add (app name) Part</div>
-                                    { appPartInputOpen
+                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
+                                    { addnewFolderInputOpen
                                     &&
                                     <InputContainer>
-                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setNewAppName(e.target.value)}/>
-                                        <p> Folder to display App in</p>
-                                        <>
-                                    <>
-                                        {allFolders.map((folder)=> (
-                                            <button> { folder }</button>
-                                        ))}
-                                    </>
-                                    <>
-                                        <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
-                                        { addnewFolderInputOpen
-                                        &&
-                                        <InputContainer>
-                                            <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
-                                        </InputContainer>
-                                        }
-                                    </>
-                                </>
-
+                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
                                     </InputContainer>
                                     }
                                 </>
-                            </>
-                            </div>
-
-
-                        
+                            </> 
+                        }
                     </div>
-                            {
-                            (url && folderName && part)
-                            ?
-                                <button onClick={addhasBeenClicked}>Add</button>
-                            :
-                                <button>Add</button>
-                            }
+                        {
+                        (url && folderName && part)
+                        ?
+                            <button onClick={addhasBeenClicked}>Add</button>
+                        :
+                            <button>Add</button>
+                        }
                        
                         {/* {url
                         &&
