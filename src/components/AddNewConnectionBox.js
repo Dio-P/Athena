@@ -8,7 +8,7 @@ const AddingConnectionBox = styled.div`
         border: solid black;
         zIndex: 1;
         width: 1000px;
-        height: 500px;
+        height: 100%;
     `;
 
 const FormContainer = styled.form`
@@ -154,15 +154,15 @@ const AddNewConnectionBox = ({ app }) => {
                                     {allFolders.map((folder)=> (
                                         <FolderIcon folder={ folder }> { folder }</FolderIcon>
                                     ))}
-                                </>
-                                <>
-                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
-                                    { addnewFolderInputOpen
-                                    &&
-                                    <InputContainer>
-                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
-                                    </InputContainer>
-                                    }
+                                    <>
+                                        <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
+                                        { addnewFolderInputOpen
+                                        &&
+                                        <InputContainer>
+                                            <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
+                                        </InputContainer>
+                                        }
+                                    </>
                                 </>
                             </> 
                         }
@@ -174,7 +174,7 @@ const AddNewConnectionBox = ({ app }) => {
                         :
                             <button>Add</button>
                         }
-                       
+                        
                         {/* {url
                         &&
                             <UrlInputBox onClick={addhasBeenClicked}>
