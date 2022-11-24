@@ -14,8 +14,12 @@ const AppFolderIconContainer = styled.div`
 display: flex;
 align-content: center;
 background-color: #6c98e0;
-width: 115px;
-height: 50px;
+min-width: 115px;
+min-height: 50px;
+max-width: 140px;
+max-height: 60px;
+width: 100%;
+height: 100%;
 box-shadow: #2b2a28 0.5em 0.5em 0.3em;
 border-radius: 15px 10%;
 margin: 20px;

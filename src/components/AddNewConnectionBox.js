@@ -54,7 +54,7 @@ const AddNewConnectionBox = ({ app }) => {
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
-    const [newAppName, setNewAppName] = useState("");
+    const [newPartName, setNewPartName] = useState("");
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
     const [allFolders, setAllFolders] = useState([])
@@ -114,6 +114,15 @@ const AddNewConnectionBox = ({ app }) => {
         setAddnewFolderInputOpen(!addnewFolderInputOpen);
     }
 
+    const folderIconClicked = (folder) => {
+        setFolderName(folder);
+    }
+
+    const partIconClicked = (part) => {
+        setFolderName(part);
+    }
+
+
     const folderInputClicked = () => {
         setFolderInputOpen(!folderInputOpen);
     }
@@ -141,18 +150,28 @@ const AddNewConnectionBox = ({ app }) => {
                             { !appPartInputOpen?
                                 <>
                                 {allAppParts.map((part)=> (
-                                    <FolderIcon part={part} > { part }</FolderIcon>
+                                    <FolderIcon
+                                        part={part}
+                                        onClick={ (part)=> setNewPartName([...newPartName, part]) } 
+                                        > 
+                                        { part }
+                                    </FolderIcon>
                                 ))}
                                 </>
                             :
                             <>
                                 <InputContainer>
-                                    <Input key={"newFolderInput"} type="text" name="newFolder" value={newAppName} onChange={(e)=> setNewAppName(e.target.value)}/>
+                                    <Input key={"newFolderInput"} type="text" name="newFolder" value={newPartName} onChange={(e)=> setNewPartName([...newPartName, e.target.value])}/>
                                 </InputContainer>
                                 <p> Folder to display App in</p>
                                 <>
                                     {allFolders.map((folder)=> (
-                                        <FolderIcon folder={ folder }> { folder }</FolderIcon>
+                                        <FolderIcon 
+                                            folder={ folder } 
+                                            onClick={ (folder)=> setFolderName(folder) } 
+                                            > 
+                                            { folder }
+                                        </FolderIcon>
                                     ))}
                                     <>
                                         <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
@@ -172,7 +191,7 @@ const AddNewConnectionBox = ({ app }) => {
                         ?
                             <button onClick={addhasBeenClicked}>Add</button>
                         :
-                            <button>Add</button>
+                            <button onClick>Add</button>
                         }
                         
                         {/* {url
