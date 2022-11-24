@@ -53,6 +53,7 @@ const AddNewConnectionBox = ({ app }) => {
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
+    const [newAppName, setNewAppName] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
     const [allFolders, setAllFolders] = useState([])
@@ -78,6 +79,9 @@ const AddNewConnectionBox = ({ app }) => {
         setAllFolders(app.foldersToDisplay.map((folder)=>(
             Object.values(folder)
         )));
+        setAllAppParts(app.includesParts.map((part)=>(
+            Object.values(part.name)
+        )));
     }, [app]);
 
     const addhasBeenClicked = async() => {
@@ -98,6 +102,10 @@ const AddNewConnectionBox = ({ app }) => {
         }
         setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
         setNewDoc(newDoc)
+    }
+
+    const addNewAppPartClicked = () => {
+        setAppPartInputOpen(!addnewFolderInputOpen);
     }
 
     const addNewFolderClicked = () => {
@@ -125,49 +133,47 @@ const AddNewConnectionBox = ({ app }) => {
                         <Input key={"urlInput"} type="text" name="url" value={url} onChange={(e)=>setUrl(e.target.value)}/>
                     </InputContainer>
                     <div>
-                        <>
-                            <div onClick={(e)=>folderInputClicked(e.target.value)}>Choose a display folder</div>
-                        </>
-                    
-                        {folderInputOpen
-                        &&
-                            <>
+                     
+                            <div 
+                            // onClick={(e)=>folderInputClicked(e.target.value)}
+                            >
+                                <p>Choose an app part and display folder</p>
                                 <>
-                                    {allFolders.map((folder)=> (
-                                        <button> { folder }</button>
+                                <>
+                                    {allAppParts.map((app)=> (
+                                        <button> { app }</button>
                                     ))}
                                 </>
                                 <>
-                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
-                                    { addnewFolderInputOpen
+                                    <div onClick={()=>addNewAppPartClicked()}>+ Add (app name) Part</div>
+                                    { appPartInputOpen
                                     &&
                                     <InputContainer>
-                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
-                                    </InputContainer>
-                                    }
+                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setNewAppName(e.target.value)}/>
+                                        <p> Folder to display App in</p>
+                                        <>
+                                    <>
+                                        {allFolders.map((folder)=> (
+                                            <button> { folder }</button>
+                                        ))}
+                                    </>
+                                    <>
+                                        <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
+                                        { addnewFolderInputOpen
+                                        &&
+                                        <InputContainer>
+                                            <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
+                                        </InputContainer>
+                                        }
+                                    </>
                                 </>
-                            </>
-                        }
 
-                        {folderInputOpen
-                        &&
-                            <>
-                                <>
-                                    {allFolders.map((folder)=> (
-                                        <button> { folder }</button>
-                                    ))}
-                                </>
-                                <>
-                                    <div onClick={()=>addNewFolderClicked()}>+ Add Folder</div>
-                                    { addnewFolderInputOpen
-                                    &&
-                                    <InputContainer>
-                                        <Input key={"newFolderInput"} type="text" name="newFolder" value={folderName} onChange={(e)=> setFolderName(e.target.value)}/>
                                     </InputContainer>
                                     }
                                 </>
                             </>
-                        }
+                            </div>
+
 
                         
                     </div>

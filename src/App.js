@@ -17,15 +17,47 @@ function App() {
       {
         name: "optimo",
         foldersToDisplay: [
+          { 0: "general documentation"},
           { 1: "client"},
           { 2: "server"},
+        ],
+        includesParts: [
+          {
+            name: "general documentation",
+            type: "documentation",
+            RepoLink: ["www.someGitHubLink.com"],
+            folderToBeDisplayedIn: "0",
+          },
+          {
+            name: "published postgres",
+            type: "data base",
+            RepoLink: ["www.someGitHubLink.com"],
+            folderToBeDisplayedIn: "1",
+          }
         ],
       },
       {
         name: "tipo",
         foldersToDisplay: [
+          { 0: "general documentation"},
           { 1: "client"},
           { 2: "server"},
+        ],
+        includesParts: [
+          {
+            name: "general documentation",
+            partId: "somePartId1",
+            type: "documentation",
+            RepoLink: ["www.someGitHubLink.com"],
+            folderToBeDisplayedIn: "0",
+          },
+          {
+            name: "published postgres",
+            partId: "somePartId2",
+            type: "data base",
+            RepoLink: ["www.someGitHubLink.com"],
+            folderToBeDisplayedIn: "1",
+          }
         ],
       },
     ]
