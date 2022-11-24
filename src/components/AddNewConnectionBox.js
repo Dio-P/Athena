@@ -130,8 +130,12 @@ const AddNewConnectionBox = ({ app }) => {
 
     const partIconClicked = (part) => {
         console.log("part icon clicked");
-        allAppParts[part.name]["clicked"] = true;
-        console.log("allAppParts", allAppParts);
+        console.log("allAppParts**", allAppParts);
+        console.log("part!!!", part);
+        setAllAppParts({
+            ...allAppParts, [part.name]: { 
+                ...allAppParts[part.name], 
+                clicked: !part.name.clicked}});
         // if(Object.keys(setOfClickedParts).includes(part.name)){
         //     delete setOfClickedParts[part.name]
         // }else {
@@ -168,7 +172,7 @@ const AddNewConnectionBox = ({ app }) => {
                             { !appPartInputOpen?
                                 <>
                                 {Object.values(allAppParts).map((part)=> (
-                                    <div onClick={ (part) => partIconClicked(part) }>
+                                    <div onClick={()=> partIconClicked(part) }>
                                         <FolderIcon
                                             part={part.name}
                                             clicked={allAppParts[part.name].clicked}
