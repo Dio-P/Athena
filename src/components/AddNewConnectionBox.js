@@ -133,10 +133,12 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("part icon clicked");
         console.log("allAppParts**", allAppParts);
         console.log("part!!!", part);
+        // let clicked = !part.clicked;
+        // console.log("clicked!!!", clicked); 
         setAllAppParts({
             ...allAppParts, [part.name]: { 
                 ...allAppParts[part.name], 
-                clicked: !part.name.clicked}});
+                clicked: !part.clicked}});
         // if(Object.keys(setOfClickedParts).includes(part.name)){
         //     delete setOfClickedParts[part.name]
         // }else {
