@@ -96,7 +96,8 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("allAppParts", allAppParts); 
     }, [allAppParts])
 
-    const addhasBeenClicked = async() => {
+    const addhasBeenClicked = async(e) => {
+        e.preventDefault()
         console.log("add has been clicked ");
         const {
             title,
@@ -112,7 +113,7 @@ const AddNewConnectionBox = ({ app }) => {
             concerningParts: appPartsConcernedWithNewDoc,
             isLinkUpToDate: true, //tickbox checked
         }
-        setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
+        // setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
         setNewDoc(newDoc)
     }
 
@@ -210,13 +211,13 @@ const AddNewConnectionBox = ({ app }) => {
                             </> 
                         }
                     </div>
-                        {
+                        {/* {
                         (url && folderName && part)
-                        ?
-                            <button onClick={addhasBeenClicked}>Add</button>
-                        :
+                        ? */}
+                            <button type="submit" onClick={addhasBeenClicked}>Add</button>
+                        {/* :
                             <button onClick>Add</button>
-                        }
+                        } */}
                         
                         {/* {url
                         &&
