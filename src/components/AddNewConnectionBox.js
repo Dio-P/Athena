@@ -258,7 +258,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     <div onClick={()=>addNewFolderClicked()}>
                                     <FolderIcon   
                                         addingButton={true}
-                                        buttonTitle={ addnewFolderInputOpen? "+ Add New Folder" : "- Close"}
+                                        buttonTitle={ addnewFolderInputOpen? "+ Add New Folder" : "- Existing Folders"}
                                     />
                                     </div>
                                 </>
