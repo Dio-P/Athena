@@ -70,9 +70,8 @@ const FolderIcon = ({ app, department, folder, part, clicked }) => {
   }, [app]);
 
   useEffect(() => {
-    if(clicked){
       setThisClicked(clicked)
-    }
+  
   }, [clicked]);
 
   const defineName = () => {
