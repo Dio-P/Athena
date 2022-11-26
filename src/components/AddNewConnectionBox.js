@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import FolderIcon from "./FolderIcon";
@@ -66,6 +67,8 @@ const AddNewConnectionBox = ({ app }) => {
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
     const [newPartName, setNewPartName] = useState("");
+    const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
+    const [newPartType, setNewPartType] = useState("");
     const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
     // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
@@ -176,6 +179,28 @@ const AddNewConnectionBox = ({ app }) => {
         //     });
     }
 
+    const addNewPartAndClear = () => {
+        const newPart = {
+            [newPartName]: {
+                name: newPartName,
+                partId: uuidv4(),
+                type: newPartType,
+                RepoLink: newPartGitHubRepo,
+                folderToBeDisplayedIn: "0",
+              }
+            
+        };
+        setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, newPart])
+        setNewPartName("");
+    }
+
+    const folderClicked = (folder) => {
+        setFolderName(folder);
+        setAddnewFolderInputOpen(false);
+
+        
+    }
+
     return (
         <DisplayBox>
             <FormContainer>
@@ -202,7 +227,7 @@ const AddNewConnectionBox = ({ app }) => {
                             <div onClick={()=>addNewAppPartClicked()}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={appPartInputOpen? `- back` : `+ Add ${appName} Part`}
+                                    buttonTitle={appPartInputOpen? `- close` : `+ Add ${appName} Part`}
                                 />
                             </div>
                         </>
@@ -216,6 +241,12 @@ const AddNewConnectionBox = ({ app }) => {
                             
                                 <InputContainer>
                                     <label htmlFor=""> New Part Name: {newPartName}</label>
+                                    <div onClick={() => addNewPartAndClear()}>
+                                        <FolderIcon
+                                            addingButton={true}
+                                            buttonTitle="add"
+                                        />
+                                    </div>
                                     <Input 
                                         key={"newFolderInput"}
                                         type="text" 
@@ -224,38 +255,73 @@ const AddNewConnectionBox = ({ app }) => {
                                         onChange={(e)=> setNewPartName( e.target.value)}
                                     />
                                 </InputContainer>
-                                <p> Folder to display new part in</p>
-                                <>
-                                    { addnewFolderInputOpen?
-                                        allFolders.map((folder)=> (
-                                            <FolderIcon 
-                                                folder={ folder } 
-                                                onClick={ (folder)=> setFolderName(folder) } 
-                                                > 
-                                                { folder }
-                                            </FolderIcon>
-                                        ))
-                                    :
-                                        <>
-                                            <InputContainer>
-                                                <label> New Folder Name: {folderName} </label>
-                                                <Input 
-                                                    key={"newFolderInput"}
-                                                    type="text" 
-                                                    name="newFolder" 
-                                                    value={folderName} 
-                                                    onChange={(e)=> setFolderName(e.target.value)}
-                                                />
-                                            </InputContainer>
-                                        </>
-                                    }
-                                    <div onClick={()=>addNewFolderClicked()}>
-                                    <FolderIcon   
-                                        addingButton={true}
-                                        buttonTitle={ addnewFolderInputOpen? "+ Add New Folder" : "- Existing Folders"}
+
+                                <InputContainer>
+                                    <label htmlFor=""> New Part Main GitHub Repo: {newPartGitHubRepo}</label>
+                                    <Input 
+                                        key={"newPartGitHubRepo"}
+                                        type="text" 
+                                        name="newPartGitHubRepo"
+                                        value={newPartGitHubRepo}
+                                        onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
                                     />
-                                    </div>
-                                </>
+                                </InputContainer>
+                            {/* this needs to change this to have particular choices */}
+                                <InputContainer>
+                                    <label htmlFor=""> New Part Type: {newPartType}</label>
+                                    <Input 
+                                        key={"newPartType"}
+                                        type="text" 
+                                        name="newPartType"
+                                        value={newPartType}
+                                        onChange={(e)=> setNewPartType( e.target.value)}
+                                    />
+                                </InputContainer>
+
+                                <InputContainer>
+                                    <p> Folder to display new part in</p>
+                                    { !folderName?
+                                        !addnewFolderInputOpen?
+                                            allFolders.map((folder)=> (
+                                                <div onClick={() => folderClicked(folder)}>
+                                                    <FolderIcon 
+                                                        folder={ folder } 
+                                                        > 
+                                                        { folder }
+                                                    </FolderIcon>
+                                                </div>
+                                            ))
+                                        :
+                                            <>
+                                                <InputContainer>
+                                                    <label> New Folder Name: {folderName} </label>
+                                                    <Input 
+                                                        key={"newFolderInput"}
+                                                        type="text" 
+                                                        name="newFolder" 
+                                                        value={folderName} 
+                                                        onChange={(e)=> setFolderName(e.target.value)}
+                                                    />
+                                                </InputContainer>
+                                            </>
+                                    :
+                                        <div onClick={() => setFolderName("")}>
+                                            <FolderIcon 
+                                                addingButton={true}
+                                                buttonTitle={`folder name: ${folderName} click to edit`}
+                                            /> 
+                                        </div>
+                                    }
+                                    {!folderName 
+                                    &&
+                                        <div onClick={()=>addNewFolderClicked()}>
+                                            <FolderIcon   
+                                                addingButton={true}
+                                                buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
+                                            />
+                                        </div>
+                                    }
+                                </InputContainer>
                             </DisplayBox>
                         </> 
                         }
@@ -283,3 +349,7 @@ const AddNewConnectionBox = ({ app }) => {
 }
 
 export default AddNewConnectionBox;
+
+// add editing folder logic
+// right now the first letter of the folder closes the box
+// the area the divs are clickable is huge
