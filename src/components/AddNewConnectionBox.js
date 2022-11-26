@@ -187,8 +187,7 @@ const AddNewConnectionBox = ({ app }) => {
                     <div>
                         <p>Choose an app part and display folder</p>
                        
-                        { !appPartInputOpen?
-                            <>
+                        <>
                             <label htmlFor="">Existing {appName} Parts</label>
                             {Object.values(allAppParts).map((part)=> (
                                 <div onClick={()=> partIconClicked(part) }>
@@ -203,19 +202,14 @@ const AddNewConnectionBox = ({ app }) => {
                             <div onClick={()=>addNewAppPartClicked()}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={`+ Add ${appName} Part`}
+                                    buttonTitle={appPartInputOpen? `- back` : `+ Add ${appName} Part`}
                                 />
                             </div>
-                            </>
-                        :
+                        </>
+                        { appPartInputOpen
+                        &&
                         <>
                             <TitleButtonWrapper>
-                                <div onClick={()=>addNewAppPartClicked()}>
-                                    <FolderIcon   
-                                        addingButton={true}
-                                        buttonTitle={`- back`}
-                                        />
-                                </div>
                                 <p>New Part</p> 
                             </TitleButtonWrapper>
                             <DisplayBox>
