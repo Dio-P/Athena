@@ -187,7 +187,7 @@ const AddNewConnectionBox = ({ app }) => {
                 partId: uuidv4(),
                 type: newPartType,
                 RepoLink: newPartGitHubRepo,
-                folderToBeDisplayedIn: "0",
+                folderToBeDisplayedIn: Object.keys(newFolder),
               }
             
         };
@@ -202,7 +202,6 @@ const AddNewConnectionBox = ({ app }) => {
         };
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
-        // setFolderName("");
     }
 
     const folderClicked = (folder) => {
@@ -371,9 +370,8 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // add editing folder logic
-// edditing folder logic is added but the folderNameState is lost if component rerendered
 
-// right now the first letter of the folder closes the box
-// the area the divs are clickable is huge
-// repove title from part constructor have only url (and make certain that it must be a github one)
+// the area the divs are clickable is huge, replace with button?
+
+// repo title from part constructor have only url (and make certain that it must be a github one)
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
