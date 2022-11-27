@@ -75,10 +75,11 @@ const AddNewConnectionBox = ({ app }) => {
     
     const [allFolders, setAllFolders] = useState([])
     const [folderName, setFolderName] = useState("");
+    const [newFolder, setNewFolder] = useState("");
     const [folderInputOpen, setFolderInputOpen] = useState(false);
 
     const [addnewFolderInputOpen, setAddnewFolderInputOpen] = useState(false);
-    const [newFolder, setNewFolder] = useState("")
+    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
 
     const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
@@ -190,15 +191,28 @@ const AddNewConnectionBox = ({ app }) => {
               }
             
         };
-        setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, newPart])
+        setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, ...newPart])
         setNewPartName("");
+    }
+
+    const addNewFolderAndClear = () => {
+        const newFolderNum = allFolders.length +1 
+        const newFolder = {
+            [newFolderNum]: folderName
+        };
+        setNewFolder(newFolder);
+        setAddNewFolderButtonRendering(false);
+        setFolderName("");
     }
 
     const folderClicked = (folder) => {
         setFolderName(folder);
         setAddnewFolderInputOpen(false);
+    }
 
-        
+    const editFolderClicked = () => {
+        setNewFolder("");
+        setAddNewFolderButtonRendering(true);
     }
 
     return (
@@ -280,7 +294,7 @@ const AddNewConnectionBox = ({ app }) => {
 
                                 <InputContainer>
                                     <p> Folder to display new part in</p>
-                                    { !folderName?
+                                    { !newFolder?
                                         !addnewFolderInputOpen?
                                             allFolders.map((folder)=> (
                                                 <div onClick={() => folderClicked(folder)}>
@@ -295,6 +309,12 @@ const AddNewConnectionBox = ({ app }) => {
                                             <>
                                                 <InputContainer>
                                                     <label> New Folder Name: {folderName} </label>
+                                                    <div onClick={() => (addNewFolderAndClear())}>
+                                                        <FolderIcon
+                                                            addingButton={true}
+                                                            buttonTitle="add"
+                                                        />
+                                                    </div>
                                                     <Input 
                                                         key={"newFolderInput"}
                                                         type="text" 
@@ -305,14 +325,14 @@ const AddNewConnectionBox = ({ app }) => {
                                                 </InputContainer>
                                             </>
                                     :
-                                        <div onClick={() => setFolderName("")}>
+                                        <div onClick={editFolderClicked}>
                                             <FolderIcon 
                                                 addingButton={true}
-                                                buttonTitle={`folder name: ${folderName} click to edit`}
+                                                buttonTitle={`folder name: ${Object.values(newFolder)} click to edit`}
                                             /> 
                                         </div>
                                     }
-                                    {!folderName 
+                                    {addNewFolderButtonRendering
                                     &&
                                         <div onClick={()=>addNewFolderClicked()}>
                                             <FolderIcon   
@@ -351,7 +371,9 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // add editing folder logic
+// edditing folder logic is added but the folderNameState is lost if component rerendered
+
 // right now the first letter of the folder closes the box
 // the area the divs are clickable is huge
 // repove title from part constructor have only url (and make certain that it must be a github one)
-
+// I am not sure that each part has a particular repo (let's leave name were it is for now)
