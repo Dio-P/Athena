@@ -353,3 +353,5 @@ export default AddNewConnectionBox;
 // add editing folder logic
 // right now the first letter of the folder closes the box
 // the area the divs are clickable is huge
+// repove title from part constructor have only url (and make certain that it must be a github one)
+
