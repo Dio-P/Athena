@@ -98,7 +98,7 @@ const AddNewConnectionBox = ({ app }) => {
     useEffect(() => {
         console.log("app@", app);
         setAllFolders(app.foldersToDisplay.map((folder)=>(
-            Object.values(folder)[0]
+            folder
         )));
         app.includesParts.map((part) => {
             allAppPartsHelper[part.name]= part
@@ -205,8 +205,10 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderClicked = (folder) => {
-        setFolderName(folder);
-        setAddnewFolderInputOpen(false);
+        setFolderName(Object.keys(folder));
+        setNewFolder(folder);
+        setAddnewFolderInputOpen(true);
+        setAddNewFolderButtonRendering(false);
     }
 
     const editFolderClicked = () => {
@@ -298,7 +300,7 @@ const AddNewConnectionBox = ({ app }) => {
                                             allFolders.map((folder)=> (
                                                 <div onClick={() => folderClicked(folder)}>
                                                     <FolderIcon 
-                                                        folder={ folder } 
+                                                        folder={ Object.values(folder)[0] } 
                                                         > 
                                                         { folder }
                                                     </FolderIcon>
