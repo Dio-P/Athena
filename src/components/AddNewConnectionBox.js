@@ -202,7 +202,7 @@ const AddNewConnectionBox = ({ app }) => {
         };
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
-        setFolderName("");
+        // setFolderName("");
     }
 
     const folderClicked = (folder) => {
