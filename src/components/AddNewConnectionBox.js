@@ -205,7 +205,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderClicked = (folder) => {
-        setFolderName(Object.keys(folder));
+        setFolderName(Object.values(folder));
         setNewFolder(folder);
         setAddnewFolderInputOpen(true);
         setAddNewFolderButtonRendering(false);
@@ -377,3 +377,5 @@ export default AddNewConnectionBox;
 
 // repo title from part constructor have only url (and make certain that it must be a github one)
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
+
+// add logic, when clicking done, to not add dublicate object to folder it allready exist
