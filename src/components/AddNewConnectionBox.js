@@ -53,11 +53,20 @@ const Input = styled.input`
     border-width: 0px;
 `;
 
-const UrlInputBox = styled.div`
-    text-align: center;
-    color: #b5b4ac;
-    cursor: pointer;
-    margin: 3px;
+const OptionsWraper = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Button = styled.button`
+margin: auto;
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
 `;
 
 const AddNewConnectionBox = ({ app }) => {
@@ -227,25 +236,25 @@ const AddNewConnectionBox = ({ app }) => {
                     <div>
                         <p>Choose an app part and display folder</p>
                        
-                        <>
+                        <OptionsWraper>
                             <label htmlFor="">Existing {appName} Parts</label>
                             {Object.values(allAppParts).map((part)=> (
-                                <div onClick={()=> partIconClicked(part) }>
+                                <Button onClick={()=> partIconClicked(part) }>
                                     <FolderIcon
                                         part={part.name}
                                         clicked={allAppParts[part.name].clicked}
                                         > 
                                         { part }
                                     </FolderIcon>
-                                </div>
+                                </Button>
                             ))}
-                            <div onClick={()=>addNewAppPartClicked()}>
+                            <Button onClick={()=>addNewAppPartClicked()}>
                                 <FolderIcon   
                                     addingButton={true}
                                     buttonTitle={appPartInputOpen? `- close` : `+ Add ${appName} Part`}
                                 />
-                            </div>
-                        </>
+                            </Button>
+                        </OptionsWraper>
                         { appPartInputOpen
                         &&
                         <>
