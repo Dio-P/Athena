@@ -371,6 +371,10 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// adding parts logic
+    // this needs to be returned being an array (is it?)
+// editing parts logic
+
 // add editing folder logic
 
 // the area the divs are clickable is huge, replace with button?
@@ -379,3 +383,4 @@ export default AddNewConnectionBox;
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
 
 // add logic, when clicking done, to not add dublicate object to folder it allready exist
+
