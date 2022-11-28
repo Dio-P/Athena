@@ -208,12 +208,14 @@ const AddNewConnectionBox = ({ app }) => {
                 partId: uuidv4(),
                 type: newPartType,
                 RepoLink: newPartGitHubRepo,
-                folderToBeDisplayedIn: Object.keys(newFolder),
+                folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         })
         setNewPartName("");
         setNewPartGitHubRepo("");
         setNewPartType("");
+        setFolderName("");
+        setNewFolder("");
     }
 
     const addNewFolderAndClear = () => {
