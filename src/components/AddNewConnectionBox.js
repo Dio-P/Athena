@@ -79,6 +79,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
     const [newPartType, setNewPartType] = useState("");
     const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
+    const [newPartsAdded, setNewPartsAdded] = useState([]);
     // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
@@ -190,7 +191,18 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
-        const newPart = {
+        // const newPart = {
+        //     [newPartName]: {
+        //         name: newPartName,
+        //         partId: uuidv4(),
+        //         type: newPartType,
+        //         RepoLink: newPartGitHubRepo,
+        //         folderToBeDisplayedIn: Object.keys(newFolder),
+        //       }
+            
+        // };
+        setNewPartsAdded({
+            ...newPartsAdded, 
             [newPartName]: {
                 name: newPartName,
                 partId: uuidv4(),
@@ -198,10 +210,10 @@ const AddNewConnectionBox = ({ app }) => {
                 RepoLink: newPartGitHubRepo,
                 folderToBeDisplayedIn: Object.keys(newFolder),
               }
-            
-        };
-        setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, ...newPart])
+        })
         setNewPartName("");
+        setNewPartGitHubRepo("");
+        setNewPartType("");
     }
 
     const addNewFolderAndClear = () => {
@@ -281,7 +293,7 @@ const AddNewConnectionBox = ({ app }) => {
                                 </InputContainer>
 
                                 <InputContainer>
-                                    <label htmlFor=""> New Part Main GitHub Repo: {newPartGitHubRepo}</label>
+                                    <label htmlFor=""> New Part's Main GitHub Repo: {newPartGitHubRepo}</label>
                                     <Input 
                                         key={"newPartGitHubRepo"}
                                         type="text" 
@@ -344,14 +356,20 @@ const AddNewConnectionBox = ({ app }) => {
                                     }
                                     {addNewFolderButtonRendering
                                     &&
-                                        <div onClick={()=>addNewFolderClicked()}>
+                                        <Button onClick={()=>addNewFolderClicked()}>
                                             <FolderIcon   
                                                 addingButton={true}
                                                 buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
                                             />
-                                        </div>
+                                        </Button>
                                     }
                                 </InputContainer>
+                                <Button onClick={()=>addNewPartAndClear()}>
+                                    <FolderIcon   
+                                        addingButton={true}
+                                        buttonTitle={ "add this part and start with another" }
+                                    />
+                                </Button>
                             </DisplayBox>
                         </> 
                         }
@@ -382,6 +400,8 @@ export default AddNewConnectionBox;
 
 // adding parts logic
     // this needs to be returned being an array (is it?)
+    // folder to be display in ["1"]?
+    // reset folder to none when clicked
 // editing parts logic
 
 // add editing folder logic
