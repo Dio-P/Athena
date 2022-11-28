@@ -415,6 +415,7 @@ export default AddNewConnectionBox;
 
 // adding parts logic
     // if click on on of the new apps, delete (but warn)
+        //need to warn now. Probably by adding an on hover to a new button element.
     // should all new part fields be withing the same object?
 // editing parts logic
 
