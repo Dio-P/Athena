@@ -241,9 +241,8 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const deleteNewPart = (part) => {
-        const deletehelper = newPartsAdded;
-        delete deletehelper[part.name];
-        setNewPartsAdded({...deletehelper});
+        delete newPartsAdded[part.name];
+        setNewPartsAdded({...newPartsAdded});
     }
 
     return (
