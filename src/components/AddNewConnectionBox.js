@@ -88,7 +88,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [newFolder, setNewFolder] = useState("");
     const [folderInputOpen, setFolderInputOpen] = useState(false);
 
-    const [addnewFolderInputOpen, setAddnewFolderInputOpen] = useState(false);
+    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);
     const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
 
     const [part, setPart] = useState("")
@@ -152,7 +152,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderClicked = () => {
-        setAddnewFolderInputOpen(!addnewFolderInputOpen);
+        setAddNewFolderInputOpen(!addnewFolderInputOpen);
     }
 
     const folderIconClicked = (folder) => {
@@ -216,6 +216,7 @@ const AddNewConnectionBox = ({ app }) => {
         setNewPartType("");
         setFolderName("");
         setNewFolder("");
+        setAddNewFolderInputOpen(false);
     }
 
     const addNewFolderAndClear = () => {
@@ -230,7 +231,7 @@ const AddNewConnectionBox = ({ app }) => {
     const folderClicked = (folder) => {
         setFolderName(Object.values(folder));
         setNewFolder(folder);
-        setAddnewFolderInputOpen(true);
+        setAddNewFolderInputOpen(true);
         setAddNewFolderButtonRendering(false);
     }
 
