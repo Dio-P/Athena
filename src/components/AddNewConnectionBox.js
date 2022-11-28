@@ -240,6 +240,12 @@ const AddNewConnectionBox = ({ app }) => {
         setAddNewFolderButtonRendering(true);
     }
 
+    const deleteNewPart = (part) => {
+        const deletehelper = newPartsAdded;
+        delete deletehelper[part.name];
+        setNewPartsAdded({...deletehelper});
+    }
+
     return (
         <DisplayBox>
             <FormContainer>
@@ -266,7 +272,7 @@ const AddNewConnectionBox = ({ app }) => {
                             {newPartsAdded
                             &&
                             Object.values(newPartsAdded).map((part)=> (
-                                <Button onClick={()=> partIconClicked(part) }>
+                                <Button onClick={()=> deleteNewPart(part) }>
                                     <FolderIcon
                                         part={part.name}
                                         clicked={true}
@@ -409,7 +415,7 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // adding parts logic
-    // now part to appear next to the list with existing ones
+    // if click on on of the new apps, delete (but warn)
     // should all new part fields be withing the same object?
 // editing parts logic
 
