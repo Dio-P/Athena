@@ -79,7 +79,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
     const [newPartType, setNewPartType] = useState("");
     const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
-    const [newPartsAdded, setNewPartsAdded] = useState([]);
+    const [newPartsAdded, setNewPartsAdded] = useState("");
     // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     
@@ -263,6 +263,19 @@ const AddNewConnectionBox = ({ app }) => {
                                     </FolderIcon>
                                 </Button>
                             ))}
+                            {newPartsAdded
+                            &&
+                            Object.values(newPartsAdded).map((part)=> (
+                                <Button onClick={()=> partIconClicked(part) }>
+                                    <FolderIcon
+                                        part={part.name}
+                                        clicked={true}
+                                        > 
+                                        { part }
+                                    </FolderIcon>
+                                </Button>
+                            ))
+                            }
                             <Button onClick={()=>addNewAppPartClicked()}>
                                 <FolderIcon   
                                     addingButton={true}
@@ -280,12 +293,6 @@ const AddNewConnectionBox = ({ app }) => {
                             
                                 <InputContainer>
                                     <label htmlFor=""> New Part Name: {newPartName}</label>
-                                    <div onClick={() => addNewPartAndClear()}>
-                                        <FolderIcon
-                                            addingButton={true}
-                                            buttonTitle="add"
-                                        />
-                                    </div>
                                     <Input 
                                         key={"newFolderInput"}
                                         type="text" 
@@ -402,9 +409,8 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // adding parts logic
-    // this needs to be returned being an array (is it?)
-    // folder to be display in ["1"]?
-    // reset folder to none when clicked
+    // now part to appear next to the list with existing ones
+    // should all new part fields be withing the same object?
 // editing parts logic
 
 // add editing folder logic
