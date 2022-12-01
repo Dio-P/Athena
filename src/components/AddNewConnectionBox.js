@@ -97,6 +97,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartsAdded, setNewPartsAdded] = useState("");
     // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
+    const [deleteWarningShown, setDeleteWarningShownn] = useState(false);
     
     const [allFolders, setAllFolders] = useState([])
     const [folderName, setFolderName] = useState("");
@@ -286,13 +287,21 @@ const AddNewConnectionBox = ({ app }) => {
                             {newPartsAdded
                             &&
                             Object.values(newPartsAdded).map((part)=> (
-                                <NewlyAddedPartButton onClick={()=> deleteNewPart(part) }>
+                                <NewlyAddedPartButton 
+                                    onClick={()=> deleteNewPart(part) }
+                                    onMouseEnter={() => setDeleteWarningShownn(true)}
+                                    onMouseLeave={() => setDeleteWarningShownn(false)}
+                                    >
                                     <FolderIcon
                                         part={part.name}
                                         clicked={true}
                                         > 
                                         { part }
                                     </FolderIcon>
+                                    {deleteWarningShown
+                                    &&
+                                        <p>click to delete</p>
+                                    }
                                 </NewlyAddedPartButton>
                             ))
                             }
