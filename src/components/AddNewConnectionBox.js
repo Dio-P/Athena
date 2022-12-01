@@ -69,6 +69,21 @@ cursor: pointer;
 outline: inherit;
 `;
 
+const NewlyAddedPartButton = styled.button`
+margin: auto;
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+
+&:hover {
+    border: red solid
+}
+`;
+
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
     const [iconClicked, setIconClicked] = useState(false);
@@ -271,14 +286,14 @@ const AddNewConnectionBox = ({ app }) => {
                             {newPartsAdded
                             &&
                             Object.values(newPartsAdded).map((part)=> (
-                                <Button onClick={()=> deleteNewPart(part) }>
+                                <NewlyAddedPartButton onClick={()=> deleteNewPart(part) }>
                                     <FolderIcon
                                         part={part.name}
                                         clicked={true}
                                         > 
                                         { part }
                                     </FolderIcon>
-                                </Button>
+                                </NewlyAddedPartButton>
                             ))
                             }
                             <Button onClick={()=>addNewAppPartClicked()}>
