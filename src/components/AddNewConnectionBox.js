@@ -300,7 +300,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     </FolderIcon>
                                     {deleteWarningShown
                                     &&
-                                        <p>click to delete</p>
+                                        <p>Newly added Part: Click to delete</p>
                                     }
                                 </NewlyAddedPartButton>
                             ))
@@ -439,8 +439,8 @@ export default AddNewConnectionBox;
 
 // adding parts logic
     // if click on on of the new apps, delete (but warn)
-        //need to warn now. Probably by adding an on hover to a new button element.
-    // should all new part fields be withing the same object?
+        // make the warning nicer
+    // should all new part fields be withing the same object? useState({name: "someAppName", gitHub: "someAppGitHub"})
 // editing parts logic
 
 // add editing folder logic
