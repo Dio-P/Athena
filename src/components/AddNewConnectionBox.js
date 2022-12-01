@@ -441,9 +441,12 @@ export default AddNewConnectionBox;
     // if click on on of the new apps, delete (but warn)
         // make the warning nicer
     // should all new part fields be withing the same object? useState({name: "someAppName", gitHub: "someAppGitHub"})
+
 // editing parts logic
 
 // add editing folder logic
+
+// creating the final app updated object
 
 // the area the divs are clickable is huge, replace with button?
 
