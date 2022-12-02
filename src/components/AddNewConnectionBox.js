@@ -439,6 +439,9 @@ export default AddNewConnectionBox;
 // add editing folder logic
 
 // creating the final app updated object
+    // new doc is adding now
+    // add new part
+    // add new folder
 
 // the area the divs are clickable is huge, replace with button?
 
