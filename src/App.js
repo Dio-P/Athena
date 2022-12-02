@@ -35,6 +35,7 @@ function App() {
             folderToBeDisplayedIn: "1",
           }
         ],
+        docs: [],
       },
       {
         name: "tipo",
@@ -59,6 +60,7 @@ function App() {
             folderToBeDisplayedIn: "1",
           }
         ],
+        docs: [],
       },
     ]
   }

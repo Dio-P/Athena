@@ -87,7 +87,7 @@ outline: inherit;
 
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
-    const [iconClicked, setIconClicked] = useState(false);
+    const [updatedApp, setUpdatedApp] = useState("");
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
@@ -117,6 +117,10 @@ const AddNewConnectionBox = ({ app }) => {
     if(allFolders){
         nuOfNewFolder = allFolders.length +2;
     }
+
+    useEffect(() => {
+        console.log("upadatedApp", updatedApp);
+    }, [updatedApp])
 
     useEffect(() => {
         console.log("newDoc", newDoc);
@@ -239,12 +243,14 @@ const AddNewConnectionBox = ({ app }) => {
             concerningParts: appPartsConcernedWithNewDoc,
             isLinkUpToDate: true, //tickbox checked
         }
+        setUpdatedApp({
+            ...app, docs: [
+                ...app.docs, newDoc
+            ]
+        })
+        // This may only work for new docs the updated doc is going to be dublicated
 
-        // if(){
-
-        // }
-        // setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
-        setNewDoc(newDoc)
+        // setNewDoc(newDoc)
     }
 
     return (
