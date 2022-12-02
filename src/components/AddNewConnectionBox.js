@@ -237,7 +237,14 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        
+
+        // what I am trying to do here can't happen because the folder to display is just a number
+        const newFolders = newPartsAdded.map((part) => (
+            part.folderToBeDisplayedIn
+            ))
+            
+        // const newFoldersKeys = new Set(Object.keys(newFolders))
+
         const newDoc = {
             title: title,
             url: url,
