@@ -206,7 +206,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = allFolders.length +1 
+        const newFolderNum = allFolders.length 
         const newFolder = {
             [newFolderNum]: folderName
         };
@@ -233,8 +233,6 @@ const AddNewConnectionBox = ({ app }) => {
     
     const addhasBeenClicked = async(e) => {
         e.preventDefault()
-        console.log("add has been clicked ");
-        console.log("app", app);
         const {
             title,
             source
@@ -252,7 +250,10 @@ const AddNewConnectionBox = ({ app }) => {
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
+            ], foldersToDisplay: [
+                ...app.foldersToDisplay, ...newFoldersToBeAddedToAll
             ]
+
         })
         // This may only work for new docs the updated doc is going to be dublicated
 
