@@ -39,11 +39,11 @@ function App() {
       },
       {
         name: "tipo",
-        foldersToDisplay: [
-          { 0: "general"},
-          { 1: "client"},
-          { 2: "server"},
-        ],
+        foldersToDisplay: {
+          0: "general",
+          1: "client",
+          2: "server",
+        },
         includesParts: [
           {
             name: "general documentation",

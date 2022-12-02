@@ -436,6 +436,8 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// if added folder is deleted the new file should be deleted as well
+
 // adding parts logic
     // if click on on of the new apps, delete (but warn)
         // make the warning nicer
