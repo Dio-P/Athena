@@ -196,6 +196,7 @@ const AddNewConnectionBox = ({ app }) => {
               }
         });
         setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, newFolder])
+        setAddNewFolderButtonRendering(true);
         setNewPartName("");
         setNewPartGitHubRepo("");
         setNewPartType("");
