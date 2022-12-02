@@ -103,7 +103,7 @@ const AddNewConnectionBox = ({ app }) => {
     const [allFolders, setAllFolders] = useState([])
     const [folderName, setFolderName] = useState("");
     const [newFolder, setNewFolder] = useState("");
-    const [folderInputOpen, setFolderInputOpen] = useState(false);
+    const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
 
     const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);
     const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
@@ -142,6 +142,10 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("allAppPartsHelper", allAppPartsHelper); 
         console.log("allAppParts", allAppParts); 
     }, [allAppParts])
+
+    useEffect(() => {
+        console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+    }, [newFoldersToBeAddedToAll]);
 
 
     const addNewAppPartClicked = () => {
@@ -190,7 +194,8 @@ const AddNewConnectionBox = ({ app }) => {
                 RepoLink: newPartGitHubRepo,
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
-        })
+        });
+        setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, newFolder])
         setNewPartName("");
         setNewPartGitHubRepo("");
         setNewPartType("");
