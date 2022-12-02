@@ -72,12 +72,13 @@ outline: inherit;
 const NewlyAddedPartButton = styled.button`
 margin: auto;
 background: none;
-color: inherit;
+color: red;
 border: none;
 padding: 0;
 font: inherit;
 cursor: pointer;
 outline: inherit;
+
 
 &:hover {
     border: red solid
@@ -138,30 +139,6 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("allAppParts", allAppParts); 
     }, [allAppParts])
 
-    const addhasBeenClicked = async(e) => {
-        e.preventDefault()
-        console.log("add has been clicked ");
-        const {
-            title,
-            source
-        } = await findConnectionParameters(url);
-        
-        const newDoc = {
-            title: title,
-            url: url,
-            source: source,
-            lastModified: "someDate",
-            folderToBeDisplayedIn: "1",
-            concerningParts: appPartsConcernedWithNewDoc,
-            isLinkUpToDate: true, //tickbox checked
-        }
-
-        // if(){
-
-        // }
-        // setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
-        setNewDoc(newDoc)
-    }
 
     const addNewAppPartClicked = () => {
         setAppPartInputOpen(!appPartInputOpen);
@@ -169,10 +146,6 @@ const AddNewConnectionBox = ({ app }) => {
 
     const addNewFolderClicked = () => {
         setAddNewFolderInputOpen(!addnewFolderInputOpen);
-    }
-
-    const folderIconClicked = (folder) => {
-        setFolderName(folder);
     }
 
     const partIconClicked = (part) => {
@@ -191,19 +164,6 @@ const AddNewConnectionBox = ({ app }) => {
         //     setSetOfClickedParts({...setOfClickedParts, [part.name]: part})
         // }
         // setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, part]);
-    }
-
-
-    const folderInputClicked = () => {
-        setFolderInputOpen(!folderInputOpen);
-    }
-
-    const addingNewFolder = (value) => {
-        setFolderName(value)
-        //  setNewFolder(
-        //     {
-        //         [nuOfNewFolder]: value
-        //     });
     }
 
     const addNewPartAndClear = () => {
@@ -259,6 +219,32 @@ const AddNewConnectionBox = ({ app }) => {
     const deleteNewPart = (part) => {
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
+    }
+    
+    const addhasBeenClicked = async(e) => {
+        e.preventDefault()
+        console.log("add has been clicked ");
+        console.log("app", app);
+        const {
+            title,
+            source
+        } = await findConnectionParameters(url);
+        
+        const newDoc = {
+            title: title,
+            url: url,
+            source: source,
+            lastModified: "someDate",
+            folderToBeDisplayedIn: "1",
+            concerningParts: appPartsConcernedWithNewDoc,
+            isLinkUpToDate: true, //tickbox checked
+        }
+
+        // if(){
+
+        // }
+        // setAllFolders([...allFolders, {[nuOfNewFolder]: folderName}])
+        setNewDoc(newDoc)
     }
 
     return (
@@ -449,6 +435,9 @@ export default AddNewConnectionBox;
 // creating the final app updated object
 
 // the area the divs are clickable is huge, replace with button?
+
+// bugs:
+    // addThisPartAndStartAnother button does not go after new part has been added
 
 // repo title from part constructor have only url (and make certain that it must be a github one)
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
