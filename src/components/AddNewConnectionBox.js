@@ -135,6 +135,7 @@ const AddNewConnectionBox = ({ app }) => {
             allAppPartsHelper[part.name]= part
             allAppPartsHelper[part.name].clicked = false
         });
+        console.log("allAppPartsHelper!!!", allAppPartsHelper);
         setAllAppParts(allAppPartsHelper);
     }, [app]);
 
@@ -195,7 +196,8 @@ const AddNewConnectionBox = ({ app }) => {
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         });
-        setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, newFolder])
+        console.log("newFolder@@@", newFolder);
+        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
         setAddNewFolderButtonRendering(true);
         setNewPartName("");
         setNewPartGitHubRepo("");
@@ -206,7 +208,8 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = allFolders.length 
+        const newFolderNum = (allFolders.length + Object.values(newFoldersToBeAddedToAll.length));
+        console.log("newFolderNum", newFolderNum);
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
@@ -237,9 +240,10 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-
+        console.log("newFolder***", newFolder);
+        console.log("newPartsAdded", newPartsAdded);
         // what I am trying to do here can't happen because the folder to display is just a number
-        const newFoldersKeys = Array.from(new Set(newPartsAdded.map((part) => (
+        const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
             ))));
         console.log("newFoldersKeys", newFoldersKeys);
@@ -247,8 +251,8 @@ const AddNewConnectionBox = ({ app }) => {
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
         ));
-        // const newFoldersKeys = new Set(Object.keys(newFolders))
-
+            console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+            console.log("filterFoldersToAll", filterFoldersToAll);
         const newDoc = {
             title: title,
             url: url,
@@ -261,9 +265,9 @@ const AddNewConnectionBox = ({ app }) => {
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
-            ], foldersToDisplay: [
+            ], foldersToDisplay: {
                 ...app.foldersToDisplay, ...filterFoldersToAll
-            ]
+            }
 
         })
         // This may only work for new docs the updated doc is going to be dublicated
@@ -446,6 +450,8 @@ const AddNewConnectionBox = ({ app }) => {
 }
 
 export default AddNewConnectionBox;
+
+// for more the two newly added folders they get to have the same index
 
 // if added folder is deleted the new file should be deleted as well
 
