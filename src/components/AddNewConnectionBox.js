@@ -239,10 +239,14 @@ const AddNewConnectionBox = ({ app }) => {
         } = await findConnectionParameters(url);
 
         // what I am trying to do here can't happen because the folder to display is just a number
-        const newFolders = newPartsAdded.map((part) => (
+        const newFoldersKeys = Array.from(new Set(newPartsAdded.map((part) => (
             part.folderToBeDisplayedIn
-            ))
-            
+            ))));
+        console.log("newFoldersKeys", newFoldersKeys);
+        const filterFoldersToAll = {};
+        newFoldersKeys.map((key) => (
+            filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
+        ));
         // const newFoldersKeys = new Set(Object.keys(newFolders))
 
         const newDoc = {
@@ -258,7 +262,7 @@ const AddNewConnectionBox = ({ app }) => {
             ...app, docs: [
                 ...app.docs, newDoc
             ], foldersToDisplay: [
-                ...app.foldersToDisplay, ...newFoldersToBeAddedToAll
+                ...app.foldersToDisplay, ...filterFoldersToAll
             ]
 
         })
