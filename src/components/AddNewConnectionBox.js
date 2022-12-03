@@ -264,12 +264,15 @@ const AddNewConnectionBox = ({ app }) => {
             concerningParts: appPartsConcernedWithNewDoc,
             isLinkUpToDate: true, //tickbox checked
         }
+        console.log("newPartsAdded", newPartsAdded);
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
             ], foldersToDisplay: {
                 ...app.foldersToDisplay, ...filterFoldersToAll
-            }
+            }, includesParts: [
+                ...app.includesParts, ...Object.values(newPartsAdded)
+            ]
 
         })
         // This may only work for new docs the updated doc is going to be dublicated
@@ -453,10 +456,7 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
-// for more the two newly added folders they get to have the same index
-
-// if added folder is deleted the new file should be deleted as well
-
+// the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
     // if click on on of the new apps, delete (but warn)
         // make the warning nicer
