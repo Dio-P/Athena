@@ -16,11 +16,11 @@ function App() {
     apps: [
       {
         name: "optimo",
-        foldersToDisplay: [
-          { 0: "general"},
-          { 1: "client"},
-          { 2: "server"},
-        ],
+        foldersToDisplay: {
+          0: { title : "general documentation" },
+          1: { title : "client" },
+          2: { title : "server" },
+        },
         includesParts: [
           {
             name: "general documentation",
