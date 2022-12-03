@@ -208,7 +208,7 @@ const AddNewConnectionBox = ({ app }) => {
     const addNewFolderAndClear = () => {
         const newFolderNum = allFolders.length 
         const newFolder = {
-            [newFolderNum]: folderName
+            [newFolderNum]: {title: folderName}
         };
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
