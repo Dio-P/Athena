@@ -456,6 +456,9 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// add logic which populates the array with the parts inside the document
+// do I need Id inside the parts?
+
 // the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
     // if click on on of the new apps, delete (but warn)
