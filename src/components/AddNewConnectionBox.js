@@ -468,6 +468,8 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// the prop app for some reason keeps being mutated
+
 // add logic which populates the array with the parts inside the document
 // do I need Id inside the parts?
 
