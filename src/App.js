@@ -40,9 +40,9 @@ function App() {
       {
         name: "tipo",
         foldersToDisplay: {
-          0: "general",
-          1: "client",
-          2: "server",
+          0: { title : "general documentation" },
+          1: { title : "client" },
+          2: { title : "server" },
         },
         includesParts: [
           {
