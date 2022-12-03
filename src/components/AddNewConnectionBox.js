@@ -102,18 +102,18 @@ const AddNewConnectionBox = ({ app }) => {
     
     const [allFolders, setAllFolders] = useState([])
     const [folderName, setFolderName] = useState("");
-    const [newFolder, setNewFolder] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
-
+    
     const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);
     const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
-
+    
     const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
     let nuOfNewFolder;
     const allAppPartsHelper = {}
     const appName = useCapitaliseFirstLetter(app.name);
-
+    const [newFolder, setNewFolder] = useState("");
+    
     if(allFolders){
         nuOfNewFolder = allFolders.length +2;
     }
@@ -128,7 +128,7 @@ const AddNewConnectionBox = ({ app }) => {
 
     useEffect(() => {
         console.log("app@", app);
-        setAllFolders(app.foldersToDisplay.map((folder)=>(
+        setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
             folder
         )));
         app.includesParts.map((part) => {
@@ -210,9 +210,11 @@ const AddNewConnectionBox = ({ app }) => {
     const addNewFolderAndClear = () => {
         const newFolderNum = (allFolders.length + Object.values(newFoldersToBeAddedToAll.length));
         console.log("newFolderNum", newFolderNum);
+        console.log("folderNam***", folderName);
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
+        console.log("newFolder", newFolder);
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
     }
@@ -403,7 +405,7 @@ const AddNewConnectionBox = ({ app }) => {
                                         <div onClick={editFolderClicked}>
                                             <FolderIcon 
                                                 addingButton={true}
-                                                buttonTitle={`folder name: ${Object.values(newFolder)} click to edit`}
+                                                buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
                                             /> 
                                         </div>
                                     }
