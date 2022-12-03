@@ -119,6 +119,11 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     useEffect(() => {
+        console.log("app.includesParts Before@", app.includesParts);
+
+    }, []);
+
+    useEffect(() => {
         console.log("upadatedApp", updatedApp);
     }, [updatedApp])
 
@@ -127,14 +132,15 @@ const AddNewConnectionBox = ({ app }) => {
     }, [newDoc]);
 
     useEffect(() => {
-        console.log("app@", app);
         setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
             folder
-        )));
+            )));
         app.includesParts.map((part) => {
             allAppPartsHelper[part.name]= part
             allAppPartsHelper[part.name].clicked = false
         });
+        console.log("app.includesParts after@ ", app.includesParts);
+
         console.log("allAppPartsHelper!!!", allAppPartsHelper);
         setAllAppParts(allAppPartsHelper);
     }, [app]);
@@ -265,6 +271,9 @@ const AddNewConnectionBox = ({ app }) => {
             isLinkUpToDate: true, //tickbox checked
         }
         console.log("newPartsAdded", newPartsAdded);
+        // includesParts.map((part) => (
+        //     delete part.clicked
+        // ));
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
