@@ -88,6 +88,7 @@ outline: inherit;
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
     const [updatedApp, setUpdatedApp] = useState("");
+    const [originalParts, setOriginalParts] = useState("");
 
     const [allAppParts, setAllAppParts] = useState([]);
     const [appPart, setAppPart] = useState({});
@@ -110,49 +111,51 @@ const AddNewConnectionBox = ({ app }) => {
     const [part, setPart] = useState("")
     const [newDoc, setNewDoc] = useState("");
     let nuOfNewFolder;
-    const allAppPartsHelper = {}
     const appName = useCapitaliseFirstLetter(app.name);
     const [newFolder, setNewFolder] = useState("");
-    
-    if(allFolders){
-        nuOfNewFolder = allFolders.length +2;
-    }
+
+    // useEffect(() => {
+    //     console.log("upadatedApp", updatedApp);
+    // }, [updatedApp])
+
+    // useEffect(() => {
+    //     console.log("newDoc", newDoc);
+    // }, [newDoc]);
 
     useEffect(() => {
-        console.log("app.includesParts Before@", app.includesParts);
-
+        
+        if(app){
+            console.log("app.includesParts Before@", app.includesParts);
+            setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
+                folder
+                )));
+            setOriginalParts(app.includesParts);
+        }
+       
     }, []);
 
     useEffect(() => {
-        console.log("upadatedApp", updatedApp);
-    }, [updatedApp])
+        const allAppPartsHelper = {};
+        if (originalParts){
+            console.log("wholeApp", originalParts);
+            originalParts.map((part) => {
+                    allAppPartsHelper[part.name]= part
+                    allAppPartsHelper[part.name].clicked = false
+                });
+            console.log("app.includesParts after@ ", app.includesParts);
+        }
 
-    useEffect(() => {
-        console.log("newDoc", newDoc);
-    }, [newDoc]);
-
-    useEffect(() => {
-        setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
-            folder
-            )));
-        app.includesParts.map((part) => {
-            allAppPartsHelper[part.name]= part
-            allAppPartsHelper[part.name].clicked = false
-        });
-        console.log("app.includesParts after@ ", app.includesParts);
-
-        console.log("allAppPartsHelper!!!", allAppPartsHelper);
         setAllAppParts(allAppPartsHelper);
-    }, [app]);
+    }, [originalParts]);
 
-    useEffect(() => {
-        console.log("allAppPartsHelper", allAppPartsHelper); 
-        console.log("allAppParts", allAppParts); 
-    }, [allAppParts])
+    // useEffect(() => {
+    //     console.log("allAppPartsHelper", allAppPartsHelper); 
+    //     console.log("allAppParts", allAppParts); 
+    // }, [allAppParts])
 
-    useEffect(() => {
-        console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
-    }, [newFoldersToBeAddedToAll]);
+    // useEffect(() => {
+    //     console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+    // }, [newFoldersToBeAddedToAll]);
 
 
     const addNewAppPartClicked = () => {
@@ -164,9 +167,9 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const partIconClicked = (part) => {
-        console.log("part icon clicked");
-        console.log("allAppParts**", allAppParts);
-        console.log("part!!!", part);
+        // console.log("part icon clicked");
+        // console.log("allAppParts**", allAppParts);
+        // console.log("part!!!", part);
         // let clicked = !part.clicked;
         // console.log("clicked!!!", clicked); 
         setAllAppParts({
@@ -202,7 +205,7 @@ const AddNewConnectionBox = ({ app }) => {
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         });
-        console.log("newFolder@@@", newFolder);
+        // console.log("newFolder@@@", newFolder);
         setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
         setAddNewFolderButtonRendering(true);
         setNewPartName("");
@@ -215,12 +218,12 @@ const AddNewConnectionBox = ({ app }) => {
 
     const addNewFolderAndClear = () => {
         const newFolderNum = (allFolders.length + Object.values(newFoldersToBeAddedToAll.length));
-        console.log("newFolderNum", newFolderNum);
-        console.log("folderNam***", folderName);
+        // console.log("newFolderNum", newFolderNum);
+        // console.log("folderNam***", folderName);
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
-        console.log("newFolder", newFolder);
+        // console.log("newFolder", newFolder);
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
     }
@@ -248,13 +251,13 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        console.log("newFolder***", newFolder);
+        // console.log("newFolder***", newFolder);
         console.log("newPartsAdded", newPartsAdded);
         // what I am trying to do here can't happen because the folder to display is just a number
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
             ))));
-        console.log("newFoldersKeys", newFoldersKeys);
+        // console.log("newFoldersKeys", newFoldersKeys);
         const filterFoldersToAll = {};
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
