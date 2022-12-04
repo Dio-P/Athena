@@ -110,8 +110,8 @@ const AddNewConnectionBox = ({ app }) => {
     const [newFolder, setNewFolder] = useState("");
 
     useEffect(() => {
-        console.log("appPartsConcernedWithNewDoc", appPartsConcernedWithNewDoc);
-    }, [appPartsConcernedWithNewDoc]);
+        console.log("updatedApp", updatedApp);
+    }, [updatedApp]);
 
     useEffect(() => {
         if(app){
@@ -199,16 +199,11 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const findConserningParts = () => {
-        const findConsernedIds = (list) => {
-            return Object.values(list).filter((part) => 
+        const checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
             part.clicked
             ).map((part) => part.partId);
-        }
-        const checkedExistingPartIds = findConsernedIds(allAppParts);
         const newPartsIds = Object.values(newPartsAdded).map((part) => (part.partId));
-        console.log("newPartsIds", newPartsIds);
-        // setAppPartsConcernedWithNewDoc([...checkedExistingPartIds, ...newAppIds])/////
-        // return [...checkedExistingPartIds, ...newAppIds]
+        return [...checkedExistingPartIds, ...newPartsIds]
     }
     
     const addhasBeenClicked = async(e) => {
