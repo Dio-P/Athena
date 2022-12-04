@@ -199,20 +199,14 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const findConserningParts = () => {
-        // const findConsernedIds = () => {
-        //     return 
-        // }
-
-        console.log("Object.values(allAppParts)", Object.values(allAppParts));
-        let checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
+        const findConsernedIds = (list) => {
+            return Object.values(list).filter((part) => 
             part.clicked
-        ).map((part) => part.partId);
-        console.log("checkedExistingParts", checkedExistingPartIds);
-        // const newAppIds = Object.values(newPartsAdded).filter((part)=> (
-        //     part.clicked === true
-        // )).map((part) => (part.partId));
-        // console.log("newAppIds", newAppIds);
-        // console.log("conserning parts", [...checkedExistingPartIds, ...newAppIds]);
+            ).map((part) => part.partId);
+        }
+        const checkedExistingPartIds = findConsernedIds(allAppParts);
+        const newPartsIds = Object.values(newPartsAdded).map((part) => (part.partId));
+        console.log("newPartsIds", newPartsIds);
         // setAppPartsConcernedWithNewDoc([...checkedExistingPartIds, ...newAppIds])/////
         // return [...checkedExistingPartIds, ...newAppIds]
     }
