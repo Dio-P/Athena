@@ -94,7 +94,6 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartName, setNewPartName] = useState("");
     const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
     const [newPartType, setNewPartType] = useState("");
-    const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
     const [newPartsAdded, setNewPartsAdded] = useState("");
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     const [deleteWarningShown, setDeleteWarningShownn] = useState(false);
@@ -327,7 +326,6 @@ const AddNewConnectionBox = ({ app }) => {
                                         onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
                                     />
                                 </InputContainer>
-                            {/* this needs to change this to have particular choices */}
                                 <InputContainer>
                                     <label htmlFor=""> New Part Type: {newPartType}</label>
                                     <Input 
@@ -424,31 +422,27 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // add safety in the case the user just wants to add a link 
+// add safety so adding is not possible if empty fields.
 
-// the prop app for some reason keeps being mutated
+// devide into seperato components if possible
+// see if now that the prop object is not mutated you can remove the state where you where storing it 
+// first thing.
+// ask:
+    // ask if there is any way to have conditional to change values within emotion even while 
+    // having them above the function cumponent.
+    // ask why the original object was mutated.
 
-// add logic which populates the array with the parts inside the document
-// do I need Id inside the parts?
 
 // the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
-    // if click on on of the new apps, delete (but warn)
         // make the warning nicer
     // should all new part fields be withing the same object? useState({name: "someAppName", gitHub: "someAppGitHub"})
 
-// editing parts logic
-
-// add editing folder logic
-
-// creating the final app updated object
-    // new doc is adding now
-    // add new part
-    // add new folder
+// add editing parts and folders logic
 
 // the area the divs are clickable is huge, replace with button?
 
 // bugs:
-    // addThisPartAndStartAnother button does not go after new part has been added
 
 // repo title from part constructor have only url (and make certain that it must be a github one)
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
