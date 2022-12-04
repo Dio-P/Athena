@@ -91,36 +91,23 @@ const AddNewConnectionBox = ({ app }) => {
     const [originalParts, setOriginalParts] = useState("");
 
     const [allAppParts, setAllAppParts] = useState([]);
-    const [appPart, setAppPart] = useState({});
     const [newPartName, setNewPartName] = useState("");
     const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
     const [newPartType, setNewPartType] = useState("");
     const [appPartsConcernedWithNewDoc, setAppPartsConcernedWithNewDoc] = useState("");
     const [newPartsAdded, setNewPartsAdded] = useState("");
-    // const [setOfClickedParts, setSetOfClickedParts] = useState({});
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
     const [deleteWarningShown, setDeleteWarningShownn] = useState(false);
     
-    const [allFolders, setAllFolders] = useState([])
+    const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     
     const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);
     const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
     
-    const [part, setPart] = useState("")
-    const [newDoc, setNewDoc] = useState("");
-    let nuOfNewFolder;
     const appName = useCapitaliseFirstLetter(app.name);
     const [newFolder, setNewFolder] = useState("");
-
-    // useEffect(() => {
-    //     console.log("upadatedApp", updatedApp);
-    // }, [updatedApp])
-
-    // useEffect(() => {
-    //     console.log("newDoc", newDoc);
-    // }, [newDoc]);
 
     useEffect(() => {
         
@@ -167,34 +154,14 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const partIconClicked = (part) => {
-        // console.log("part icon clicked");
-        // console.log("allAppParts**", allAppParts);
-        // console.log("part!!!", part);
-        // let clicked = !part.clicked;
-        // console.log("clicked!!!", clicked); 
+
         setAllAppParts({
             ...allAppParts, [part.name]: { 
                 ...allAppParts[part.name], 
                 clicked: !part.clicked}});
-        // if(Object.keys(setOfClickedParts).includes(part.name)){
-        //     delete setOfClickedParts[part.name]
-        // }else {
-        //     setSetOfClickedParts({...setOfClickedParts, [part.name]: part})
-        // }
-        // setAppPartsConcernedWithNewDoc([...appPartsConcernedWithNewDoc, part]);
     }
 
     const addNewPartAndClear = () => {
-        // const newPart = {
-        //     [newPartName]: {
-        //         name: newPartName,
-        //         partId: uuidv4(),
-        //         type: newPartType,
-        //         RepoLink: newPartGitHubRepo,
-        //         folderToBeDisplayedIn: Object.keys(newFolder),
-        //       }
-            
-        // };
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPartName]: {
@@ -205,7 +172,6 @@ const AddNewConnectionBox = ({ app }) => {
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         });
-        // console.log("newFolder@@@", newFolder);
         setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
         setAddNewFolderButtonRendering(true);
         setNewPartName("");
@@ -218,12 +184,9 @@ const AddNewConnectionBox = ({ app }) => {
 
     const addNewFolderAndClear = () => {
         const newFolderNum = (allFolders.length + Object.values(newFoldersToBeAddedToAll.length));
-        // console.log("newFolderNum", newFolderNum);
-        // console.log("folderNam***", folderName);
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
-        // console.log("newFolder", newFolder);
         setNewFolder(newFolder);
         setAddNewFolderButtonRendering(false);
     }
@@ -251,13 +214,10 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        // console.log("newFolder***", newFolder);
         console.log("newPartsAdded", newPartsAdded);
-        // what I am trying to do here can't happen because the folder to display is just a number
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
             ))));
-        // console.log("newFoldersKeys", newFoldersKeys);
         const filterFoldersToAll = {};
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
@@ -274,9 +234,6 @@ const AddNewConnectionBox = ({ app }) => {
             isLinkUpToDate: true, //tickbox checked
         }
         console.log("newPartsAdded", newPartsAdded);
-        // includesParts.map((part) => (
-        //     delete part.clicked
-        // ));
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
@@ -287,9 +244,6 @@ const AddNewConnectionBox = ({ app }) => {
             ]
 
         })
-        // This may only work for new docs the updated doc is going to be dublicated
-
-        // setNewDoc(newDoc)
     }
 
     return (
