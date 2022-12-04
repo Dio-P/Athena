@@ -8,6 +8,8 @@ import Header from "./containers/Header";
 import AllDepartmentsBox from "./containers/AllDepartmentsBox";
 import AppPage from "./components/AppPage";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
+// the above needs to go when the info is in the db
 
 function App() {
 
@@ -25,12 +27,14 @@ function App() {
           {
             name: "general documentation",
             type: "documentation",
+            partId: uuidv4(),
             RepoLink: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
             type: "data base",
+            partId: uuidv4(),
             RepoLink: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
           }

@@ -110,7 +110,10 @@ const AddNewConnectionBox = ({ app }) => {
     const [newFolder, setNewFolder] = useState("");
 
     useEffect(() => {
-        
+        console.log("appPartsConcernedWithNewDoc", appPartsConcernedWithNewDoc);
+    }, [appPartsConcernedWithNewDoc]);
+
+    useEffect(() => {
         if(app){
             console.log("app.includesParts Before@", app.includesParts);
             setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
@@ -118,13 +121,11 @@ const AddNewConnectionBox = ({ app }) => {
                 )));
             setOriginalParts(app.includesParts);
         }
-       
     }, []);
 
     useEffect(() => {
         const allAppPartsHelper = {};
         if (originalParts){
-            console.log("wholeApp", originalParts);
             originalParts.forEach((part) => (
                 allAppPartsHelper[part.name]= {
                     ...part,
@@ -136,9 +137,9 @@ const AddNewConnectionBox = ({ app }) => {
             //         allAppPartsHelper[part.name].clicked = false
             //     });
             console.log("app.includesParts after@ ", app.includesParts);
+            setAllAppParts(allAppPartsHelper);
         }
 
-        setAllAppParts(allAppPartsHelper);
     }, [originalParts]);
 
 
@@ -172,7 +173,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = (allFolders.length + Object.values(newFoldersToBeAddedToAll.length));
+        const newFolderNum = (allFolders.length + (Object.values(newFoldersToBeAddedToAll.length||0)));
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
@@ -196,6 +197,25 @@ const AddNewConnectionBox = ({ app }) => {
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
     }
+
+    const findConserningParts = () => {
+        // const findConsernedIds = () => {
+        //     return 
+        // }
+
+        console.log("Object.values(allAppParts)", Object.values(allAppParts));
+        let checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
+            part.clicked
+        ).map((part) => part.partId);
+        console.log("checkedExistingParts", checkedExistingPartIds);
+        // const newAppIds = Object.values(newPartsAdded).filter((part)=> (
+        //     part.clicked === true
+        // )).map((part) => (part.partId));
+        // console.log("newAppIds", newAppIds);
+        // console.log("conserning parts", [...checkedExistingPartIds, ...newAppIds]);
+        // setAppPartsConcernedWithNewDoc([...checkedExistingPartIds, ...newAppIds])/////
+        // return [...checkedExistingPartIds, ...newAppIds]
+    }
     
     const addhasBeenClicked = async(e) => {
         e.preventDefault()
@@ -211,15 +231,18 @@ const AddNewConnectionBox = ({ app }) => {
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
         ));
+            
+            
             console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
             console.log("filterFoldersToAll", filterFoldersToAll);
+
         const newDoc = {
             title: title,
             url: url,
             source: source,
             lastModified: "someDate",
             folderToBeDisplayedIn: "1",
-            concerningParts: appPartsConcernedWithNewDoc,
+            concerningParts: findConserningParts(),
             isLinkUpToDate: true, //tickbox checked
         }
         console.log("newPartsAdded", newPartsAdded);
@@ -410,6 +433,8 @@ const AddNewConnectionBox = ({ app }) => {
 }
 
 export default AddNewConnectionBox;
+
+// add safety in the case the user just wants to add a link 
 
 // the prop app for some reason keeps being mutated
 
