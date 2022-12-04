@@ -125,33 +125,22 @@ const AddNewConnectionBox = ({ app }) => {
         const allAppPartsHelper = {};
         if (originalParts){
             console.log("wholeApp", originalParts);
-            originalParts.map((part) => {
-                    allAppPartsHelper[part.name]= part
-                    allAppPartsHelper[part.name].clicked = false
-                });
+            originalParts.forEach((part) => (
+                allAppPartsHelper[part.name]= {
+                    ...part,
+                    clicked : false
+                }
+                ));
+            // originalParts.forEach((part) => {
+            //         allAppPartsHelper[part.name]= part
+            //         allAppPartsHelper[part.name].clicked = false
+            //     });
             console.log("app.includesParts after@ ", app.includesParts);
         }
 
         setAllAppParts(allAppPartsHelper);
     }, [originalParts]);
 
-    // useEffect(() => {
-    //     console.log("allAppPartsHelper", allAppPartsHelper); 
-    //     console.log("allAppParts", allAppParts); 
-    // }, [allAppParts])
-
-    // useEffect(() => {
-    //     console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
-    // }, [newFoldersToBeAddedToAll]);
-
-
-    const addNewAppPartClicked = () => {
-        setAppPartInputOpen(!appPartInputOpen);
-    }
-
-    const addNewFolderClicked = () => {
-        setAddNewFolderInputOpen(!addnewFolderInputOpen);
-    }
 
     const partIconClicked = (part) => {
 
@@ -290,7 +279,7 @@ const AddNewConnectionBox = ({ app }) => {
                                 </NewlyAddedPartButton>
                             ))
                             }
-                            <Button onClick={()=>addNewAppPartClicked()}>
+                            <Button onClick={()=>setAppPartInputOpen(!appPartInputOpen)}>
                                 <FolderIcon   
                                     addingButton={true}
                                     buttonTitle={appPartInputOpen? `- close` : `+ Add ${appName} Part`}
@@ -380,7 +369,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     }
                                     {addNewFolderButtonRendering
                                     &&
-                                        <Button onClick={()=>addNewFolderClicked()}>
+                                        <Button onClick={()=>setAddNewFolderInputOpen(!addnewFolderInputOpen)}>
                                             <FolderIcon   
                                                 addingButton={true}
                                                 buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
