@@ -180,14 +180,14 @@ const AddNewConnectionBox = ({ app }) => {
         setAddNewFolderButtonRendering(false);
     }
 
-    const folderClicked = (folder) => {
+    const folderInfoToState = (folder) => {
         setFolderName(Object.values(folder));
         setNewFolder(folder);
         setAddNewFolderInputOpen(true);
         setAddNewFolderButtonRendering(false);
     }
 
-    const editFolderClicked = () => {
+    const resetFolderInfo = () => {
         setNewFolder("");
         setAddNewFolderButtonRendering(true);
     }
@@ -342,7 +342,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     { !newFolder?
                                         !addnewFolderInputOpen?
                                             allFolders.map((folder)=> (
-                                                <div onClick={() => folderClicked(folder)}>
+                                                <div onClick={() => folderInfoToState(folder)}>
                                                     <FolderIcon 
                                                         folder={ Object.values(folder)[0] } 
                                                         > 
@@ -370,7 +370,7 @@ const AddNewConnectionBox = ({ app }) => {
                                                 </InputContainer>
                                             </>
                                     :
-                                        <div onClick={editFolderClicked}>
+                                        <div onClick={resetFolderInfo}>
                                             <FolderIcon 
                                                 addingButton={true}
                                                 buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
