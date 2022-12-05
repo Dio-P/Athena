@@ -452,15 +452,19 @@ export default AddNewConnectionBox;
 
 // Priorities:
     // add new doc logic
-    // tidy it up 
+    // tidy it up
+        // finalise the styling
     // change folder structure into something easier
     // add display part logic
     // add edit part logic
+    // add comments logic 
+        // and see how easy it is to connect with bbc users and login.
+    // start adding testing try tdd from here on
     // add GraphQl and connect with server
     // add links using string Query or something else
     // add docker if you want
     // add aws logic to have it online
 
     // turn server to typescript
-    // add technologies and initials logics
+    // expand on busines logic add technologies and initials
 
