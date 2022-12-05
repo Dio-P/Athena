@@ -142,7 +142,7 @@ const AddNewConnectionBox = ({ app }) => {
     }, [originalParts]);
 
 
-    const partIconClicked = (part) => {
+    const togglePartClicked = (part) => {
 
         setAllAppParts({
             ...allAppParts, [part.name]: { 
@@ -260,7 +260,7 @@ const AddNewConnectionBox = ({ app }) => {
                         <OptionsWraper>
                             <label htmlFor="">Existing {appName} Parts</label>
                             {Object.values(allAppParts).map((part)=> (
-                                <Button onClick={()=> partIconClicked(part) }>
+                                <Button onClick={()=> togglePartClicked(part) }>
                                     <FolderIcon
                                         part={part.name}
                                         clicked={allAppParts[part.name].clicked}
