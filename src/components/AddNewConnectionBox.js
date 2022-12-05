@@ -431,6 +431,7 @@ export default AddNewConnectionBox;
     // ask if there is any way to have conditional to change values within emotion even while 
     // having them above the function cumponent.
     // ask why the original object was mutated.
+    // setting state on change within an object
 
 
 // the name of the new folder button should allway have "click to delete" on a new line
@@ -448,4 +449,18 @@ export default AddNewConnectionBox;
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
 
 // add logic, when clicking done, to not add dublicate object to folder it allready exist
+
+// Priorities:
+    // add new doc logic
+    // tidy it up 
+    // change folder structure into something easier
+    // add display part logic
+    // add edit part logic
+    // add GraphQl and connect with server
+    // add links using string Query or something else
+    // add docker if you want
+    // add aws logic to have it online
+
+    // turn server to typescript
+    // add technologies and initials logics
 
