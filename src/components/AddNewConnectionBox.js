@@ -312,7 +312,7 @@ const AddNewConnectionBox = ({ app }) => {
                             <TitleButtonWrapper>
                                 <h3>New Part</h3> 
                             </TitleButtonWrapper>
-                        
+
                             <InputContainer>
                                 <label htmlFor=""> New Part Name: {newPartName}</label>
                                 <Input 
@@ -334,6 +334,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
                                 />
                             </InputContainer>
+                            
                             <InputContainer>
                                 <label htmlFor=""> New Part Type: {newPartType}</label>
                                 <Input 
@@ -374,7 +375,7 @@ const AddNewConnectionBox = ({ app }) => {
                                                     name="newFolder" 
                                                     value={folderName} 
                                                     onChange={(e)=> setFolderName(e.target.value)}
-                                                    
+
                                                 />
                                             </InputContainer>
                                         </>
