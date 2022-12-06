@@ -24,6 +24,7 @@ const FormContainer = styled.form`
 const TitleButtonWrapper = styled.div`
     display: 'flex';
     flex-direction: row;
+    margin-left: 12px;
 `;
 
 const InputContainer = styled.div`
@@ -306,102 +307,101 @@ const AddNewConnectionBox = ({ app }) => {
                         </OptionsWraper>
                         { appPartInputOpen
                         &&
-                        <>
+                        
+                        <DisplayBox>
                             <TitleButtonWrapper>
-                                <p>New Part</p> 
+                                <h3>New Part</h3> 
                             </TitleButtonWrapper>
-                            <DisplayBox>
-                            
-                                <InputContainer>
-                                    <label htmlFor=""> New Part Name: {newPartName}</label>
-                                    <Input 
-                                        key={"newFolderInput"}
-                                        type="text" 
-                                        name="newFolder"
-                                        value={newPartName}
-                                        onChange={(e)=> setNewPartName( e.target.value)}
-                                    />
-                                </InputContainer>
+                        
+                            <InputContainer>
+                                <label htmlFor=""> New Part Name: {newPartName}</label>
+                                <Input 
+                                    key={"newFolderInput"}
+                                    type="text" 
+                                    name="newFolder"
+                                    value={newPartName}
+                                    onChange={(e)=> setNewPartName( e.target.value)}
+                                />
+                            </InputContainer>
 
-                                <InputContainer>
-                                    <label htmlFor=""> New Part's Main GitHub Repo: {newPartGitHubRepo}</label>
-                                    <Input 
-                                        key={"newPartGitHubRepo"}
-                                        type="text" 
-                                        name="newPartGitHubRepo"
-                                        value={newPartGitHubRepo}
-                                        onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
-                                    />
-                                </InputContainer>
-                                <InputContainer>
-                                    <label htmlFor=""> New Part Type: {newPartType}</label>
-                                    <Input 
-                                        key={"newPartType"}
-                                        type="text" 
-                                        name="newPartType"
-                                        value={newPartType}
-                                        onChange={(e)=> setNewPartType( e.target.value)}
-                                    />
-                                </InputContainer>
+                            <InputContainer>
+                                <label htmlFor=""> New Part's Main GitHub Repo: {newPartGitHubRepo}</label>
+                                <Input 
+                                    key={"newPartGitHubRepo"}
+                                    type="text" 
+                                    name="newPartGitHubRepo"
+                                    value={newPartGitHubRepo}
+                                    onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
+                                />
+                            </InputContainer>
+                            <InputContainer>
+                                <label htmlFor=""> New Part Type: {newPartType}</label>
+                                <Input 
+                                    key={"newPartType"}
+                                    type="text" 
+                                    name="newPartType"
+                                    value={newPartType}
+                                    onChange={(e)=> setNewPartType( e.target.value)}
+                                />
+                            </InputContainer>
 
-                                <InputContainer>
-                                    <p> Folder to display new part in</p>
-                                    { !newFolder?
-                                        !addnewFolderInputOpen?
-                                            allFolders.map((folder)=> (
-                                                <Button onClick={() => folderInfoToState(folder)}>
-                                                    <FolderIcon 
-                                                        folder={ Object.values(folder)[0] } 
-                                                        > 
-                                                        { folder }
-                                                    </FolderIcon>
-                                                </Button>
-                                            ))
-                                        :
-                                            <>
-                                                <InputContainer>
-                                                    <label> New Folder Name: {folderName} </label>
-                                                    <Button onClick={() => (addNewFolderAndClear())}>
-                                                        <FolderIcon
-                                                            addingButton={true}
-                                                            buttonTitle="add"
-                                                        />
-                                                    </Button>
-                                                    <Input 
-                                                        key={"newFolderInput"}
-                                                        type="text" 
-                                                        name="newFolder" 
-                                                        value={folderName} 
-                                                        onChange={(e)=> setFolderName(e.target.value)}
-                                                    />
-                                                </InputContainer>
-                                            </>
+                            <InputContainer>
+                                <p> Folder to display new part in</p>
+                                { !newFolder?
+                                    !addnewFolderInputOpen?
+                                        allFolders.map((folder)=> (
+                                            <Button onClick={() => folderInfoToState(folder)}>
+                                                <FolderIcon 
+                                                    folder={ Object.values(folder)[0] } 
+                                                    > 
+                                                    { folder }
+                                                </FolderIcon>
+                                            </Button>
+                                        ))
                                     :
-                                        <Button onClick={resetFolderInfo}>
-                                            <FolderIcon 
-                                                addingButton={true}
-                                                buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
-                                            /> 
-                                        </Button>
-                                    }
-                                    {addNewFolderButtonRendering
-                                    &&
-                                        <Button onClick={()=>setAddNewFolderInputOpen(!addnewFolderInputOpen)}>
-                                            <FolderIcon   
-                                                addingButton={true}
-                                                buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
-                                            />
-                                        </Button>
-                                    }
-                                </InputContainer>
-                                <Button onClick={()=>addNewPartAndClear()}>
-                                    <FolderIcon   
-                                        addingButton={true}
-                                        buttonTitle={ "add this part and start with another" }
-                                    />
-                                </Button>
-                            </DisplayBox>
-                        </> 
+                                        <>
+                                            <InputContainer>
+                                                <label> New Folder Name: {folderName} </label>
+                                                <Button onClick={() => (addNewFolderAndClear())}>
+                                                    <FolderIcon
+                                                        addingButton={true}
+                                                        buttonTitle="add"
+                                                    />
+                                                </Button>
+                                                <Input 
+                                                    key={"newFolderInput"}
+                                                    type="text" 
+                                                    name="newFolder" 
+                                                    value={folderName} 
+                                                    onChange={(e)=> setFolderName(e.target.value)}
+                                                />
+                                            </InputContainer>
+                                        </>
+                                :
+                                    <Button onClick={resetFolderInfo}>
+                                        <FolderIcon 
+                                            addingButton={true}
+                                            buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
+                                        /> 
+                                    </Button>
+                                }
+                                {addNewFolderButtonRendering
+                                &&
+                                    <Button onClick={()=>setAddNewFolderInputOpen(!addnewFolderInputOpen)}>
+                                        <FolderIcon   
+                                            addingButton={true}
+                                            buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
+                                        />
+                                    </Button>
+                                }
+                            </InputContainer>
+                            <Button onClick={()=>addNewPartAndClear()}>
+                                <FolderIcon   
+                                    addingButton={true}
+                                    buttonTitle={ "add this part and start with another" }
+                                />
+                            </Button>
+                        </DisplayBox>
                         }
                         
                     </div>
