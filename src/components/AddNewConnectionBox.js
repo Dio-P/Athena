@@ -377,12 +377,12 @@ const AddNewConnectionBox = ({ app }) => {
                                                 </InputContainer>
                                             </>
                                     :
-                                        <div onClick={resetFolderInfo}>
+                                        <Button onClick={resetFolderInfo}>
                                             <FolderIcon 
                                                 addingButton={true}
                                                 buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
                                             /> 
-                                        </div>
+                                        </Button>
                                     }
                                     {addNewFolderButtonRendering
                                     &&
