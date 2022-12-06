@@ -360,13 +360,13 @@ const AddNewConnectionBox = ({ app }) => {
                                         ))
                                     :
                                         <>
-                                            <InputContainer>
                                                 <label> New Folder Name: {folderName} </label>
+                                            <InputContainer>
                                                 <Button onClick={() => (addNewFolderAndClear())}>
                                                     <FolderIcon
                                                         addingButton={true}
                                                         buttonTitle="add"
-                                                    />
+                                                        />
                                                 </Button>
                                                 <Input 
                                                     key={"newFolderInput"}
@@ -374,6 +374,7 @@ const AddNewConnectionBox = ({ app }) => {
                                                     name="newFolder" 
                                                     value={folderName} 
                                                     onChange={(e)=> setFolderName(e.target.value)}
+                                                    
                                                 />
                                             </InputContainer>
                                         </>
