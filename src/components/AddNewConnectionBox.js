@@ -91,12 +91,21 @@ const AddNewConnectionBox = ({ app }) => {
     const [originalParts, setOriginalParts] = useState("");
 
     const [allAppParts, setAllAppParts] = useState([]);
-    const [newPartName, setNewPartName] = useState("");
-    const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");
-    const [newPartType, setNewPartType] = useState("");
+
+    const [newPartName, setNewPartName] = useState("");////
+    const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");////
+    const [newPartType, setNewPartType] = useState("");////
+
+    const [newPart, setNewPart] = useState({
+        name: "",
+        ghRepo: "",
+        type: "",
+        id: uuidv4() ///will this be the same ID, or will it rerender?
+    })
+
     const [newPartsAdded, setNewPartsAdded] = useState("");
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);
-    const [deleteWarningShown, setDeleteWarningShownn] = useState(false);
+    const [showDeleteWarning, setShowDeleteWarning] = useState(false);
     
     const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
@@ -125,16 +134,13 @@ const AddNewConnectionBox = ({ app }) => {
     useEffect(() => {
         const allAppPartsHelper = {};
         if (originalParts){
+            // change originalParts to the prop coming from above and delete this state.
             originalParts.forEach((part) => (
                 allAppPartsHelper[part.name]= {
                     ...part,
                     clicked : false
                 }
                 ));
-            // originalParts.forEach((part) => {
-            //         allAppPartsHelper[part.name]= part
-            //         allAppPartsHelper[part.name].clicked = false
-            //     });
             console.log("app.includesParts after@ ", app.includesParts);
             setAllAppParts(allAppPartsHelper);
         }
@@ -274,8 +280,8 @@ const AddNewConnectionBox = ({ app }) => {
                             Object.values(newPartsAdded).map((part)=> (
                                 <NewlyAddedPartButton 
                                     onClick={()=> deleteNewPart(part) }
-                                    onMouseEnter={() => setDeleteWarningShownn(true)}
-                                    onMouseLeave={() => setDeleteWarningShownn(false)}
+                                    onMouseEnter={() => setShowDeleteWarning(true)}
+                                    onMouseLeave={() => setShowDeleteWarning(false)}
                                     >
                                     <FolderIcon
                                         part={part.name}
@@ -283,7 +289,7 @@ const AddNewConnectionBox = ({ app }) => {
                                         > 
                                         { part }
                                     </FolderIcon>
-                                    {deleteWarningShown
+                                    {showDeleteWarning
                                     &&
                                         <p>Newly added Part: Click to delete</p>
                                     }
