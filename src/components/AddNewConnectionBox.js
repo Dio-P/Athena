@@ -126,8 +126,8 @@ const AddNewConnectionBox = ({ app }) => {
             console.log("app.includesParts Before@", app.includesParts);
             setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
                 folder
-                )));
-            setOriginalParts(app.includesParts);
+                )));////? maybe this can't go because this is not an array
+            setOriginalParts(app.includesParts);////
         }
     }, []);
 
@@ -141,7 +141,7 @@ const AddNewConnectionBox = ({ app }) => {
                     clicked : false
                 }
                 ));
-            console.log("app.includesParts after@ ", app.includesParts);
+            console.log("app.includesParts after@ ", app.includesParts);////
             setAllAppParts(allAppPartsHelper);
         }
 
@@ -191,6 +191,7 @@ const AddNewConnectionBox = ({ app }) => {
         setNewFolder(folder);
         setAddNewFolderInputOpen(true);
         setAddNewFolderButtonRendering(false);
+        // could all this go in the same obj too?
     }
 
     const resetFolderInfo = () => {
@@ -348,24 +349,24 @@ const AddNewConnectionBox = ({ app }) => {
                                     { !newFolder?
                                         !addnewFolderInputOpen?
                                             allFolders.map((folder)=> (
-                                                <div onClick={() => folderInfoToState(folder)}>
+                                                <Button onClick={() => folderInfoToState(folder)}>
                                                     <FolderIcon 
                                                         folder={ Object.values(folder)[0] } 
                                                         > 
                                                         { folder }
                                                     </FolderIcon>
-                                                </div>
+                                                </Button>
                                             ))
                                         :
                                             <>
                                                 <InputContainer>
                                                     <label> New Folder Name: {folderName} </label>
-                                                    <div onClick={() => (addNewFolderAndClear())}>
+                                                    <Button onClick={() => (addNewFolderAndClear())}>
                                                         <FolderIcon
                                                             addingButton={true}
                                                             buttonTitle="add"
                                                         />
-                                                    </div>
+                                                    </Button>
                                                     <Input 
                                                         key={"newFolderInput"}
                                                         type="text" 
