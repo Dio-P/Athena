@@ -108,13 +108,13 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartsAdded, setNewPartsAdded] = useState("");
     const [appPartInputOpen, setAppPartInputOpen] = useState(false);///
     const [showDeleteWarning, setShowDeleteWarning] = useState(false);///
+    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);//
+    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);//
     
     const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     
-    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);//
-    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);//
     
     const appName = useCapitaliseFirstLetter(app.name);
     const [newFolder, setNewFolder] = useState("");
@@ -301,14 +301,14 @@ const AddNewConnectionBox = ({ app }) => {
                                 </NewlyAddedPartButton>
                             ))
                             }
-                            <Button onClick={()=>setAppPartInputOpen(!appPartInputOpen)}>
+                            <Button onClick={()=>setDisplay({...display, newPartInput: !display.newPartInput})}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={appPartInputOpen? `- close` : `+ Add ${appName} Part`}
+                                    buttonTitle={display.newPartInput? `- close` : `+ Add ${appName} Part`}
                                 />
                             </Button>
                         </OptionsWraper>
-                        { appPartInputOpen
+                        { display.newPartInput
                         &&
                         
                         <DisplayBox>
