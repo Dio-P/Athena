@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
@@ -119,6 +119,9 @@ const AddNewConnectionBox = ({ app }) => {
     const [newFolder, setNewFolder] = useState("");
 
     useEffect(() => {
+        console.log("newPart", newPart);
+    }, [newPart]);
+    useEffect(() => {
         console.log("updatedApp", updatedApp);
     }, [updatedApp]);
 
@@ -160,17 +163,25 @@ const AddNewConnectionBox = ({ app }) => {
     const addNewPartAndClear = () => {
         setNewPartsAdded({
             ...newPartsAdded, 
-            [newPartName]: {
-                name: newPartName,
-                partId: uuidv4(),
-                type: newPartType,
-                RepoLink: newPartGitHubRepo,
+            [newPart.name]: {
+                ...newPart,
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         });
+        // setNewPartsAdded({
+        //     ...newPartsAdded, 
+        //     [newPartName]: {
+        //         name: newPartName,
+        //         partId: uuidv4(),
+        //         type: newPartType,
+        //         RepoLink: newPartGitHubRepo,
+        //         folderToBeDisplayedIn: Object.keys(newFolder)[0],
+        //       }
+        // });
         setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
         setAddNewFolderButtonRendering(true);
-        setNewPartName("");
+        setNewPart({...newPart, name: ""})
+        setNewPartName("");////
         setNewPartGitHubRepo("");
         setNewPartType("");
         setFolderName("");
@@ -319,8 +330,9 @@ const AddNewConnectionBox = ({ app }) => {
                                     key={"newFolderInput"}
                                     type="text" 
                                     name="newFolder"
-                                    value={newPartName}
-                                    onChange={(e)=> setNewPartName( e.target.value)}
+                                    value={newPart.name}
+                                    onChange={(e)=> setNewPart( {...newPart, name: e.target.value} )}
+                                    // onChange={(e)=> setNewPartName( e.target.value)}
                                 />
                             </InputContainer>
 
