@@ -98,16 +98,23 @@ const AddNewConnectionBox = ({ app }) => {
         id: uuidv4(),
     })
 
+    const [display, setDisplay] = useState({
+        newPartInput: false,
+        deleteWarningNewPart: false,
+        newFolderInput: false,
+        newFolderButton: true,
+    });
+
     const [newPartsAdded, setNewPartsAdded] = useState("");
-    const [appPartInputOpen, setAppPartInputOpen] = useState(false);
-    const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+    const [appPartInputOpen, setAppPartInputOpen] = useState(false);///
+    const [showDeleteWarning, setShowDeleteWarning] = useState(false);///
     
     const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     
-    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);
-    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);
+    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);//
+    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);//
     
     const appName = useCapitaliseFirstLetter(app.name);
     const [newFolder, setNewFolder] = useState("");
