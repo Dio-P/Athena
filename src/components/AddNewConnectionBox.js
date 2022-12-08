@@ -285,8 +285,9 @@ const AddNewConnectionBox = ({ app }) => {
                             Object.values(newPartsAdded).map((part)=> (
                                 <NewlyAddedPartButton 
                                     onClick={()=> deleteNewPart(part) }
-                                    onMouseEnter={() => setShowDeleteWarning(true)}
-                                    onMouseLeave={() => setShowDeleteWarning(false)}
+                                    // onMouseEnter={() => setShowDeleteWarning(true)}
+                                    onMouseEnter={() => setDisplay({ ...display, deleteWarningNewPart:true })}
+                                    onMouseLeave={() => setDisplay({ ...display, deleteWarningNewPart:false })}
                                     >
                                     <FolderIcon
                                         part={part.name}
@@ -294,7 +295,7 @@ const AddNewConnectionBox = ({ app }) => {
                                         > 
                                         { part }
                                     </FolderIcon>
-                                    {showDeleteWarning
+                                    {display.deleteWarningNewPart
                                     &&
                                         <p>Newly added Part: Click to delete</p>
                                     }
