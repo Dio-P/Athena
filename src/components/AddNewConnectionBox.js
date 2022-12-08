@@ -89,15 +89,13 @@ outline: inherit;
 const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
     const [updatedApp, setUpdatedApp] = useState("");
-    const [originalParts, setOriginalParts] = useState("");
-
     const [allAppParts, setAllAppParts] = useState([]);
 
     const [newPart, setNewPart] = useState({
         name: "",
         ghRepo: "",
         type: "",
-        id: uuidv4() ///will this be the same ID, or will it rerender?
+        id: uuidv4(),
     })
 
     const [newPartsAdded, setNewPartsAdded] = useState("");
@@ -127,15 +125,13 @@ const AddNewConnectionBox = ({ app }) => {
             setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
                 folder
                 )));////? maybe this can't go because this is not an array
-            setOriginalParts(app.includesParts);////
         }
     }, []);
 
     useEffect(() => {
         const allAppPartsHelper = {};
-        if (originalParts){
-            // change originalParts to the prop coming from above and delete this state.
-            originalParts.forEach((part) => (
+        if (app?.includesParts){
+            app.includesParts.forEach((part) => (
                 allAppPartsHelper[part.name]= {
                     ...part,
                     clicked : false
@@ -145,7 +141,7 @@ const AddNewConnectionBox = ({ app }) => {
             setAllAppParts(allAppPartsHelper);
         }
 
-    }, [originalParts]);
+    }, [app?.includesParts]);
 
 
     const togglePartClicked = (part) => {
