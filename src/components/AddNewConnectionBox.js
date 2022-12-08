@@ -93,10 +93,6 @@ const AddNewConnectionBox = ({ app }) => {
 
     const [allAppParts, setAllAppParts] = useState([]);
 
-    const [newPartName, setNewPartName] = useState("");////
-    const [newPartGitHubRepo, setNewPartGitHubRepo] = useState("");////
-    const [newPartType, setNewPartType] = useState("");////
-
     const [newPart, setNewPart] = useState({
         name: "",
         ghRepo: "",
@@ -168,22 +164,15 @@ const AddNewConnectionBox = ({ app }) => {
                 folderToBeDisplayedIn: Object.keys(newFolder)[0],
               }
         });
-        // setNewPartsAdded({
-        //     ...newPartsAdded, 
-        //     [newPartName]: {
-        //         name: newPartName,
-        //         partId: uuidv4(),
-        //         type: newPartType,
-        //         RepoLink: newPartGitHubRepo,
-        //         folderToBeDisplayedIn: Object.keys(newFolder)[0],
-        //       }
-        // });
+
         setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
         setAddNewFolderButtonRendering(true);
-        setNewPart({...newPart, name: ""})
-        setNewPartName("");////
-        setNewPartGitHubRepo("");
-        setNewPartType("");
+        setNewPart({
+            ...newPart,
+            name: "",
+            ghRepo: "",
+            type: "",
+        })
         setFolderName("");
         setNewFolder("");
         setAddNewFolderInputOpen(false);
@@ -325,36 +314,35 @@ const AddNewConnectionBox = ({ app }) => {
                             </TitleButtonWrapper>
 
                             <InputContainer>
-                                <label htmlFor=""> New Part Name: {newPartName}</label>
+                                <label htmlFor=""> New Part Name: {newPart.name}</label>
                                 <Input 
                                     key={"newFolderInput"}
                                     type="text" 
                                     name="newFolder"
                                     value={newPart.name}
                                     onChange={(e)=> setNewPart( {...newPart, name: e.target.value} )}
-                                    // onChange={(e)=> setNewPartName( e.target.value)}
                                 />
                             </InputContainer>
 
                             <InputContainer>
-                                <label htmlFor=""> New Part's Main GitHub Repo: {newPartGitHubRepo}</label>
+                                <label htmlFor=""> New Part's Main GitHub Repo: { newPart.ghRepo }</label>
                                 <Input 
                                     key={"newPartGitHubRepo"}
                                     type="text" 
                                     name="newPartGitHubRepo"
-                                    value={newPartGitHubRepo}
-                                    onChange={(e)=> setNewPartGitHubRepo( e.target.value)}
+                                    value={newPart.ghRepo}
+                                    onChange={(e)=> setNewPart( {...newPart, ghRepo: e.target.value} )}
                                 />
                             </InputContainer>
                             
                             <InputContainer>
-                                <label htmlFor=""> New Part Type: {newPartType}</label>
+                                <label htmlFor=""> New Part Type: {newPart.type}</label>
                                 <Input 
                                     key={"newPartType"}
                                     type="text" 
                                     name="newPartType"
-                                    value={newPartType}
-                                    onChange={(e)=> setNewPartType( e.target.value)}
+                                    value={newPart.type}
+                                    onChange={(e)=> setNewPart( {...newPart, type: e.target.value} )}
                                 />
                             </InputContainer>
 
@@ -444,6 +432,7 @@ export default AddNewConnectionBox;
 
 // add safety in the case the user just wants to add a link 
 // add safety so adding is not possible if empty fields.
+// add safety so the duplication of the parts is not possible.
 
 // devide into seperato components if possible
 // see if now that the prop object is not mutated you can remove the state where you where storing it 
