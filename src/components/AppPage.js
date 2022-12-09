@@ -23,6 +23,10 @@ cursor: pointer;
 outline: inherit;
 `;
 
+const PartsContainer = styled.div`
+  display: flex,
+`;
+
 const AppPage = ({ app }) => {
   // const location = useLocation();
   // const app = location.state;
@@ -47,6 +51,9 @@ const AppPage = ({ app }) => {
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
+      <PartsContainer>
+        {app.parts.map()}
+      </PartsContainer>
       <AddDocButton onClick={clickingToAddNewConnection}>
         + Add URL
       </AddDocButton>

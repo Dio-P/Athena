@@ -1,4 +1,4 @@
-import DepartmAppsBox from "./DepartmAppsBox";
+import AppsBox from "./AppBox";
 import styled from '@emotion/styled';
 import { useEffect, useState } from "react";
 import FolderIcon from "../components/FolderIcon";
@@ -40,7 +40,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
         } */}
       {department
       &&
-        <DepartmAppsBox department={department} />
+        <AppsBox department={department} />
       }
     </AllDepartmentsBoxContainer>
     ) 

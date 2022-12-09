@@ -87,16 +87,21 @@ outline: inherit;
 `;
 
 const AddNewConnectionBox = ({ app }) => {
-    const [url, setUrl] = useState("");
     const [updatedApp, setUpdatedApp] = useState("");
     const [allAppParts, setAllAppParts] = useState([]);
-
+    
+    const [url, setUrl] = useState("");
     const [newPart, setNewPart] = useState({
         name: "",
         ghRepo: "",
         type: "",
         id: uuidv4(),
-    })
+    });
+    const [newPartsAdded, setNewPartsAdded] = useState("");   
+    const [allFolders, setAllFolders] = useState([]);
+    const [folderName, setFolderName] = useState("");
+    const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
+    const [newFolder, setNewFolder] = useState("");
 
     const [display, setDisplay] = useState({
         newPartInput: false,
@@ -105,12 +110,10 @@ const AddNewConnectionBox = ({ app }) => {
         newFolderButton: true,
     });
 
-    const [newPartsAdded, setNewPartsAdded] = useState("");   
-    const [allFolders, setAllFolders] = useState([]);
-    const [folderName, setFolderName] = useState("");
-    const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
-    const [newFolder, setNewFolder] = useState("");
+
     const appName = useCapitaliseFirstLetter(app.name);
+
+    ///////////
 
     useEffect(() => {
         console.log("newPart", newPart);
@@ -119,9 +122,10 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("updatedApp", updatedApp);
     }, [updatedApp]);
 
+    //////////
+
     useEffect(() => {
         if(app){
-            console.log("app.includesParts Before@", app.includesParts);
             setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
                 folder
                 )));
@@ -130,8 +134,8 @@ const AddNewConnectionBox = ({ app }) => {
 
     useEffect(() => {
         const allAppPartsHelper = {};
-        if (app?.includesParts){
-            app.includesParts.forEach((part) => (
+        if (app?.parts){
+            app.parts.forEach((part) => (
                 allAppPartsHelper[part.name]= {
                     ...part,
                     clicked : false
@@ -140,11 +144,10 @@ const AddNewConnectionBox = ({ app }) => {
             setAllAppParts(allAppPartsHelper);
         }
 
-    }, [app?.includesParts]);
+    }, [app?.parts]);
 
 
     const togglePartClicked = (part) => {
-
         setAllAppParts({
             ...allAppParts, [part.name]: { 
                 ...allAppParts[part.name], 
@@ -231,7 +234,6 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        console.log("newPartsAdded", newPartsAdded);
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
             ))));
@@ -254,8 +256,8 @@ const AddNewConnectionBox = ({ app }) => {
                 ...app.docs, newDoc
             ], foldersToDisplay: {
                 ...app.foldersToDisplay, ...filterFoldersToAll
-            }, includesParts: [
-                ...app.includesParts, ...Object.values(newPartsAdded)
+            }, parts: [
+                ...app.parts, ...Object.values(newPartsAdded)
             ]
 
         })
@@ -289,7 +291,6 @@ const AddNewConnectionBox = ({ app }) => {
                             Object.values(newPartsAdded).map((part)=> (
                                 <NewlyAddedPartButton 
                                     onClick={()=> deleteNewPart(part) }
-                                    // onMouseEnter={() => setShowDeleteWarning(true)}
                                     onMouseEnter={() => setDisplay({ ...display, deleteWarningNewPart:true })}
                                     onMouseLeave={() => setDisplay({ ...display, deleteWarningNewPart:false })}
                                     >
@@ -439,6 +440,7 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// logic witch manages the folder to display inside the documnent
 // add safety in the case the user just wants to add a link 
 // add safety so adding is not possible if empty fields.
 // add safety so the duplication of the parts is not possible.
