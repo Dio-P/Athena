@@ -178,7 +178,11 @@ const AddNewConnectionBox = ({ app }) => {
         })
         setFolderName("");
         setNewFolder("");
-        setAddNewFolderInputOpen(false);
+        setDisplay({
+            ...display,
+            newFolderInput: false
+        })
+        // setAddNewFolderInputOpen(false);
     }
 
     const addNewFolderAndClear = () => {
@@ -193,7 +197,11 @@ const AddNewConnectionBox = ({ app }) => {
     const folderInfoToState = (folder) => {
         setFolderName(Object.values(folder));
         setNewFolder(folder);
-        setAddNewFolderInputOpen(true);
+        setDisplay({
+            ...display,
+            newFolderInput: true
+        })
+        // setAddNewFolderInputOpen(true);
         setAddNewFolderButtonRendering(false);
         // could all this go in the same obj too?
     }
@@ -353,7 +361,7 @@ const AddNewConnectionBox = ({ app }) => {
                             <InputContainer>
                                 <p> Folder to display new part in</p>
                                 { !newFolder?
-                                    !addnewFolderInputOpen?
+                                    !display.newFolderInput?
                                         allFolders.map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
                                                 <FolderIcon 
@@ -393,10 +401,11 @@ const AddNewConnectionBox = ({ app }) => {
                                 }
                                 {addNewFolderButtonRendering
                                 &&
-                                    <Button onClick={()=>setAddNewFolderInputOpen(!addnewFolderInputOpen)}>
+                                    <Button onClick={()=> setDisplay( {...display, newFolderInput: !display.newFolderInput}) }>
+                                        
                                         <FolderIcon   
                                             addingButton={true}
-                                            buttonTitle={ addnewFolderInputOpen?  "- Back to Existing Folders" : "+ Add New Folder"}
+                                            buttonTitle={ display.newFolderInput?  "- Back to Existing Folders" : "+ Add New Folder"}
                                         />
                                     </Button>
                                 }
