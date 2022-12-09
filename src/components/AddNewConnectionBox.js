@@ -105,19 +105,12 @@ const AddNewConnectionBox = ({ app }) => {
         newFolderButton: true,
     });
 
-    const [newPartsAdded, setNewPartsAdded] = useState("");
-    const [appPartInputOpen, setAppPartInputOpen] = useState(false);///
-    const [showDeleteWarning, setShowDeleteWarning] = useState(false);///
-    const [addnewFolderInputOpen, setAddNewFolderInputOpen] = useState(false);//
-    const [addNewFolderButtonRendering, setAddNewFolderButtonRendering] = useState(true);//
-    
+    const [newPartsAdded, setNewPartsAdded] = useState("");   
     const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
-    
-    
-    const appName = useCapitaliseFirstLetter(app.name);
     const [newFolder, setNewFolder] = useState("");
+    const appName = useCapitaliseFirstLetter(app.name);
 
     useEffect(() => {
         console.log("newPart", newPart);
@@ -131,7 +124,7 @@ const AddNewConnectionBox = ({ app }) => {
             console.log("app.includesParts Before@", app.includesParts);
             setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
                 folder
-                )));////? maybe this can't go because this is not an array
+                )));
         }
     }, []);
 
@@ -144,7 +137,6 @@ const AddNewConnectionBox = ({ app }) => {
                     clicked : false
                 }
                 ));
-            console.log("app.includesParts after@ ", app.includesParts);////
             setAllAppParts(allAppPartsHelper);
         }
 
@@ -173,7 +165,6 @@ const AddNewConnectionBox = ({ app }) => {
             ...display,
             newFolderButton: true
         })
-        // setAddNewFolderButtonRendering(true);///
         setNewPart({
             ...newPart,
             name: "",
@@ -186,7 +177,6 @@ const AddNewConnectionBox = ({ app }) => {
             ...display,
             newFolderInput: false
         })
-        // setAddNewFolderInputOpen(false);
     }
 
     const addNewFolderAndClear = () => {
@@ -199,7 +189,6 @@ const AddNewConnectionBox = ({ app }) => {
             ...display,
             newFolderButton: false
         })
-        // setAddNewFolderButtonRendering(false);
     }
 
     const folderInfoToState = (folder) => {
@@ -209,13 +198,10 @@ const AddNewConnectionBox = ({ app }) => {
             ...display,
             newFolderInput: true
         })
-        // setAddNewFolderInputOpen(true);
-        // setAddNewFolderButtonRendering(false);
         setDisplay({
             ...display,
             newFolderButton: false
         })
-        // could all this go in the same obj too?
     }
 
     const resetFolderInfo = () => {
@@ -224,7 +210,6 @@ const AddNewConnectionBox = ({ app }) => {
             ...display,
             newFolderButton: true
         })
-        // setAddNewFolderButtonRendering(true);
     }
 
     const deleteNewPart = (part) => {
@@ -254,10 +239,6 @@ const AddNewConnectionBox = ({ app }) => {
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
         ));
-            
-            
-            console.log("newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
-            console.log("filterFoldersToAll", filterFoldersToAll);
 
         const newDoc = {
             title: title,
@@ -268,7 +249,6 @@ const AddNewConnectionBox = ({ app }) => {
             concerningParts: findConserningParts(),
             isLinkUpToDate: true, //tickbox checked
         }
-        console.log("newPartsAdded", newPartsAdded);
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
