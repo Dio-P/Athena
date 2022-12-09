@@ -168,8 +168,12 @@ const AddNewConnectionBox = ({ app }) => {
               }
         });
 
-        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder})
-        setAddNewFolderButtonRendering(true);
+        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder});
+        setDisplay({
+            ...display,
+            newFolderButton: true
+        })
+        // setAddNewFolderButtonRendering(true);///
         setNewPart({
             ...newPart,
             name: "",
@@ -191,7 +195,11 @@ const AddNewConnectionBox = ({ app }) => {
             [newFolderNum]: {title: folderName}
         };
         setNewFolder(newFolder);
-        setAddNewFolderButtonRendering(false);
+        setDisplay({
+            ...display,
+            newFolderButton: false
+        })
+        // setAddNewFolderButtonRendering(false);
     }
 
     const folderInfoToState = (folder) => {
@@ -202,13 +210,21 @@ const AddNewConnectionBox = ({ app }) => {
             newFolderInput: true
         })
         // setAddNewFolderInputOpen(true);
-        setAddNewFolderButtonRendering(false);
+        // setAddNewFolderButtonRendering(false);
+        setDisplay({
+            ...display,
+            newFolderButton: false
+        })
         // could all this go in the same obj too?
     }
 
     const resetFolderInfo = () => {
         setNewFolder("");
-        setAddNewFolderButtonRendering(true);
+        setDisplay({
+            ...display,
+            newFolderButton: true
+        })
+        // setAddNewFolderButtonRendering(true);
     }
 
     const deleteNewPart = (part) => {
@@ -399,7 +415,7 @@ const AddNewConnectionBox = ({ app }) => {
                                         /> 
                                     </Button>
                                 }
-                                {addNewFolderButtonRendering
+                                {display.newFolderButton
                                 &&
                                     <Button onClick={()=> setDisplay( {...display, newFolderInput: !display.newFolderInput}) }>
                                         
