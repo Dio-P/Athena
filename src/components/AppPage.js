@@ -69,3 +69,7 @@ const AppPage = ({ app }) => {
 }
 
 export default AppPage;
+
+// add folder section logic
+// finish with the Part Icon logic and put everything inside the right folder
+// have the folders as page sections but with a way to go there trought a catalog or something
