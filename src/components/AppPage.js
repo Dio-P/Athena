@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from '../hooks/useCapitaliseFirstLetter';
 import AddNewConnectionBox from './AddNewConnectionBox';
+import PartIcon from './PartIcon';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;
@@ -51,9 +52,11 @@ const AppPage = ({ app }) => {
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
-      <PartsContainer>
-        {app.parts.map()}
-      </PartsContainer>
+      <>
+        {app.parts.map((part) => (
+          <PartIcon part={part}/>
+        ))}
+      </>
       <AddDocButton onClick={clickingToAddNewConnection}>
         + Add URL
       </AddDocButton>

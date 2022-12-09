@@ -53,14 +53,14 @@ function App() {
             name: "general documentation",
             partId: "somePartId1",
             type: "documentation",
-            RepoLink: "www.someGitHubLink.com",
+            ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
             partId: "somePartId2",
             type: "data base",
-            RepoLink: "www.someGitHubLink.com",
+            ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
           }
         ],
