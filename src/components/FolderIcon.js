@@ -29,7 +29,7 @@ font-size: 18px;
 const AppFolderIconContainer = styled.div`
 display: flex;
 align-content: center;
-background-color: #6c98e0;
+background-color: #1D4587;
 min-width: 115px;
 min-height: 50px;
 max-width: 140px;

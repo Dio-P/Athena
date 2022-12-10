@@ -25,7 +25,7 @@ display: flex;
 flex-direction: column;
 align-content: center;
 text-align: center;
-background-color: #6c98e0;
+background-color: #1D4587;
 box-shadow: #2b2a28 0.5em 0.5em 0.3em;
 border-radius: 15px 10%;
 font-size: 14px;
@@ -43,10 +43,10 @@ p {
 a {
     font-size: smaller;
     margin: auto;
+    color: #FCABD1;
 
 }
 `;
-
 const PartIconButton = ({ part }) => {
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);

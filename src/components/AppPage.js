@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from '../hooks/useCapitaliseFirstLetter';
 import AddNewConnectionBox from './AddNewConnectionBox';
 import PartIcon from './PartIcon';
+import FolderIcon from './FolderIcon';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;
@@ -53,12 +54,23 @@ const AppPage = ({ app }) => {
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
       <>
+      <h3> Client</h3>
+        {app.parts.map((part) => (
+          <PartIcon part={part}/>
+        ))}
+      </>
+      <>
+      <h3> Server</h3>
         {app.parts.map((part) => (
           <PartIcon part={part}/>
         ))}
       </>
       <AddDocButton onClick={clickingToAddNewConnection}>
-        + Add URL
+        <FolderIcon   
+            addingButton={true}
+            buttonTitle="+ Add URL"
+        />
+        
       </AddDocButton>
       {addNewConnectionBoxIsOpen
       &&
@@ -73,3 +85,4 @@ export default AppPage;
 // add folder section logic
 // finish with the Part Icon logic and put everything inside the right folder
 // have the folders as page sections but with a way to go there trought a catalog or something
+// add filtering options for part icons
