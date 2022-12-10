@@ -14,3 +14,6 @@ const FolderContainer = ({folder}) => {
 }
 
 export default FolderContainer;
+
+// need to work on seperating the parts into folders and then having the folders be expandable on click
+// I need to fix the logic that displayes the correct folder on the addNewPage
