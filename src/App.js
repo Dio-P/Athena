@@ -28,14 +28,14 @@ function App() {
             name: "general documentation",
             type: "documentation",
             partId: uuidv4(),
-            RepoLink: "www.someGitHubLink.com",
+            ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
             type: "data base",
             partId: uuidv4(),
-            RepoLink: "www.someGitHubLink.com",
+            ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
           }
         ],
