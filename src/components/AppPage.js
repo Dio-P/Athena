@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from '../hooks/useCapitaliseFirstLetter';
 import AddNewConnectionBox from './AddNewConnectionBox';
 import PartIcon from './PartIcon';
-import FolderIcon from './FolderIcon';
+import ButtonIcon from './ButtonIcon';
+import FolderContainer from '../containers/FolderContainer';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;
@@ -53,7 +54,8 @@ const AppPage = ({ app }) => {
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
-      <>
+      {/* {app.} */}
+      {/* <>
       <h3> Client</h3>
         {app.parts.map((part) => (
           <PartIcon part={part}/>
@@ -64,9 +66,9 @@ const AppPage = ({ app }) => {
         {app.parts.map((part) => (
           <PartIcon part={part}/>
         ))}
-      </>
+      </> */}
       <AddDocButton onClick={clickingToAddNewConnection}>
-        <FolderIcon   
+        <ButtonIcon   
             addingButton={true}
             buttonTitle="+ Add URL"
         />

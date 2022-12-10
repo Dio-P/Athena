@@ -10,7 +10,7 @@ text-decoration: none;
 margin: auto;
 `;
 
-const ClickedAppFolderIconContainer = styled.div`
+const ClickedAppButtonIconContainer = styled.div`
 display: flex;
 align-content: center;
 background-color: #1ee685;
@@ -26,7 +26,7 @@ margin: 20px;
 font-size: 18px;
 `;
 
-const AppFolderIconContainer = styled.div`
+const AppButtonIconContainer = styled.div`
 display: flex;
 align-content: center;
 background-color: #1D4587;
@@ -42,7 +42,7 @@ margin: 20px;
 font-size: 18px;
 `;
 
-const AddingFolderIconContainer = styled.div`
+const AddingButtonIconContainer = styled.div`
 display: flex;
 align-content: center;
 background-color: #e6056e;
@@ -70,7 +70,7 @@ outline: inherit;
 
 `;
 
-const FolderIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
+const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
   const [thisDepartment, setThisDepartment] = useState("");
   const [thisApp, setThisApp] = useState("");
   const [thisClicked, setThisClicked] = useState(false);
@@ -116,8 +116,8 @@ const FolderIcon = ({ app, department, folder, part, clicked, addingButton, butt
     return undefined;
   }
 
-  const CustomButtonContainer = thisClicked? ClickedAppFolderIconContainer: thisAddingButton? AddingFolderIconContainer : AppFolderIconContainer;
-  // const CustomButtonContainer = thisClicked? ClickedAppFolderIconContainer: AppFolderIconContainer;
+  const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: thisAddingButton? AddingButtonIconContainer : AppButtonIconContainer;
+  // const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: AppButtonIconContainer;
 
   return(
       <DecoratedLink>
@@ -130,4 +130,4 @@ const FolderIcon = ({ app, department, folder, part, clicked, addingButton, butt
   ) 
 }
 
-export default FolderIcon
+export default ButtonIcon

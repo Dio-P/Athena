@@ -47,7 +47,7 @@ a {
 
 }
 `;
-const PartIconButton = ({ part }) => {
+const PartIcon = ({ part }) => {
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
     const ghRepo = part.ghRepo;
@@ -65,4 +65,4 @@ const PartIconButton = ({ part }) => {
     )
 }
 
-export default PartIconButton;
+export default PartIcon;

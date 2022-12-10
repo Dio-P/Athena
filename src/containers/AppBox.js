@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FolderIcon from "../components/FolderIcon";
+import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AppPage from "../components/AppPage";
 import styled from "@emotion/styled";
@@ -52,7 +52,7 @@ const DepAllAppsBox = ({ department }) => {
           department.apps.map((app) => {
             return (
               <StyledButton onClick={() => setAppToDisplay(app)} >
-                <FolderIcon app={ app }/>
+                <ButtonIcon app={ app }/>
               </StyledButton>
             )
         })}

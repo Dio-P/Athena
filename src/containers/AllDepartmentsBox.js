@@ -1,7 +1,7 @@
 import AppsBox from "./AppBox";
 import styled from '@emotion/styled';
 import { useEffect, useState } from "react";
-import FolderIcon from "../components/FolderIcon";
+import ButtonIcon from "../components/ButtonIcon";
 
 const AllDepartmentsBoxContainer = styled.div`
   margin-left: 10px;
@@ -33,7 +33,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
       <>
         {alldepartments.map((department) => (
           <div onClick={() => clickIcon(department)}>
-            <FolderIcon department={ department }/>
+            <ButtonIcon department={ department }/>
           </div>
         ))}
       </>

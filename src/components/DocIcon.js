@@ -1,6 +1,7 @@
+import styled from "@emotion/styled";
 
 
-const DocIcon = () => {
+const DocIcon = ({ doc }) => {
     return (
         <div>
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
-import FolderIcon from "./FolderIcon";
+import FolderIcon from "./ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
 const DisplayBox = styled.div`
@@ -126,7 +126,7 @@ const AddNewConnectionBox = ({ app }) => {
 
     useEffect(() => {
         if(app){
-            setAllFolders(Object.values(app.foldersToDisplay).map((folder)=>(
+            setAllFolders(Object.values(app.folders).map((folder)=>(
                 folder
                 )));
         }
@@ -254,8 +254,8 @@ const AddNewConnectionBox = ({ app }) => {
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
-            ], foldersToDisplay: {
-                ...app.foldersToDisplay, ...filterFoldersToAll
+            ], folders: {
+                ...app.folders, ...filterFoldersToAll
             }, parts: [
                 ...app.parts, ...Object.values(newPartsAdded)
             ]

@@ -18,7 +18,7 @@ function App() {
     apps: [
       {
         name: "optimo",
-        foldersToDisplay: {
+        folders: {
           0: { title : "general documentation" },
           1: { title : "client" },
           2: { title : "server" },
@@ -43,7 +43,7 @@ function App() {
       },
       {
         name: "tipo",
-        foldersToDisplay: {
+        folders: {
           0: { title : "general documentation" },
           1: { title : "client" },
           2: { title : "server" },
