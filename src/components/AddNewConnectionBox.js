@@ -440,6 +440,8 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
+// instead of them being green make a green stroke and a tick sign 
 // logic witch manages the folder to display inside the documnent
 // add safety in the case the user just wants to add a link 
 // add safety so adding is not possible if empty fields.

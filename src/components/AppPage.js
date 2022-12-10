@@ -86,3 +86,4 @@ export default AppPage;
 // finish with the Part Icon logic and put everything inside the right folder
 // have the folders as page sections but with a way to go there trought a catalog or something
 // add filtering options for part icons
+// make form popuble on the same page
