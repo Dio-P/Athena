@@ -5,12 +5,11 @@ const DocsContainer = styled.div`
 
 `;
 
-const FolderContainer = () => {
+const FolderContainer = ({folder}) => {
     return (
         <DocsContainer>
             <PartIcon/>
         </DocsContainer>
-
     )
 }
 
