@@ -93,16 +93,16 @@ const AddNewConnectionBox = ({ app }) => {
     const [url, setUrl] = useState("");
     const [newPart, setNewPart] = useState({
         name: "",
+        id: uuidv4(),
         ghRepo: "",
         type: "",
-        id: uuidv4(),
-        folderToBeDisplayedIn: ""
+        folderToBeDisplayedIn: "",
     });
     const [newPartsAdded, setNewPartsAdded] = useState("");   
     const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
-    const [newFolder, setNewFolder] = useState("");
+    const [newPartsFolder, setNewPartsFolder] = useState("");
 
     const [display, setDisplay] = useState({
         newPartInput: false,
@@ -160,11 +160,11 @@ const AddNewConnectionBox = ({ app }) => {
             ...newPartsAdded, 
             [newPart.name]: {
                 ...newPart,
-                folderToBeDisplayedIn: Object.keys(newFolder)[0],
+                folderToBeDisplayedIn: Object.keys(newPartsFolder)[0],
               }
         });
 
-        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newFolder});
+        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newPartsFolder});
         setDisplay({
             ...display,
             newFolderButton: true
@@ -176,7 +176,7 @@ const AddNewConnectionBox = ({ app }) => {
             type: "",
         })
         setFolderName("");
-        setNewFolder("");
+        setNewPartsFolder("");
         setDisplay({
             ...display,
             newFolderInput: false
@@ -188,7 +188,11 @@ const AddNewConnectionBox = ({ app }) => {
         const newFolder = {
             [newFolderNum]: {title: folderName}
         };
-        setNewFolder(newFolder);
+        setNewPartsFolder(newFolder);
+        setNewPart({
+            ...newPart,
+            folderToBeDisplayedIn: newFolderNum
+        })
         setDisplay({
             ...display,
             newFolderButton: false
@@ -196,12 +200,17 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderInfoToState = (folder) => {
+        // console.log("into folder info to state");
         setFolderName(Object.values(folder));
-        setNewFolder(folder);
-        setDisplay({
-            ...display,
-            newFolderInput: true
+        setNewPartsFolder(folder);
+        setNewPart({
+            ...newPart,
+            folderToBeDisplayedIn: Object.keys(folder),
         })
+        // setDisplay({
+        //     ...display,
+        //     newFolderInput: true
+        // })
         setDisplay({
             ...display,
             newFolderButton: false
@@ -209,7 +218,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const resetFolderInfo = () => {
-        setNewFolder("");
+        setNewPartsFolder("");
         setDisplay({
             ...display,
             newFolderButton: true
@@ -359,15 +368,13 @@ const AddNewConnectionBox = ({ app }) => {
 
                             <InputContainer>
                                 <p> Folder to display new part in</p>
-                                { !newFolder?
+                                { !newPartsFolder?
                                     !display.newFolderInput?
                                         allFolders.map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
                                                 <FolderIcon 
-                                                    folder={ Object.values(folder)[0] } 
-                                                    > 
-                                                    { folder }
-                                                </FolderIcon>
+                                                    folder={Object.values(folder)[0]}
+                                                    /> 
                                             </Button>
                                         ))
                                     :
@@ -394,7 +401,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     <Button onClick={resetFolderInfo}>
                                         <FolderIcon 
                                             addingButton={true}
-                                            buttonTitle={`folder name: ${Object.values(newFolder)[0].title} click to edit`}
+                                            buttonTitle={`folder name: ${Object.values(newPartsFolder)[0].title} click to edit`}
                                         /> 
                                     </Button>
                                 }

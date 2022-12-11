@@ -54,9 +54,11 @@ const AppPage = ({ app }) => {
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
-      { Object.values(app.folders).map((folder) => (
+      {/* { Object.values(app.folders).map((folder) => (
         <FolderContainer folder={folder} />
-      )) }
+      )) } */}
+
+      
       {/* <>
       <h3> Client</h3>
         {app.parts.map((part) => (

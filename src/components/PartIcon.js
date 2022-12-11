@@ -48,6 +48,7 @@ a {
 }
 `;
 const PartIcon = ({ part }) => {
+    console.log("part", part);
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
     const ghRepo = part.ghRepo;
