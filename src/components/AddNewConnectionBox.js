@@ -186,7 +186,7 @@ const AddNewConnectionBox = ({ app }) => {
     const addNewFolderAndClear = () => {
         const newFolderNum = (allFolders.length + (Object.values(newFoldersToBeAddedToAll.length||0)));
         const newFolder = {
-            [newFolderNum]: {title: folderName}
+            [newFolderNum]: {title: folderName} //////for some reason the instead of the number I have title in newPartsFolder
         };
         setNewPartsFolder(newFolder);
         setNewPart({
@@ -200,9 +200,9 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderInfoToState = (folder) => {
-        // console.log("into folder info to state");
+        console.log("into folder info to state", folder);
         setFolderName(Object.values(folder));
-        setNewPartsFolder(folder);
+        setNewPartsFolder(folder);////// this needs to be reviewed 
         setNewPart({
             ...newPart,
             folderToBeDisplayedIn: Object.keys(folder),
