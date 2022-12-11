@@ -449,6 +449,8 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// !!!!!after already adding a new folder the button does not reapear.!!!!!
+
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
 // logic witch manages the folder to display inside the documnent
