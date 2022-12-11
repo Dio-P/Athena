@@ -247,9 +247,10 @@ const AddNewConnectionBox = ({ app }) => {
             url: url,
             source: source,
             lastModified: "someDate",
-            folderToBeDisplayedIn: "1",
             concerningParts: findConserningParts(),
-            isLinkUpToDate: true, //tickbox checked
+            flags: {
+                isLinkUpToDate: true, //tickbox checked
+            }
         }
         setUpdatedApp({
             ...app, docs: [
