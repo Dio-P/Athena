@@ -96,6 +96,7 @@ const AddNewConnectionBox = ({ app }) => {
         ghRepo: "",
         type: "",
         id: uuidv4(),
+        folderToBeDisplayedIn: ""
     });
     const [newPartsAdded, setNewPartsAdded] = useState("");   
     const [allFolders, setAllFolders] = useState([]);
