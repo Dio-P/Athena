@@ -450,6 +450,9 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // !!!!!after already adding a new folder the button does not reapear.!!!!!
+// !!!! there is a bug which returns title instead of the folders number, I think that this has to do with conflict of di
+// fferent approaches for the folder structure. I need to find where the bug is comming from and deside if it is going to be an array or object and fix it
+// globaly!!!!!
 
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
