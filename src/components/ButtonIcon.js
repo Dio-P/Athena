@@ -81,12 +81,12 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   useEffect(() => {
     setThisDepartment(department) 
   }, [department]);
-  useEffect(() => {
-    console.log("buttonTitle!!!", buttonTitle)
-  }, [buttonTitle]);
-  useEffect(() => {
-    console.log("folder!!!", folder)
-  }, [folder]);
+  // useEffect(() => {
+  //   console.log("buttonTitle!!!", buttonTitle)
+  // }, [buttonTitle]);
+  // useEffect(() => {
+  //   console.log("folder!!!", folder)
+  // }, [folder]);
 
   useEffect(() => {
     setThisApp(app)
@@ -111,15 +111,12 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
       return thisApp.name
     }
     if(!thisApp && !thisDepartment && folder && !part && !buttonTitle) {
-      console.log("folder@", folder);
       return folder
     }
     if(!thisApp && !thisDepartment && !folder && part && !buttonTitle) {
-      console.log("part!", part);
       return part
     }
     if(!thisApp && !thisDepartment && !folder && !part && buttonTitle) {
-      console.log("part!", part);
       return buttonTitle
     }
     return undefined;

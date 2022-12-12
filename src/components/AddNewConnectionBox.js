@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
@@ -110,17 +110,43 @@ const AddNewConnectionBox = ({ app }) => {
         newFolderButton: true,
     });
 
+    const newAppsUniqueFoldersKeys = useMemo(() => (Array.from(new Set(Object.values(newPartsAdded).map((part) => (
+        part.folderToBeDisplayedIn
+        ))))), [newPartsAdded]);
 
+    const existingAppsUniqueFolderKeys = useMemo(() => (Array.from(new Set(Object.values(app.parts).map((part) => (
+        part.folderToBeDisplayedIn
+        ))))), [app.parts]);
+
+    const allUniqueFolderKeys = useMemo(()=>(
+        [...newAppsUniqueFoldersKeys , ...existingAppsUniqueFolderKeys]
+    ), [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys])
     const appName = useCapitaliseFirstLetter(app.name);
 
     ///////////
 
-    useEffect(() => {
-        console.log("newPart", newPart);
-    }, [newPart]);
+    // useEffect(() => {
+    //     console.log("newPart", newPart);
+    // }, [newPart]);
     useEffect(() => {
         console.log("updatedApp", updatedApp);
     }, [updatedApp]);
+    useEffect(() => {
+        console.log("@@newPartsFolder", newPartsFolder);
+    }, [newPartsFolder]);
+    useEffect(() => {
+
+        console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
+        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+    }, [newFoldersToBeAddedToAll]);
+    useEffect(() => {
+        console.log("newAppsUniqueFoldersKeys", newAppsUniqueFoldersKeys);
+        console.log("existingAppsUniqueFolderKeys", existingAppsUniqueFolderKeys);
+        console.log("allUniqueFolderKeys", allUniqueFolderKeys);
+    }, [allUniqueFolderKeys]);
+    useEffect(() => {
+        console.log("newPartsAdded", newPartsAdded);
+    }, [newPartsAdded]);
 
     //////////
 
@@ -147,19 +173,18 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
-        console.log("newPartsFolder", Object.values(newPartsFolder));
-        console.log("{newPartsFolder}.id", {newPartsFolder}.id);
+        console.log("newPartsFolder", newPartsFolder.id);
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPart.name]: {
                 ...newPart,
-                folderToBeDisplayedIn: Object.keys(newPartsFolder)[0],
+                folderToBeDisplayedIn: newPartsFolder.id,
                 // folderToBeDisplayedIn: Object.values(newPartsFolder).id, 
                 //I can turn it to this but it seems that the mapping for the new folders is incorect
               }
         });
 
-        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newPartsFolder});
+        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newPartsFolder});//////////////////////////////////
         setNewPart({
             ...newPart,
             name: "",
@@ -177,14 +202,20 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = ((Object.values(app.folders).length || 0) + (Object.values(newFoldersToBeAddedToAll).length || 0));
+        const existingFoldersLength = Object.values(app.folders).length -1 || 0;
+        const newFoldersLength = Object.values(newFoldersToBeAddedToAll).length +1 || 1;
+        const newFolderNum = existingFoldersLength + newFoldersLength;
         const newFolder = {
             [newFolderNum]: {
                 title: folderName,
                 id: newFolderNum,
             } //////for some reason the instead of the number I have title in newPartsFolder
         };
+        console.log("@newFolder@", newFolder);
         setNewPartsFolder(newFolder);
+        console.log("existingFoldersLength!", app.folders, existingFoldersLength);
+        console.log("newFoldersLength", newFoldersToBeAddedToAll, newFoldersLength);
+        console.log("newFolderNum!", newFolderNum);
         setNewPart({
             ...newPart,
             folderToBeDisplayedIn: newFolderNum,
@@ -221,6 +252,7 @@ const AddNewConnectionBox = ({ app }) => {
     const deleteNewPart = (part) => {
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
+        // delete the folders key if no app is using it
     }
 
     const findConserningParts = () => {
@@ -238,17 +270,16 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        console.log("newPartsAdded", newPartsAdded);
+        console.log("newPartsAdded!", newPartsAdded);
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
-            ))));
-            console.log("newFoldersKeys", newFoldersKeys);
+            ))));////////////////////
             // here somehow title is passed as a folder key!!!!!!!!!!!!!!!!!!!!!!!!!
         const filterFoldersToAll = {};
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
         ));
-
+            console.log("filterFoldersToAll", filterFoldersToAll);
         const newDoc = {
             title: title,
             url: url,
@@ -445,6 +476,11 @@ const AddNewConnectionBox = ({ app }) => {
 }
 
 export default AddNewConnectionBox;
+
+// if new part is deleted new folder remains
+// line 240 shows a new part with empty string
+// If I add folder and the remove it, will it be deleted from app ? 
+
 // a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
 // rs and now is also broken the folders object with undefined 
 // I could also move the upating of the final object in a function to call this instead of updating the state
