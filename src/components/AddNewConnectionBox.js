@@ -175,7 +175,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = (app.folders.length + (Object.values(newFoldersToBeAddedToAll.length || 0)));
+        const newFolderNum = ((Object.values(app.folders).length || 0) + (Object.values(newFoldersToBeAddedToAll).length || 0));
         const newFolder = {
             [newFolderNum]: {title: folderName} //////for some reason the instead of the number I have title in newPartsFolder
         };
