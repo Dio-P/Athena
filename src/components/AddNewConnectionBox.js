@@ -447,6 +447,12 @@ const AddNewConnectionBox = ({ app }) => {
 }
 
 export default AddNewConnectionBox;
+// a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
+// rs and now is also broken the folders object with undefined 
+// I could also move the upating of the final object in a function to call this instead of updating the state
+// in two different places 
+
+
 
 // !!!!!after already adding a new folder the button does not reapear.!!!!!
 // !!!! there is a bug which returns title instead of the folders number, I think that this has to do with conflict of di
