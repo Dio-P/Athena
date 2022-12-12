@@ -174,10 +174,6 @@ const AddNewConnectionBox = ({ app }) => {
             newFolderButton: true,
             newFolderInput: false
         })
-        // setDisplay({
-        //     ...display,
-        //     newFolderInput: false
-        // })
     }
 
     const addNewFolderAndClear = () => {
@@ -200,7 +196,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderInfoToState = (folder) => {
-        console.log("into folder info to state", folder);
+        console.log("into folder info to state!", folder.id);
         console.log("app.folders", app.folders);
         setFolderName(Object.values(folder));
         setNewPartsFolder(folder);////// this needs to be reviewed 
@@ -208,10 +204,6 @@ const AddNewConnectionBox = ({ app }) => {
             ...newPart,
             folderToBeDisplayedIn: folder.id,
         })
-        // setDisplay({
-        //     ...display,
-        //     newFolderInput: true
-        // })
         setDisplay({
             ...display,
             newFolderButton: false
@@ -246,9 +238,12 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
+        console.log("newPartsAdded", newPartsAdded);
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
             ))));
+            console.log("newFoldersKeys", newFoldersKeys);
+            // here somehow title is passed as a folder key!!!!!!!!!!!!!!!!!!!!!!!!!
         const filterFoldersToAll = {};
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
@@ -456,8 +451,6 @@ export default AddNewConnectionBox;
 // in two different places 
 
 
-
-// !!!!!after already adding a new folder the button does not reapear.!!!!!
 // !!!! there is a bug which returns title instead of the folders number, I think that this has to do with conflict of di
 // fferent approaches for the folder structure. I need to find where the bug is comming from and deside if it is going to be an array or object and fix it
 // globaly!!!!!
