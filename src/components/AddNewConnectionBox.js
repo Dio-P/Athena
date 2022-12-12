@@ -99,7 +99,6 @@ const AddNewConnectionBox = ({ app }) => {
         folderToBeDisplayedIn: "",
     });
     const [newPartsAdded, setNewPartsAdded] = useState("");   
-    const [allFolders, setAllFolders] = useState([]);
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     const [newPartsFolder, setNewPartsFolder] = useState("");
@@ -124,14 +123,6 @@ const AddNewConnectionBox = ({ app }) => {
     }, [updatedApp]);
 
     //////////
-
-    useEffect(() => {
-        if(app){
-            setAllFolders(Object.values(app.folders).map((folder)=>(
-                folder
-                )));
-        }
-    }, []);
 
     useEffect(() => {
         const allAppPartsHelper = {};
@@ -184,7 +175,7 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewFolderAndClear = () => {
-        const newFolderNum = (allFolders.length + (Object.values(newFoldersToBeAddedToAll.length||0)));
+        const newFolderNum = (app.folders.length + (Object.values(newFoldersToBeAddedToAll.length || 0)));
         const newFolder = {
             [newFolderNum]: {title: folderName} //////for some reason the instead of the number I have title in newPartsFolder
         };
@@ -370,10 +361,10 @@ const AddNewConnectionBox = ({ app }) => {
                                 <p> Folder to display new part in</p>
                                 { !newPartsFolder?
                                     !display.newFolderInput?
-                                        allFolders.map((folder)=> (
+                                    Object.values(app.folders).map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
                                                 <FolderIcon 
-                                                    folder={Object.values(folder)[0]}
+                                                    folder={Object.values(folder)[0]} //see if you can take away this obj val too
                                                     /> 
                                             </Button>
                                         ))
