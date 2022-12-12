@@ -147,11 +147,14 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
+        console.log("newPartsFolder", newPartsFolder);
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPart.name]: {
                 ...newPart,
                 folderToBeDisplayedIn: Object.keys(newPartsFolder)[0],
+                // folderToBeDisplayedIn: Object.values(newPartsFolder).id, 
+                //I can turn it to this but it seems that the mapping for the new folders is incorect
               }
         });
 
@@ -177,7 +180,10 @@ const AddNewConnectionBox = ({ app }) => {
     const addNewFolderAndClear = () => {
         const newFolderNum = ((Object.values(app.folders).length || 0) + (Object.values(newFoldersToBeAddedToAll).length || 0));
         const newFolder = {
-            [newFolderNum]: {title: folderName} //////for some reason the instead of the number I have title in newPartsFolder
+            [newFolderNum]: {
+                title: folderName,
+                id: newFolderNum,
+            } //////for some reason the instead of the number I have title in newPartsFolder
         };
         setNewPartsFolder(newFolder);
         setNewPart({
@@ -192,11 +198,12 @@ const AddNewConnectionBox = ({ app }) => {
 
     const folderInfoToState = (folder) => {
         console.log("into folder info to state", folder);
+        console.log("app.folders", app.folders);
         setFolderName(Object.values(folder));
         setNewPartsFolder(folder);////// this needs to be reviewed 
         setNewPart({
             ...newPart,
-            folderToBeDisplayedIn: Object.keys(folder),
+            folderToBeDisplayedIn: folder.id,
         })
         // setDisplay({
         //     ...display,

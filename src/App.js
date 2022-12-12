@@ -19,9 +19,18 @@ function App() {
       {
         name: "optimo",
         folders: {
-          0: { title : "general documentation" },
-          1: { title : "client" },
-          2: { title : "server" },
+          0: {
+            title: "general documentation",
+            id: 0
+           },
+          1: {
+           title: "client",
+           id: 1
+          },
+          2: {
+           title: "server",
+           id: 2
+          },
         },
         parts: [
           {
@@ -44,9 +53,18 @@ function App() {
       {
         name: "tipo",
         folders: {
-          0: { title : "general documentation" },
-          1: { title : "client" },
-          2: { title : "server" },
+          0: {
+            title: "general documentation",
+            id: 0
+           },
+          1: {
+           title: "client",
+           id: 1
+          },
+          2: {
+           title: "server",
+           id: 2
+          },
         },
         parts: [
           {
