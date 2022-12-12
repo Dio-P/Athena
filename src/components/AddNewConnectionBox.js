@@ -147,7 +147,8 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
-        console.log("newPartsFolder", newPartsFolder);
+        console.log("newPartsFolder", Object.values(newPartsFolder));
+        console.log("{newPartsFolder}.id", {newPartsFolder}.id);
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPart.name]: {
@@ -159,10 +160,6 @@ const AddNewConnectionBox = ({ app }) => {
         });
 
         setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newPartsFolder});
-        setDisplay({
-            ...display,
-            newFolderButton: true
-        })
         setNewPart({
             ...newPart,
             name: "",
@@ -171,10 +168,16 @@ const AddNewConnectionBox = ({ app }) => {
         })
         setFolderName("");
         setNewPartsFolder("");
+        
         setDisplay({
             ...display,
+            newFolderButton: true,
             newFolderInput: false
         })
+        // setDisplay({
+        //     ...display,
+        //     newFolderInput: false
+        // })
     }
 
     const addNewFolderAndClear = () => {
@@ -188,7 +191,7 @@ const AddNewConnectionBox = ({ app }) => {
         setNewPartsFolder(newFolder);
         setNewPart({
             ...newPart,
-            folderToBeDisplayedIn: newFolderNum
+            folderToBeDisplayedIn: newFolderNum,
         })
         setDisplay({
             ...display,
