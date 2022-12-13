@@ -183,8 +183,7 @@ const AddNewConnectionBox = ({ app }) => {
             [newPart.name]: {
                 ...newPart,
                 folderToBeDisplayedIn: newPartsFolder.id || Object.values(newPartsFolder)[0].id,
-                // folderToBeDisplayedIn: Object.values(newPartsFolder).id, 
-                //I can turn it to this but it seems that the mapping for the new folders is incorect
+                // I need to create a singly function that is going to turn this and return a single item in both cases
               }
         });
 
