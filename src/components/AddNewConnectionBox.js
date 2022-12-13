@@ -135,6 +135,9 @@ const AddNewConnectionBox = ({ app }) => {
         console.log("@@newPartsFolder", newPartsFolder);
     }, [newPartsFolder]);
     useEffect(() => {
+        console.log("@@newPartsAdded", newPartsAdded);
+    }, [newPartsAdded]);
+    useEffect(() => {
 
         console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
         console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
@@ -173,12 +176,13 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
-        console.log("newPartsFolder", newPartsFolder.id);
+        // console.log("newPartsFolder!!!!!!!!", newPartsFolder.id);
+        // console.log("!!!!!!!!", Object.values(newPartsFolder)[0].id);
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPart.name]: {
                 ...newPart,
-                folderToBeDisplayedIn: newPartsFolder.id,
+                folderToBeDisplayedIn: newPartsFolder.id || Object.values(newPartsFolder)[0].id,
                 // folderToBeDisplayedIn: Object.values(newPartsFolder).id, 
                 //I can turn it to this but it seems that the mapping for the new folders is incorect
               }
@@ -213,9 +217,14 @@ const AddNewConnectionBox = ({ app }) => {
         };
         console.log("@newFolder@", newFolder);
         setNewPartsFolder(newFolder);
+        console.log("newPartsFolder@@@@", newPartsFolder);
         console.log("existingFoldersLength!", app.folders, existingFoldersLength);
         console.log("newFoldersLength", newFoldersToBeAddedToAll, newFoldersLength);
         console.log("newFolderNum!", newFolderNum);
+        console.log("new part@!@!", {
+            ...newPart,
+            folderToBeDisplayedIn: newFolderNum,
+        });
         setNewPart({
             ...newPart,
             folderToBeDisplayedIn: newFolderNum,
@@ -292,6 +301,7 @@ const AddNewConnectionBox = ({ app }) => {
                 isLinkUpToDate: true, //tickbox checked
             }
         }
+        console.log("...Object.values(newPartsAdded)", newPartsAdded);
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
