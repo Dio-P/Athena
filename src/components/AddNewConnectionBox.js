@@ -227,9 +227,11 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderInfoToState = (folder) => {
+        console.log("into folder !!!!", folder);
         console.log("into folder info to state!", folder.id);
         console.log("app.folders", app.folders);
-        setFolderName(Object.values(folder));
+        setFolderName(folder.name);
+        // setFolderName(Object.values(folder));
         setNewPartsFolder(folder);////// this needs to be reviewed 
         setNewPart({
             ...newPart,
@@ -260,7 +262,7 @@ const AddNewConnectionBox = ({ app }) => {
             part.clicked
             ).map((part) => part.partId);
             console.log("Object.values(newPartsAdded)", Object.values(newPartsAdded));
-        const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));
+        const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));//////////////////wrong?
         return [...checkedExistingPartIds, ...newPartsIds]
     }
     
@@ -271,7 +273,7 @@ const AddNewConnectionBox = ({ app }) => {
             source
         } = await findConnectionParameters(url);
         console.log("newPartsAdded!", newPartsAdded);
-        const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
+        const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (//////////wrong? hav it getting only name
             part.folderToBeDisplayedIn
             ))));////////////////////
             // here somehow title is passed as a folder key!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -429,7 +431,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     <Button onClick={resetFolderInfo}>
                                         <FolderIcon 
                                             addingButton={true}
-                                            buttonTitle={`folder name: ${Object.values(newPartsFolder)[0].title} click to edit`}
+                                            buttonTitle={`folder name: ${newPartsFolder.title} click to edit`}
                                         /> 
                                     </Button>
                                 }
