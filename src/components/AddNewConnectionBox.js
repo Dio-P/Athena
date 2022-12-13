@@ -473,7 +473,9 @@ export default AddNewConnectionBox;
 
 // working:
 // if new part is deleted new folder remains
+    // the idea was to use the new id key within the folders to see if are used and delete them if are not
 // line 240 shows a new part with empty string
+// start putting things into specific functions and use TDD
 
 // to work:
 // a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
