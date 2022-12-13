@@ -98,10 +98,10 @@ const AddNewConnectionBox = ({ app }) => {
         type: "",
         folderToBeDisplayedIn: "",
     });
-    const [newPartsAdded, setNewPartsAdded] = useState("");   
+    const [newPartsAdded, setNewPartsAdded] = useState("");   //rename this or the one below
+    const [newPartsFolder, setNewPartsFolder] = useState("");
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
-    const [newPartsFolder, setNewPartsFolder] = useState("");
 
     const [display, setDisplay] = useState({
         newPartInput: false,
@@ -176,8 +176,6 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const addNewPartAndClear = () => {
-        // console.log("newPartsFolder!!!!!!!!", newPartsFolder.id);
-        // console.log("!!!!!!!!", Object.values(newPartsFolder)[0].id);
         setNewPartsAdded({
             ...newPartsAdded, 
             [newPart.name]: {
@@ -214,16 +212,7 @@ const AddNewConnectionBox = ({ app }) => {
                 id: newFolderNum,
             } //////for some reason the instead of the number I have title in newPartsFolder
         };
-        console.log("@newFolder@", newFolder);
         setNewPartsFolder(newFolder);
-        console.log("newPartsFolder@@@@", newPartsFolder);
-        console.log("existingFoldersLength!", app.folders, existingFoldersLength);
-        console.log("newFoldersLength", newFoldersToBeAddedToAll, newFoldersLength);
-        console.log("newFolderNum!", newFolderNum);
-        console.log("new part@!@!", {
-            ...newPart,
-            folderToBeDisplayedIn: newFolderNum,
-        });
         setNewPart({
             ...newPart,
             folderToBeDisplayedIn: newFolderNum,
@@ -235,9 +224,6 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const folderInfoToState = (folder) => {
-        console.log("into folder !!!!", folder);
-        console.log("into folder info to state!", folder.id);
-        console.log("app.folders", app.folders);
         setFolderName(folder.name);
         // setFolderName(Object.values(folder));
         setNewPartsFolder(folder);////// this needs to be reviewed 
@@ -269,7 +255,6 @@ const AddNewConnectionBox = ({ app }) => {
         const checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
             part.clicked
             ).map((part) => part.partId);
-            console.log("Object.values(newPartsAdded)", Object.values(newPartsAdded));
         const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));//////////////////wrong?
         return [...checkedExistingPartIds, ...newPartsIds]
     }
@@ -280,7 +265,6 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        console.log("newPartsAdded!", newPartsAdded);
         const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (//////////wrong? hav it getting only name
             part.folderToBeDisplayedIn
             ))));////////////////////
@@ -289,7 +273,6 @@ const AddNewConnectionBox = ({ app }) => {
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
         ));
-            console.log("filterFoldersToAll", filterFoldersToAll);
         const newDoc = {
             title: title,
             url: url,
@@ -488,10 +471,11 @@ const AddNewConnectionBox = ({ app }) => {
 
 export default AddNewConnectionBox;
 
+// working:
 // if new part is deleted new folder remains
 // line 240 shows a new part with empty string
-// If I add folder and the remove it, will it be deleted from app ? 
 
+// to work:
 // a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
 // rs and now is also broken the folders object with undefined 
 // I could also move the upating of the final object in a function to call this instead of updating the state
