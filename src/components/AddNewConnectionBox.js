@@ -186,8 +186,8 @@ const AddNewConnectionBox = ({ app }) => {
                 // I need to create a singly function that is going to turn this and return a single item in both cases
               }
         });
-
-        setNewFoldersToBeAddedToAll({...newFoldersToBeAddedToAll, ...newPartsFolder});//////////////////////////////////
+        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+        setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, newPartsFolder]);//////////////////////////////////
         setNewPart({
             ...newPart,
             name: "",
@@ -202,18 +202,19 @@ const AddNewConnectionBox = ({ app }) => {
             newFolderButton: true,
             newFolderInput: false
         })
+        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+
     }
 
     const addNewFolderAndClear = () => {
-        const existingFoldersLength = Object.values(app.folders).length -1 || 0;
-        const newFoldersLength = Object.values(newFoldersToBeAddedToAll).length +1 || 1;
+        const existingFoldersLength = app.folders.length -1 || 0;
+        const newFoldersLength = newFoldersToBeAddedToAll.length +1 || 1;
         const newFolderNum = existingFoldersLength + newFoldersLength;
-        const newFolder = [
-            {
+        const newFolder = {
                 title: folderName,
                 id: newFolderNum,
             } //////for some reason the instead of the number I have title in newPartsFolder
-        ];
+        ;
         setNewPartsFolder(newFolder);
         setNewPart({
             ...newPart,
@@ -254,7 +255,7 @@ const AddNewConnectionBox = ({ app }) => {
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
         // delete the folders key if no app is using it
-        const updatedNewFoldersFolder = Object.values(newFoldersToBeAddedToAll).filter((id)=>(
+        const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter((id)=>(
             folderIdIsInUse(id)
         ));
         console.log("updatedNewFoldersFolder@fter@", updatedNewFoldersFolder);
@@ -299,9 +300,9 @@ const AddNewConnectionBox = ({ app }) => {
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
-            ], folders: {
+            ], folders: [
                 ...app.folders, ...filterFoldersToAll
-            }, parts: [
+            ], parts: [
                 ...app.parts, ...Object.values(newPartsAdded)
             ]
 
@@ -490,6 +491,7 @@ export default AddNewConnectionBox;
 // start putting things into specific functions and use TDD
 // can I move the set new part logic to folder to be displayed in within the new app? And feed it with a functions result?
 // with the addition of new folders even if deleted the key number keeps rising
+// when adding a new folder the box with the existing folders is not updated.
 
 // to work:
 // What will happen if someone pressis add part without adding new folder?!
