@@ -98,8 +98,9 @@ const AddNewConnectionBox = ({ app }) => {
         type: "",
         folderToBeDisplayedIn: "",
     });
-    const [newPartsAdded, setNewPartsAdded] = useState("");   //rename this or the one below
     const [newPartsFolder, setNewPartsFolder] = useState("");
+
+    const [newPartsAdded, setNewPartsAdded] = useState("");   //rename this or the one below
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
 
@@ -110,17 +111,18 @@ const AddNewConnectionBox = ({ app }) => {
         newFolderButton: true,
     });
 
-    const newAppsUniqueFoldersKeys = useMemo(() => (Array.from(new Set(Object.values(newPartsAdded).map((part) => (
-        part.folderToBeDisplayedIn
-        ))))), [newPartsAdded]);
-
     const existingAppsUniqueFolderKeys = useMemo(() => (Array.from(new Set(Object.values(app.parts).map((part) => (
         part.folderToBeDisplayedIn
         ))))), [app.parts]);
 
+    const newAppsUniqueFoldersKeys = useMemo(() => (Array.from(new Set(Object.values(newPartsAdded).map((part) => (
+        part.folderToBeDisplayedIn + ""
+        ))))), [newPartsAdded]);
+
     const allUniqueFolderKeys = useMemo(()=>(
         [...newAppsUniqueFoldersKeys , ...existingAppsUniqueFolderKeys]
-    ), [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys])
+    ), [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]);
+
     const appName = useCapitaliseFirstLetter(app.name);
 
     ///////////
@@ -131,12 +133,12 @@ const AddNewConnectionBox = ({ app }) => {
     useEffect(() => {
         console.log("updatedApp", updatedApp);
     }, [updatedApp]);
-    useEffect(() => {
-        console.log("@@newPartsFolder", newPartsFolder);
-    }, [newPartsFolder]);
-    useEffect(() => {
-        console.log("@@newPartsAdded", newPartsAdded);
-    }, [newPartsAdded]);
+    // useEffect(() => {
+    //     console.log("@@newPartsFolder", newPartsFolder);
+    // }, [newPartsFolder]);
+    // useEffect(() => {
+    //     console.log("@@newPartsAdded", newPartsAdded);
+    // }, [newPartsAdded]);
     useEffect(() => {
 
         console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
@@ -206,12 +208,12 @@ const AddNewConnectionBox = ({ app }) => {
         const existingFoldersLength = Object.values(app.folders).length -1 || 0;
         const newFoldersLength = Object.values(newFoldersToBeAddedToAll).length +1 || 1;
         const newFolderNum = existingFoldersLength + newFoldersLength;
-        const newFolder = {
-            [newFolderNum]: {
+        const newFolder = [
+            {
                 title: folderName,
                 id: newFolderNum,
             } //////for some reason the instead of the number I have title in newPartsFolder
-        };
+        ];
         setNewPartsFolder(newFolder);
         setNewPart({
             ...newPart,
@@ -246,9 +248,19 @@ const AddNewConnectionBox = ({ app }) => {
     }
 
     const deleteNewPart = (part) => {
+        console.log("newFoldersToBeAddedToAll@@", newFoldersToBeAddedToAll);
+        console.log("allUniqueFolderKeys@@", allUniqueFolderKeys);
+        const folderIdIsInUse = (id) => (allUniqueFolderKeys.includes(id));
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
         // delete the folders key if no app is using it
+        const updatedNewFoldersFolder = Object.values(newFoldersToBeAddedToAll).filter((id)=>(
+            folderIdIsInUse(id)
+        ));
+        console.log("updatedNewFoldersFolder@fter@", updatedNewFoldersFolder);
+        console.log("newFoldersToBeAddedToAll@fter@", newFoldersToBeAddedToAll);
+        setNewFoldersToBeAddedToAll(updatedNewFoldersFolder);
+
     }
 
     const findConserningParts = () => {
@@ -476,8 +488,11 @@ export default AddNewConnectionBox;
     // the idea was to use the new id key within the folders to see if are used and delete them if are not
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD
+// can I move the set new part logic to folder to be displayed in within the new app? And feed it with a functions result?
+// with the addition of new folders even if deleted the key number keeps rising
 
 // to work:
+// What will happen if someone pressis add part without adding new folder?!
 // a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
 // rs and now is also broken the folders object with undefined 
 // I could also move the upating of the final object in a function to call this instead of updating the state
