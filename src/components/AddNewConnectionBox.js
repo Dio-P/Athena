@@ -70,7 +70,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const NewlyAddedPartButton = styled.button`
+const NewlyAddedThingButton = styled.button`
 margin: auto;
 background: none;
 color: red;
@@ -255,13 +255,25 @@ const AddNewConnectionBox = ({ app }) => {
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
         // delete the folders key if no app is using it
-        const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter((id)=>(
+        const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter(({id})=>(
             folderIdIsInUse(id)
         ));
         console.log("updatedNewFoldersFolder@fter@", updatedNewFoldersFolder);
         console.log("newFoldersToBeAddedToAll@fter@", newFoldersToBeAddedToAll);
         setNewFoldersToBeAddedToAll(updatedNewFoldersFolder);
 
+    }
+
+    const deleteNewFolder = (folder) => {
+        const folderId = folder.id
+        const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter(({id})=>(
+            id !== folderId
+        ));
+        setNewFoldersToBeAddedToAll(updatedNewFoldersFolder);
+    }
+
+    const deleteFolder = (folderId) => {
+        
     }
 
     const findConserningParts = () => {
@@ -335,7 +347,7 @@ const AddNewConnectionBox = ({ app }) => {
                             {newPartsAdded
                             &&
                             Object.values(newPartsAdded).map((part)=> (
-                                <NewlyAddedPartButton 
+                                <NewlyAddedThingButton 
                                     onClick={()=> deleteNewPart(part) }
                                     onMouseEnter={() => setDisplay({ ...display, deleteWarningNewPart:true })}
                                     onMouseLeave={() => setDisplay({ ...display, deleteWarningNewPart:false })}
@@ -350,7 +362,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     &&
                                         <p>Newly added Part: Click to delete</p>
                                     }
-                                </NewlyAddedPartButton>
+                                </NewlyAddedThingButton>
                             ))
                             }
                             <Button onClick={()=>setDisplay({...display, newPartInput: !display.newPartInput})}>
@@ -414,11 +426,22 @@ const AddNewConnectionBox = ({ app }) => {
                                             </Button>
                                         ))}
                                     {newFoldersToBeAddedToAll.map((folder) => (
-                                        <Button onClick={() => folderInfoToState(folder)}>
-                                            <FolderIcon 
-                                                folder={folder.title} //see if you can take away this obj val too
-                                                /> 
-                                        </Button>
+                                        <NewlyAddedThingButton 
+                                        onClick={()=> deleteNewFolder(folder) }
+                                        onMouseEnter={() => setDisplay({ ...display, deleteWarningNewPart:true })}
+                                        onMouseLeave={() => setDisplay({ ...display, deleteWarningNewPart:false })}
+                                        >
+                                        <FolderIcon
+                                            part={folder.title}
+                                            clicked={true}
+                                            > 
+                                            { folder }
+                                        </FolderIcon>
+                                        {display.deleteWarningNewPart
+                                        &&
+                                            <p>Newly added Folder: Click to delete</p>
+                                        }
+                                    </NewlyAddedThingButton>
                                     ))}
                                     </>
                                     :
@@ -503,6 +526,7 @@ export default AddNewConnectionBox;
 // when adding a new folder the box with the existing folders is not updated.
 
 // to work:
+// the state to display new parts delete worning makes it display for all new parts. Needs to be only for the one. (useRef?)
 // What will happen if someone pressis add part without adding new folder?!
 // a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
 // rs and now is also broken the folders object with undefined 
