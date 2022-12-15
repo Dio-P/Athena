@@ -405,13 +405,22 @@ const AddNewConnectionBox = ({ app }) => {
                                 <p> Folder to display new part in</p>
                                 { !newPartsFolder?
                                     !display.newFolderInput?
-                                    Object.values(app.folders).map((folder)=> (
+                                    <>
+                                    {app.folders.map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
                                                 <FolderIcon 
-                                                    folder={Object.values(folder)[0]} //see if you can take away this obj val too
+                                                    folder={folder.title} //see if you can take away this obj val too
                                                     /> 
                                             </Button>
-                                        ))
+                                        ))}
+                                    {newFoldersToBeAddedToAll.map((folder) => (
+                                        <Button onClick={() => folderInfoToState(folder)}>
+                                            <FolderIcon 
+                                                folder={folder.title} //see if you can take away this obj val too
+                                                /> 
+                                        </Button>
+                                    ))}
+                                    </>
                                     :
                                         <>
                                                 <label> New Folder Name: {folderName} </label>
