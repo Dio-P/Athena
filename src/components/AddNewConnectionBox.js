@@ -494,26 +494,15 @@ const AddNewConnectionBox = ({ app }) => {
 export default AddNewConnectionBox;
 
 // working:
-// if new part is deleted new folder remains
-    // the idea was to use the new id key within the folders to see if are used and delete them if are not
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD
 // can I move the set new part logic to folder to be displayed in within the new app? And feed it with a functions result?
-// with the addition of new folders even if deleted the key number keeps rising
-// when adding a new folder the box with the existing folders is not updated.
 
 // to work:
 // the state to display new parts delete worning makes it display for all new parts. Needs to be only for the one. 
 // What will happen if someone pressis add part without adding new folder?!
-// a mess. bugs right left and centre. folder to be displayed in still goes to title for existing folde
-// rs and now is also broken the folders object with undefined 
 // I could also move the upating of the final object in a function to call this instead of updating the state
 // in two different places 
-
-
-// !!!! there is a bug which returns title instead of the folders number, I think that this has to do with conflict of di
-// fferent approaches for the folder structure. I need to find where the bug is comming from and deside if it is going to be an array or object and fix it
-// globaly!!!!!
 
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
@@ -523,14 +512,6 @@ export default AddNewConnectionBox;
 // add safety so the duplication of the parts is not possible.
 
 // devide into seperato components if possible
-// see if now that the prop object is not mutated you can remove the state where you where storing it 
-// first thing.
-// ask:
-    // ask if there is any way to have conditional to change values within emotion even while 
-    // having them above the function cumponent.
-    // ask why the original object was mutated.
-    // setting state on change within an object
-
 
 // the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
