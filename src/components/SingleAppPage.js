@@ -51,18 +51,12 @@ const AppPage = ({ app }) => {
   },[thisApp])
 
   const putPartIdToUpdatedFolder = (folderId) => {
-    console.log("folderId", folderId);
-    const parts = app.parts.filter((part) => {
-      console.log("part.folderToBeDisplayedIn===folderId", 
-      part.folderToBeDisplayedIn===folderId,
-      "part.folderToBeDisplayedIn",part.folderToBeDisplayedIn,
-      "folderId", folderId
-      );
-      return part.folderToBeDisplayedIn===folderId
-    })
-    const partIds = parts.map((part)=>(part.id))
-    console.log("partIds", partIds);
-    return partIds;
+    const folderParts = app.parts.filter((part) => (
+      part.folderToBeDisplayedIn===folderId
+    ))
+    // const partIdsArray = folderParts.map((part)=>(part.id))
+    // return partIdsArray;
+    return folderParts;
   }
 
   const updateFolders = (app) => {
@@ -76,34 +70,20 @@ const AppPage = ({ app }) => {
     setAddNewConnectionBoxIsOpen(true)
   }
 
-  // useEffect(()=>{
-  //   console.log("thisApp", thisApp);
-  // }, [thisApp])
-
-  // login which will distribute parts acording to filter
-
   return (
     <AppPageContainer>
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
-      {/* { Object.values(app.folders).map((folder) => (
-        <FolderContainer folder={folder} />
-      )) } */}
 
-      
-      {/* <>
-      <h3> Client</h3>
-        {app.parts.map((part) => (
-          <PartIcon part={part}/>
-        ))}
-      </>
-      <>
-      <h3> Server</h3>
-        {app.parts.map((part) => (
-          <PartIcon part={part}/>
-        ))}
-      </> */}
+      {thisApp &&
+        thisApp.folders.map((folder) => (
+          <Folder
+            folderName={ folder.title } 
+            parts={ folder.parts }
+          />
+        ))
+      }
       <AddDocButton onClick={clickingToAddNewConnection}>
         <ButtonIcon   
             addingButton={true}
