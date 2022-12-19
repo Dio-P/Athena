@@ -42,6 +42,19 @@ const AppPage = ({ app }) => {
     setThisApp(app)
   }, [app])
 
+  useEffect(()=>{
+    if(thisApp){
+      setThisApp(partsToFolders(thisApp))
+    }
+  }, [thisApp])
+
+  const partsToFolders = (app) => {
+    app.folders.map((folder)=>(
+      {...folder, parts:[]}
+    ))
+    return 
+  }
+
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(true)
   }
