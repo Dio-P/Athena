@@ -12,15 +12,15 @@ margin: 0px;
 `;
 
 const AllDepartmentsBox = ({ alldepartments }) => {
-  const [department, setDepartment] = useState("");
+  const [thosenDepartment, setThosenDepartment] = useState("");
 
-  const clickIcon = (department) => {
+  const clickIcon = (thosenDepartment) => {
     console.log("inside on click ");
-    setDepartment(department)
+    setThosenDepartment(thosenDepartment)
   }
 
   useEffect(() => {
-    setDepartment(alldepartments)
+    setThosenDepartment(alldepartments)
   }, [])
 
   return(
@@ -28,19 +28,19 @@ const AllDepartmentsBox = ({ alldepartments }) => {
       <AllDepBoxTitle>
         Product Group
       </AllDepBoxTitle>
-        {/* {(alldepartments && !department)
+        {/* {(alldepartments && !thosenDepartment)
         &&
       <>
-        {alldepartments.map((department) => (
-          <div onClick={() => clickIcon(department)}>
-            <ButtonIcon department={ department }/>
+        {alldepartments.map((thosenDepartment) => (
+          <div onClick={() => clickIcon(thosenDepartment)}>
+            <ButtonIcon department={ thosenDepartment }/>
           </div>
         ))}
       </>
         } */}
-      {department
+      {thosenDepartment
       &&
-        <AppsBox department={department} />
+        <AppsBox department={thosenDepartment} />
       }
     </AllDepartmentsBoxContainer>
     ) 

@@ -130,30 +130,28 @@ const AddNewConnectionBox = ({ app }) => {
     // useEffect(() => {
     //     console.log("newPart", newPart);
     // }, [newPart]);
-    useEffect(() => {
-        console.log("updatedApp", updatedApp);
-    }, [updatedApp]);
+    // useEffect(() => {
+    //     console.log("updatedApp", updatedApp);
+    // }, [updatedApp]);
     // useEffect(() => {
     //     console.log("@@newPartsFolder", newPartsFolder);
     // }, [newPartsFolder]);
     // useEffect(() => {
     //     console.log("@@newPartsAdded", newPartsAdded);
     // }, [newPartsAdded]);
-    useEffect(() => {
+    // useEffect(() => {
 
-        console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
-        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
-    }, [newFoldersToBeAddedToAll]);
-    useEffect(() => {
-        console.log("newAppsUniqueFoldersKeys", newAppsUniqueFoldersKeys);
-        console.log("existingAppsUniqueFolderKeys", existingAppsUniqueFolderKeys);
-        console.log("allUniqueFolderKeys", allUniqueFolderKeys);
-    }, [allUniqueFolderKeys]);
-    useEffect(() => {
-        console.log("newPartsAdded", newPartsAdded);
-    }, [newPartsAdded]);
-
-    //////////
+    //     console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
+    //     console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+    // }, [newFoldersToBeAddedToAll]);
+    // useEffect(() => {
+    //     console.log("newAppsUniqueFoldersKeys", newAppsUniqueFoldersKeys);
+    //     console.log("existingAppsUniqueFolderKeys", existingAppsUniqueFolderKeys);
+    //     console.log("allUniqueFolderKeys", allUniqueFolderKeys);
+    // }, [allUniqueFolderKeys]);
+    // useEffect(() => {
+    //     console.log("newPartsAdded", newPartsAdded);
+    // }, [newPartsAdded]);
 
     useEffect(() => {
         const allAppPartsHelper = {};
@@ -213,7 +211,7 @@ const AddNewConnectionBox = ({ app }) => {
         const newFolder = {
                 title: folderName,
                 id: newFolderNum,
-            } //////for some reason the instead of the number I have title in newPartsFolder
+            }
         ;
         setNewPartsFolder(newFolder);
         setNewPart({
@@ -229,7 +227,7 @@ const AddNewConnectionBox = ({ app }) => {
     const folderInfoToState = (folder) => {
         setFolderName(folder.name);
         // setFolderName(Object.values(folder));
-        setNewPartsFolder(folder);////// this needs to be reviewed 
+        setNewPartsFolder(folder);
         setNewPart({
             ...newPart,
             folderToBeDisplayedIn: folder.id,
@@ -268,7 +266,7 @@ const AddNewConnectionBox = ({ app }) => {
         const checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
             part.clicked
             ).map((part) => part.partId);
-        const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));//////////////////wrong?
+        const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));
         return [...checkedExistingPartIds, ...newPartsIds]
     }
     
@@ -278,10 +276,9 @@ const AddNewConnectionBox = ({ app }) => {
             title,
             source
         } = await findConnectionParameters(url);
-        const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (//////////wrong? hav it getting only name
+        const newFoldersKeys = Array.from(new Set(Object.values(newPartsAdded).map((part) => (
             part.folderToBeDisplayedIn
-            ))));////////////////////
-            // here somehow title is passed as a folder key!!!!!!!!!!!!!!!!!!!!!!!!!
+            ))));
         const filterFoldersToAll = {};
         newFoldersKeys.map((key) => (
             filterFoldersToAll[key] = newFoldersToBeAddedToAll[key]
