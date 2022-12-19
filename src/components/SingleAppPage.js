@@ -39,16 +39,15 @@ const AppPage = ({ app }) => {
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
 
   useEffect(()=>{
-    console.log("app", app);
     if(app){
       setThisApp({...app, folders: updateFolders(app)})
     }
   }, [app])
 
-  useEffect(()=>{
-    console.log("thisApp", thisApp);
+  // useEffect(()=>{
+  //   console.log("thisApp", thisApp);
 
-  },[thisApp])
+  // },[thisApp])
 
   const putPartIdToUpdatedFolder = (folderId) => {
     const folderParts = app.parts.filter((part) => (
