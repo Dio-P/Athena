@@ -265,7 +265,7 @@ const AddNewConnectionBox = ({ app }) => {
     const findConserningParts = () => {
         const checkedExistingPartIds = Object.values(allAppParts).filter((part) => 
             part.clicked
-            ).map((part) => part.partId);
+            ).map((part) => part.id);
         const newPartsIds = Object.values(newPartsAdded).map((part) => (part.id));
         return [...checkedExistingPartIds, ...newPartsIds]
     }

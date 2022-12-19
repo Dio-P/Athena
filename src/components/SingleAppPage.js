@@ -52,14 +52,16 @@ const AppPage = ({ app }) => {
 
   const putPartIdToUpdatedFolder = (folderId) => {
     console.log("folderId", folderId);
-    const partIds = app.parts.filter((part) => {
+    const parts = app.parts.filter((part) => {
       console.log("part.folderToBeDisplayedIn===folderId", 
       part.folderToBeDisplayedIn===folderId,
       "part.folderToBeDisplayedIn",part.folderToBeDisplayedIn,
       "folderId", folderId
       );
       return part.folderToBeDisplayedIn===folderId
-    });
+    })
+    const partIds = parts.map((part)=>(part.id))
+    console.log("partIds", partIds);
     return partIds;
   }
 

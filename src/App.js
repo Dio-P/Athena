@@ -36,14 +36,14 @@ function App() {
           {
             name: "general documentation",
             type: "documentation",
-            partId: uuidv4(),
+            id: uuidv4(),
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
             type: "data base",
-            partId: uuidv4(),
+            id: uuidv4(),
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
           }
@@ -69,14 +69,14 @@ function App() {
         parts: [
           {
             name: "general documentation",
-            partId: "somePartId1",
+            id: "someid1",
             type: "documentation",
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
-            partId: "somePartId2",
+            id: "somePartId2",
             type: "data base",
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
