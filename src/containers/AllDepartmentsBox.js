@@ -1,4 +1,4 @@
-import AppsBox from "./AppBox";
+import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
 import { useEffect, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
@@ -31,9 +31,9 @@ const AllDepartmentsBox = ({ alldepartments }) => {
         {/* {(alldepartments && !thosenDepartment)
         &&
       <>
-        {alldepartments.map((thosenDepartment) => (
-          <div onClick={() => clickIcon(thosenDepartment)}>
-            <ButtonIcon department={ thosenDepartment }/>
+        {alldepartments.map((department) => (
+          <div onClick={() => clickIcon(department)}>
+            <ButtonIcon department={ department }/>
           </div>
         ))}
       </>

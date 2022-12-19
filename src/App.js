@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Header from "./containers/Header";
 import AllDepartmentsBox from "./containers/AllDepartmentsBox";
-import AppPage from "./components/AppPage";
+import SingleAppPage from "./components/SingleAppPage";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 // the above needs to go when the info is in the db
@@ -99,7 +99,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<AllDepartmentsBox alldepartments={alldepartments} />}/>
-        <Route path="/appPage/:appName" element={<AppPage/>}/> 
+        <Route path="/appPage/:appName" element={<SingleAppPage/>}/> 
       </Routes>
       
       

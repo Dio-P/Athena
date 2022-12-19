@@ -6,6 +6,7 @@ import AddNewConnectionBox from './AddNewConnectionBox';
 import PartIcon from './PartIcon';
 import ButtonIcon from './ButtonIcon';
 import FolderContainer from '../containers/FolderContainer';
+import Folder from './Folder';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;
@@ -49,6 +50,8 @@ const AppPage = ({ app }) => {
   //   console.log("thisApp", thisApp);
   // }, [thisApp])
 
+  // login which will distribute parts acording to filter
+
   return (
     <AppPageContainer>
       <AppPageTitle>
@@ -87,6 +90,9 @@ const AppPage = ({ app }) => {
 }
 
 export default AppPage;
+
+// working:
+// logic which will destribute parts per folder
 
 // add folder section logic
 // finish with the Part Icon logic and put everything inside the right folder

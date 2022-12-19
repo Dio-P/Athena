@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
-import AppPage from "../components/AppPage";
+import SingleAppPage from "../components/SingleAppPage";
 import styled from "@emotion/styled";
 
 const DepartmAppsBoxContainer = styled.div`
@@ -60,7 +60,7 @@ const DepAllAppsBox = ({ department }) => {
 
       {appToDisplay
       &&
-        <AppPage app={appToDisplay}/>
+        <SingleAppPage app={appToDisplay}/>
       }
 
     </DepartmAppsBoxContainer>
