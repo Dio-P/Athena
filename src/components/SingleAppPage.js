@@ -44,15 +44,22 @@ const AppPage = ({ app }) => {
 
   useEffect(()=>{
     if(thisApp){
-      setThisApp(partsToFolders(thisApp))
+      setThisApp({...thisApp, folders: updateFolders(thisApp)})
     }
   }, [thisApp])
 
-  const partsToFolders = (app) => {
-    app.folders.map((folder)=>(
-      {...folder, parts:[]}
+  const putPartIdToUpdatedFolder = (folderId) => {
+    const partIds = app.parts.filter((part) => (
+      part.folderToBeDisplayedIn===folderId
+    ));
+    return partIds;
+  }
+
+  const updateFolders = (app) => {
+    const updatedFolders = app.folders.map((folder)=>(
+      {...folder, parts:putPartIdToUpdatedFolder(folder.id)}
     ))
-    return 
+    return updatedFolders
   }
 
   const clickingToAddNewConnection = () => {
