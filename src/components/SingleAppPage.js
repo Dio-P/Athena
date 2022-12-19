@@ -39,25 +39,33 @@ const AppPage = ({ app }) => {
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
 
   useEffect(()=>{
-    setThisApp(app)
+    console.log("app", app);
+    if(app){
+      setThisApp({...app, folders: updateFolders(app)})
+    }
   }, [app])
 
   useEffect(()=>{
-    if(thisApp){
-      setThisApp({...thisApp, folders: updateFolders(thisApp)})
-    }
-  }, [thisApp])
+    console.log("thisApp", thisApp);
+
+  },[thisApp])
 
   const putPartIdToUpdatedFolder = (folderId) => {
-    const partIds = app.parts.filter((part) => (
-      part.folderToBeDisplayedIn===folderId
-    ));
+    console.log("folderId", folderId);
+    const partIds = app.parts.filter((part) => {
+      console.log("part.folderToBeDisplayedIn===folderId", 
+      part.folderToBeDisplayedIn===folderId,
+      "part.folderToBeDisplayedIn",part.folderToBeDisplayedIn,
+      "folderId", folderId
+      );
+      return part.folderToBeDisplayedIn===folderId
+    });
     return partIds;
   }
 
   const updateFolders = (app) => {
     const updatedFolders = app.folders.map((folder)=>(
-      {...folder, parts:putPartIdToUpdatedFolder(folder.id)}
+      {...folder, parts:putPartIdToUpdatedFolder(`${folder.id}`)}
     ))
     return updatedFolders
   }
