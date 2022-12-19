@@ -5,6 +5,16 @@ import PartIcon from "./PartIcon";
 const FolderContainer = styled.div`
   display: flex;
 `;
+const Button = styled.button`
+margin: auto;
+background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+`;
 
 const Folder = ({ folderName, parts }) => {
   const [display, setDisplay] = useState({
@@ -12,7 +22,12 @@ const Folder = ({ folderName, parts }) => {
   })
   return (
     <FolderContainer>
-      <h4> {folderName} </h4>
+      <Button onClick={() => setDisplay({
+        ...display, 
+        folderIsExpanded: !display.folderIsExpanded})
+        }>
+        <h4> {folderName} </h4>
+      </Button>
       {display.folderIsExpanded
       &&
         parts.map((part) => (
