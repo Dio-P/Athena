@@ -5,13 +5,19 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 const OddIconContainer = styled.div`
 display: flex;
 width: 100%;
-height: 20px;
+height: 60px;
+margin: auto;
+padding: 3px;
+background-color: #1D4587;
 `;
 
 const EvenIconContainer = styled.div`
 display: flex;
 width: 100%;
-height: 20px;
+height: 60px;
+margin: auto;
+padding: 3px;
+background-color: green;
 `;
 
 const DocIcon = ({ doc, iconNu }) => {
@@ -35,8 +41,8 @@ const DocIcon = ({ doc, iconNu }) => {
 
     return (
         <DocIconContainer>
-            <p>{iconNu}</p>
-            <p> {docTitle} </p>
+            <div>{iconNu}</div>
+            <div> {docTitle} </div>
         </DocIconContainer>
     )
 }

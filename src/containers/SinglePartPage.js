@@ -5,7 +5,8 @@ import DocIcon from "../components/DocIcon";
 import useIconCounter from '../hooks/useIconCounter';
 
 const PartPageContainer = styled.div`
-    display: flex
+    display: flex;
+    flex-direction: column;
   `;
 
 const SinglePartPage = () => {
@@ -17,16 +18,18 @@ const SinglePartPage = () => {
     docs
   } = useLocation().state;
 
-  const [iconCount, setIconCount] = useState(0);
-  let count = -1
+  // let iconNu = useRef(0)
+  let iconNu = 0
 
   return (
     <PartPageContainer>
       {docs.map((doc)=> {
-        count ++
+        // iconNu.current = iconNu.current +1
+        iconNu ++
         return <DocIcon 
           doc={doc}
-          iconNu={count}
+          // iconNu={iconNu.current}
+          iconNu={iconNu}
         />
       })}
     </PartPageContainer>
