@@ -285,6 +285,7 @@ const AddNewConnectionBox = ({ app }) => {
         ));
         const newDoc = {
             title: title,
+            id: uuidv4(),
             url: url,
             source: source,
             lastModified: "someDate",

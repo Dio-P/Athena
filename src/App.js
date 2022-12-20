@@ -52,6 +52,7 @@ function App() {
         docs: [
           {
             title: "Some Doc1",
+            id: "someDocId",
             url: "https://someLink.com",
             source: "Confluence",
             lastModified: "someDate",
@@ -71,6 +72,7 @@ function App() {
           },
           {
             title: "Some Doc2",
+            id: "someDocId",
             url: "https://someLink.com",
             source: "Confluence",
             lastModified: "someDate",
