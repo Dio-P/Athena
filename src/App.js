@@ -14,6 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 function App() {
 
+  const mockPartId1 = uuidv4()
+  const mockPartId2 = uuidv4()
+
   const DEFAULT_DEPARTMENT = {
     name: "dpub",
     apps: [
@@ -37,14 +40,14 @@ function App() {
           {
             name: "general documentation",
             type: "documentation",
-            id: uuidv4(),
+            id: mockPartId1,
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "0",
           },
           {
             name: "published postgres",
             type: "data base",
-            id: uuidv4(),
+            id: mockPartId2,
             ghRepo: "www.someGitHubLink.com",
             folderToBeDisplayedIn: "1",
           }
@@ -56,7 +59,7 @@ function App() {
             url: "https://someLink.com",
             source: "Confluence",
             lastModified: "someDate",
-            concerningPart: ["some part id"],
+            concerningParts: [mockPartId1],
             flags: {
               isLinkUpToDate: true,
               // requestAction: [
@@ -76,7 +79,7 @@ function App() {
             url: "https://someLink.com",
             source: "Confluence",
             lastModified: "someDate",
-            concerningParts: ["some part id"],
+            concerningParts: [mockPartId2, mockPartId1],
             flags: {
               isLinkUpToDate: true,
               // requestAction: [

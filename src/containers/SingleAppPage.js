@@ -71,12 +71,12 @@ const AppPage = ({ app }) => {
 
   const findPartsDocs = (id) => {
     const appDocs = app.docs.filter((doc)=>(
-      doc.concerningPart.includes(id)
+      doc.concerningParts.includes(id)
     ));
+    console.log("appDocs", appDocs);
     // const appDocsIds = appDocs.map((doc)=>(
     //   doc.id
     // ))
-    // docs right now have no id, you need to add if you want
     return appDocs
   }
 

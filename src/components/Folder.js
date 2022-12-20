@@ -39,9 +39,6 @@ const Folder = ({ folderName, parts }) => {
     )
   };
 
-  useEffect(() => {
-  }, [part])
-
   const triangle = display.folderIsExpanded? triangleUp(): triangleDown()
 
     
