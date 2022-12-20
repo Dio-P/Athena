@@ -49,7 +49,46 @@ function App() {
             folderToBeDisplayedIn: "1",
           }
         ],
-        docs: [],
+        docs: [
+          {
+            title: "Some Doc1",
+            url: "https://someLink.com",
+            source: "Confluence",
+            lastModified: "someDate",
+            concerningPart: ["some part id"],
+            flags: {
+              isLinkUpToDate: true,
+              // requestAction: [
+              //   {
+              //     date: "some date",
+              //     userRequesting: "userId",
+              //     typeOfAction: "some action type",
+              //     comments: "some coments",
+              //     userRequested: "userId"
+              //   }
+              // ]
+            }
+          },
+          {
+            title: "Some Doc2",
+            url: "https://someLink.com",
+            source: "Confluence",
+            lastModified: "someDate",
+            concerningParts: ["some part id"],
+            flags: {
+              isLinkUpToDate: true,
+              // requestAction: [
+              //   {
+              //     date: "some date",
+              //     userRequesting: "userId",
+              //     typeOfAction: "some action type",
+              //     comments: "some coments",
+              //     userRequested: "userId"
+              //   }
+              // ]
+            }
+          }
+        ],
       },
       {
         name: "tipo",
