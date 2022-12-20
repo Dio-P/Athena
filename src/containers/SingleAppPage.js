@@ -69,8 +69,22 @@ const AppPage = ({ app }) => {
     return updatedFolders
   };
 
+  const findPartsDocs = (id) => {
+    const appDocs = app.docs.filter((doc)=>(
+      doc.concerningPart.includes(id)
+    ));
+    // const appDocsIds = appDocs.map((doc)=>(
+    //   doc.id
+    // ))
+    // docs right now have no id, you need to add if you want
+    return appDocs
+  }
+
   const updateParts = () => {
-    return 
+    const updatedParts = app.parts.map((part)=>(
+      {...part, docs: findPartsDocs(`${part.id}`)}
+    ))
+    return updatedParts;
   }
 
   const clickingToAddNewConnection = () => {
