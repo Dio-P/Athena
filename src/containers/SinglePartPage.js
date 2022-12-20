@@ -1,7 +1,8 @@
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from "@emotion/styled";
 import DocIcon from "../components/DocIcon";
-import { useEffect } from 'react';
+import useIconCounter from '../hooks/useIconCounter';
 
 const PartPageContainer = styled.div`
     display: flex
@@ -14,13 +15,20 @@ const SinglePartPage = () => {
     ghRepo, 
     folderToBeDisplayedIn,
     docs
-    } = useLocation().state;
-  
+  } = useLocation().state;
+
+  const [iconCount, setIconCount] = useState(0);
+  let count = -1
+
   return (
     <PartPageContainer>
-      {docs.map((doc)=> (
-        <DocIcon doc={doc}/>
-      ))}
+      {docs.map((doc)=> {
+        count ++
+        return <DocIcon 
+          doc={doc}
+          iconNu={count}
+        />
+      })}
     </PartPageContainer>
   )
 }
