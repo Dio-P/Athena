@@ -42,8 +42,7 @@ const AppPage = ({ app }) => {
     if(app){
       setThisApp({
         ...app,
-        folders: updateFolders(app),
-        parts: updateParts()
+        folders: updateFolders(app)
       })
     }
   }, [app])
@@ -57,9 +56,12 @@ const AppPage = ({ app }) => {
     const folderParts = app.parts.filter((part) => (
       part.folderToBeDisplayedIn===folderId
     ))
+    const updatedFolderParts = folderParts.map((part) => (
+      {...part, docs: findPartsDocs(`${part.id}`)}
+    ))
     // const partIdsArray = folderParts.map((part)=>(part.id))
     // return partIdsArray;
-    return folderParts;
+    return updatedFolderParts;
   }
 
   const updateFolders = (app) => {
@@ -73,19 +75,18 @@ const AppPage = ({ app }) => {
     const appDocs = app.docs.filter((doc)=>(
       doc.concerningParts.includes(id)
     ));
-    console.log("appDocs", appDocs);
     // const appDocsIds = appDocs.map((doc)=>(
     //   doc.id
     // ))
     return appDocs
   }
 
-  const updateParts = () => {
-    const updatedParts = app.parts.map((part)=>(
-      {...part, docs: findPartsDocs(`${part.id}`)}
-    ))
-    return updatedParts;
-  }
+  // const updateParts = () => {
+  //   const updatedParts = app.parts.map((part)=>(
+  //     {...part, docs: findPartsDocs(`${part.id}`)}
+  //   ))
+  //   return updatedParts;
+  // }
 
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(true)

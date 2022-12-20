@@ -61,7 +61,7 @@ const PartIcon = ({ part }) => {
             <Link 
                 to={`/:${part.name}`}
                 state={{
-                    part
+                    ...part
                     }}>
                 <IconButton>
                     <h4>

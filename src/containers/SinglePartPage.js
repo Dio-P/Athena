@@ -1,16 +1,21 @@
 import styled from "@emotion/styled";
 import DocIcon from "../components/DocIcon";
 
-const SinglePartPage = ({ part }) => {
+const SinglePartPage = ({ 
+  name, 
+  type, 
+  ghRepo, 
+  folderToBeDisplayedIn,
+  docs
+}) => {
   const PartPageContainer = styled.div`
     display: flex
   `;
   return (
     <PartPageContainer>
-      <p>part page</p>
-      {/* {part.docs.map((doc)=> (
+      {docs.map((doc)=> (
         <DocIcon doc={doc}/>
-      ))} */}
+      ))}
     </PartPageContainer>
   )
 }

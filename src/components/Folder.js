@@ -20,7 +20,6 @@ const Folder = ({ folderName, parts }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded : false
   });
-  const [docs, setDocs] = useState("")
 
   const NAME = useCapitaliseFirstLetter(folderName);
   const triangleUp = () => {
