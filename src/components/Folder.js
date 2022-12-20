@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import PartIcon from "./PartIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
@@ -19,7 +19,9 @@ outline: inherit;
 const Folder = ({ folderName, parts }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded : false
-  })
+  });
+  const [docs, setDocs] = useState("")
+
   const NAME = useCapitaliseFirstLetter(folderName);
   const triangleUp = () => {
     return (
@@ -36,6 +38,9 @@ const Folder = ({ folderName, parts }) => {
       </svg>
     )
   };
+
+  useEffect(() => {
+  }, [part])
 
   const triangle = display.folderIsExpanded? triangleUp(): triangleDown()
 

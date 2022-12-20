@@ -40,7 +40,11 @@ const AppPage = ({ app }) => {
 
   useEffect(()=>{
     if(app){
-      setThisApp({...app, folders: updateFolders(app)})
+      setThisApp({
+        ...app,
+        folders: updateFolders(app),
+        parts: updateParts()
+      })
     }
   }, [app])
 
@@ -63,6 +67,10 @@ const AppPage = ({ app }) => {
       {...folder, parts:putPartIdToUpdatedFolder(`${folder.id}`)}
     ))
     return updatedFolders
+  };
+
+  const updateParts = () => {
+    return 
   }
 
   const clickingToAddNewConnection = () => {
@@ -101,7 +109,7 @@ const AppPage = ({ app }) => {
 export default AppPage;
 
 // working:
-// logic which will destribute parts per folder
+// logic updating docs in parts with id array
 
 // add folder section logic
 // finish with the Part Icon logic and put everything inside the right folder
