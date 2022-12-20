@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from '../hooks/useCapitaliseFirstLetter';
-import AddNewConnectionBox from './AddNewConnectionBox';
-import PartIcon from './PartIcon';
-import ButtonIcon from './ButtonIcon';
-import FolderContainer from '../containers/FolderContainer';
-import Folder from './Folder';
+import AddNewConnectionBox from '../components/AddNewConnectionBox';
+import PartIcon from '../components/PartIcon';
+import ButtonIcon from '../components/ButtonIcon';
+import FolderContainer from './FolderContainer';
+import Folder from '../components/Folder';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
-import SingleAppPage from "../components/SingleAppPage";
+import SingleAppPage from "./SingleAppPage";
 import styled from "@emotion/styled";
 
 const DepartmAppsBoxContainer = styled.div`

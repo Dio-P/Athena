@@ -53,7 +53,7 @@ const PartIcon = ({ part }) => {
     const ghRepo = part.ghRepo;
     return (
         <PartsContainer>
-            <IconButton>
+            <IconButton >
                 <h4>
                     { partName }
                 </h4>
