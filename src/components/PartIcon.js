@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
@@ -51,16 +52,24 @@ const PartIcon = ({ part }) => {
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
     const ghRepo = part.ghRepo;
+    {/* 
+    <button> 
+      {thisApp.name}
+    </button>
+ */}
     return (
         <PartsContainer>
-            <IconButton >
-                <h4>
-                    { partName }
-                </h4>
-                <a href={ghRepo}> ({ghRepo}) </a>
-                <p> type : { partType }</p>
-
-            </IconButton>
+            <Link 
+                to={`/:${part.name}`}
+                state={{...part}}>
+                <IconButton>
+                    <h4>
+                        { partName }
+                    </h4>
+                    <a href={ghRepo}> ({ghRepo}) </a>
+                    <p> type : { partType }</p>
+                </IconButton>
+            </Link>
         </PartsContainer>
     )
 }

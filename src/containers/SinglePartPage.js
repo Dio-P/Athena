@@ -1,16 +1,16 @@
 import styled from "@emotion/styled";
 import DocIcon from "../components/DocIcon";
 
-const SinglePartPage = ({ docs }) => {
+const SinglePartPage = ({ part }) => {
   const PartPageContainer = styled.div`
     display: flex
   `;
-
   return (
     <PartPageContainer>
-      {docs.map((doc)=> (
+      <p>part page</p>
+      {/* {part.docs.map((doc)=> (
         <DocIcon doc={doc}/>
-      ))}
+      ))} */}
     </PartPageContainer>
   )
 }

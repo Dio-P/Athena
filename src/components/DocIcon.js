@@ -11,7 +11,7 @@ const DocIcon = ({ doc }) => {
 
     return (
         <DocIconContainer>
-
+            <p>This is a doc</p>
         </DocIconContainer>
     )
 }
