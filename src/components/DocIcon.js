@@ -1,17 +1,23 @@
 import styled from "@emotion/styled";
 
+const DocIconContainer = styled.div`
+display: flex;
+width: 100%;
+height: 20px;
+`;
 
 const DocIcon = ({ doc }) => {
-
-    const DocIconContainer = styled.div`
-        display: flex;
-        width: 100%;
-        height: 20px;
-    `;
+    const {
+        title,
+        url,
+        source,
+        lastModified,
+        concerningParts
+    } = doc
 
     return (
         <DocIconContainer>
-            <p> {doc.title} </p>
+            <p> {title} </p>
         </DocIconContainer>
     )
 }
