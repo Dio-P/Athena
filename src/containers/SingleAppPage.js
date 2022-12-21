@@ -89,7 +89,7 @@ const AppPage = ({ app }) => {
   // }
 
   const clickingToAddNewConnection = () => {
-    setAddNewConnectionBoxIsOpen(true)
+    setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen)
   }
 
   return (

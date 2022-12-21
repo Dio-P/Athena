@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import FolderIcon from "./ButtonIcon";
+import AddNewThingPopup from "../containers/AddNewThingPopup";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
 const DisplayBox = styled.div`
@@ -11,7 +12,7 @@ const DisplayBox = styled.div`
         border-radius: 15px;
         background-color: Fffcfa;
         box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-        zIndex: 1;
+        z-index: 1;
         width: 90%;
         height: 100%;
     `;
