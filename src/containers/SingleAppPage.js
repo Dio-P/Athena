@@ -72,9 +72,9 @@ const AppPage = ({ app }) => {
   };
 
   const findPartsDocs = (id) => {
-    const appDocs = app.docs.filter((doc)=>(
-      doc.concerningParts.includes(id)
-    ));
+    const appDocs = app.properties.docs.filter((doc) => {
+      return doc.concerningParts.includes(id)
+    });
     // const appDocsIds = appDocs.map((doc)=>(
     //   doc.id
     // ))

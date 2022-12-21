@@ -54,7 +54,6 @@ function App() {
         ],
         properties:{
           docs: [
-            [
               {
                 title: "Some Doc1",
                 id: "someDocId",
@@ -96,7 +95,6 @@ function App() {
                 }
               }
             ],
-          ],
           // initials: [],
           // technologies: []
         }
@@ -135,7 +133,6 @@ function App() {
         ],
         properties:{
           docs: [
-            [
               {
                 title: "Some Doc1",
                 id: "someDocId",
@@ -177,7 +174,6 @@ function App() {
                 }
               }
             ],
-          ],
           // initials: [],
           // technologies: []
         }
