@@ -81,8 +81,21 @@ function App() {
                 source: "Confluence",
                 lastModified: "someDate",
                 concerningParts: [mockPartId2, mockPartId1],
-                flags: {
+                interactions: {
                   isLinkUpToDate: true,
+                  comments: [
+                    {
+                      text: "some coment",
+                      type: "requestOrSimpleComment",
+                      user: "someUserId",
+                      date: "someDate",
+                      flag: ["add another flag", "add another flag"],
+                      openRequest: {
+                        type: "type of request",
+                        requestFrom: "otherUserId"
+                      }
+                    }
+                  ]
                   // requestAction: [
                   //   {
                   //     date: "some date",
@@ -160,8 +173,21 @@ function App() {
                 source: "Confluence",
                 lastModified: "someDate",
                 concerningParts: [mockPartId2, mockPartId1],
-                flags: {
+                interactions: {
                   isLinkUpToDate: true,
+                  comments: [
+                    {
+                      text: "some coment",
+                      type: "requestOrSimpleComment",
+                      user: "someUserId",
+                      date: "someDate",
+                      flag: ["add another flag", "add another flag"],
+                      openRequest: {
+                        type: "type of request",
+                        requestFrom: "otherUserId"
+                      }
+                    }
+                  ]
                   // requestAction: [
                   //   {
                   //     date: "some date",
