@@ -52,48 +52,54 @@ function App() {
             folderToBeDisplayedIn: "1",
           }
         ],
-        docs: [
-          {
-            title: "Some Doc1",
-            id: "someDocId",
-            url: "https://someLink.com",
-            source: "Confluence",
-            lastModified: "someDate",
-            concerningParts: [mockPartId1],
-            flags: {
-              isLinkUpToDate: true,
-              // requestAction: [
-              //   {
-              //     date: "some date",
-              //     userRequesting: "userId",
-              //     typeOfAction: "some action type",
-              //     comments: "some coments",
-              //     userRequested: "userId"
-              //   }
-              // ]
-            }
-          },
-          {
-            title: "Some Doc2",
-            id: "someDocId",
-            url: "https://someLink.com",
-            source: "Confluence",
-            lastModified: "someDate",
-            concerningParts: [mockPartId2, mockPartId1],
-            flags: {
-              isLinkUpToDate: true,
-              // requestAction: [
-              //   {
-              //     date: "some date",
-              //     userRequesting: "userId",
-              //     typeOfAction: "some action type",
-              //     comments: "some coments",
-              //     userRequested: "userId"
-              //   }
-              // ]
-            }
-          }
-        ],
+        properties:{
+          docs: [
+            [
+              {
+                title: "Some Doc1",
+                id: "someDocId",
+                url: "https://someLink.com",
+                source: "Confluence",
+                lastModified: "someDate",
+                concerningParts: [mockPartId1],
+                flags: {
+                  isLinkUpToDate: true,
+                  // requestAction: [
+                  //   {
+                  //     date: "some date",
+                  //     userRequesting: "userId",
+                  //     typeOfAction: "some action type",
+                  //     comments: "some coments",
+                  //     userRequested: "userId"
+                  //   }
+                  // ]
+                }
+              },
+              {
+                title: "Some Doc2",
+                id: "someDocId",
+                url: "https://someLink.com",
+                source: "Confluence",
+                lastModified: "someDate",
+                concerningParts: [mockPartId2, mockPartId1],
+                flags: {
+                  isLinkUpToDate: true,
+                  // requestAction: [
+                  //   {
+                  //     date: "some date",
+                  //     userRequesting: "userId",
+                  //     typeOfAction: "some action type",
+                  //     comments: "some coments",
+                  //     userRequested: "userId"
+                  //   }
+                  // ]
+                }
+              }
+            ],
+          ],
+          // initials: [],
+          // technologies: []
+        }
       },
       {
         name: "tipo",
@@ -127,7 +133,54 @@ function App() {
             folderToBeDisplayedIn: "1",
           }
         ],
-        docs: [],
+        properties:{
+          docs: [
+            [
+              {
+                title: "Some Doc1",
+                id: "someDocId",
+                url: "https://someLink.com",
+                source: "Confluence",
+                lastModified: "someDate",
+                concerningParts: [mockPartId1],
+                flags: {
+                  isLinkUpToDate: true,
+                  // requestAction: [
+                  //   {
+                  //     date: "some date",
+                  //     userRequesting: "userId",
+                  //     typeOfAction: "some action type",
+                  //     comments: "some coments",
+                  //     userRequested: "userId"
+                  //   }
+                  // ]
+                }
+              },
+              {
+                title: "Some Doc2",
+                id: "someDocId",
+                url: "https://someLink.com",
+                source: "Confluence",
+                lastModified: "someDate",
+                concerningParts: [mockPartId2, mockPartId1],
+                flags: {
+                  isLinkUpToDate: true,
+                  // requestAction: [
+                  //   {
+                  //     date: "some date",
+                  //     userRequesting: "userId",
+                  //     typeOfAction: "some action type",
+                  //     comments: "some coments",
+                  //     userRequested: "userId"
+                  //   }
+                  // ]
+                }
+              }
+            ],
+          ],
+          // initials: [],
+          // technologies: []
+        }
       },
     ]
   }

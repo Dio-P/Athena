@@ -59,16 +59,7 @@ const DocIcon = ({ doc, iconNu }) => {
             {iconNu}
         </DocSingularInfoContainer>
         <DocSingularInfoContainer>
-          <a href={url}>Visit Doc</a>
-        </DocSingularInfoContainer>
-        {/* <DocSingularInfoContainer>
-            {lastModified}
-        </DocSingularInfoContainer> */}
-        {/* <DocSingularInfoContainer>
-            {concerningParts}
-        </DocSingularInfoContainer> */}
-        <DocSingularInfoContainer>
-            {docTitle}
+          <a href={url}>{docTitle}</a>
         </DocSingularInfoContainer>
       </IconContainer>
     </DocIconContainer>
