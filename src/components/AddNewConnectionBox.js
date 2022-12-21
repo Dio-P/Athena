@@ -7,19 +7,20 @@ import AddNewThingPopup from "../containers/AddNewThingPopup";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
 const DisplayBox = styled.div`
-        margin: 10px;
-        border: solid black;
-        border-radius: 15px;
-        background-color: Fffcfa;
-        box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-        z-index: 1;
-        width: 90%;
-        height: 100%;
-    `;
+    margin: 10px;
+    position: absolute;
+    border: solid black;
+    border-radius: 15px;
+    background-color: #Fffcfa;
+    box-shadow: #2b2a28 0.5em 0.5em 0.3em;
+    z-index: 1;
+    width: 90%;
+    height: 30em;
+    max-height:100%;
+`;
 
 const FormContainer = styled.form`
     margin: 6px;
-
 `;
 
 const TitleButtonWrapper = styled.div`
@@ -36,7 +37,6 @@ const InputContainer = styled.div`
     padding: 1px 2px;
     width: 95%;
     min-height: 20px;
-    height: 100%;
     margin: 1em;
 `;
 
@@ -61,30 +61,35 @@ const OptionsWraper = styled.div`
 `;
 
 const Button = styled.button`
-margin: auto;
-background: none;
-color: inherit;
-border: none;
-padding: 0;
-font: inherit;
-cursor: pointer;
-outline: inherit;
+    margin: auto;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 `;
 
 const NewlyAddedPartButton = styled.button`
-margin: auto;
-background: none;
-color: red;
-border: none;
-padding: 0;
-font: inherit;
-cursor: pointer;
-outline: inherit;
+    margin: auto;
+    background: none;
+    color: red;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 
 
-&:hover {
-    border: red solid
-}
+    &:hover {
+        border: red solid
+    }
+`;
+
+const NewFolderInputContainer = styled.div`
+    height: 100%;
+    background-color: #Fffcfa;
 `;
 
 const AddNewConnectionBox = ({ app }) => {
@@ -421,7 +426,7 @@ const AddNewConnectionBox = ({ app }) => {
                                     ))}
                                     </>
                                     :
-                                        <>
+                                        <NewFolderInputContainer>
                                                 <label> New Folder Name: {folderName} </label>
                                             <InputContainer>
                                                 <Button onClick={() => (addNewFolderAndClear())}>
@@ -439,7 +444,7 @@ const AddNewConnectionBox = ({ app }) => {
 
                                                 />
                                             </InputContainer>
-                                        </>
+                                        </NewFolderInputContainer>
                                 :
                                     <Button onClick={resetFolderInfo}>
                                         <FolderIcon 

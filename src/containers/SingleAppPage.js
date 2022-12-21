@@ -97,6 +97,10 @@ const AppPage = ({ app }) => {
       <AppPageTitle>
         { useCapitaliseFirstLetter(app.name) }
       </AppPageTitle>
+      {addNewConnectionBoxIsOpen
+      &&
+        <AddNewConnectionBox app={ app } />
+      }
 
       {thisApp &&
         thisApp.folders.map((folder) => (
@@ -113,10 +117,7 @@ const AppPage = ({ app }) => {
         />
         
       </AddDocButton>
-      {addNewConnectionBoxIsOpen
-      &&
-        <AddNewConnectionBox app={ app } />
-      }
+      
     </AppPageContainer>
   )
 }
