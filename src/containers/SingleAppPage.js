@@ -100,7 +100,7 @@ const AppPage = ({ app }) => {
           <AddDocButton onClick={clickingToAddNewConnection}>
             <ButtonIcon   
                 addingButton={true}
-                buttonTitle="+ Add URL"
+                buttonTitle={(addNewConnectionBoxIsOpen? "- ": "+ ") + "Add URL"}
             />
           </AddDocButton>
         </AppPageTitle>
