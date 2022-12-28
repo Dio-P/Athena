@@ -94,9 +94,17 @@ const AppPage = ({ app }) => {
 
   return (
     <AppPageContainer>
-      <AppPageTitle>
-        { useCapitaliseFirstLetter(app.name) }
-      </AppPageTitle>
+      <>
+        <AppPageTitle>
+          { useCapitaliseFirstLetter(app.name) }
+          <AddDocButton onClick={clickingToAddNewConnection}>
+            <ButtonIcon   
+                addingButton={true}
+                buttonTitle="+ Add URL"
+            />
+          </AddDocButton>
+        </AppPageTitle>
+      </>
       {addNewConnectionBoxIsOpen
       &&
         <AddNewConnectionBox app={ app } />
@@ -110,13 +118,6 @@ const AppPage = ({ app }) => {
           />
         ))
       }
-      <AddDocButton onClick={clickingToAddNewConnection}>
-        <ButtonIcon   
-            addingButton={true}
-            buttonTitle="+ Add URL"
-        />
-        
-      </AddDocButton>
       
     </AppPageContainer>
   )
