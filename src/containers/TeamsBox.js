@@ -1,6 +1,6 @@
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 import useTeamAppsNamesSearch from "../hooks/queries/useTeamAppsNamesSearch";
 
@@ -28,13 +28,18 @@ const AllDepartmentsBox = ({ alldepartments, defaultDepartment }) => {
   }
 
   useEffect(() => {
-    console.log("appsInside@", apps);
-    setChosenDepApps(apps)
+    if(apps){
+      console.log("appsInside@", apps);
+      setChosenDepApps(apps)
+    }
   }, [apps])
 
-  // useEffect(() => {
-  //   setChosenDepartment(alldepartments)
-  // }, [defaultDepartment]);
+  useEffect(() => {
+    setChosenDepartment(defaultDepartment)
+  }, [defaultDepartment]);
+  useEffect(() => {
+    console.log("chosenDepartment", chosenDepartment);
+  }, [chosenDepartment]);
 
   return(
     <TeamsBoxContainer>

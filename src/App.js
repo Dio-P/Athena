@@ -17,7 +17,7 @@ function App() {
   const mockPartId1 = uuidv4()
   const mockPartId2 = uuidv4()
 
-  const DEFAULT_DEPARTMENT = "Dpub";
+  const DEFAULT_DEPARTMENT = "DPub";
 
   const MOCK_DATA = {
     name: "dpub",
