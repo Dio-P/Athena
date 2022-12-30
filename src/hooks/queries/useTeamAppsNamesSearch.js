@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLazyQuery } from 'react-apollo';
+import { useLazyQuery } from "@apollo/client";
 import gql from 'graphql-tag';
 
 export const SEARCH_TEAM_APPS_QUERY = gql`
