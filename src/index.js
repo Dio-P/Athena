@@ -3,9 +3,25 @@ import ReactDOM from 'react-dom/client';
 import {
   BrowserRouter,
 } from "react-router-dom";
+import {
+  ApolloClient,
+  ApolloProvider,
+  HttpLink,
+  InMemoryCache,
+} from "@apollo/client";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const athenaDbUri = "http://localhost:5051/graphql"
+
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: athenaDbUri,
+  }),
+  cache: new InMemoryCache(),
+});
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
