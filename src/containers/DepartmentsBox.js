@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 import { useEffect, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 
-const AllDepartmentsBoxContainer = styled.div`
+const DepartmentsBoxContainer = styled.div`
   margin-left: 10px;
 `;
 
-const AllDepBoxTitle = styled.h3`
+const DepBoxTitle = styled.h3`
 margin: 0px;
 `;
 
@@ -24,10 +24,10 @@ const AllDepartmentsBox = ({ alldepartments }) => {
   }, [])
 
   return(
-    <AllDepartmentsBoxContainer>
-      <AllDepBoxTitle>
+    <DepartmentsBoxContainer>
+      <DepBoxTitle>
         Product Group
-      </AllDepBoxTitle>
+      </DepBoxTitle>
         {/* {(alldepartments && !thosenDepartment)
         &&
       <>
@@ -42,7 +42,7 @@ const AllDepartmentsBox = ({ alldepartments }) => {
       &&
         <AppsBox department={thosenDepartment} />
       }
-    </AllDepartmentsBoxContainer>
+    </DepartmentsBoxContainer>
     ) 
 }
 

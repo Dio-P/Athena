@@ -5,7 +5,7 @@ import {
   useNavigate
 } from "react-router-dom";
 import Header from "./containers/Header";
-import AllDepartmentsBox from "./containers/AllDepartmentsBox";
+import DepartmentsBox from "./containers/DepartmentsBox";
 import SingleAppPage from "./containers/SingleAppPage";
 import SinglePartPage from "./containers/SinglePartPage";
 import { useEffect, useState } from "react";
@@ -195,7 +195,7 @@ function App() {
       <h1>Athena</h1>
       <Header/>
       <Routes>
-        <Route path="/" element={<AllDepartmentsBox alldepartments={alldepartments} />}/>
+        <Route path="/" element={<DepartmentsBox alldepartments={alldepartments} />}/>
         <Route path="/appPage/:appName" element={<SingleAppPage/>}/> 
         <Route path="/:partName" element={<SinglePartPage/>}/> 
       </Routes>

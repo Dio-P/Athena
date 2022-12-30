@@ -21,7 +21,7 @@ const useTeamAppsNamesSearch = (team) => {
       setApps([]);
       return;
     }
-    
+    searchApps()
     
   }, [team])
 
