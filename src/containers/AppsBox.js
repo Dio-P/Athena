@@ -24,7 +24,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const DepAllAppsBox = ({ department }) => {
+const DepAllAppsBox = ({ department, depApps }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appToDisplay, setAppToDisplay] = useState("");
 

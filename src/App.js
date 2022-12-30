@@ -5,7 +5,7 @@ import {
   useNavigate
 } from "react-router-dom";
 import Header from "./containers/Header";
-import DepartmentsBox from "./containers/DepartmentsBox";
+import TeamsBox from "./containers/TeamsBox";
 import SingleAppPage from "./containers/SingleAppPage";
 import SinglePartPage from "./containers/SinglePartPage";
 import { useEffect, useState } from "react";
@@ -17,7 +17,9 @@ function App() {
   const mockPartId1 = uuidv4()
   const mockPartId2 = uuidv4()
 
-  const DEFAULT_DEPARTMENT = {
+  const DEFAULT_DEPARTMENT = "Dpub";
+
+  const MOCK_DATA = {
     name: "dpub",
     apps: [
       {
@@ -184,10 +186,10 @@ function App() {
     ]
   }
 
-  const [alldepartments, setAllDepartments] = useState(DEFAULT_DEPARTMENT);
+  const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
 
   useEffect(() => {
-    setAllDepartments(DEFAULT_DEPARTMENT)
+    setAllDepartments(MOCK_DATA)
   }, [])
 
   return (
@@ -195,7 +197,10 @@ function App() {
       <h1>Athena</h1>
       <Header/>
       <Routes>
-        <Route path="/" element={<DepartmentsBox alldepartments={alldepartments} />}/>
+        <Route path="/" element={<TeamsBox 
+          defaultDepartment={DEFAULT_DEPARTMENT}
+          alldepartments={alldepartments}///to be changed when queries working properly
+          />}/>
         <Route path="/appPage/:appName" element={<SingleAppPage/>}/> 
         <Route path="/:partName" element={<SinglePartPage/>}/> 
       </Routes>
