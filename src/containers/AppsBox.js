@@ -49,10 +49,10 @@ const DepAllAppsBox = ({ department, depApps }) => {
       <>
         {(department.apps && !appToDisplay)
         &&
-          department.apps.map((app) => {
+        depApps.map((app) => {
             return (
               <StyledButton onClick={() => setAppToDisplay(app)} >
-                <ButtonIcon app={ app }/>
+                <ButtonIcon app={ app.name }/>
               </StyledButton>
             )
         })}
@@ -68,3 +68,8 @@ const DepAllAppsBox = ({ department, depApps }) => {
 }
 
 export default DepAllAppsBox
+
+// take depApps and use them to pupulate the buttons
+// on click of the button bring the app
+  // what will happen if the user goes back ? will the app be deleted from state?
+  // is it better to have many small calls or fewer biger ones?

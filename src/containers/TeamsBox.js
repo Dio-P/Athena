@@ -30,7 +30,7 @@ const AllDepartmentsBox = ({ alldepartments, defaultDepartment }) => {
   useEffect(() => {
     if(apps){
       console.log("appsInside@", apps);
-      setChosenDepApps(apps)
+      setChosenDepApps(apps[0].getAppsByTeam)
     }
   }, [apps])
 
@@ -69,3 +69,5 @@ const AllDepartmentsBox = ({ alldepartments, defaultDepartment }) => {
 }
 
 export default AllDepartmentsBox
+
+// apps is not returned as should from the hook

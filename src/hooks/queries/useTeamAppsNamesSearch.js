@@ -33,14 +33,14 @@ const useTeamAppsNamesSearch = (team) => {
 
   useEffect(() => {
     if(data && data.getAppsByTeam){
-      console.log("data@@@", data);
+      console.log("data@@@", data.getAppsByTeam);
       const newApps = data.getAppsByTeam.map(app => (
         {
           name: app.name,
           id: app.id
         }
       ))
-      setApps([...newApps])
+      setApps([...newApps])//is this set Properly?
     }
     
   }, [data])
