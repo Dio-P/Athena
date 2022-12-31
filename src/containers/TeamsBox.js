@@ -15,11 +15,11 @@ margin: 0px;
 const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   const [chosenDepartment, setChosenDepartment] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
-  const {
+  const [
     apps,
     loading,
     error
-  }= useTeamAppsNamesSearch(chosenDepartment)
+  ]= useTeamAppsNamesSearch(chosenDepartment)
 
   const clickIcon = (chosenDepartment) => {
     console.log("inside on click ");
@@ -30,11 +30,12 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   useEffect(() => {
     if(apps){
       console.log("appsInside@", apps);
-      setChosenDepApps(apps[0].getAppsByTeam)
+      setChosenDepApps(apps)
     }
   }, [apps])
 
   useEffect(() => {
+    console.log("default dep is about to set chosen dep");
     setChosenDepartment(defaultDepartment)
   }, [defaultDepartment]);
   useEffect(() => {

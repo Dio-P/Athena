@@ -27,6 +27,7 @@ const useTeamAppsNamesSearch = (team) => {
       setApps([]);
       return;
     }
+    console.log("team@@!@", team);
     console.log("insideUseTeamAppSearchAfter");
     searchApps({ 
       variables: 
@@ -44,11 +45,12 @@ const useTeamAppsNamesSearch = (team) => {
           id: app.id
         }
       ))
+      console.log("newApps@@@@@@$$", newApps);
       setApps([...newApps])//is this set Properly?
     }
     
   }, [data])
-
+  console.log("apps out@@@", apps);
   return [apps, loading, error]
 }
 
