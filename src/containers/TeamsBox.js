@@ -12,7 +12,7 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const AllDepartmentsBox = ({ alldepartments, defaultDepartment }) => {
+const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   const [chosenDepartment, setChosenDepartment] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const {
@@ -68,6 +68,6 @@ const AllDepartmentsBox = ({ alldepartments, defaultDepartment }) => {
     ) 
 }
 
-export default AllDepartmentsBox
+export default TeamsBox
 
 // apps is not returned as should from the hook

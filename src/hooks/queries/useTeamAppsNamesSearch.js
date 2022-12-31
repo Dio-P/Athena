@@ -17,6 +17,10 @@ const useTeamAppsNamesSearch = (team) => {
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
+     console.log("appss@@@", apps);
+  }, [apps])
+
+  useEffect(() => {
     console.log("insideUseTeamAppSearchBefore");
     if(!team){
       console.log("no team");
