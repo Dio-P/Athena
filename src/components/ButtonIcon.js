@@ -109,7 +109,7 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
       return thisDepartment.name
     }
     if(thisApp && !thisDepartment && !folder && !part && !buttonTitle) {
-      return thisApp.name
+      return thisApp
     }
     if(!thisApp && !thisDepartment && folder && !part && !buttonTitle) {
       return folder
