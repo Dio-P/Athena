@@ -59,6 +59,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
         <AppsBox
           department={chosenTeam}
           teamApps={chosenDepApps}
+          team={chosenTeam}
         />
       }
     </TeamsBoxContainer>

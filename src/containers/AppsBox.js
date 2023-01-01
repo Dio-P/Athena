@@ -24,7 +24,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const DepAllAppsBox = ({ department, teamApps }) => {
+const DepAllAppsBox = ({ department, teamApps, team }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appToDisplay, setAppToDisplay] = useState("");
 
@@ -42,7 +42,7 @@ const DepAllAppsBox = ({ department, teamApps }) => {
       <div>
         <StyledButton onClick={clickingToHere} >
           <DepAppBoxPageTitle>
-            { useCapitaliseFirstLetter(department.name) }
+            { useCapitaliseFirstLetter(team) }
           </DepAppBoxPageTitle>
         </StyledButton>
       </div>
