@@ -8,7 +8,7 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
       name
       id
     }
-  };
+  }
 `
 
 const useTeamAppsNamesSearch = (team) => {

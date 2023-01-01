@@ -13,34 +13,30 @@ margin: 0px;
 `;
 
 const TeamsBox = ({ alldepartments, defaultDepartment }) => {
-  const [chosenDepartment, setChosenDepartment] = useState("");
+  const [chosenTeam, setChosenTeam] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const [
     apps,
     loading,
     error
-  ]= useTeamAppsNamesSearch(chosenDepartment)
+  ]= useTeamAppsNamesSearch(chosenTeam)
 
-  const clickIcon = (chosenDepartment) => {
-    console.log("inside on click ");
-    setChosenDepartment(chosenDepartment);
+  const clickIcon = (chosenTeam) => {
+    setChosenTeam(chosenTeam);
 
   }
 
   useEffect(() => {
     if(apps){
-      console.log("appsInside@", apps);
       setChosenDepApps(apps)
     }
   }, [apps])
 
   useEffect(() => {
-    console.log("default dep is about to set chosen dep");
-    setChosenDepartment(defaultDepartment)
+    setChosenTeam(defaultDepartment)
   }, [defaultDepartment]);
   useEffect(() => {
-    console.log("chosenDepartment", chosenDepartment);
-  }, [chosenDepartment]);
+  }, [chosenTeam]);
 
   return(
     <TeamsBoxContainer>
@@ -48,21 +44,21 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
         Product Group
       </TeamsBoxTitle>
         {
-          (defaultDepartment && !chosenDepartment)
+          (defaultDepartment && !chosenTeam)
           &&
       // <>
       //   {departments.map((department) => (
-          <div onClick={() => clickIcon(chosenDepartment)}>
-            <ButtonIcon department={ chosenDepartment }/>
+          <div onClick={() => clickIcon(chosenTeam)}>
+            <ButtonIcon department={ chosenTeam }/>
           </div>
       //   ))}
       // </>
         }
-      {(chosenDepartment && chosenDepApps)
+      {(chosenTeam && chosenDepApps)
       &&
         <AppsBox
-          department={chosenDepartment}
-          depApps={chosenDepApps}
+          department={chosenTeam}
+          teamApps={chosenDepApps}
         />
       }
     </TeamsBoxContainer>

@@ -24,7 +24,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const DepAllAppsBox = ({ department, depApps }) => {
+const DepAllAppsBox = ({ department, teamApps }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appToDisplay, setAppToDisplay] = useState("");
 
@@ -49,7 +49,7 @@ const DepAllAppsBox = ({ department, depApps }) => {
       <>
         {(department.apps && !appToDisplay)
         &&
-        depApps.map((app) => {
+        teamApps.map((app) => {
             return (
               <StyledButton onClick={() => setAppToDisplay(app)} >
                 <ButtonIcon app={ app.name }/>
