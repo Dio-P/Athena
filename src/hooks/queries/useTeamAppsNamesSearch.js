@@ -8,7 +8,7 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
       name
       id
     }
-  }
+  };
 `
 
 const useTeamAppsNamesSearch = (team) => {
@@ -17,18 +17,11 @@ const useTeamAppsNamesSearch = (team) => {
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-     console.log("appss@@@", apps);
-  }, [apps])
-
-  useEffect(() => {
-    console.log("insideUseTeamAppSearchBefore");
     if(!team){
-      console.log("no team");
       setApps([]);
       return;
     }
-    console.log("team@@!@", team);
-    console.log("insideUseTeamAppSearchAfter");
+
     searchApps({ 
       variables: 
         { team } 
@@ -38,20 +31,18 @@ const useTeamAppsNamesSearch = (team) => {
 
   useEffect(() => {
     if(data && data.getAppsByTeam){
-      console.log("data@@@", data.getAppsByTeam);
       const newApps = data.getAppsByTeam.map(app => (
         {
           name: app.name,
           id: app.id
         }
-      ))
-      console.log("newApps@@@@@@$$", newApps);
-      setApps([...newApps])//is this set Properly?
-    }
+      ));
+      setApps([...newApps]);
+    };
     
-  }, [data])
-  console.log("apps out@@@", apps);
-  return [apps, loading, error]
+  }, [data]);
+
+  return [apps, loading, error];
 }
 
 export default useTeamAppsNamesSearch 
