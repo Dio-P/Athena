@@ -3,8 +3,8 @@ import { useLazyQuery } from "@apollo/client";
 import gql from 'graphql-tag';
 
 export const SEARCH_APP_BY_ID_QUERY = gql`
-    query($id: ID!){
-        getAppById(id: $id){
+    query($name: String!){
+        getAppByName(name: $name){
             name
             type
             gitHubRepo
@@ -34,7 +34,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
     }
 `;
 
-// export const SEARCH_APP_BY_ID = gql`
+// export const SEARCH_APP_BY_ID_QUERY = gql`
 //     query GetAppById($getAppByIdId: ID!) {
 //         getAppById(id: $getAppByIdId) {
 //             name
@@ -66,25 +66,28 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
 //     }
 // `;
 
-const useAppByIdSearch = (id) => {
+const useAppByIdSearch = (name) => {
     const [app, setApp] = useState("");
 
-    const [searchApp, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
+    const [search, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
      
     useEffect(() => {
-        console.log("id#@#@#@#", id);
-        console.log("type of id#@#@#@#", typeof id);
+        console.log("id#@#@#@#", name);
+        console.log("type of id#@#@#@#", typeof name);
         // if(!id){
         //     setApp({});
         //     return;
         // }
-
-        searchApp({ 
+    console.log("variables: ", { 
+        variables: 
+          { name: name } 
+        });
+        search({ 
             variables: 
-              { id } 
+              { name } 
             })
          
-    }, [id]);
+    }, [name]);
 
     useEffect(() => {
         console.log("data", data);

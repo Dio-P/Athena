@@ -65,7 +65,7 @@ const AppsBox = ({ department, teamApps, team }) => {
         teamApps.map((singleApp) => {
           console.log("singleApp", singleApp);
             return (
-              <StyledButton onClick={() => setAppIdToDisplay(singleApp.id)} >
+              <StyledButton onClick={() => setAppIdToDisplay(singleApp.name)} >
                 <ButtonIcon app={ singleApp.name }/>
               </StyledButton>
             )
