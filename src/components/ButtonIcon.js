@@ -71,7 +71,7 @@ outline: inherit;
 `;
 
 const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
-  const [thisDepartment, setThisDepartment] = useState("");
+  const [thisTeam, setThisTeam] = useState("");
   const [thisApp, setThisApp] = useState("");
   const [thisClicked, setThisClicked] = useState(false);
   const [thisAddingButton, setThisAddingButton] = useState(false);
@@ -79,7 +79,7 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   const [thisPart, setThisPart] = useState("");
 
   useEffect(() => {
-    setThisDepartment(department) 
+    setThisTeam(department) 
   }, [department]);
   // useEffect(() => {
   //   console.log("buttonTitle!!!", buttonTitle)
@@ -89,7 +89,6 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   // }, [folder]);
 
   useEffect(() => {
-    console.log("app@@@@@@@@@@", app);
     setThisApp(app);
   }, [app]);
   // useEffect(() => {
@@ -105,19 +104,19 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   }, [addingButton]);
 
   const defineName = () => {
-    if(thisDepartment && !thisApp && !folder && !part && !buttonTitle) {
-      return thisDepartment.name
+    if(!thisApp&& thisTeam && !folder && !part && !buttonTitle) {
+      return thisTeam.name
     }
-    if(thisApp && !thisDepartment && !folder && !part && !buttonTitle) {
+    if(thisApp && !thisTeam && !folder && !part && !buttonTitle) {
       return thisApp
     }
-    if(!thisApp && !thisDepartment && folder && !part && !buttonTitle) {
+    if(!thisApp && !thisTeam && folder && !part && !buttonTitle) {
       return folder
     }
-    if(!thisApp && !thisDepartment && !folder && part && !buttonTitle) {
+    if(!thisApp && !thisTeam && !folder && part && !buttonTitle) {
       return part
     }
-    if(!thisApp && !thisDepartment && !folder && !part && buttonTitle) {
+    if(!thisApp && !thisTeam && !folder && !part && buttonTitle) {
       return buttonTitle
     }
     return undefined;
