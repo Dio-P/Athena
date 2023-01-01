@@ -3,6 +3,7 @@ import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import SingleAppPage from "./SingleAppPage";
 import styled from "@emotion/styled";
+import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 
 const DepartmAppsBoxContainer = styled.div`
 margin-left: 10px;
@@ -24,7 +25,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const DepAllAppsBox = ({ department, teamApps, team }) => {
+const AppsBox = ({ department, teamApps, team }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appToDisplay, setAppToDisplay] = useState("");
 
@@ -47,7 +48,7 @@ const DepAllAppsBox = ({ department, teamApps, team }) => {
         </StyledButton>
       </div>
       <>
-        {(department.apps && !appToDisplay)
+        {(teamApps && !appToDisplay)
         &&
         teamApps.map((app) => {
             return (
@@ -67,7 +68,7 @@ const DepAllAppsBox = ({ department, teamApps, team }) => {
   )
 }
 
-export default DepAllAppsBox
+export default AppsBox;
 
 // take depApps and use them to pupulate the buttons
 // on click of the button bring the app

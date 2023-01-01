@@ -89,7 +89,8 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   // }, [folder]);
 
   useEffect(() => {
-    setThisApp(app)
+    console.log("app@@@@@@@@@@", app);
+    setThisApp(app);
   }, [app]);
   // useEffect(() => {
   //   setThisFolder(folder)
