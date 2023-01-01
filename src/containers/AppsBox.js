@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
-import SingleAppPage from "./SingleAppPage";
+import AppPage from "./AppPage";
 import styled from "@emotion/styled";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 
@@ -27,15 +27,27 @@ outline: inherit;
 
 const AppsBox = ({ department, teamApps, team }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
-  const [appToDisplay, setAppToDisplay] = useState("");
+  const [appIdToDisplay, setAppIdToDisplay] = useState("");
+  // const [
+  //   app,
+  //   loading,
+  //   error
+  // ] = useAppByIdSearch(appIdToDisplay)
+  const test= useAppByIdSearch(appIdToDisplay)
 
   useEffect(() => {
-    setAppToDisplay(""); 
+    setAppIdToDisplay(""); 
 
   }, [])
+  useEffect(() => {
+    console.log("test#@#@##@", test);
+  }, [test])
+  useEffect(() => {
+    console.log("appIdToDisplay#@#@##@", appIdToDisplay);
+  }, [appIdToDisplay])
 
   const clickingToHere = () => {
-    setAppToDisplay(""); 
+    setAppIdToDisplay(""); 
   }
 
   return (
@@ -48,20 +60,21 @@ const AppsBox = ({ department, teamApps, team }) => {
         </StyledButton>
       </div>
       <>
-        {(teamApps && !appToDisplay)
+        {(teamApps && !appIdToDisplay)
         &&
-        teamApps.map((app) => {
+        teamApps.map((singleApp) => {
+          console.log("singleApp", singleApp);
             return (
-              <StyledButton onClick={() => setAppToDisplay(app)} >
-                <ButtonIcon app={ app.name }/>
+              <StyledButton onClick={() => setAppIdToDisplay(singleApp.id)} >
+                <ButtonIcon app={ singleApp.name }/>
               </StyledButton>
             )
         })}
       </>
 
-      {appToDisplay
+      {(appIdToDisplay && test)
       &&
-        <SingleAppPage app={appToDisplay}/>
+        <AppPage app={test}/>
       }
 
     </DepartmAppsBoxContainer>

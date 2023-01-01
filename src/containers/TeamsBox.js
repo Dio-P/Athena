@@ -27,6 +27,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   }
 
   useEffect(() => {
+    console.log("apps", apps);
     if(apps){
       setChosenDepApps(apps)
     }

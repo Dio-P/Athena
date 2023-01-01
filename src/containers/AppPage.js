@@ -39,6 +39,7 @@ const AppPage = ({ app }) => {
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
 
   useEffect(()=>{
+    console.log("app in app page", app);
     if(app){
       setThisApp({
         ...app,

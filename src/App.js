@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
-import SingleAppPage from "./containers/SingleAppPage";
+import AppPage from "./containers/AppPage";
 import SinglePartPage from "./containers/SinglePartPage";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
@@ -201,7 +201,7 @@ function App() {
           defaultDepartment={DEFAULT_DEPARTMENT}
           alldepartments={alldepartments}///to be changed when queries working properly
           />}/>
-        <Route path="/appPage/:appName" element={<SingleAppPage/>}/> 
+        <Route path="/appPage/:appName" element={<AppPage/>}/> 
         <Route path="/:partName" element={<SinglePartPage/>}/> 
       </Routes>
       
