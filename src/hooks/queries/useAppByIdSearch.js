@@ -66,11 +66,17 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
 //     }
 // `;
 
-const useAppByIdSearch = (thisName) => {
+const useAppByIdSearch = (name) => {
+    const [thisName, setThisName] = useState("");
     const [app, setApp] = useState("");
 
     const [searchApp, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
-     
+     useEffect(() => {
+        setThisName(name)
+     }, [name]);
+     useEffect(() => {
+        console.log("thisName******", thisName);
+     }, [thisName]);
     useEffect(() => {
         console.log("id#@#@#@#", thisName);
         console.log("type of id#@#@#@#", typeof thisName);
@@ -87,7 +93,7 @@ const useAppByIdSearch = (thisName) => {
             const test = thisName.toString()
                 searchApp({ 
                     variables: 
-                      { name: thisName.toString() } 
+                      { name: thisName } 
                     })
         }
          

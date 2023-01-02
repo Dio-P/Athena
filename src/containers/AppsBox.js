@@ -4,7 +4,82 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
+import { v4 as uuidv4 } from 'uuid';
 
+const mockPartId1 = uuidv4()
+const mockPartId2 = uuidv4()
+const appMock = {
+  name: "optimo",
+  folders: [
+    {
+      title: "general documentation",
+      id: 0
+     },
+    {
+     title: "client",
+     id: 1
+    },
+    {
+     title: "server",
+     id: 2
+    },
+   ],
+  parts: [
+    {
+      name: "general documentation",
+      type: "documentation",
+      id: mockPartId1,
+      ghRepo: "www.someGitHubLink.com",
+      folderToBeDisplayedIn: "0",
+    },
+    {
+      name: "published postgres",
+      type: "data base",
+      id: mockPartId2,
+      ghRepo: "www.someGitHubLink.com",
+      folderToBeDisplayedIn: "1",
+    }
+  ],
+  properties:{
+    docs: [
+        {
+          title: "Some Doc1",
+          id: "someDocId",
+          url: "https://someLink.com",
+          source: "Confluence",
+          lastModified: "someDate",
+          concerningParts: [mockPartId1],
+          flags: {
+            isLinkUpToDate: true,
+          }
+        },
+        {
+          title: "Some Doc2",
+          id: "someDocId",
+          url: "https://someLink.com",
+          source: "Confluence",
+          lastModified: "someDate",
+          concerningParts: [mockPartId2, mockPartId1],
+          interactions: {
+            isLinkUpToDate: true,
+            comments: [
+              {
+                text: "some coment",
+                type: "requestOrSimpleComment",
+                user: "someUserId",
+                date: "someDate",
+                flag: ["add another flag", "add another flag"],
+                openRequest: {
+                  type: "type of request",
+                  requestFrom: "otherUserId"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+}
 const DepartmAppsBoxContainer = styled.div`
 margin-left: 10px;
 color: orange;
@@ -50,6 +125,11 @@ const AppsBox = ({ department, teamApps, team }) => {
     setAppIdToDisplay(""); 
   }
 
+  const clickingButton = (singleApp) => {
+    console.log("single app!!!!*&*", singleApp);
+    setAppIdToDisplay('optimo')
+     
+  }
   return (
     <DepartmAppsBoxContainer>
       <div>
@@ -65,16 +145,16 @@ const AppsBox = ({ department, teamApps, team }) => {
         teamApps.map((singleApp) => {
           console.log("singleApp", singleApp);
             return (
-              <StyledButton onClick={() => setAppIdToDisplay(singleApp.name)} >
+              <div onClick={()=>clickingButton(singleApp)} >
                 <ButtonIcon app={ singleApp.name }/>
-              </StyledButton>
+              </div>
             )
         })}
       </>
 
-      {(appIdToDisplay && test)
+      {(appIdToDisplay && test?.app)
       &&
-        <AppPage app={test}/>
+        <AppPage app={test.app}/>
       }
 
     </DepartmAppsBoxContainer>
