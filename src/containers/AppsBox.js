@@ -103,20 +103,24 @@ outline: inherit;
 const AppsBox = ({ department, teamApps, team }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
-  // const [
-  //   app,
-  //   loading,
-  //   error
-  // ] = useAppByIdSearch(appIdToDisplay)
-  const test= useAppByIdSearch(appIdToDisplay)
+  // const [app, setApp] = useState("");
+  const [
+    appToDisplay,
+    loading,
+    error
+  ] = useAppByIdSearch(appIdToDisplay)
+  // const test= useAppByIdSearch(appIdToDisplay)
 
   useEffect(() => {
     setAppIdToDisplay(""); 
 
   }, [])
+
   useEffect(() => {
-    console.log("test#@#@##@", test);
-  }, [test])
+    console.log("appToDisplay#@#@##@", appToDisplay);
+    // setApp(appToDisplay); 
+
+  }, [appToDisplay])
   useEffect(() => {
     console.log("appIdToDisplay#@#@##@", appIdToDisplay);
   }, [appIdToDisplay])
@@ -127,7 +131,7 @@ const AppsBox = ({ department, teamApps, team }) => {
 
   const clickingButton = (singleApp) => {
     console.log("single app!!!!*&*", singleApp);
-    setAppIdToDisplay('optimo')
+    setAppIdToDisplay(singleApp.name)
      
   }
   return (
@@ -145,17 +149,17 @@ const AppsBox = ({ department, teamApps, team }) => {
         teamApps.map((singleApp) => {
           console.log("singleApp", singleApp);
             return (
-              <div onClick={()=>clickingButton(singleApp)} >
+              <div onClick={()=>setAppIdToDisplay(singleApp.id)} >
                 <ButtonIcon app={ singleApp.name }/>
               </div>
             )
         })}
       </>
 
-      {(appIdToDisplay && test?.app)
+      {/* {(appIdToDisplay && app)
       &&
-        <AppPage app={test.app}/>
-      }
+        <AppPage app={app}/>
+      } */}
 
     </DepartmAppsBoxContainer>
   )
