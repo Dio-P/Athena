@@ -66,28 +66,32 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
 //     }
 // `;
 
-const useAppByIdSearch = (name) => {
+const useAppByIdSearch = (thisName) => {
     const [app, setApp] = useState("");
 
-    const [search, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
+    const [searchApp, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
      
     useEffect(() => {
-        console.log("id#@#@#@#", name);
-        console.log("type of id#@#@#@#", typeof name);
-        // if(!id){
-        //     setApp({});
-        //     return;
-        // }
-    console.log("variables: ", { 
-        variables: 
-          { name: name } 
-        });
-        search({ 
-            variables: 
-              { name } 
-            })
+        console.log("id#@#@#@#", thisName);
+        console.log("type of id#@#@#@#", typeof thisName);
+        if(!thisName){
+            setApp({});
+            return;
+        }
+        if(thisName){
+            console.log("thisName@@@", thisName);
+            console.log("variables: ", { 
+                variables: 
+                  { name: thisName } 
+                });
+            const test = thisName.toString()
+                searchApp({ 
+                    variables: 
+                      { name: thisName.toString() } 
+                    })
+        }
          
-    }, [name]);
+    }, [thisName]);
 
     useEffect(() => {
         console.log("data", data);
