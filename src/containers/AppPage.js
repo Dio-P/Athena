@@ -38,6 +38,10 @@ const AppPage = ({ app }) => {
   const [thisApp, setThisApp] = useState("");
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
 
+  useEffect(() => {
+    console.log("app on mount", app);
+
+  }, []);
   useEffect(()=>{
     console.log("app in app page", app);
     if(app){

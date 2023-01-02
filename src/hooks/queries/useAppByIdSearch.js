@@ -6,9 +6,6 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
     query($id: ID!) {
         getAppById(id: $id) {
             name
-            type
-            gitHubRepo
-            teams
             folders {
                 title
                 id
@@ -34,6 +31,10 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
     }
 `;
 
+// type
+// gitHubRepo
+// teams
+
 const useAppByIdSearch = (id) => {
     const [appToDisplay, setAppToDisplay] = useState("");
 
@@ -41,13 +42,14 @@ const useAppByIdSearch = (id) => {
  
      useEffect(() => {
         console.log("app last@@@@", appToDisplay);
+        console.log("app last@@@@", JSON.stringify(appToDisplay));
      }, [appToDisplay]);///
  
     useEffect(() => {
-        if(!id){
-            setAppToDisplay({});
-            return;
-        }
+        // if(!id){
+        //     setAppToDisplay({});
+        //     return;
+        // }
         searchApp({ 
             variables: 
                 { id: id } 

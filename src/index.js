@@ -19,7 +19,9 @@ const client = new ApolloClient({
   link: new HttpLink({
     uri: athenaDbUri,
   }),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache(({
+    addTypename: false
+  })),
 });
 
 
