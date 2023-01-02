@@ -46,10 +46,6 @@ const useAppByIdSearch = (id) => {
      }, [appToDisplay]);///
  
     useEffect(() => {
-        // if(!id){
-        //     setAppToDisplay({});
-        //     return;
-        // }
         searchApp({ 
             variables: 
                 { id: id } 
