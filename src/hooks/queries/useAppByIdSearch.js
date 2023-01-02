@@ -35,8 +35,8 @@ import gql from 'graphql-tag';
 // `;
 
 export const SEARCH_APP_BY_ID_QUERY = gql`
-    query GetAppById($getAppByIdId: ID!) {
-        getAppById(id: $getAppByIdId) {
+    query($id: ID!) {
+        getAppById(id: $id) {
             name
             type
             gitHubRepo
@@ -94,7 +94,6 @@ const useAppByIdSearch = (id) => {
                 variables: 
                   { id: thisName } 
                 });
-            const test = thisName.toString()
                 searchApp({ 
                     variables: 
                       { id: thisName } 
