@@ -20,8 +20,10 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
     apps,
     loading,
     error
-  ]= useTeamAppsNamesSearch(chosenTeam)
+  ]= useTeamAppsNamesSearch(chosenTeam);
+  // const [teamUrlParam, setTeamUrlParam] = useState(undefined);
   let [searchParams, setSearchParams] = useSearchParams();
+  const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
 
 
   const clickIcon = (chosenTeam) => {
@@ -29,6 +31,15 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
     // setSearchParams({team:chosenTeam})
 
   }
+  useEffect(() => {
+    if(!chosenTeam && teamUrlParam)
+    setChosenTeam(teamUrlParam)
+  }, [])
+  
+  useEffect(() => {
+    console.log("teamUrlParam", teamUrlParam);
+     
+  }, [teamUrlParam])
 
   useEffect(() => {
     console.log("apps", apps);
