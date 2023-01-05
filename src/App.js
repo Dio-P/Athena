@@ -220,7 +220,9 @@ function App() {
           alldepartments={alldepartments}///to be changed when queries working properly
           // params={params}
           />}/>
-        <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/> 
+        <Route path="/?team=:team&appId=:appId" element={<AppPage appId={"appId"}/>}/> 
+        {/* <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/>  */}
+        {/* http://localhost:3000/DPub/63ad884923b0804c5a2ce94d */}
         <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/> 
       </Routes>
       
