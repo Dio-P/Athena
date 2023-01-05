@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import useValuesFromUrlParams from "./hooks/useValuesFromUrlParams";
 // the above needs to go when the info is in the db
-
+import Test from "./components/Test";
 function App() {
 
   const mockPartId1 = uuidv4()
@@ -221,7 +221,7 @@ function App() {
           // params={params}
           />}/>
         <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/> 
-        <Route path="/:team/:appId/:partId" element={<SinglePartPage appIdToDisplay={appId}/>}/> 
+        <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/> 
       </Routes>
       
       
