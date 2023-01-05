@@ -4,6 +4,7 @@ import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
 import ButtonIcon from "../components/ButtonIcon";
 import useTeamAppsNamesSearch from "../hooks/queries/useTeamAppsNamesSearch";
+import useValuesFromUrlParams from "../hooks/useValuesFromUrlParams";
 
 const TeamsBoxContainer = styled.div`
   margin-left: 10px;
@@ -23,8 +24,8 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   ]= useTeamAppsNamesSearch(chosenTeam);
   // const [teamUrlParam, setTeamUrlParam] = useState(undefined);
   let [searchParams, setSearchParams] = useSearchParams();
-  const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
-
+  // const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
+  const params = useValuesFromUrlParams();
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);
@@ -32,14 +33,18 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
 
   }
   useEffect(() => {
-    if(!chosenTeam && teamUrlParam)
-    setChosenTeam(teamUrlParam)
+    if(!chosenTeam && params)
+    setChosenTeam(params)
   }, [])
+  // useEffect(() => {
+  //   if(!chosenTeam && teamUrlParam)
+  //   setChosenTeam(teamUrlParam)
+  // }, [])
 
-  useEffect(() => {
-    console.log("teamUrlParam", teamUrlParam);
+  // useEffect(() => {
+  //   console.log("teamUrlParam", teamUrlParam);
      
-  }, [teamUrlParam])
+  // }, [teamUrlParam])
 
   useEffect(() => {
     console.log("apps", apps);

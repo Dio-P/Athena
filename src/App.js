@@ -10,6 +10,7 @@ import AppPage from "./containers/AppPage";
 import SinglePartPage from "./containers/SinglePartPage";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import useValuesFromUrlParams from "./hooks/useValuesFromUrlParams";
 // the above needs to go when the info is in the db
 
 function App() {
@@ -187,10 +188,18 @@ function App() {
   }
 
   const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
-  
+  const params = useValuesFromUrlParams();
+
   useEffect(() => {
     setAllDepartments(MOCK_DATA)
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    console.log("params in app@!@!", params);
+    if(){
+      return <Navigate to={`/${org}/users`} />/////
+    }
+  }, [params])
 
   return (
     <div className="">
@@ -201,7 +210,7 @@ function App() {
           defaultDepartment={DEFAULT_DEPARTMENT}
           alldepartments={alldepartments}///to be changed when queries working properly
           />}/>
-        <Route path="/appPage/:appName" element={<AppPage/>}/> 
+        <Route path="/:teamName/:appName" element={<AppPage/>}/> 
         <Route path="/:partName" element={<SinglePartPage/>}/> 
       </Routes>
       

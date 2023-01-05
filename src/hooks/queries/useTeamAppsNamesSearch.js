@@ -17,10 +17,10 @@ const useTeamAppsNamesSearch = (team) => {
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-    if(!team){
-      setApps([]);
-      return;
-    }
+    // if(!team){
+    //   setApps([]);
+    //   return;
+    // }
 
     searchApps({ 
       variables: 

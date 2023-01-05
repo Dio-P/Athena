@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
@@ -10,131 +10,132 @@ import { v4 as uuidv4 } from "uuid";
 const mockPartId1 = uuidv4();
 const mockPartId2 = uuidv4();
 
-const test = {
-  name: "optimo",
-  folders: [
-    {
-      title: "general documentation",
-      id: 0,
-    },
-    {
-      title: "client",
-      id: 1,
-    },
-    {
-      title: "server",
-      id: 2,
-    },
-  ],
-  parts: [
-    {
-      name: "general documentation",
-      id: "somePartId1",
-      ghRepo: "www.someGitHubLink.com",
-      type: "documentation",
-      folderToBeDisplayedIn: "0",
-    },
-    {
-      name: "published postgres",
-      id: "somePartId2",
-      ghRepo: "www.someGitHubLink.com",
-      type: "data base",
-      folderToBeDisplayedIn: "1",
-    },
-  ],
-  properties: {
-    docs: [
-      {
-        title: "Some Doc1",
-        url: "https://someLink.com",
-        id: "someDocId",
-        source: "Confluence",
-        lastModified: "someDate",
-        concerningParts: ["some part id"],
-      },
-      {
-        title: "Some Doc2",
-        url: "https://someLink.com",
-        id: "someDocId",
-        source: "Confluence",
-        lastModified: "someDate",
-        concerningParts: ["some part id"],
-      },
-    ],
-  },
-};
-const appMock = {
-  name: "optimo",
-  folders: [
-    {
-      title: "general documentation",
-      id: 0,
-    },
-    {
-      title: "client",
-      id: 1,
-    },
-    {
-      title: "server",
-      id: 2,
-    },
-  ],
-  parts: [
-    {
-      name: "general documentation",
-      type: "documentation",
-      id: mockPartId1,
-      ghRepo: "www.someGitHubLink.com",
-      folderToBeDisplayedIn: "0",
-    },
-    {
-      name: "published postgres",
-      type: "data base",
-      id: mockPartId2,
-      ghRepo: "www.someGitHubLink.com",
-      folderToBeDisplayedIn: "1",
-    },
-  ],
-  properties: {
-    docs: [
-      {
-        title: "Some Doc1",
-        id: "someDocId",
-        url: "https://someLink.com",
-        source: "Confluence",
-        lastModified: "someDate",
-        concerningParts: [mockPartId1],
-        flags: {
-          isLinkUpToDate: true,
-        },
-      },
-      {
-        title: "Some Doc2",
-        id: "someDocId",
-        url: "https://someLink.com",
-        source: "Confluence",
-        lastModified: "someDate",
-        concerningParts: [mockPartId2, mockPartId1],
-        interactions: {
-          isLinkUpToDate: true,
-          comments: [
-            {
-              text: "some coment",
-              type: "requestOrSimpleComment",
-              user: "someUserId",
-              date: "someDate",
-              flag: ["add another flag", "add another flag"],
-              openRequest: {
-                type: "type of request",
-                requestFrom: "otherUserId",
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-};
+// const test = {
+//   name: "optimo",
+//   folders: [
+//     {
+//       title: "general documentation",
+//       id: 0,
+//     },
+//     {
+//       title: "client",
+//       id: 1,
+//     },
+//     {
+//       title: "server",
+//       id: 2,
+//     },
+//   ],
+//   parts: [
+//     {
+//       name: "general documentation",
+//       id: "somePartId1",
+//       ghRepo: "www.someGitHubLink.com",
+//       type: "documentation",
+//       folderToBeDisplayedIn: "0",
+//     },
+//     {
+//       name: "published postgres",
+//       id: "somePartId2",
+//       ghRepo: "www.someGitHubLink.com",
+//       type: "data base",
+//       folderToBeDisplayedIn: "1",
+//     },
+//   ],
+//   properties: {
+//     docs: [
+//       {
+//         title: "Some Doc1",
+//         url: "https://someLink.com",
+//         id: "someDocId",
+//         source: "Confluence",
+//         lastModified: "someDate",
+//         concerningParts: ["some part id"],
+//       },
+//       {
+//         title: "Some Doc2",
+//         url: "https://someLink.com",
+//         id: "someDocId",
+//         source: "Confluence",
+//         lastModified: "someDate",
+//         concerningParts: ["some part id"],
+//       },
+//     ],
+//   },
+// };
+// const appMock = {
+//   name: "optimo",
+//   folders: [
+//     {
+//       title: "general documentation",
+//       id: 0,
+//     },
+//     {
+//       title: "client",
+//       id: 1,
+//     },
+//     {
+//       title: "server",
+//       id: 2,
+//     },
+//   ],
+//   parts: [
+//     {
+//       name: "general documentation",
+//       type: "documentation",
+//       id: mockPartId1,
+//       ghRepo: "www.someGitHubLink.com",
+//       folderToBeDisplayedIn: "0",
+//     },
+//     {
+//       name: "published postgres",
+//       type: "data base",
+//       id: mockPartId2,
+//       ghRepo: "www.someGitHubLink.com",
+//       folderToBeDisplayedIn: "1",
+//     },
+//   ],
+//   properties: {
+//     docs: [
+//       {
+//         title: "Some Doc1",
+//         id: "someDocId",
+//         url: "https://someLink.com",
+//         source: "Confluence",
+//         lastModified: "someDate",
+//         concerningParts: [mockPartId1],
+//         flags: {
+//           isLinkUpToDate: true,
+//         },
+//       },
+//       {
+//         title: "Some Doc2",
+//         id: "someDocId",
+//         url: "https://someLink.com",
+//         source: "Confluence",
+//         lastModified: "someDate",
+//         concerningParts: [mockPartId2, mockPartId1],
+//         interactions: {
+//           isLinkUpToDate: true,
+//           comments: [
+//             {
+//               text: "some coment",
+//               type: "requestOrSimpleComment",
+//               user: "someUserId",
+//               date: "someDate",
+//               flag: ["add another flag", "add another flag"],
+//               openRequest: {
+//                 type: "type of request",
+//                 requestFrom: "otherUserId",
+//               },
+//             },
+//           ],
+//         },
+//       },
+//     ],
+//   },
+// };
+
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
   color: orange;
@@ -163,11 +164,24 @@ const AppsBox = ({
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   const [app, setApp] = useState(undefined);
-  const [appToDisplay, loading, error] = useAppByIdSearch(appIdToDisplay);
+  const [
+    appToDisplay,
+    loading,
+    error] = useAppByIdSearch(appIdToDisplay);
   let [searchParams, setSearchParams] = useSearchParams();
+  // const appIdUrlParam = useMemo(() => {
+  //   console.log("searchParams.get('appId')", searchParams.get('appId'));
+  //   return searchParams.get('appId');
+  // }, [searchParams?.get('appId')!==undefined]);
+  const appIdUrlParam = searchParams.get('appId');
 
   useEffect(() => {
-    setAppIdToDisplay("");
+    console.log("appIdUrlParam!!", appIdUrlParam);
+    if(!appIdToDisplay && appIdUrlParam){
+      setAppIdToDisplay(appIdUrlParam);
+    }else {
+      setAppIdToDisplay("");
+    }
   }, []);
 
   useEffect(() => {
