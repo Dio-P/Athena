@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { 
+  useSearchParams,
+  useNavigate
+ } from "react-router-dom";
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
 import ButtonIcon from "../components/ButtonIcon";
@@ -26,6 +29,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   let [searchParams, setSearchParams] = useSearchParams();
   // const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
   const params = useValuesFromUrlParams();
+  const navigate = useNavigate();
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);
@@ -35,7 +39,24 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   useEffect(() => {
     if(!chosenTeam && params)
     setChosenTeam(params)
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    console.log("chosenTeam@@@", chosenTeam);
+    console.log("chosenDepApps@@@", chosenDepApps);
+  }, [chosenTeam, chosenDepApps]);
+
+  useEffect(() => {
+    console.log("params in teamsBox@!@!", params);
+    if(!chosenTeam && params.team && !params.partId){
+      setChosenTeam(params.team)
+    }
+    if(!chosenTeam && params.team && params.partId){
+      setChosenTeam(params.team)
+    }
+  }, [params])
+
+  
   // useEffect(() => {
   //   if(!chosenTeam && teamUrlParam)
   //   setChosenTeam(teamUrlParam)

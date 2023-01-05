@@ -188,19 +188,18 @@ function App() {
   }
 
   const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
-  const params = useValuesFromUrlParams();
-  const navigate = useNavigate();
+ 
 
   useEffect(() => {
     setAllDepartments(MOCK_DATA)
   }, []);
 
-  useEffect(() => {
-    console.log("params in app@!@!", params);
-    if(){
-      navigate(`/:${params.team}/:${params.appId}`);////
-    }
-  }, [params])
+  // useEffect(() => {
+  //   console.log("params in app@!@!", params);
+  //   if(){
+  //     navigate(`/:${params.team}/:${params.appId}`);////
+  //   }
+  // }, [params])
 
   return (
     <div className="">
@@ -211,8 +210,8 @@ function App() {
           defaultDepartment={DEFAULT_DEPARTMENT}
           alldepartments={alldepartments}///to be changed when queries working properly
           />}/>
-        <Route path="/:teamName/:appId" element={<AppPage appId={appId}/>}/> 
-        <Route path="/:teamName/:appId/:partId" element={<SinglePartPage partId={partId}/>}/> 
+        <Route path="/:teamName/:appId" element={<AppPage appId={"appId"}/>}/> 
+        <Route path="/:teamName/:appId/:partId" element={<SinglePartPage partId={"partId"}/>}/> 
       </Routes>
       
       

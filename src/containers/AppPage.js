@@ -7,6 +7,7 @@ import PartIcon from '../components/PartIcon';
 import ButtonIcon from '../components/ButtonIcon';
 import FolderContainer from './FolderContainer';
 import Folder from '../components/Folder';
+import useAppByIdSearch from '../hooks/queries/useAppByIdSearch';
 
 const AppPageContainer = styled.div`
 margin-left: 10px;
@@ -31,13 +32,17 @@ const PartsContainer = styled.div`
   display: flex,
 `;
 
-const AppPage = ({ app }) => {
+const AppPage = ({ appIdToDisplay }) => {
   // const location = useLocation();
   // const app = location.state;
 
   const [thisApp, setThisApp] = useState("");
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false)
-
+  const [app, setApp] = useState(undefined);
+  const [
+    appToDisplay,
+    loading,
+    error] = useAppByIdSearch(appIdToDisplay);
   useEffect(() => {
     console.log("app on mount", app);
 
@@ -51,6 +56,11 @@ const AppPage = ({ app }) => {
       })
     }
   }, [app])
+
+  useEffect(() => {
+    console.log("appToDisplay#@#@##@", appToDisplay);
+    setApp(appToDisplay);
+  }, [appToDisplay]);
 
   // useEffect(()=>{
   //   console.log("thisApp", thisApp);
