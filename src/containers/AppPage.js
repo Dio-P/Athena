@@ -106,33 +106,39 @@ const AppPage = ({ appIdToDisplay }) => {
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen)
   }
-
+  
+  const name = useCapitaliseFirstLetter(app?.name|| "loading")
   return (
     <AppPageContainer>
+      {/* {app
+      && */}
       <>
-        <AppPageTitle>
-          { useCapitaliseFirstLetter(app.name) }
-          <AddDocButton onClick={clickingToAddNewConnection}>
-            <ButtonIcon   
-                addingButton={true}
-                buttonTitle={(addNewConnectionBoxIsOpen? "- ": "+ ") + "Add URL"}
-            />
-          </AddDocButton>
-        </AppPageTitle>
-      </>
-      {addNewConnectionBoxIsOpen
-      &&
-        <AddNewConnectionBox app={ app } />
-      }
+        <>
+          <AppPageTitle>
+            { name }
+            <AddDocButton onClick={clickingToAddNewConnection}>
+              <ButtonIcon   
+                  addingButton={true}
+                  buttonTitle={(addNewConnectionBoxIsOpen? "- ": "+ ") + "Add URL"}
+              />
+            </AddDocButton>
+          </AppPageTitle>
+        </>
+        {addNewConnectionBoxIsOpen
+        &&
+          <AddNewConnectionBox app={ app } />
+        }
 
-      {thisApp &&
-        thisApp.folders.map((folder) => (
-          <Folder
-            folderName={ folder.title } 
-            parts={ folder.parts }
-          />
-        ))
-      }
+        {thisApp &&
+          thisApp.folders.map((folder) => (
+            <Folder
+              folderName={ folder.title } 
+              parts={ folder.parts }
+            />
+          ))
+        }
+      </>
+      {/* } */}
       
     </AppPageContainer>
   )
