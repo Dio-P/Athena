@@ -139,7 +139,7 @@ const AppPage = ({ appIdToDisplay }) => {
             </AddDocButton>
           </AppPageTitle>
         </>
-        {addNewConnectionBoxIsOpen && <AddNewConnectionBox app={app} />}
+        {addNewConnectionBoxIsOpen && <AddNewConnectionBox app={thisApp} />}
 
         {thisApp &&
           thisApp?.folders?.map((folder) => (
