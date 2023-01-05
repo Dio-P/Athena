@@ -159,14 +159,11 @@ const AppsBox = ({
   department,
   teamApps,
   team,
-  params,
-  setUrlParams
 }) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   const [app, setApp] = useState(undefined);
   const [appToDisplay, loading, error] = useAppByIdSearch(appIdToDisplay);
-  // const test= useAppByIdSearch(appIdToDisplay)
   let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -182,9 +179,9 @@ const AppsBox = ({
     setAppIdToDisplay("");
   };
   const setAppToDisplay = (singleApp) => {
+    const existingParams = Object.fromEntries([...searchParams]);
     setAppIdToDisplay(singleApp.id);
-    // console.log();
-    setUrlParams({...Object.fromEntries([...params]), appId: singleApp.id}) 
+    setSearchParams({...existingParams, appId: singleApp.id}) 
   }
   return (
     <DepartmAppsBoxContainer>
