@@ -13,14 +13,16 @@ const useValuesFromUrlParams = (updatedParams) => {
 
   useEffect(() => {
     console.log("useValuesFromUrlParams", searchParams, updatedParams);
-    setSearchParams(updatedParams)
+    if(updatedParams){
+      setSearchParams(updatedParams)
+    }
 
   }, [updatedParams]);
   
   useEffect(() => {
     const paramValues = Object.fromEntries([...searchParams]);
     setValuesFromUrl(paramValues)
-    
+
   }, [searchParams])
 
   return valuesFromUrl
