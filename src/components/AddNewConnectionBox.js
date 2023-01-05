@@ -1,10 +1,12 @@
 import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import FolderIcon from "./ButtonIcon";
 import AddNewThingPopup from "../containers/AddNewThingPopup";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+
 
 const DisplayBox = styled.div`
     margin: 10px;
@@ -109,6 +111,9 @@ const AddNewConnectionBox = ({ app }) => {
     const [newPartsAdded, setNewPartsAdded] = useState("");   //rename this or the one below
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
+    
+    let [searchParams, setSearchParams] = useSearchParams();
+    const [paramsObject, setParamsObject] = useState("");
 
     const [display, setDisplay] = useState({
         newPartInput: false,
@@ -158,6 +163,18 @@ const AddNewConnectionBox = ({ app }) => {
     // useEffect(() => {
     //     console.log("newPartsAdded", newPartsAdded);
     // }, [newPartsAdded]);
+    useEffect(() => {
+        setSearchParams({test: "testing", testing: "test"})
+    }, [])
+    useEffect(() => {
+        console.log("searchParams", searchParams);
+        setParamsObject(Object.fromEntries([...searchParams]))
+    }, [searchParams])/////////this will rewrite the object every time. 
+    // we don't want that.
+    useEffect(() => {
+        console.log("paramsObject", paramsObject);
+    }, [paramsObject])
+    
 
     useEffect(() => {
         const allAppPartsHelper = {};
