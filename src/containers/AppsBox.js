@@ -155,7 +155,13 @@ const StyledButton = styled.button`
   outline: inherit;
 `;
 
-const AppsBox = ({ department, teamApps, team }) => {
+const AppsBox = ({
+  department,
+  teamApps,
+  team,
+  params,
+  setUrlParams
+}) => {
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   const [app, setApp] = useState(undefined);
@@ -175,7 +181,11 @@ const AppsBox = ({ department, teamApps, team }) => {
   const clickingToHere = () => {
     setAppIdToDisplay("");
   };
-
+  const setAppToDisplay = (singleApp) => {
+    setAppIdToDisplay(singleApp.id);
+    // console.log();
+    setUrlParams({...Object.fromEntries([...params]), appId: singleApp.id}) 
+  }
   return (
     <DepartmAppsBoxContainer>
       <div>
@@ -191,7 +201,7 @@ const AppsBox = ({ department, teamApps, team }) => {
           teamApps.map((singleApp) => {
             console.log("singleApp", singleApp);
             return (
-              <div onClick={() => setAppIdToDisplay(singleApp.id)}>
+              <div onClick={() => setAppToDisplay(singleApp)}>
                 <ButtonIcon app={singleApp.name} />
               </div>
             );

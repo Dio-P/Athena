@@ -35,7 +35,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
     if(!chosenTeam && teamUrlParam)
     setChosenTeam(teamUrlParam)
   }, [])
-  
+
   useEffect(() => {
     console.log("teamUrlParam", teamUrlParam);
      
@@ -77,6 +77,8 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
           department={chosenTeam}
           teamApps={chosenDepApps}
           team={chosenTeam}
+          params={searchParams}
+          setUrlParams={setSearchParams}
         />
       }
     </TeamsBoxContainer>
