@@ -28,7 +28,8 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   // const [teamUrlParam, setTeamUrlParam] = useState(undefined);
   let [searchParams, setSearchParams] = useSearchParams();
   // const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
-  const params = useValuesFromUrlParams();
+  // const params = useValuesFromUrlParams();
+  const [teamParam, appIdParam] = useValuesFromUrlParams()
   const navigate = useNavigate();
 
   const clickIcon = (chosenTeam) => {
@@ -37,24 +38,34 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
 
   }
   useEffect(() => {
-    if(!chosenTeam && params)
-    setChosenTeam(params)
+    if(!chosenTeam && teamParam)
+    setChosenTeam(teamParam)
+  }, []);
+  useEffect(() => {
+    gettingParamsValues()
   }, []);
 
-  useEffect(() => {
-    console.log("chosenTeam@@@", chosenTeam);
-    console.log("chosenDepApps@@@", chosenDepApps);
-  }, [chosenTeam, chosenDepApps]);
+  const gettingParamsValues = () => {
+    console.log("inside getting params values");
+    const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
+    console.log("paramValuesFromTeamsBox!@£", paramValuesFromTeamsBox);
+    console.log("teamParam, appIdParam", teamParam, appIdParam);
+    setSearchParams(paramValuesFromTeamsBox);
+  }
+  // useEffect(() => {
+  //   console.log("chosenTeam@@@", chosenTeam);
+  //   console.log("chosenDepApps@@@", chosenDepApps);
+  // }, [chosenTeam, chosenDepApps]);
 
   useEffect(() => {
-    console.log("params in teamsBox@!@!", params);
-    if(!chosenTeam && params.team && !params.partId){
-      setChosenTeam(params.team)
+    console.log("params in teamsBox@!@!", teamParam);
+    if(!chosenTeam && teamParam && !appIdParam){
+      setChosenTeam(teamParam)
     }
-    if(!chosenTeam && params.team && params.partId){
-      setChosenTeam(params.team)
+    if(!chosenTeam && teamParam && appIdParam){
+      setChosenTeam(teamParam)
     }
-  }, [params])
+  }, [teamParam, appIdParam])
 
   
   // useEffect(() => {
@@ -68,7 +79,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   // }, [teamUrlParam])
 
   useEffect(() => {
-    console.log("apps", apps);
+    // console.log("apps", apps);
     if(apps){
       setChosenDepApps(apps)
     }

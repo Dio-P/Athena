@@ -2,6 +2,7 @@ import {
   Route,
   Routes,
   Outlet,
+  useSearchParams,
   useNavigate
 } from "react-router-dom";
 import Header from "./containers/Header";
@@ -188,18 +189,26 @@ function App() {
   }
 
   const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
- 
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [teamParam, appIdParam] = useValuesFromUrlParams()
 
-  useEffect(() => {
-    setAllDepartments(MOCK_DATA)
-  }, []);
 
   // useEffect(() => {
-  //   console.log("params in app@!@!", params);
-  //   if(){
-  //     navigate(`/:${params.team}/:${params.appId}`);////
-  //   }
-  // }, [params])
+  //   setAllDepartments(MOCK_DATA)
+  // }, []);
+  // useEffect(() => {
+  //   gettingParamsValues()
+  // }, []);
+  const params = Object.fromEntries([...searchParams]);
+
+  // const gettingParamsValues = () => {
+  //   console.log("inside getting params values");
+  //   const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
+  //   console.log("paramValuesFromApp!@£", paramValuesFromTeamsBox);
+  //   console.log("teamParam, appIdParam", teamParam, appIdParam);
+  //   setSearchParams(paramValuesFromTeamsBox);
+  // }
+
 
   return (
     <div className="">
@@ -209,9 +218,10 @@ function App() {
         <Route path="/" element={<TeamsBox 
           defaultDepartment={DEFAULT_DEPARTMENT}
           alldepartments={alldepartments}///to be changed when queries working properly
+          // params={params}
           />}/>
-        <Route path="/:teamName/:appId" element={<AppPage appId={"appId"}/>}/> 
-        <Route path="/:teamName/:appId/:partId" element={<SinglePartPage partId={"partId"}/>}/> 
+        <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/> 
+        <Route path="/:team/:appId/:partId" element={<SinglePartPage appIdToDisplay={appId}/>}/> 
       </Routes>
       
       

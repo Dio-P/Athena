@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 
 const useValuesFromUrlParams = (updatedParams) => {
   let [searchParams, setSearchParams] = useSearchParams();
   const [valuesFromUrl, setValuesFromUrl] = useState("");
+  // const paramValues = useCallback
   useEffect(() => {
-    console.log("useValuesFromUrlParams", searchParams);
-    console.log("useValuesFromUrlParams on mount");
-
+    const paramValues = Object.fromEntries([...searchParams]);
+    console.log("paramValues!@£", paramValues);
+    setValuesFromUrl(paramValues)
   }, [])
 
   useEffect(() => {
@@ -18,14 +19,18 @@ const useValuesFromUrlParams = (updatedParams) => {
     }
 
   }, [updatedParams]);
-  
+
   useEffect(() => {
-    const paramValues = Object.fromEntries([...searchParams]);
-    setValuesFromUrl(paramValues)
+    console.log("valuesFromUrl@@@", valuesFromUrl);
+  }, [valuesFromUrl]);
+  
+  // useEffect(() => {
+  //   const paramValues = Object.fromEntries([...searchParams]);
+  //   setValuesFromUrl(paramValues)
 
-  }, [searchParams])
+  // }, [searchParams])
 
-  return valuesFromUrl
+  return [valuesFromUrl.team, valuesFromUrl.appId]
 }
 
 export default useValuesFromUrlParams;

@@ -40,11 +40,6 @@ const useAppByIdSearch = (id) => {
 
     const [searchApp, {loading, error, data}] = useLazyQuery(SEARCH_APP_BY_ID_QUERY);
  
-     useEffect(() => {
-        console.log("app last@@@@", appToDisplay);
-        console.log("app last@@@@", JSON.stringify(appToDisplay));
-     }, [appToDisplay]);///
- 
     useEffect(() => {
         console.log("id", id); 
 

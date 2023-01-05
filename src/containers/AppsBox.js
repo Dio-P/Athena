@@ -6,6 +6,7 @@ import AppPage from "./AppPage";
 import styled from "@emotion/styled";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import { v4 as uuidv4 } from "uuid";
+import useValuesFromUrlParams from "../hooks/useValuesFromUrlParams";
 
 const mockPartId1 = uuidv4();
 const mockPartId2 = uuidv4();
@@ -164,30 +165,33 @@ const AppsBox = ({
   const [returnToThisPage, setReturnToThisPage] = useState(false);
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   const [app, setApp] = useState(undefined);
-  const [
-    appToDisplay,
-    loading,
-    error] = useAppByIdSearch(appIdToDisplay);
+  // const [
+  //   appToDisplay,
+  //   loading,
+  //   error] = useAppByIdSearch(appIdToDisplay);
   let [searchParams, setSearchParams] = useSearchParams();
   // const appIdUrlParam = useMemo(() => {
   //   console.log("searchParams.get('appId')", searchParams.get('appId'));
   //   return searchParams.get('appId');
   // }, [searchParams?.get('appId')!==undefined]);
-  const appIdUrlParam = searchParams.get('appId');
+  // const appIdUrlParam = searchParams.get('appId');
+  const [teamParam, appIdParam] = useValuesFromUrlParams()
 
   useEffect(() => {
-    console.log("appIdUrlParam!!", appIdUrlParam);
-    if(!appIdToDisplay && appIdUrlParam){
-      setAppIdToDisplay(appIdUrlParam);
+    console.log("appIdParam!!", appIdParam);
+    if(!appIdToDisplay && appIdParam){
+      console.log("setting params to appIdUrlParam");
+      setAppIdToDisplay(appIdParam);
     }else {
+      console.log("setting app id to empty string ");
       setAppIdToDisplay("");
     }
   }, []);
 
   useEffect(() => {
-    console.log("appToDisplay#@#@##@", appToDisplay);
-    setApp(appToDisplay);
-  }, [appToDisplay]);
+    console.log("params#@#@##@", teamParam, appIdParam);
+  
+  }, [teamParam, appIdParam]);
 
   const clickingToHere = () => {
     setAppIdToDisplay("");
@@ -219,7 +223,7 @@ const AppsBox = ({
           })}
       </>
 
-      {app && <AppPage appIdToDisplay={appIdToDisplay} />}
+      {appIdToDisplay && <AppPage appIdToDisplay={appIdToDisplay} />}
     </DepartmAppsBoxContainer>
   );
 };
