@@ -113,12 +113,16 @@ const AddNewConnectionBox = ({ app }) => {
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     
     let [searchParams, setSearchParams] = useSearchParams();
-    const [paramsObject, setParamsObject] = useState("");
+    // let [searchParams, setSearchParams] = useSearchParams(({
+    //     addNewPart: false,
+    //     addNewFolder: false,
+    // }));
+    const [urlValues, setUrlValues] = useState("");
 
     const [display, setDisplay] = useState({
-        newPartInput: false,
+        newPartInput: false,////
         deleteWarningNewPart: false,
-        newFolderInput: false,
+        newFolderInput: false,////
         newFolderButton: true,
     });
 
@@ -168,12 +172,12 @@ const AddNewConnectionBox = ({ app }) => {
     }, [])
     useEffect(() => {
         console.log("searchParams", searchParams);
-        setParamsObject(Object.fromEntries([...searchParams]))
+        setUrlValues(Object.fromEntries([...searchParams]))
     }, [searchParams])/////////this will rewrite the object every time. 
     // we don't want that.
     useEffect(() => {
-        console.log("paramsObject", paramsObject);
-    }, [paramsObject])
+        console.log("urlValues", urlValues);
+    }, [urlValues])
     
 
     useEffect(() => {

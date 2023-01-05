@@ -1,6 +1,7 @@
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
-import { useEffect, useMemo, useState } from "react";
 import ButtonIcon from "../components/ButtonIcon";
 import useTeamAppsNamesSearch from "../hooks/queries/useTeamAppsNamesSearch";
 
@@ -20,9 +21,12 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
     loading,
     error
   ]= useTeamAppsNamesSearch(chosenTeam)
+  let [searchParams, setSearchParams] = useSearchParams();
+
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);
+    // setSearchParams({team:chosenTeam})
 
   }
 
@@ -37,6 +41,7 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
     setChosenTeam(defaultDepartment)
   }, [defaultDepartment]);
   useEffect(() => {
+    setSearchParams({team:chosenTeam})
   }, [chosenTeam]);
 
   return(

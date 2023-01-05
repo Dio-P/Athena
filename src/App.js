@@ -187,7 +187,7 @@ function App() {
   }
 
   const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
-
+  
   useEffect(() => {
     setAllDepartments(MOCK_DATA)
   }, [])

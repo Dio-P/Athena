@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AppPage from "./AppPage";
@@ -160,6 +161,7 @@ const AppsBox = ({ department, teamApps, team }) => {
   const [app, setApp] = useState(undefined);
   const [appToDisplay, loading, error] = useAppByIdSearch(appIdToDisplay);
   // const test= useAppByIdSearch(appIdToDisplay)
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setAppIdToDisplay("");
