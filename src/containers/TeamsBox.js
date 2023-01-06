@@ -81,3 +81,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 }
 
 export default TeamsBox
+
+// bug when allready in team and pressing back to query with app, 
+// app page does not appear because the app component wher the logic is 
+// is not rerendering. 

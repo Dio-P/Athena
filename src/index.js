@@ -39,10 +39,11 @@ const router = createBrowserRouter(
         }}
         action={({ params }) => {}}
       />
+      {/* <Route path="/"/> */} 
     </>
   )
 );
-
+// Route for optimo doc page
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -141,13 +141,13 @@ const AppPage = ({ appIdToDisplay, params }) => {
               <ButtonIcon
                 addingButton={true}
                 buttonTitle={
-                  (addNewConnectionBoxIsOpen ? "- " : "+ ") + "Add URL"
+                  (params?.newConnection ? "- " : "+ ") + "Add URL"
                 }
               />
             </AddDocButton>
           </AppPageTitle>
         </>
-        {addNewConnectionBoxIsOpen && (
+        {params?.newConnection && (
           <AddNewConnectionBox app={thisApp} params={params} />
         )}
 
