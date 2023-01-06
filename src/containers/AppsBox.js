@@ -29,6 +29,7 @@ const AppsBox = ({
   teamApps,
   team,
   params,
+  updatingParams
 }) => {
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
@@ -48,7 +49,8 @@ const AppsBox = ({
     setAppIdToDisplay(singleApp.id);
     if(!params.appId){
       const existingParams = Object.fromEntries([...searchParams]);
-      setSearchParams({...existingParams, appId: singleApp.id}) 
+      updatingParams({...existingParams, appId: singleApp.id}) 
+      // need I move this logic to a previous level to preserve the params?
     }
   }
   return (

@@ -13,7 +13,7 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ defaultDepartment, params }) => {
+const TeamsBox = ({ defaultDepartment, params, updatingParams }) => {
   const [chosenTeam, setChosenTeam] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const [
@@ -33,7 +33,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 
   useEffect(() => {
     if(!params.team){
-      setSearchParams({team:chosenTeam})
+      updatingParams({team:chosenTeam})
     }
   }, [chosenTeam]);
 
@@ -74,6 +74,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
           teamApps={chosenDepApps}
           team={chosenTeam}
           params={params || newParams}
+          updatingParams={updatingParams}
         />
       }
     </TeamsBoxContainer>
@@ -81,3 +82,5 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 }
 
 export default TeamsBox
+
+// there is a bug when clicking on the previous box the parameters are getting lost.

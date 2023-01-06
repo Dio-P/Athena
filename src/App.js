@@ -51,6 +51,7 @@ function App() {
       <TeamsBox
         defaultDepartment={DEFAULT_DEPARTMENT}
         params={params}
+        updatingParams={setSearchParams}
       />
 
     </div>
