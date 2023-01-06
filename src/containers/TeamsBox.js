@@ -17,7 +17,7 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ alldepartments, defaultDepartment }) => {
+const TeamsBox = ({ defaultDepartment, params }) => {
   const [chosenTeam, setChosenTeam] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const [
@@ -27,45 +27,59 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   ]= useTeamAppsNamesSearch(chosenTeam);
   // const [teamUrlParam, setTeamUrlParam] = useState(undefined);
   let [searchParams, setSearchParams] = useSearchParams();
+  const newParams = Object.fromEntries([...searchParams]);
   // const teamUrlParam = useMemo(() => {searchParams.get('team')}, [searchParams]);
   // const params = useValuesFromUrlParams();
-  const [teamParam, appIdParam] = useValuesFromUrlParams()
-  const navigate = useNavigate();
+  // const [teamParam, appIdParam] = useValuesFromUrlParams()
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("params teamsBox@", params);
+    if(!chosenTeam && params.team){
+      setChosenTeam(params.team)
+    }
+  }, []);
+
+  useEffect(() => {
+    if(!params.team){
+      setSearchParams({team:chosenTeam})
+    }
+  }, [chosenTeam]);
+
+  useEffect(() => {
+    setChosenTeam(defaultDepartment)
+  }, [defaultDepartment]);
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);
-    // setSearchParams({team:chosenTeam})
-
   }
-  useEffect(() => {
-    if(!chosenTeam && teamParam)
-    setChosenTeam(teamParam)
-  }, []);
-  useEffect(() => {
-    gettingParamsValues()
-  }, []);
 
-  const gettingParamsValues = () => {
-    console.log("inside getting params values");
-    const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
-    console.log("paramValuesFromTeamsBox!@£", paramValuesFromTeamsBox);
-    console.log("teamParam, appIdParam", teamParam, appIdParam);
-    setSearchParams(paramValuesFromTeamsBox);
-  }
+
+  // useEffect(() => {
+  //   gettingParamsValues()
+  // }, []);
+
+  // const gettingParamsValues = () => {
+  //   console.log("inside getting params values");
+  //   const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
+  //   console.log("paramValuesFromTeamsBox!@£", paramValuesFromTeamsBox);
+  //   console.log("teamParam, appIdParam", teamParam, appIdParam);
+  //   setSearchParams(paramValuesFromTeamsBox);
+  // }
   // useEffect(() => {
   //   console.log("chosenTeam@@@", chosenTeam);
   //   console.log("chosenDepApps@@@", chosenDepApps);
   // }, [chosenTeam, chosenDepApps]);
 
-  useEffect(() => {
-    console.log("params in teamsBox@!@!", teamParam);
-    if(!chosenTeam && teamParam && !appIdParam){
-      setChosenTeam(teamParam)
-    }
-    if(!chosenTeam && teamParam && appIdParam){
-      setChosenTeam(teamParam)
-    }
-  }, [teamParam, appIdParam])
+  // useEffect(() => {
+  //   console.log("params in teamsBox@!@!", teamParam);
+  //   if(!chosenTeam && teamParam && !appIdParam){
+  //     setChosenTeam(teamParam)
+  //   }
+  //   if(!chosenTeam && teamParam && appIdParam){
+  //     setChosenTeam(teamParam)
+  //   }
+  // }, [teamParam, appIdParam])
 
   
   // useEffect(() => {
@@ -79,18 +93,10 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
   // }, [teamUrlParam])
 
   useEffect(() => {
-    // console.log("apps", apps);
     if(apps){
       setChosenDepApps(apps)
     }
   }, [apps])
-
-  useEffect(() => {
-    setChosenTeam(defaultDepartment)
-  }, [defaultDepartment]);
-  useEffect(() => {
-    setSearchParams({team:chosenTeam})
-  }, [chosenTeam]);
 
   return(
     <TeamsBoxContainer>
@@ -114,8 +120,8 @@ const TeamsBox = ({ alldepartments, defaultDepartment }) => {
           department={chosenTeam}
           teamApps={chosenDepApps}
           team={chosenTeam}
-          params={searchParams}
-          setUrlParams={setSearchParams}
+          params={params || newParams}
+          // setUrlParams={setSearchParams}
         />
       }
     </TeamsBoxContainer>
