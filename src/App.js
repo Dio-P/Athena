@@ -35,44 +35,52 @@ function App() {
   // useEffect(() => {
   //   setAllDepartments(MOCK_DATA)
   // }, []);
-  // useEffect(() => {
-  //   gettingParamsValues()
-  // }, []);
-  // const params = Object.fromEntries([...searchParams]);
-  const params = useParams()
+  useEffect(() => {
+    gettingParamsValues()
+  }, []);
+  const params = Object.fromEntries([...searchParams]);
+  // const params = useParams()
 
-  // const gettingParamsValues = () => {
-  //   console.log("inside getting params values");
-  //   const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
-  //   console.log("paramValuesFromApp!@£", paramValuesFromTeamsBox);
-  //   console.log("teamParam, appIdParam", teamParam, appIdParam);
-  //   setSearchParams(paramValuesFromTeamsBox);
-  // }
+  const gettingParamsValues = () => {
+    console.log("inside getting params values");
+    const paramValuesFromTeamsBox = Object.fromEntries([...searchParams]);
+    console.log("paramValuesFromApp!@£", paramValuesFromTeamsBox);
+    console.log("teamParam, appIdParam", teamParam, appIdParam);
+    setSearchParams(paramValuesFromTeamsBox);
+  }
 
 
+  // return (
+  //   <div className="">
+  //     <h1>Athena</h1>
+  //     <Header/>
+  //     <Routes>
+  //       <Route path="/*" 
+  //       element={<TeamsBox 
+  //         defaultDepartment={DEFAULT_DEPARTMENT}
+  //         // alldepartments={alldepartments}///to be changed when queries working properly
+  //         // params={params}
+  //         />}
+  //         loader={(obj) => {
+  //           console.log("obj['*']", obj); // "one/two"
+  //         }}
+  //         action={({ params }) => {}}
+  //       />
+  //       <Route path="/?team=:team&appId=:appId" element={<AppPage appId={"appId"}/>}/> 
+  //       {/* <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/>  */}
+  //       {/* http://localhost:3000/DPub/63ad884923b0804c5a2ce94d */}
+  //       {/* <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/>  */}
+  //     </Routes>
+      
+      
+  //   </div>
+  // );
   return (
     <div className="">
       <h1>Athena</h1>
       <Header/>
-      <Routes>
-        <Route path="/*" 
-        element={<TeamsBox 
-          defaultDepartment={DEFAULT_DEPARTMENT}
-          // alldepartments={alldepartments}///to be changed when queries working properly
-          // params={params}
-          />}
-          loader={(obj) => {
-            console.log("obj['*']", obj); // "one/two"
-          }}
-          action={({ params }) => {}}
-        />
-        <Route path="/?team=:team&appId=:appId" element={<AppPage appId={"appId"}/>}/> 
-        {/* <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/>  */}
-        {/* http://localhost:3000/DPub/63ad884923b0804c5a2ce94d */}
-        {/* <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/>  */}
-      </Routes>
-      
-      
+      <TeamsBox/>
+
     </div>
   );
 }
