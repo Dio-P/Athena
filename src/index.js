@@ -34,13 +34,9 @@ const router = createBrowserRouter(
     // <Routes>
     <>
       <Route path="/" 
-      element={<App 
-        // defaultDepartment={DEFAULT_DEPARTMENT}
-        // alldepartments={alldepartments}///to be changed when queries working properly
-        // params={params}
-        />}
+      element={<App/>}
         loader={(obj) => {
-          console.log("obj['*']", obj); // "one/two"
+          console.log("obj['*']", obj);
         }}
         action={({ params }) => {}}
       />
@@ -52,28 +48,13 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <RouterProvider router={router}> */}
       <ApolloProvider client={client}>
         <RouterProvider router={router}/>
-        {/* <App /> */}
       </ApolloProvider>
-    {/* </RouterProvider> */}
   </React.StrictMode>
 );
-
-// root.render(
-//   <React.StrictMode>
-//       <BrowserRouter>
-//         <ApolloProvider client={client}>
-//           <App />
-//         </ApolloProvider>
-//     </BrowserRouter>
-//   </React.StrictMode>
-// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-// next: create an apolo client and connect all that needs to be connected
