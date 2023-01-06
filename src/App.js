@@ -3,7 +3,13 @@ import {
   Routes,
   Outlet,
   useSearchParams,
-  useNavigate
+  useParams,
+  useNavigate,
+  useLoaderData,
+  useRouteLoaderData,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
 } from "react-router-dom";
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
@@ -21,174 +27,7 @@ function App() {
 
   const DEFAULT_DEPARTMENT = "DPub";
 
-  const MOCK_DATA = {
-    name: "dpub",
-    apps: [
-      {
-        name: "optimo",
-        folders: [
-          {
-            title: "general documentation",
-            id: 0
-           },
-          {
-           title: "client",
-           id: 1
-          },
-          {
-           title: "server",
-           id: 2
-          },
-         ],
-        parts: [
-          {
-            name: "general documentation",
-            type: "documentation",
-            id: mockPartId1,
-            ghRepo: "www.someGitHubLink.com",
-            folderToBeDisplayedIn: "0",
-          },
-          {
-            name: "published postgres",
-            type: "data base",
-            id: mockPartId2,
-            ghRepo: "www.someGitHubLink.com",
-            folderToBeDisplayedIn: "1",
-          }
-        ],
-        properties:{
-          docs: [
-              {
-                title: "Some Doc1",
-                id: "someDocId",
-                url: "https://someLink.com",
-                source: "Confluence",
-                lastModified: "someDate",
-                concerningParts: [mockPartId1],
-                flags: {
-                  isLinkUpToDate: true,
-                }
-              },
-              {
-                title: "Some Doc2",
-                id: "someDocId",
-                url: "https://someLink.com",
-                source: "Confluence",
-                lastModified: "someDate",
-                concerningParts: [mockPartId2, mockPartId1],
-                interactions: {
-                  isLinkUpToDate: true,
-                  comments: [
-                    {
-                      text: "some coment",
-                      type: "requestOrSimpleComment",
-                      user: "someUserId",
-                      date: "someDate",
-                      flag: ["add another flag", "add another flag"],
-                      openRequest: {
-                        type: "type of request",
-                        requestFrom: "otherUserId"
-                      }
-                    }
-                  ]
-                }
-              }
-            ],
-          // initials: [],
-          // technologies: []
-        }
-      },
-      {
-        name: "tipo",
-        folders: [
-          {
-            title: "general documentation",
-            id: 0
-           },
-          {
-           title: "client",
-           id: 1
-          },
-          {
-           title: "server",
-           id: 2
-          },
-         ],
-        parts: [
-          {
-            name: "general documentation",
-            id: "someid1",
-            type: "documentation",
-            ghRepo: "www.someGitHubLink.com",
-            folderToBeDisplayedIn: "0",
-          },
-          {
-            name: "published postgres",
-            id: "somePartId2",
-            type: "data base",
-            ghRepo: "www.someGitHubLink.com",
-            folderToBeDisplayedIn: "1",
-          }
-        ],
-        properties:{
-          docs: [
-              {
-                title: "Some Doc1",
-                id: "someDocId",
-                url: "https://someLink.com",
-                source: "Confluence",
-                lastModified: "someDate",
-                concerningParts: [mockPartId1],
-                interactions: {
-                  isLinkUpToDate: true,
-                  comments: [
-                    {
-                      text: "some coment",
-                      type: "requestOrSimpleComment",
-                      user: "someUserId",
-                      date: "someDate",
-                      flag: ["add another flag", "add another flag"],
-                      openRequest: {
-                        type: "type of request",
-                        requestFrom: "otherUserId"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                title: "Some Doc2",
-                id: "someDocId",
-                url: "https://someLink.com",
-                source: "Confluence",
-                lastModified: "someDate",
-                concerningParts: [mockPartId2, mockPartId1],
-                interactions: {
-                  isLinkUpToDate: true,
-                  comments: [
-                    {
-                      text: "some coment",
-                      type: "requestOrSimpleComment",
-                      user: "someUserId",
-                      date: "someDate",
-                      flag: ["add another flag", "add another flag"],
-                      openRequest: {
-                        type: "type of request",
-                        requestFrom: "otherUserId"
-                      }
-                    }
-                  ]
-                }
-              }
-            ],
-          // initials: [],
-          // technologies: []
-        }
-      },
-    ]
-  }
-
-  const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
+  // const [alldepartments, setAllDepartments] = useState(MOCK_DATA);
   let [searchParams, setSearchParams] = useSearchParams();
   const [teamParam, appIdParam] = useValuesFromUrlParams()
 
@@ -199,7 +38,8 @@ function App() {
   // useEffect(() => {
   //   gettingParamsValues()
   // }, []);
-  const params = Object.fromEntries([...searchParams]);
+  // const params = Object.fromEntries([...searchParams]);
+  const params = useParams()
 
   // const gettingParamsValues = () => {
   //   console.log("inside getting params values");
@@ -215,15 +55,21 @@ function App() {
       <h1>Athena</h1>
       <Header/>
       <Routes>
-        <Route path="/" element={<TeamsBox 
+        <Route path="/*" 
+        element={<TeamsBox 
           defaultDepartment={DEFAULT_DEPARTMENT}
-          alldepartments={alldepartments}///to be changed when queries working properly
+          // alldepartments={alldepartments}///to be changed when queries working properly
           // params={params}
-          />}/>
+          />}
+          loader={(obj) => {
+            console.log("obj['*']", obj); // "one/two"
+          }}
+          action={({ params }) => {}}
+        />
         <Route path="/?team=:team&appId=:appId" element={<AppPage appId={"appId"}/>}/> 
         {/* <Route path="/:team/:appId" element={<AppPage appId={"appId"}/>}/>  */}
         {/* http://localhost:3000/DPub/63ad884923b0804c5a2ce94d */}
-        <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/> 
+        {/* <Route path="/:team/:appId/:partId" element={<Test appIdToDisplay={params.appId}/>}/>  */}
       </Routes>
       
       
