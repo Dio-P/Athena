@@ -81,5 +81,3 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 }
 
 export default TeamsBox
-
-// there is a bug when clicking on the previous box the parameters are getting lost.

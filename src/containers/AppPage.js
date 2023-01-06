@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState, params } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
@@ -33,24 +33,25 @@ const PartsContainer = styled.div`
   display: flex;
 `;
 
-const AppPage = ({ appIdToDisplay }) => {
-  // const location = useLocation();
-  // const app = location.state;
-
-  const [thisApp, setThisApp] = useState("");
+const AppPage = ({ appIdToDisplay, params }) => {
+  const [thisApp, setThisApp] = useState(undefined);
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] =
     useState(false);
-  const [app, setApp] = useState(undefined);
-  const params = useValuesFromUrlParams();
+  // const params = useValuesFromUrlParams();
+
   const queryId = () => {
     console.log("appIdToDisplay in appPage@£", appIdToDisplay);
-    if(!appIdToDisplay && params?.appId){
-      return params.appId
+    if (!appIdToDisplay && params?.appId) {
+      console.log("params?.appId", params?.appId);
+      return params.appId;
     }
+    console.log("appIdToDisplay", appIdToDisplay);
     return appIdToDisplay;
-  }
-  
+  };
+
   const [appToDisplay, loading, error] = useAppByIdSearch(queryId());
+  let [searchParams, setSearchParams] = useSearchParams();
+
   // appIdToDisplay || params?.appId
 
   // useEffect(() => {
@@ -75,10 +76,9 @@ const AppPage = ({ appIdToDisplay }) => {
   //   setApp(appToDisplay);
   // }, [appToDisplay]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("thisApp", thisApp);
-
-  },[thisApp])
+  }, [thisApp]);
 
   const putPartIdToUpdatedFolder = (folderId) => {
     const folderParts = appToDisplay.parts.filter(
@@ -122,13 +122,12 @@ const AppPage = ({ appIdToDisplay }) => {
     setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen);
   };
 
-  const name = useCapitaliseFirstLetter(app?.name || "loading");
   return (
     <AppPageContainer>
       <>
         <>
           <AppPageTitle>
-            {name}
+            {thisApp?.name}
             <AddDocButton onClick={clickingToAddNewConnection}>
               <ButtonIcon
                 addingButton={true}
@@ -139,7 +138,9 @@ const AppPage = ({ appIdToDisplay }) => {
             </AddDocButton>
           </AppPageTitle>
         </>
-        {addNewConnectionBoxIsOpen && <AddNewConnectionBox app={thisApp} />}
+        {addNewConnectionBoxIsOpen && (
+          <AddNewConnectionBox app={thisApp} params={params} />
+        )}
 
         {thisApp &&
           thisApp?.folders?.map((folder) => (

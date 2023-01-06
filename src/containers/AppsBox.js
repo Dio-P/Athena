@@ -77,7 +77,10 @@ const AppsBox = ({
           })}
       </>
 
-      {appIdToDisplay && <AppPage appIdToDisplay={appIdToDisplay} />}
+      {appIdToDisplay && <AppPage 
+        appIdToDisplay={appIdToDisplay}
+        params={params}
+      />}
     </DepartmAppsBoxContainer>
   );
 };

@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import FolderIcon from "./ButtonIcon";
-import AddNewThingPopup from "../containers/AddNewThingPopup";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 
 
@@ -94,7 +93,7 @@ const NewFolderInputContainer = styled.div`
     background-color: #Fffcfa;
 `;
 
-const AddNewConnectionBox = ({ app }) => {
+const AddNewConnectionBox = ({ app, params }) => {
     const [updatedApp, setUpdatedApp] = useState("");
     const [allAppParts, setAllAppParts] = useState([]);
     
@@ -168,13 +167,18 @@ const AddNewConnectionBox = ({ app }) => {
     //     console.log("newPartsAdded", newPartsAdded);
     // }, [newPartsAdded]);
     useEffect(() => {
-        setSearchParams({test: "testing", testing: "test"})
+        if(params){
+            console.log("params@@@", params);
+            setSearchParams({...params, newConnection: true})
+        }
     }, [])
-    useEffect(() => {
-        console.log("searchParams", searchParams);
-        setUrlValues(Object.fromEntries([...searchParams]))
-    }, [searchParams])/////////this will rewrite the object every time. 
-    // we don't want that.
+
+    // useEffect(() => {
+    //     console.log("searchParams", searchParams);
+    //     setUrlValues(Object.fromEntries([...searchParams]))
+    // }, [searchParams])/////////this will rewrite the object every time. 
+    // // we don't want that.
+
     useEffect(() => {
         console.log("urlValues", urlValues);
     }, [urlValues])
