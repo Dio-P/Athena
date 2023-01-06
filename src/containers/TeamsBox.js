@@ -13,7 +13,7 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ defaultDepartment, params, updatingParams }) => {
+const TeamsBox = ({ defaultDepartment, params }) => {
   const [chosenTeam, setChosenTeam] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const [
@@ -33,7 +33,7 @@ const TeamsBox = ({ defaultDepartment, params, updatingParams }) => {
 
   useEffect(() => {
     if(!params.team){
-      updatingParams({team:chosenTeam})
+      setSearchParams({team:chosenTeam})
     }
   }, [chosenTeam]);
 
@@ -74,7 +74,6 @@ const TeamsBox = ({ defaultDepartment, params, updatingParams }) => {
           teamApps={chosenDepApps}
           team={chosenTeam}
           params={params || newParams}
-          updatingParams={updatingParams}
         />
       }
     </TeamsBoxContainer>

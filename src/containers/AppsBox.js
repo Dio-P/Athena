@@ -29,7 +29,6 @@ const AppsBox = ({
   teamApps,
   team,
   params,
-  updatingParams
 }) => {
   const [appIdToDisplay, setAppIdToDisplay] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
@@ -42,21 +41,24 @@ const AppsBox = ({
     }
   }, []);
 
-  const clickingToHere = () => {
+  const clickBackToAllApps = () => {
     setAppIdToDisplay("");
+    const {team, appId} = Object.fromEntries([...searchParams]);
+    console.log("team@", {team});
+    setSearchParams({team}) 
   };
   const setAppToDisplay = (singleApp) => {
     setAppIdToDisplay(singleApp.id);
     if(!params.appId){
       const existingParams = Object.fromEntries([...searchParams]);
-      updatingParams({...existingParams, appId: singleApp.id}) 
+      setSearchParams({...existingParams, appId: singleApp.id}) 
       // need I move this logic to a previous level to preserve the params?
     }
   }
   return (
     <DepartmAppsBoxContainer>
       <div>
-        <StyledButton onClick={clickingToHere}>
+        <StyledButton onClick={clickBackToAllApps}>
           <DepAppBoxPageTitle>
             {useCapitaliseFirstLetter(team)}
           </DepAppBoxPageTitle>
