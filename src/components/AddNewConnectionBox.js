@@ -166,12 +166,12 @@ const AddNewConnectionBox = ({ app, params }) => {
     // useEffect(() => {
     //     console.log("newPartsAdded", newPartsAdded);
     // }, [newPartsAdded]);
-    useEffect(() => {
-        if(params){
-            console.log("params@@@", params);
-            setSearchParams({...params, newConnection: true})
-        }
-    }, [])
+    // useEffect(() => {
+    //     if(params){
+    //         console.log("params@@@", params);
+    //         setSearchParams({...params, newConnection: true})
+    //     }
+    // }, [])
 
     // useEffect(() => {
     //     console.log("searchParams", searchParams);

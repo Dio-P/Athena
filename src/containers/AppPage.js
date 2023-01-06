@@ -35,9 +35,7 @@ const PartsContainer = styled.div`
 
 const AppPage = ({ appIdToDisplay, params }) => {
   const [thisApp, setThisApp] = useState(undefined);
-  const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] =
-    useState(false);
-  // const params = useValuesFromUrlParams();
+  const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false);
 
   const queryId = () => {
     console.log("appIdToDisplay in appPage@£", appIdToDisplay);
@@ -120,6 +118,17 @@ const AppPage = ({ appIdToDisplay, params }) => {
 
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen);
+    const {
+      team,
+      appId,
+      newConnection,
+    } = params
+    if(!addNewConnectionBoxIsOpen){
+      setSearchParams({team, appId, newConnection: true});
+    }else{
+      setSearchParams({team, appId}) 
+    }
+   
   };
 
   return (
