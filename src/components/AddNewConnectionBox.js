@@ -139,46 +139,6 @@ const AddNewConnectionBox = ({ app, params }) => {
 
     const appName = useCapitaliseFirstLetter(app.name);
 
-    ///////////
-
-    // useEffect(() => {
-    //     console.log("newPart", newPart);
-    // }, [newPart]);
-    // useEffect(() => {
-    //     console.log("updatedApp", updatedApp);
-    // }, [updatedApp]);
-    // useEffect(() => {
-    //     console.log("@@newPartsFolder", newPartsFolder);
-    // }, [newPartsFolder]);
-    // useEffect(() => {
-    //     console.log("@@newPartsAdded", newPartsAdded);
-    // }, [newPartsAdded]);
-    // useEffect(() => {
-
-    //     console.log("Object.values(newFoldersToBeAddedToAll).length || 0", Object.values(newFoldersToBeAddedToAll).length || 0);
-    //     console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
-    // }, [newFoldersToBeAddedToAll]);
-    // useEffect(() => {
-    //     console.log("newAppsUniqueFoldersKeys", newAppsUniqueFoldersKeys);
-    //     console.log("existingAppsUniqueFolderKeys", existingAppsUniqueFolderKeys);
-    //     console.log("allUniqueFolderKeys", allUniqueFolderKeys);
-    // }, [allUniqueFolderKeys]);
-    // useEffect(() => {
-    //     console.log("newPartsAdded", newPartsAdded);
-    // }, [newPartsAdded]);
-    // useEffect(() => {
-    //     if(params){
-    //         console.log("params@@@", params);
-    //         setSearchParams({...params, newConnection: true})
-    //     }
-    // }, [])
-
-    // useEffect(() => {
-    //     console.log("searchParams", searchParams);
-    //     setUrlValues(Object.fromEntries([...searchParams]))
-    // }, [searchParams])/////////this will rewrite the object every time. 
-    // // we don't want that.
-
     useEffect(() => {
         console.log("urlValues", urlValues);
     }, [urlValues])
