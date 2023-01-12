@@ -29,7 +29,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
     if(!chosenTeam && params.team){
       setChosenTeam(params.team)
     }
-  }, []);
+  }, [params]);
 
   useEffect(() => {
     if(!params.team){
