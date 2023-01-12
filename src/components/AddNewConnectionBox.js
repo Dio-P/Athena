@@ -158,6 +158,11 @@ const AddNewConnectionBox = ({ app, params }) => {
 
     }, [app?.parts]);
 
+    useEffect(() => {
+        console.log("display.newPartInput is@@", display.newPartInput);
+         
+    }, [display.newPartInput])
+
 
     const togglePartClicked = (part) => {
         setAllAppParts({
@@ -296,6 +301,22 @@ const AddNewConnectionBox = ({ app, params }) => {
             ]
 
         })
+    };
+
+    const clickingToAddNewPart = () => {
+        setDisplay({...display, newPartInput: !display.newPartInput});
+        
+        const {
+            team,
+            appId,
+            addingNewConnection,
+            addingNewPart
+          } = params
+          if(!display.newPartInput){
+            setSearchParams({...params, addingNewPart: true});
+          }else{
+            setSearchParams({team, appId, addingNewConnection}) 
+          }
     }
 
     return (
@@ -342,10 +363,10 @@ const AddNewConnectionBox = ({ app, params }) => {
                                 </NewlyAddedPartButton>
                             ))
                             }
-                            <Button onClick={()=>setDisplay({...display, newPartInput: !display.newPartInput})}>
+                            <Button onClick={()=> clickingToAddNewPart()}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={display.newPartInput? `- close` : `+ Add ${appName} Part`}
+                                    buttonTitle={display.newPartInput? `- close` : `+ Add ${appName} Part`}/////
                                 />
                             </Button>
                         </OptionsWraper>

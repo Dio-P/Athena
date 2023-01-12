@@ -121,10 +121,10 @@ const AppPage = ({ appIdToDisplay, params }) => {
     const {
       team,
       appId,
-      newConnection,
+      addingNewConnection,
     } = params
     if(!addNewConnectionBoxIsOpen){
-      setSearchParams({team, appId, newConnection: true});
+      setSearchParams({team, appId, addingNewConnection: true});
     }else{
       setSearchParams({team, appId}) 
     }
@@ -141,13 +141,13 @@ const AppPage = ({ appIdToDisplay, params }) => {
               <ButtonIcon
                 addingButton={true}
                 buttonTitle={
-                  (params?.newConnection ? "- " : "+ ") + "Add URL"
+                  (params?.addingNewConnection ? "- " : "+ ") + "Add URL"
                 }
               />
             </AddDocButton>
           </AppPageTitle>
         </>
-        {params?.newConnection && (
+        {params?.addingNewConnection && (
           <AddNewConnectionBox app={thisApp} params={params} />
         )}
 
