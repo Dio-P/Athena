@@ -124,8 +124,8 @@ const AppPage = ({ appIdToDisplay, params }) => {
       appId,
       addingNewConnection,
     } = params
-    if(!addNewConnectionBoxIsOpen){
-      setSearchParams({team, appId, addingNewConnection: true});
+    if(!addingNewConnection){
+      setSearchParams({...params, addingNewConnection: true});
     }else{
       setSearchParams({team, appId}) 
     }

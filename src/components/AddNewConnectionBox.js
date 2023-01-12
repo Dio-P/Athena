@@ -125,6 +125,14 @@ const AddNewConnectionBox = ({ app, params }) => {
         newFolderButton: true,
     });
 
+    const {
+        team,
+        appId,
+        addingNewConnection,
+        addingNewPart,
+        addingNewFolder
+      } = params
+
     const existingAppsUniqueFolderKeys = useMemo(() => (Array.from(new Set(Object.values(app.parts).map((part) => (
         part.folderToBeDisplayedIn
         ))))), [app.parts]);
@@ -158,10 +166,10 @@ const AddNewConnectionBox = ({ app, params }) => {
 
     }, [app?.parts]);
 
-    useEffect(() => {
-        console.log("display.newPartInput is@@", display.newPartInput);
+    // useEffect(() => {
+    //     console.log("display.newPartInput is@@", display.newPartInput);
          
-    }, [display.newPartInput])
+    // }, [display.newPartInput])
 
 
     const togglePartClicked = (part) => {
@@ -180,7 +188,6 @@ const AddNewConnectionBox = ({ app, params }) => {
                 // I need to create a singly function that is going to turn this and return a single item in both cases
               }
         });
-        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
         setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, newPartsFolder]);//////////////////////////////////
         setNewPart({
             ...newPart,
@@ -196,7 +203,6 @@ const AddNewConnectionBox = ({ app, params }) => {
             newFolderButton: true,
             newFolderInput: false
         })
-        // console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
         keepExistingParams();
 
     }
@@ -252,8 +258,7 @@ const AddNewConnectionBox = ({ app, params }) => {
     }
 
     const deleteNewPart = (part) => {
-        console.log("newFoldersToBeAddedToAll@@", newFoldersToBeAddedToAll);
-        console.log("allUniqueFolderKeys@@", allUniqueFolderKeys);
+
         const folderIdIsInUse = (id) => (allUniqueFolderKeys.includes(id));
         delete newPartsAdded[part.name];
         setNewPartsAdded({...newPartsAdded});
@@ -261,8 +266,7 @@ const AddNewConnectionBox = ({ app, params }) => {
         const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter(({ id })=>(
             folderIdIsInUse(id)
         ));
-        console.log("updatedNewFoldersFolder@fter@", updatedNewFoldersFolder);
-        console.log("newFoldersToBeAddedToAll@fter@", newFoldersToBeAddedToAll);
+
         setNewFoldersToBeAddedToAll(updatedNewFoldersFolder);
 
     }
@@ -312,16 +316,8 @@ const AddNewConnectionBox = ({ app, params }) => {
         })
     };
 
-    const clickingToAddNewPart = () => {
-        setDisplay({...display, newPartInput: !display.newPartInput});
-        
-        const {
-            team,
-            appId,
-            addingNewConnection,
-            addingNewPart
-          } = params
-          if(!params.addingNewPart){
+    const clickingToAddNewPart = () => {        
+          if(!addingNewPart){
             setSearchParams({...params, addingNewPart: true});
           }else{
             setSearchParams({team, appId, addingNewConnection}) 
@@ -329,16 +325,7 @@ const AddNewConnectionBox = ({ app, params }) => {
     }
 
     const clickingToAddNewFolder = () => {
-        setDisplay( {...display, newFolderInput: !display.newFolderInput});
-
-        const {
-            team,
-            appId,
-            addingNewConnection,
-            addingNewPart,
-            addingNewFolder
-          } = params
-          if(!display.newFolderInput){
+          if(!addingNewFolder){
             setSearchParams({...params, addingNewFolder: true});
           }else{
             setSearchParams({team, appId, addingNewConnection, addingNewPart}) 
@@ -392,11 +379,11 @@ const AddNewConnectionBox = ({ app, params }) => {
                             <Button onClick={()=> clickingToAddNewPart()}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={params.addingNewPart? `- close` : `+ Add ${appName} Part`}/////
+                                    buttonTitle={addingNewPart? `- close` : `+ Add ${appName} Part`}/////
                                 />
                             </Button>
                         </OptionsWraper>
-                        { params.addingNewPart
+                        { addingNewPart
                         &&
                         
                         <DisplayBox>
@@ -440,7 +427,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                             <InputContainer>
                                 <p> Folder to display new part in</p>
                                 { !newPartsFolder?
-                                    !params.addingNewFolder?
+                                    !addingNewFolder?
                                     <>
                                     {app.folders.map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
