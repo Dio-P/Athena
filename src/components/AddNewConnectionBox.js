@@ -321,7 +321,7 @@ const AddNewConnectionBox = ({ app, params }) => {
             addingNewConnection,
             addingNewPart
           } = params
-          if(!display.newPartInput){
+          if(!params.addingNewPart){
             setSearchParams({...params, addingNewPart: true});
           }else{
             setSearchParams({team, appId, addingNewConnection}) 
@@ -392,7 +392,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                             <Button onClick={()=> clickingToAddNewPart()}>
                                 <FolderIcon   
                                     addingButton={true}
-                                    buttonTitle={display.newPartInput? `- close` : `+ Add ${appName} Part`}/////
+                                    buttonTitle={params.addingNewPart? `- close` : `+ Add ${appName} Part`}/////
                                 />
                             </Button>
                         </OptionsWraper>

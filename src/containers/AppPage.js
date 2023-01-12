@@ -165,6 +165,8 @@ export default AppPage;
 
 // working:
 // logic updating docs in parts with id array
+// would it be any usefull to store in the params the existing state for creating the new doc?
+// maybe but is this getting too long?
 
 // add folder section logic
 // finish with the Part Icon logic and put everything inside the right folder
