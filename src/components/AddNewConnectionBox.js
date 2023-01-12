@@ -533,6 +533,9 @@ export default AddNewConnectionBox;
 // see if you can have the update params with true and remove, logic as a function generic to avoid repeating yourself
 // navigation by url to be working
 // bring the parts in from mongo?
+// delete the old display state and use only params instead (if you want) (this will probably mean that 
+// you'll need to store values as false instead of completely delte them)
+// move params distructuring on top
 
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD

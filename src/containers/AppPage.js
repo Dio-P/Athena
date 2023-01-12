@@ -1,4 +1,4 @@
-import React, { useEffect, useState, params } from "react";
+import React, { useEffect, useState, params, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
@@ -37,7 +37,9 @@ const AppPage = ({ appIdToDisplay, params }) => {
   const [thisApp, setThisApp] = useState(undefined);
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false);
 
-  const queryId = () => {
+  let [searchParams, setSearchParams] = useSearchParams();
+
+  const queryId = useMemo(() => {
     console.log("appIdToDisplay in appPage@£", appIdToDisplay);
     if (!appIdToDisplay && params?.appId) {
       console.log("params?.appId", params?.appId);
@@ -45,10 +47,9 @@ const AppPage = ({ appIdToDisplay, params }) => {
     }
     console.log("appIdToDisplay", appIdToDisplay);
     return appIdToDisplay;
-  };
+  }, [params, appIdToDisplay]);
 
-  const [appToDisplay, loading, error] = useAppByIdSearch(queryId());
-  let [searchParams, setSearchParams] = useSearchParams();
+  const [appToDisplay, loading, error] = useAppByIdSearch(queryId);
 
   // appIdToDisplay || params?.appId
 
@@ -147,7 +148,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
             </AddDocButton>
           </AppPageTitle>
         </>
-        {params?.addingNewConnection && (
+        {(params?.addingNewConnection && thisApp) && (
           <AddNewConnectionBox app={thisApp} params={params} />
         )}
 
