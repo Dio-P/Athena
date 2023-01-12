@@ -319,6 +319,23 @@ const AddNewConnectionBox = ({ app, params }) => {
           }
     }
 
+    const clickingToAddnewFolder = () => {
+        setDisplay( {...display, newFolderInput: !display.newFolderInput});
+
+        const {
+            team,
+            appId,
+            addingNewConnection,
+            addingNewPart,
+            addingNewFolder
+          } = params
+          if(!display.newPartInput){
+            setSearchParams({...params, addingNewFolder: true});
+          }else{
+            setSearchParams({team, appId, addingNewConnection, addingNewPart}) 
+          }
+    }
+
     return (
         <DisplayBox>
             <FormContainer>
@@ -461,7 +478,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                                 }
                                 {display.newFolderButton
                                 &&
-                                    <Button onClick={()=> setDisplay( {...display, newFolderInput: !display.newFolderInput}) }>
+                                    <Button onClick={()=> clickingToAddnewFolder() }>
                                         
                                         <FolderIcon   
                                             addingButton={true}
@@ -504,6 +521,8 @@ const AddNewConnectionBox = ({ app, params }) => {
 export default AddNewConnectionBox;
 
 // working:
+// see if you can have the update params with true and remove, logic as a function generic to avoid repeating yourself
+
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD
 // can I move the set new part logic to folder to be displayed in within the new app? And feed it with a functions result?
