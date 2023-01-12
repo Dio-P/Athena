@@ -328,7 +328,7 @@ const AddNewConnectionBox = ({ app, params }) => {
           }
     }
 
-    const clickingToAddnewFolder = () => {
+    const clickingToAddNewFolder = () => {
         setDisplay( {...display, newFolderInput: !display.newFolderInput});
 
         const {
@@ -338,7 +338,7 @@ const AddNewConnectionBox = ({ app, params }) => {
             addingNewPart,
             addingNewFolder
           } = params
-          if(!display.newPartInput){
+          if(!display.newFolderInput){
             setSearchParams({...params, addingNewFolder: true});
           }else{
             setSearchParams({team, appId, addingNewConnection, addingNewPart}) 
@@ -396,7 +396,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                                 />
                             </Button>
                         </OptionsWraper>
-                        { display.newPartInput
+                        { params.addingNewPart
                         &&
                         
                         <DisplayBox>
@@ -440,7 +440,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                             <InputContainer>
                                 <p> Folder to display new part in</p>
                                 { !newPartsFolder?
-                                    !display.newFolderInput?
+                                    !params.addingNewFolder?
                                     <>
                                     {app.folders.map((folder)=> (
                                             <Button onClick={() => folderInfoToState(folder)}>
@@ -487,7 +487,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                                 }
                                 {display.newFolderButton
                                 &&
-                                    <Button onClick={()=> clickingToAddnewFolder() }>
+                                    <Button onClick={()=> clickingToAddNewFolder() }>
                                         
                                         <FolderIcon   
                                             addingButton={true}
@@ -531,7 +531,8 @@ export default AddNewConnectionBox;
 
 // working:
 // see if you can have the update params with true and remove, logic as a function generic to avoid repeating yourself
-// navigation by url to be working 
+// navigation by url to be working
+// bring the parts in from mongo?
 
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD
