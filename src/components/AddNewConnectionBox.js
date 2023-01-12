@@ -196,7 +196,8 @@ const AddNewConnectionBox = ({ app, params }) => {
             newFolderButton: true,
             newFolderInput: false
         })
-        console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+        // console.log("@@newFoldersToBeAddedToAll", newFoldersToBeAddedToAll);
+        keepExistingParams();
 
     }
 
@@ -217,7 +218,14 @@ const AddNewConnectionBox = ({ app, params }) => {
         setDisplay({
             ...display,
             newFolderButton: false
-        })
+        });
+
+        keepExistingParams()
+    };
+
+    const keepExistingParams = () => {
+          
+            setSearchParams({...params});
     }
 
     const folderInfoToState = (folder) => {
@@ -240,6 +248,7 @@ const AddNewConnectionBox = ({ app, params }) => {
             ...display,
             newFolderButton: true
         })
+        keepExistingParams();
     }
 
     const deleteNewPart = (part) => {
@@ -522,6 +531,7 @@ export default AddNewConnectionBox;
 
 // working:
 // see if you can have the update params with true and remove, logic as a function generic to avoid repeating yourself
+// navigation by url to be working 
 
 // line 240 shows a new part with empty string
 // start putting things into specific functions and use TDD
