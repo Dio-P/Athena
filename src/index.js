@@ -17,6 +17,7 @@ import {
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import SinglePartPage from './containers/SinglePartPage';
 
 const athenaDbUri = "http://localhost:5051/graphql"
 
@@ -39,7 +40,9 @@ const router = createBrowserRouter(
         }}
         action={({ params }) => {}}
       />
-      {/* <Route path="/"/> */} 
+      <Route path="/:appName/:partName"
+      element={<SinglePartPage/>}
+      /> 
     </>
   )
 );

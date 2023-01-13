@@ -49,7 +49,7 @@ a {
 
 }
 `;
-const PartIcon = ({ part }) => {
+const PartIcon = ({ part, appName }) => {
 
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
@@ -59,10 +59,11 @@ const PartIcon = ({ part }) => {
     return (
         <PartsContainer>
             <Link 
-                to={`/:${part.name}`}
+                to={`/:${appName}/:${part.name}`}
                 state={{
                     ...part
-                    }}>
+                    }}> 
+                    {/* here get only what you need from mongo */}
                 <IconButton>
                     <h4>
                         { partName }

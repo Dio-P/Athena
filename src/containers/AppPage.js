@@ -35,7 +35,8 @@ const PartsContainer = styled.div`
 
 const AppPage = ({ appIdToDisplay, params }) => {
   const [thisApp, setThisApp] = useState(undefined);
-  const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] = useState(false);
+  const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] =
+    useState(false);
 
   let [searchParams, setSearchParams] = useSearchParams();
 
@@ -119,17 +120,12 @@ const AppPage = ({ appIdToDisplay, params }) => {
 
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen);
-    const {
-      team,
-      appId,
-      addingNewConnection,
-    } = params
-    if(!addingNewConnection){
-      setSearchParams({...params, addingNewConnection: true});
-    }else{
-      setSearchParams({team, appId}) 
+    const { team, appId, addingNewConnection } = params;
+    if (!addingNewConnection) {
+      setSearchParams({ ...params, addingNewConnection: true });
+    } else {
+      setSearchParams({ team, appId });
     }
-   
   };
 
   return (
@@ -148,13 +144,17 @@ const AppPage = ({ appIdToDisplay, params }) => {
             </AddDocButton>
           </AppPageTitle>
         </>
-        {(params?.addingNewConnection && thisApp) && (
+        {params?.addingNewConnection && thisApp && (
           <AddNewConnectionBox app={thisApp} params={params} />
         )}
 
         {thisApp &&
           thisApp?.folders?.map((folder) => (
-            <Folder folderName={folder.title} parts={folder.parts} />
+            <Folder
+              folderName={folder.title}
+              parts={folder.parts}
+              appName={thisApp.name}
+            />
           ))}
       </>
     </AppPageContainer>

@@ -16,7 +16,7 @@ cursor: pointer;
 outline: inherit;
 `;
 
-const Folder = ({ folderName, parts }) => {
+const Folder = ({ folderName, parts, appName }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded : false
   });
@@ -54,7 +54,7 @@ const Folder = ({ folderName, parts }) => {
         {display.folderIsExpanded
         &&
           parts.map((part) => (
-            <PartIcon part={part}/>
+            <PartIcon part={part} appName={appName}/>
           ))
         }
 

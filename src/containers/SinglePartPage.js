@@ -19,7 +19,12 @@ const SinglePartPage = () => {
   } = useLocation().state;
 
   // let iconNu = useRef(0)
-  let iconNu = 0
+  let iconNu = 0;
+
+  useEffect(() => {
+    console.log("hello from Single Part Page", docs);
+  }, [])
+  
 
   return (
     <PartPageContainer>
