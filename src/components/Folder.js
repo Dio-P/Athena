@@ -21,6 +21,11 @@ const Folder = ({ folderName, parts, appName }) => {
     folderIsExpanded : false
   });
 
+    // useEffect(() => {
+    //     console.log("parts£@@@", parts); 
+    // }, [parts])
+    
+
   const NAME = useCapitaliseFirstLetter(folderName);
   const triangleUp = () => {
     return (

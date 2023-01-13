@@ -81,6 +81,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
   }, [thisApp]);
 
   const putPartIdToUpdatedFolder = (folderId) => {
+    // console.log("folderId£££", folderId);
     const folderParts = appToDisplay.parts.filter(
       (part) => part.folderToBeDisplayedIn === folderId
     );
@@ -98,16 +99,21 @@ const AppPage = ({ appIdToDisplay, params }) => {
       ...folder,
       parts: putPartIdToUpdatedFolder(`${folder.id}`),
     }));
+    // console.log("updatedFolders$$$", updatedFolders);
     return updatedFolders;
   };
 
   const findPartsDocs = (id) => {
-    const appDocs = appToDisplay.properties?.docs?.filter((doc) => {
+    console.log("id@££", id);
+    console.log("appToDisplayForDocs££", appToDisplay);
+    const appDocs = appToDisplay.properties.docs.filter((doc) => {
+      console.log("doc.concerningParts£££", doc.concerningParts);
       return doc.concerningParts.includes(id);
     });
     // const appDocsIds = appDocs.map((doc)=>(
     //   doc.id
     // ))
+    // console.log("appDocs$$$", appDocs);
     return appDocs;
   };
 

@@ -22,7 +22,7 @@ const SinglePartPage = () => {
   let iconNu = 0;
 
   useEffect(() => {
-    console.log("hello from Single Part Page", docs);
+    console.log("hello from Single Part Page");
   }, [])
   
 
