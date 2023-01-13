@@ -42,3 +42,6 @@ const SinglePartPage = () => {
 }
 
 export default SinglePartPage;
+
+// the plan now is to get what you need from here in the first place (make the call)
+// and up until then just move about id id's

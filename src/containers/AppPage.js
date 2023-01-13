@@ -170,6 +170,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
 export default AppPage;
 
 // working:
+// cannot go the the part page by link, because the part and app name are non existing
 // logic updating docs in parts with id array
 // would it be any usefull to store in the params the existing state for creating the new doc?
 // maybe but is this getting too long?
