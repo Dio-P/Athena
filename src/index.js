@@ -42,6 +42,9 @@ const router = createBrowserRouter(
       />
       <Route path="/:appName/:partName"
       element={<SinglePartPage/>}
+      loader={({params}) => {
+        console.log("params['*']", params);
+      }}
       /> 
     </>
   )

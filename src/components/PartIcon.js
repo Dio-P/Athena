@@ -63,7 +63,7 @@ const PartIcon = ({ part, appName }) => {
     return (
         <PartsContainer>
             <Link 
-                to={`/:${appName}/:${part.name}`}
+                to={`/${appName}/${part.name}`}
                 state={{
                     ...part
                     }}> 
