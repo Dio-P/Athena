@@ -22,7 +22,6 @@ const SinglePartPage = () => {
     partId
   } = useParams();
 
-
   // let iconNu = useRef(0)
   let iconNu = 0;
 
@@ -30,7 +29,7 @@ const SinglePartPage = () => {
     console.log("hello from Single Part Page");
     console.log("appName,partName", appName,
     partId);
-  }, [])
+  }, [appName, partId])
   
 
   return (
