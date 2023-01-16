@@ -40,7 +40,7 @@ const router = createBrowserRouter(
         }}
         action={({ params }) => {}}
       />
-      <Route path="/:appName/:partName"
+      <Route path="/:appName/:partId"
       element={<SinglePartPage/>}
       loader={({params}) => {
         console.log("params['*']", params);

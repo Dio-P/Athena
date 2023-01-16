@@ -17,10 +17,9 @@ const SinglePartPage = () => {
     folderToBeDisplayedIn,
     docs
   } = useLocation().state;
-  // let [searchParams, setSearchParams] = useSearchParams();
   let {
     appName,
-    partName
+    partId
   } = useParams();
 
 
@@ -30,10 +29,7 @@ const SinglePartPage = () => {
   useEffect(() => {
     console.log("hello from Single Part Page");
     console.log("appName,partName", appName,
-    partName);
-    // const existingParams = Object.fromEntries([...searchParams]);
-    // console.log("searchParams Single Part Page", existingParams);
-    // console.log("searchParams Single Part Page2", searchParams);
+    partId);
   }, [])
   
 
