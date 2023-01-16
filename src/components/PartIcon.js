@@ -49,7 +49,7 @@ a {
 
 }
 `;
-const PartIcon = ({ part, appName }) => {
+const PartIcon = ({ part, appId }) => {
 
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
@@ -63,7 +63,7 @@ const PartIcon = ({ part, appName }) => {
     return (
         <PartsContainer>
             <Link 
-                to={`/${appName}/${part.id}`}
+                to={`/${appId}/${part.id}`}
                 state={{
                     ...part
                     }}> 

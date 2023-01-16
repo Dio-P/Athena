@@ -6,6 +6,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
     query($id: ID!) {
         getAppById(id: $id) {
             name
+            id
             folders {
                 title
                 id

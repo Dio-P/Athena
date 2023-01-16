@@ -159,7 +159,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
             <Folder
               folderName={folder.title}
               parts={folder.parts}
-              appName={thisApp.name}
+              appId={thisApp.id}
             />
           ))}
       </>
