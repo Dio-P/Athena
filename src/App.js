@@ -1,16 +1,4 @@
-import {
-  Route,
-  Routes,
-  Outlet,
-  useSearchParams,
-  useParams,
-  useNavigate,
-  useLoaderData,
-  useRouteLoaderData,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
 import AppPage from "./containers/AppPage";
@@ -25,14 +13,11 @@ function App() {
 
   const DEFAULT_DEPARTMENT = "DPub";
 
-  let [searchParams, setSearchParams] = useSearchParams();
   const [teamParam, appIdParam] = useValuesFromUrlParams()
-
-
   
-  // useEffect(() => {
-  //   gettingParamsValues()
-  // }, []);
+  let [searchParams, setSearchParams] = useSearchParams();
+
+
   const params = Object.fromEntries([...searchParams]);
   // const params = useParams()
 
