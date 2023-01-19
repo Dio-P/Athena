@@ -80,6 +80,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
     console.log("thisApp", thisApp);
   }, [thisApp]);
 
+  //////there is part of this logic dublicated on the back end////////\/!!!!!!!!!!!!!!!!!!!!!!!!!
   const putPartIdToUpdatedFolder = (folderId) => {
     // console.log("folderId£££", folderId);
     const folderParts = appToDisplay.parts.filter(
@@ -116,7 +117,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
     // console.log("appDocs$$$", appDocs);
     return appDocs;
   };
-
+///\//////there is part of this logic dublicated on the back end/////////\!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   // const updateParts = () => {
   //   const updatedParts = app.parts.map((part)=>(
   //     {...part, docs: findPartsDocs(`${part.id}`)}

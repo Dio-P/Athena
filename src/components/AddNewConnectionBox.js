@@ -166,11 +166,6 @@ const AddNewConnectionBox = ({ app, params }) => {
 
     }, [app?.parts]);
 
-    // useEffect(() => {
-    //     console.log("display.newPartInput is@@", display.newPartInput);
-         
-    // }, [display.newPartInput])
-
 
     const togglePartClicked = (part) => {
         setAllAppParts({
@@ -303,7 +298,6 @@ const AddNewConnectionBox = ({ app, params }) => {
                 isLinkUpToDate: true, //tickbox checked
             }
         }
-        console.log("...Object.values(newPartsAdded)", newPartsAdded);
         setUpdatedApp({
             ...app, docs: [
                 ...app.docs, newDoc
