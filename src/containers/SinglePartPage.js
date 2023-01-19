@@ -25,6 +25,8 @@ const SinglePartPage = () => {
   // let iconNu = useRef(0)
   let iconNu = 0;
 
+  // query hook here!!!
+
   useEffect(() => {
     console.log("hello from Single Part Page");
     console.log("appName,partName", appName,
