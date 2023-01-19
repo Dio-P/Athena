@@ -1,55 +1,41 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import DocIcon from "../components/DocIcon";
-import useIconCounter from '../hooks/useIconCounter';
+import usePartByIdSearch from "../hooks/queries/usePartByIdSearch";
 
 const PartPageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
+  display: flex;
+  flex-direction: column;
+`;
 
 const SinglePartPage = () => {
-  const {
-    name, 
-    type, 
-    ghRepo, 
-    folderToBeDisplayedIn,
-    docs
-  } = useLocation().state;
-  let {
-    appName,
-    partId
-  } = useParams();
+  let { appId, partId } = useParams();
 
-  // let iconNu = useRef(0)
   let iconNu = 0;
 
-  // query hook here!!!
+  const [partToDisplay, loading, error] = usePartByIdSearch(partId);
 
-  useEffect(() => {
-    console.log("hello from Single Part Page");
-    console.log("appName,partName", appName,
-    partId);
-  }, [appName, partId])
-  
+  const render = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+    if (error) {
+      return (
+        <>
+          <p>I am sad to say that the following error was just reported :</p>
+          <p>{JSON.stringify(error)}</p>
+        </>
+      );
+    }
+    if (partToDisplay.docs) {
+      return partToDisplay.docs.map((doc) => {
+        iconNu++;
+        return <DocIcon doc={doc} iconNu={iconNu} />;
+      });
+    }
+  };
 
-  return (
-    <PartPageContainer>
-      {docs.map((doc)=> {
-        // iconNu.current = iconNu.current +1
-        iconNu ++
-        return <DocIcon 
-          doc={doc}
-          // iconNu={iconNu.current}
-          iconNu={iconNu}
-        />
-      })}
-    </PartPageContainer>
-  )
-}
+  return <PartPageContainer>{render()}</PartPageContainer>;
+};
 
 export default SinglePartPage;
-
-// the plan now is to get what you need from here in the first place (make the call)
-// and up until then just move about id id's

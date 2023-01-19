@@ -3,15 +3,22 @@ import { useLazyQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 export const SEARCH_PART_BY_ID_QUERY = gql`
-  query ($id: ID!) {
-    getPartById(id: $id) {
+  query ($partId: String!) {
+    getPartById(partId: $partId) {
       name
       id
       ghRepo
       type
       folderToBeDisplayedIn
       appParent
-      docs
+      docs{
+        title,
+        url,
+        id,
+        source,
+        lastModified,
+        concerningParts,
+      }
     }
   }
 `;
@@ -24,10 +31,10 @@ const usePartByIdSearch = (id) => {
   );
 
   useEffect(() => {
-    console.log("id", id);/////
+    console.log("id!!!!", id);/////
 
     searchPart({
-      variables: { id: id },
+      variables: { partId: id },
     });
   }, [id]);
 
@@ -37,7 +44,7 @@ const usePartByIdSearch = (id) => {
       setPartToDisplay({ ...part });
     }
   }, [data]);
-
+  console.log("partToDisplay@@", partToDisplay);
   return [partToDisplay, loading, error];
 };
 

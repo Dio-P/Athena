@@ -64,9 +64,8 @@ const PartIcon = ({ part, appId }) => {
         <PartsContainer>
             <Link 
                 to={`/${appId}/${part.id}`}
-                state={{
-                    ...part
-                    }}> 
+                // state={part.id}
+                > 
                     {/* here get only what you need from mongo */}
                 <IconButton>
                     <h4>
