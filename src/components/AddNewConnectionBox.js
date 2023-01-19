@@ -107,15 +107,12 @@ const AddNewConnectionBox = ({ app, params }) => {
     });
     const [newPartsFolder, setNewPartsFolder] = useState("");
 
-    const [newPartsAdded, setNewPartsAdded] = useState("");   //rename this or the one below
+    const [newPartsAdded, setNewPartsAdded] = useState("");
     const [folderName, setFolderName] = useState("");
     const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
     
     let [searchParams, setSearchParams] = useSearchParams();
-    // let [searchParams, setSearchParams] = useSearchParams(({
-    //     addNewPart: false,
-    //     addNewFolder: false,
-    // }));
+   
     const [urlValues, setUrlValues] = useState("");
 
     const [display, setDisplay] = useState({

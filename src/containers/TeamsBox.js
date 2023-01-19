@@ -72,7 +72,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
         <AppsBox
           department={chosenTeam}
           teamApps={chosenDepApps}
-          team={chosenTeam}
+          teamName={chosenTeam}
           params={params || newParams}
         />
       }

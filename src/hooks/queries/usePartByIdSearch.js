@@ -31,8 +31,6 @@ const usePartByIdSearch = (id) => {
   );
 
   useEffect(() => {
-    console.log("id!!!!", id);/////
-
     searchPart({
       variables: { partId: id },
     });
@@ -44,7 +42,6 @@ const usePartByIdSearch = (id) => {
       setPartToDisplay({ ...part });
     }
   }, [data]);
-  console.log("partToDisplay@@", partToDisplay);
   return [partToDisplay, loading, error];
 };
 

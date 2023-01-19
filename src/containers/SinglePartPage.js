@@ -21,10 +21,10 @@ const SinglePartPage = () => {
     }
     if (error) {
       return (
-        <>
-          <p>I am sad to say that the following error was just reported :</p>
-          <p>{JSON.stringify(error)}</p>
-        </>
+        <p>
+          I am sad to say that the following error was just reported :
+          {JSON.stringify(error)}
+        </p>
       );
     }
     if (partToDisplay.docs) {

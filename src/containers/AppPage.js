@@ -1,14 +1,10 @@
-import React, { useEffect, useState, params, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
-import PartIcon from "../components/PartIcon";
 import ButtonIcon from "../components/ButtonIcon";
-import FolderContainer from "./FolderContainer";
 import Folder from "../components/Folder";
-import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
-import useValuesFromUrlParams from "../hooks/useValuesFromUrlParams";
+import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -29,16 +25,12 @@ const AddDocButton = styled.button`
   outline: inherit;
 `;
 
-const PartsContainer = styled.div`
-  display: flex;
-`;
-
 const AppPage = ({ appIdToDisplay, params }) => {
-  const [thisApp, setThisApp] = useState(undefined);
   const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] =
     useState(false);
 
   let [searchParams, setSearchParams] = useSearchParams();
+  const {addingNewConnection} = Object.fromEntries([...searchParams]);
 
   const queryId = useMemo(() => {
     console.log("appIdToDisplay in appPage@£", appIdToDisplay);
@@ -50,80 +42,11 @@ const AppPage = ({ appIdToDisplay, params }) => {
     return appIdToDisplay;
   }, [params, appIdToDisplay]);
 
-  const [appToDisplay, loading, error] = useAppByIdSearch(queryId);
+  const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(queryId);
 
-  // appIdToDisplay || params?.appId
-
-  // useEffect(() => {
-  //   console.log("app on mount", app);
-  //   if(!appIdToDisplay && params?.appId){
-  //     setApp
-  //   }
-  // }, []);
   useEffect(() => {
-    console.log("app in app page", appToDisplay);
-    if (appToDisplay) {
-      console.log("about to set the app");
-      setThisApp({
-        ...appToDisplay,
-        folders: updateFolders(appToDisplay),
-      });
-    }
+    console.log("appToDisplay", appToDisplay);
   }, [appToDisplay]);
-
-  // useEffect(() => {
-  //   console.log("appToDisplay#@#@##@", appToDisplay);
-  //   setApp(appToDisplay);
-  // }, [appToDisplay]);
-
-  useEffect(() => {
-    console.log("thisApp", thisApp);
-  }, [thisApp]);
-
-  //////there is part of this logic dublicated on the back end////////\/!!!!!!!!!!!!!!!!!!!!!!!!!
-  const putPartIdToUpdatedFolder = (folderId) => {
-    // console.log("folderId£££", folderId);
-    const folderParts = appToDisplay.parts.filter(
-      (part) => part.folderToBeDisplayedIn === folderId
-    );
-    const updatedFolderParts = folderParts.map((part) => ({
-      ...part,
-      docs: findPartsDocs(`${part.id}`),
-    }));
-    // const partIdsArray = folderParts.map((part)=>(part.id))
-    // return partIdsArray;
-    return updatedFolderParts;
-  };
-
-  const updateFolders = (appToDisplay) => {
-    const updatedFolders = appToDisplay.folders.map((folder) => ({
-      ...folder,
-      parts: putPartIdToUpdatedFolder(`${folder.id}`),
-    }));
-    // console.log("updatedFolders$$$", updatedFolders);
-    return updatedFolders;
-  };
-
-  const findPartsDocs = (id) => {
-    console.log("id@££", id);
-    console.log("appToDisplayForDocs££", appToDisplay);
-    const appDocs = appToDisplay.properties.docs.filter((doc) => {
-      console.log("doc.concerningParts£££", doc.concerningParts);
-      return doc.concerningParts.includes(id);
-    });
-    // const appDocsIds = appDocs.map((doc)=>(
-    //   doc.id
-    // ))
-    // console.log("appDocs$$$", appDocs);
-    return appDocs;
-  };
-///\//////there is part of this logic dublicated on the back end/////////\!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // const updateParts = () => {
-  //   const updatedParts = app.parts.map((part)=>(
-  //     {...part, docs: findPartsDocs(`${part.id}`)}
-  //   ))
-  //   return updatedParts;
-  // }
 
   const clickingToAddNewConnection = () => {
     setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen);
@@ -138,32 +61,30 @@ const AppPage = ({ appIdToDisplay, params }) => {
   return (
     <AppPageContainer>
       <>
-        <>
-          <AppPageTitle>
-            {thisApp?.name}
-            <AddDocButton onClick={clickingToAddNewConnection}>
-              <ButtonIcon
-                addingButton={true}
-                buttonTitle={
-                  (params?.addingNewConnection ? "- " : "+ ") + "Add URL"
-                }
-              />
-            </AddDocButton>
-          </AppPageTitle>
-        </>
-        {params?.addingNewConnection && thisApp && (
-          <AddNewConnectionBox app={thisApp} params={params} />
-        )}
-
-        {thisApp &&
-          thisApp?.folders?.map((folder) => (
-            <Folder
-              folderName={folder.title}
-              parts={folder.parts}
-              appId={thisApp.id}
+        <AppPageTitle>
+          {appToDisplay?.name}
+          <AddDocButton onClick={clickingToAddNewConnection}>
+            <ButtonIcon
+              addingButton={true}
+              buttonTitle={
+                (addingNewConnection ? "- " : "+ ") + "Add URL"
+              }
             />
-          ))}
+          </AddDocButton>
+        </AppPageTitle>
       </>
+      {addingNewConnection && appToDisplay && (
+        <AddNewConnectionBox app={appToDisplay} params={params} />
+      )}
+
+      {appToDisplay &&
+        appToDisplay?.folders?.map((folder) => (
+          <Folder
+            folderName={folder.title}
+            parts={folder.parts}
+            appId={appToDisplay.id}
+          />
+        ))}
     </AppPageContainer>
   );
 };

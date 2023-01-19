@@ -27,48 +27,31 @@ const StyledButton = styled.button`
 
 const AppsBox = ({
   teamApps,
-  team,
+  teamName,
   params,
 }) => {
-  const [appIdToDisplay, setAppIdToDisplay] = useState("");
   let [searchParams, setSearchParams] = useSearchParams();
+  const {team, appId} = Object.fromEntries([...searchParams]);
 
-  useEffect(() => {
-    if(!appIdToDisplay && params.appId){
-      setAppIdToDisplay(params.appId);
-    }else {
-      setAppIdToDisplay("");
-    }
-  }, []);
-
-  const clickBackToAllApps = () => {
-    setAppIdToDisplay("");
-    const {team, appId} = Object.fromEntries([...searchParams]);
-    console.log("team@", {team});
-    setSearchParams({team}) 
-  };
   const setAppToDisplay = (singleApp) => {
-    setAppIdToDisplay(singleApp.id);
-    if(!params.appId){
+    if(!appId){
       const existingParams = Object.fromEntries([...searchParams]);
       setSearchParams({...existingParams, appId: singleApp.id}) 
-      // need I move this logic to a previous level to preserve the params?
     }
   }
   return (
     <DepartmAppsBoxContainer>
       <div>
-        <StyledButton onClick={clickBackToAllApps}>
+        <StyledButton onClick={() => setSearchParams({team})}>
           <DepAppBoxPageTitle>
-            {useCapitaliseFirstLetter(team)}
+            {useCapitaliseFirstLetter(teamName)}
           </DepAppBoxPageTitle>
         </StyledButton>
       </div>
       <>
         {teamApps &&
-          !appIdToDisplay &&
+          !appId &&
           teamApps.map((singleApp) => {
-            console.log("singleApp", singleApp);
             return (
               <div onClick={() => setAppToDisplay(singleApp)}>
                 <ButtonIcon app={singleApp.name} />
@@ -77,8 +60,8 @@ const AppsBox = ({
           })}
       </>
 
-      {appIdToDisplay && <AppPage 
-        appIdToDisplay={appIdToDisplay}
+      {appId && <AppPage 
+        appIdToDisplay={appId}
         params={params}
       />}
     </DepartmAppsBoxContainer>
