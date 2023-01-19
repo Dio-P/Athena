@@ -58,8 +58,20 @@ const AppPage = ({ appIdToDisplay, params }) => {
     }
   };
 
-  return (
-    <AppPageContainer>
+  const pickFromRenderingOptions = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+    if (error) {
+      return (
+        <p>
+          I am sad to say that the following error was just reported :
+          {JSON.stringify(error)}
+        </p>
+      );
+    }
+    if(appToDisplay){
+      return <>
       <>
         <AppPageTitle>
           {appToDisplay?.name}
@@ -85,6 +97,13 @@ const AppPage = ({ appIdToDisplay, params }) => {
             appId={appToDisplay.id}
           />
         ))}
+    </>
+    } 
+  }
+
+  return (
+    <AppPageContainer>
+      {pickFromRenderingOptions()}
     </AppPageContainer>
   );
 };

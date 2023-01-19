@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import ButtonIcon from "../components/ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
@@ -62,15 +61,10 @@ const AppsBox = ({
 
       {appId && <AppPage 
         appIdToDisplay={appId}
-        params={params}
+        params={params} //does this still need to be passed?
       />}
     </DepartmAppsBoxContainer>
   );
 };
 
 export default AppsBox;
-
-// take depApps and use them to pupulate the buttons
-// on click of the button bring the app
-// what will happen if the user goes back ? will the app be deleted from state?
-// is it better to have many small calls or fewer biger ones?
