@@ -145,8 +145,8 @@ const AddNewConnectionBox = ({ app, params }) => {
     const appName = useCapitaliseFirstLetter(app.name);
 
     useEffect(() => {
-        console.log("urlValues", urlValues);
-    }, [urlValues])
+        console.log("app$$£$£$@", app);
+    }, [app])
     
 
     useEffect(() => {

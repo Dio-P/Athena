@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
@@ -26,31 +26,26 @@ const AddDocButton = styled.button`
 `;
 
 const AppPage = ({ appIdToDisplay, params }) => {
-  const [addNewConnectionBoxIsOpen, setAddNewConnectionBoxIsOpen] =
-    useState(false);
-
   let [searchParams, setSearchParams] = useSearchParams();
-  const {addingNewConnection} = Object.fromEntries([...searchParams]);
+  const {addingNewConnection, team, appId} = Object.fromEntries([...searchParams]);
 
-  const queryId = useMemo(() => {
-    console.log("appIdToDisplay in appPage@£", appIdToDisplay);
-    if (!appIdToDisplay && params?.appId) {
-      console.log("params?.appId", params?.appId);
-      return params.appId;
-    }
-    console.log("appIdToDisplay", appIdToDisplay);
-    return appIdToDisplay;
-  }, [params, appIdToDisplay]);
+  // const queryId = useMemo(() => {
+  //   console.log("appId in appPage@£", appId);
+  //   if (!appIdToDisplay && appId) {
+  //     console.log("appId", appId);
+  //     return appId;
+  //   }
+  //   console.log("appIdToDisplay", appIdToDisplay);
+  //   return appIdToDisplay;
+  // }, [appId, appIdToDisplay]);
 
-  const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(queryId);
+  const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
 
   useEffect(() => {
-    console.log("appToDisplay", appToDisplay);
+    console.log("appToDisplay@@", appToDisplay);
   }, [appToDisplay]);
 
   const clickingToAddNewConnection = () => {
-    setAddNewConnectionBoxIsOpen(!addNewConnectionBoxIsOpen);
-    const { team, appId, addingNewConnection } = params;
     if (!addingNewConnection) {
       setSearchParams({ ...params, addingNewConnection: true });
     } else {
