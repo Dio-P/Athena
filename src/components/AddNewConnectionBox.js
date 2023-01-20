@@ -120,7 +120,7 @@ const AddNewConnectionBox = ({ app, params }) => {
     folderSet,
     doc,
   } = Object.fromEntries([...searchParams]);
-
+//   const testingParams = Object.fromEntries([...searchParams]);
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
   //   const [urlValues, setUrlValues] = useState("");
@@ -256,11 +256,11 @@ const AddNewConnectionBox = ({ app, params }) => {
       ...display,
       //   newFolderButton: false,
     });
-    setSearchParams({ ...params, folderSet: true });
+    setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true });
     // keepExistingParams();
   };
 
-  const keepExistingParams = () => {
+  const keepExistingParams = () => {//!!!!!!!!!!!!!
     setSearchParams({ ...params });
   };
 
@@ -272,7 +272,7 @@ const AddNewConnectionBox = ({ app, params }) => {
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    setSearchParams({ ...searchParams, folderSet: true });
+    setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true });
     console.log();
     setDisplay({
       ...display,
@@ -349,7 +349,7 @@ const AddNewConnectionBox = ({ app, params }) => {
 
   const clickingToAddNewPart = () => {
     if (!addingNewPart) {
-      setSearchParams({ ...params, addingNewPart: true });
+      setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
     } else {
       setSearchParams({ team, appId, addingNewConnection });
     }
@@ -357,7 +357,7 @@ const AddNewConnectionBox = ({ app, params }) => {
 
   const clickingToAddNewFolder = () => {
     if (!addingNewFolder) {
-      setSearchParams({ ...params, addingNewFolder: true });
+      setSearchParams({ team, appId, addingNewConnection, addingNewPart, addingNewFolder: true });
     } else {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart });
     }
