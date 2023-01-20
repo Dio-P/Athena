@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
-import FolderIcon from "./ButtonIcon";
+import Icon from "./ButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 
@@ -111,18 +111,25 @@ const AddNewConnectionBox = ({ app, params }) => {
   const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
 
   let [searchParams, setSearchParams] = useSearchParams();
-  const { team, appId, addingNewConnection, addingNewPart, addingNewFolder } =
-    Object.fromEntries([...searchParams]);
+  const {
+    team,
+    appId,
+    addingNewConnection,
+    addingNewPart,
+    addingNewFolder,
+    folderSet,
+    doc,
+  } = Object.fromEntries([...searchParams]);
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  const [urlValues, setUrlValues] = useState("");
+  //   const [urlValues, setUrlValues] = useState("");
 
   const [display, setDisplay] = useState({
-    newPartInput: false, ////
+    // newPartInput: false, ////
     deleteWarningNewPart: false,
-    newFolderInput: false, ////
-    newFolderButton: true,
+    // newFolderInput: false, ////
+    // newFolderButton: true,////
   });
 
   // const {
@@ -215,11 +222,17 @@ const AddNewConnectionBox = ({ app, params }) => {
     });
     setFolderName("");
     setNewPartsFolder("");
-
+    setSearchParams({
+      team,
+      appId,
+      addingNewConnection,
+      addingNewPart,
+      addingNewFolder,
+    });
     setDisplay({
       ...display,
-      newFolderButton: true,
-      newFolderInput: false,
+      //   newFolderButton: true,
+      //   newFolderInput: false,
     });
     keepExistingParams();
   };
@@ -237,12 +250,14 @@ const AddNewConnectionBox = ({ app, params }) => {
       ...newPart,
       folderToBeDisplayedIn: newFolderNum,
     });
+    
+    console.log("Object.fromEntries([...searchParams])£@££@£@", Object.fromEntries([...searchParams]));
     setDisplay({
       ...display,
-      newFolderButton: false,
+      //   newFolderButton: false,
     });
-
-    keepExistingParams();
+    setSearchParams({ ...params, folderSet: true });
+    // keepExistingParams();
   };
 
   const keepExistingParams = () => {
@@ -257,17 +272,26 @@ const AddNewConnectionBox = ({ app, params }) => {
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
+    setSearchParams({ ...searchParams, folderSet: true });
+    console.log();
     setDisplay({
       ...display,
-      newFolderButton: false,
+      //   newFolderButton: false,
     });
   };
 
   const resetFolderInfo = () => {
     setNewPartsFolder("");
+    setSearchParams({
+      team,
+      appId,
+      addingNewConnection,
+      addingNewPart,
+      addingNewFolder,
+    });
     setDisplay({
       ...display,
-      newFolderButton: true,
+      //   newFolderButton: true,
     });
     keepExistingParams();
   };
@@ -360,12 +384,12 @@ const AddNewConnectionBox = ({ app, params }) => {
               <label htmlFor="">Existing {appName} Parts</label>
               {Object.values(allAppParts).map((part) => (
                 <Button onClick={() => togglePartClicked(part)}>
-                  <FolderIcon
+                  <Icon
                     part={part.name}
                     clicked={allAppParts[part.name].clicked}
                   >
                     {part}
-                  </FolderIcon>
+                  </Icon>
                 </Button>
               ))}
               {newPartsAdded &&
@@ -379,16 +403,16 @@ const AddNewConnectionBox = ({ app, params }) => {
                       setDisplay({ ...display, deleteWarningNewPart: false })
                     }
                   >
-                    <FolderIcon part={part.name} clicked={true}>
+                    <Icon part={part.name} clicked={true}>
                       {part}
-                    </FolderIcon>
+                    </Icon>
                     {display.deleteWarningNewPart && (
                       <p>Newly added Part: Click to delete</p>
                     )}
                   </NewlyAddedPartButton>
                 ))}
               <Button onClick={() => clickingToAddNewPart()}>
-                <FolderIcon
+                <Icon
                   addingButton={true}
                   buttonTitle={
                     addingNewPart ? `- close` : `+ Add ${appName} Part`
@@ -451,14 +475,14 @@ const AddNewConnectionBox = ({ app, params }) => {
                       <>
                         {appToDisplay.folders.map((folder) => (
                           <Button onClick={() => folderInfoToState(folder)}>
-                            <FolderIcon
+                            <Icon
                               folder={folder.title} //see if you can take away this obj val too
                             />
                           </Button>
                         ))}
                         {newFoldersToBeAddedToAll.map((folder) => (
                           <Button onClick={() => folderInfoToState(folder)}>
-                            <FolderIcon
+                            <Icon
                               folder={folder.title} //see if you can take away this obj val too
                             />
                           </Button>
@@ -469,7 +493,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                         <label> New Folder Name: {folderName} </label>
                         <InputContainer>
                           <Button onClick={() => addNewFolderAndClear()}>
-                            <FolderIcon addingButton={true} buttonTitle="add" />
+                            <Icon addingButton={true} buttonTitle="add" />
                           </Button>
                           <Input
                             key={"newFolderInput"}
@@ -483,18 +507,18 @@ const AddNewConnectionBox = ({ app, params }) => {
                     )
                   ) : (
                     <Button onClick={resetFolderInfo}>
-                      <FolderIcon
+                      <Icon
                         addingButton={true}
                         buttonTitle={`folder name: ${newPartsFolder.title} click to edit`}
                       />
                     </Button>
                   )}
-                  {display.newFolderButton && (
+                  {!folderSet && ( ///this logic is not tested yet!!!!!!!!!!!!!!
                     <Button onClick={() => clickingToAddNewFolder()}>
-                      <FolderIcon
+                      <Icon
                         addingButton={true}
                         buttonTitle={
-                          display.newFolderInput
+                          addingNewFolder
                             ? "- Back to Existing Folders"
                             : "+ Add New Folder"
                         }
@@ -503,7 +527,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                   )}
                 </InputContainer>
                 <Button onClick={() => addNewPartAndClear()}>
-                  <FolderIcon
+                  <Icon
                     addingButton={true}
                     buttonTitle={"add this part and start with another"}
                   />
