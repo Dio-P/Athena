@@ -229,11 +229,11 @@ const AddNewConnectionBox = ({ app, params }) => {
       addingNewPart,
       addingNewFolder,
     });
-    setDisplay({
-      ...display,
-      //   newFolderButton: true,
-      //   newFolderInput: false,
-    });
+    // setDisplay({
+    //   ...display,
+    //   //   newFolderButton: true,
+    //   //   newFolderInput: false,
+    // });
     keepExistingParams();
   };
 
@@ -251,11 +251,11 @@ const AddNewConnectionBox = ({ app, params }) => {
       folderToBeDisplayedIn: newFolderNum,
     });
     
-    console.log("Object.fromEntries([...searchParams])£@££@£@", Object.fromEntries([...searchParams]));
-    setDisplay({
-      ...display,
-      //   newFolderButton: false,
-    });
+    // console.log("Object.fromEntries([...searchParams])£@££@£@", Object.fromEntries([...searchParams]));
+    // setDisplay({
+    //   ...display,
+    //   //   newFolderButton: false,
+    // });
     setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true });
     // keepExistingParams();
   };
@@ -273,11 +273,11 @@ const AddNewConnectionBox = ({ app, params }) => {
       folderToBeDisplayedIn: folder.id,
     });
     setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true });
-    console.log();
-    setDisplay({
-      ...display,
-      //   newFolderButton: false,
-    });
+    // console.log();
+    // setDisplay({
+    //   ...display,
+    //   //   newFolderButton: false,
+    // });
   };
 
   const resetFolderInfo = () => {
@@ -289,10 +289,10 @@ const AddNewConnectionBox = ({ app, params }) => {
       addingNewPart,
       addingNewFolder,
     });
-    setDisplay({
-      ...display,
-      //   newFolderButton: true,
-    });
+    // setDisplay({
+    //   ...display,
+    //   //   newFolderButton: true,
+    // });
     keepExistingParams();
   };
 
