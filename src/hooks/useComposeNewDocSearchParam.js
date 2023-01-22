@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 
-const validateToStringOrNone = (newValues) =>
-newValues.lenght > 0 ? newValues.join("~") : "NONE";
+const validateToStringOrNone = (newValuesObj) =>
+newValuesObj? Object.values(newValuesObj.join("~")) : "NONE";
 
 const composeNewFolderSearchParam = (newFolderObj) => {
-  const newFolderValues = Object.values(newFolderObj);
-  console.log("validateToStringOrNone(newFolderValues)", validateToStringOrNone(newFolderValues));
+  const newFolderValues = validateToStringOrNone(newFolderObj);
+  console.log("newFolderValues", newFolderValues);
 
-  return validateToStringOrNone(newFolderValues);
+  return newFolderValues;
 };
 
 const composeNewPartSearchParam = (newPartObj) => {
-  const newPartValues = Object.values(newPartObj);
-  console.log("validateToStringOrNone(newPartValues)", validateToStringOrNone(newPartValues));
-  return validateToStringOrNone(newPartValues)
+  const newPartValues = validateToStringOrNone(newPartObj);
+  console.log("newPartValues", newPartValues);
+  return newPartValues;
 };
 
 const useComposeNewDocSearchParam = (newFolderObj, newPartObj) => {
