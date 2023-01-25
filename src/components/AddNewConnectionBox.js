@@ -135,12 +135,14 @@ const AddNewConnectionBox = ({ app, params }) => {
   useEffect(() => {
     console.log("appId$$£$£$@", appId);
   }, [appId]);
-  const ButtonUnit = ({ addNewPartAndClear, addingButton, buttonTitle }) => {
+  const ButtonUnit = ({ onClickFunction, addingButton, buttonTitle, folder, part }) => {
     return (
-    <Button onClick={addNewPartAndClear}>
+    <Button onClick={onClickFunction}>
       <Icon
         addingButton={addingButton}
         buttonTitle={buttonTitle}
+        folder={folder}
+        part={part}
       />
     </Button>
   )
@@ -375,14 +377,11 @@ const AddNewConnectionBox = ({ app, params }) => {
             <OptionsWraper>
               <label htmlFor="">Existing {appName} Parts</label>
               {Object.values(allAppParts).map((part) => (
-                <Button onClick={() => togglePartClicked(part)}>
-                  <Icon
-                    part={part.name}
-                    clicked={allAppParts[part.name].clicked}
-                  >
-                    {part}
-                  </Icon>
-                </Button>
+                <ButtonUnit
+                  onClickFunction={() => togglePartClicked(part)}
+                  part={part.name}
+                  clicked={allAppParts[part.name].clicked}
+                />
               ))}
               {newPartsAdded &&
                 Object.values(newPartsAdded).map((part) => (
@@ -403,14 +402,13 @@ const AddNewConnectionBox = ({ app, params }) => {
                     )}
                   </NewlyAddedPartButton>
                 ))}
-              <Button onClick={() => clickingToAddNewPart()}>
-                <Icon
-                  addingButton={true}
-                  buttonTitle={
-                    addingNewPart ? `- close` : `+ Add ${appName} Part`
-                  } /////
-                />
-              </Button>
+              <ButtonUnit
+                onClickFunction={clickingToAddNewPart}
+                addingButton={true}
+                buttonTitle={
+                  addingNewPart ? `- close` : `+ Add ${appName} Part`
+                } 
+              />
             </OptionsWraper>
             {addingNewPart && (
               <DisplayBox>
@@ -466,27 +464,27 @@ const AddNewConnectionBox = ({ app, params }) => {
                     !addingNewFolder ? (
                       <>
                         {appToDisplay.folders.map((folder) => (
-                          <Button onClick={() => folderInfoToState(folder)}>
-                            <Icon
-                              folder={folder.title} //see if you can take away this obj val too
-                            />
-                          </Button>
+                          <ButtonUnit
+                            onClickFunction={() => folderInfoToState(folder)}
+                            folder={folder.title}
+                          />
                         ))}
                         {newFoldersToBeAddedToAll.map((folder) => (
-                          <Button onClick={() => folderInfoToState(folder)}>
-                            <Icon
-                              folder={folder.title} //see if you can take away this obj val too
-                            />
-                          </Button>
+                          <ButtonUnit
+                            onClickFunction={() => folderInfoToState(folder)}
+                            folder={folder.title}
+                          />
                         ))}
                       </>
                     ) : (
                       <NewFolderInputContainer>
                         <label> New Folder Name: {folderName} </label>
                         <InputContainer>
-                          <Button onClick={() => addNewFolderAndClear()}>
-                            <Icon addingButton={true} buttonTitle="add" />
-                          </Button>
+                          <ButtonUnit
+                            onClickFunction={addNewFolderAndClear}
+                            addingButton={true}
+                            buttonTitle="add"
+                          />
                           <Input
                             key={"newFolderInput"}
                             type="text"
@@ -499,14 +497,14 @@ const AddNewConnectionBox = ({ app, params }) => {
                     )
                   ) : (
                     <ButtonUnit
-                      addNewPartAndClear={resetFolderInfo}
+                      onClickFunction={resetFolderInfo}
                       addingButton={true}
                       buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
                     />
                   )}
                   {!folderOfNewPart && (
                     <ButtonUnit
-                      addNewPartAndClear={clickingToAddNewFolder}
+                      onClickFunction={clickingToAddNewFolder}
                       addingButton={true}
                       buttonTitle={
                         addingNewFolder
@@ -517,7 +515,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                   )}
                 </InputContainer>
                 <ButtonUnit
-                  addNewPartAndClear={addNewPartAndClear}
+                  onClickFunction={addNewPartAndClear}
                   addingButton={true}
                   buttonTitle="add this part and start with another"
                 />

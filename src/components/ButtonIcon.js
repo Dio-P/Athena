@@ -70,7 +70,7 @@ outline: inherit;
 
 `;
 
-const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
+const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
   const [thisTeam, setThisTeam] = useState("");
   const [thisApp, setThisApp] = useState("");
   const [thisClicked, setThisClicked] = useState(false);
@@ -114,6 +114,7 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
       return folder
     }
     if(!thisApp && !thisTeam && !folder && part && !buttonTitle) {
+      console.log("part@@@", part);
       return part
     }
     if(!thisApp && !thisTeam && !folder && !part && buttonTitle) {
@@ -136,4 +137,4 @@ const ButtonIcon = ({ app, department, folder, part, clicked, addingButton, butt
   ) 
 }
 
-export default ButtonIcon
+export default GenericButtonIcon
