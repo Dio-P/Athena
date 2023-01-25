@@ -15,7 +15,7 @@ const SinglePartPage = () => {
 
   const [partToDisplay, loading, error] = usePartByIdSearch(partId);
 
-  const render = () => {
+  const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;
     }
@@ -35,7 +35,7 @@ const SinglePartPage = () => {
     }
   };
 
-  return <PartPageContainer>{render()}</PartPageContainer>;
+  return <PartPageContainer>{renderedView()}</PartPageContainer>;
 };
 
 export default SinglePartPage;

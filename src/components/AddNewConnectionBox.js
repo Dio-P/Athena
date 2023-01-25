@@ -124,7 +124,7 @@ const AddNewConnectionBox = ({ app, params }) => {
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  const [docSearchParams] = useComposeNewDocSearchParam(folderOfNewPart);
+  const [docSearchParams] = useComposeNewDocSearchParam(folderOfNewPart, newPart);
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -334,9 +334,21 @@ const AddNewConnectionBox = ({ app, params }) => {
     }
   };
 
-  return (
-    <DisplayBox>
-      <FormContainer>
+  const renderedView = () => {
+    if (loading) {
+      return <h3>Loading...</h3>;
+    }
+    if (error) {
+      return (
+        <p>
+          I am sad to say that the following error was just reported :
+          {JSON.stringify(error)}
+        </p>
+      );
+    }
+    if (appToDisplay) {
+      return (
+        <FormContainer>
         <div>
           <InputContainer>
             <label htmlFor="">URL</label>
@@ -441,7 +453,7 @@ const AddNewConnectionBox = ({ app, params }) => {
 
                 <InputContainer>
                   <p> Folder to display new part in</p>
-                  {!folderOfNewPart ? (
+                  {appToDisplay && !folderOfNewPart ? (
                     !addingNewFolder ? (
                       <>
                         {appToDisplay.folders.map((folder) => (
@@ -524,6 +536,13 @@ const AddNewConnectionBox = ({ app, params }) => {
                         } */}
         </div>
       </FormContainer>
+      )
+    }
+  };
+
+  return (
+    <DisplayBox>
+        {renderedView()}
     </DisplayBox>
   );
 };

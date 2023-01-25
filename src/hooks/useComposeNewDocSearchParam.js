@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
 const validateToStringOrNone = (newValuesObj) =>
-newValuesObj? Object.values(newValuesObj).join("~") : "NONE";
+newValuesObj? Object.values(newValuesObj).join("~") : null;
 
 const composeNewGenericSearchParam = (newValuesObj) => {
-  console.log("newValuesObj@@", newValuesObj);
   const newSearchValuesString = validateToStringOrNone(newValuesObj);
-  console.log("newSearchValuesString", newSearchValuesString);
 
   return newSearchValuesString;
 };
@@ -15,9 +13,25 @@ const useComposeNewDocSearchParam = (newFolderObj, newPartObj) => {
   const [docSearchParams, setDocSearchParams] = useState(undefined);
   const [newUserInput, setNewUserInput] = useState(undefined);
 
-  console.log('useComposeNewDocSearchParam@@', newFolderObj, newPartObj);
-  let newFolderParams = composeNewGenericSearchParam(newFolderObj);
-  let newPartParams = composeNewGenericSearchParam(newPartObj);
+  const [newFolder, setNewFolder] = useState(undefined);
+  const [newPart, setNewPart] = useState(undefined);
+
+
+  let newFolderParams = newFolderObj && composeNewGenericSearchParam(newFolderObj);
+  let newPartParams = newPartObj && composeNewGenericSearchParam(newPartObj);
+
+  useEffect(() => {
+    if(newFolderObj){
+      setNewFolder(newFolder)
+      console.log("newFolder££", newFolder);
+    }
+  }, [newFolderObj])
+  useEffect(() => {
+    if(newPartObj){
+      setNewPart(newPart) 
+      console.log("newPart££", newPart);
+    }
+  }, [newPartObj])
 
   useEffect(() => {
     console.log("newFolderParams@@", newFolderParams);
@@ -32,6 +46,7 @@ const useComposeNewDocSearchParam = (newFolderObj, newPartObj) => {
       setDocSearchParams(allNewFieldsjoinedString);
     }
   }, [newUserInput]);
+  console.log("docSearchParams££££", docSearchParams);
   return [docSearchParams];
 };
 
