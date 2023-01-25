@@ -230,6 +230,7 @@ const AddNewConnectionBox = ({ app, params }) => {
       title: folderName,
       id: newFolderIndexKey,
     };
+    console.log('newFolder@@@', newFolder);
     setFolderOfNewPart(newFolder);
     setNewPart({
       ...newPart,
@@ -244,6 +245,7 @@ const AddNewConnectionBox = ({ app, params }) => {
   };
 
   const folderInfoToState = (folder) => {
+    console.log('folder@@@', folder);
     setFolderName(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({

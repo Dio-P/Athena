@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
 const validateToStringOrNone = (newValuesObj) =>
-newValuesObj? Object.values(newValuesObj.join("~")) : "NONE";
+newValuesObj? Object.values(newValuesObj).join("~") : "NONE";
 
 const composeNewGenericSearchParam = (newValuesObj) => {
+  console.log("newValuesObj@@", newValuesObj);
   const newSearchValuesString = validateToStringOrNone(newValuesObj);
   console.log("newSearchValuesString", newSearchValuesString);
 
@@ -14,6 +15,7 @@ const useComposeNewDocSearchParam = (newFolderObj, newPartObj) => {
   const [docSearchParams, setDocSearchParams] = useState(undefined);
   const [newUserInput, setNewUserInput] = useState(undefined);
 
+  console.log('useComposeNewDocSearchParam@@', newFolderObj, newPartObj);
   let newFolderParams = composeNewGenericSearchParam(newFolderObj);
   let newPartParams = composeNewGenericSearchParam(newPartObj);
 
