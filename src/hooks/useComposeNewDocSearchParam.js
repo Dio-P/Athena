@@ -23,15 +23,19 @@ const useComposeNewDocSearchParam = (newFolderObj, newPartObj) => {
   useEffect(() => {
     if(newFolderObj){
       setNewFolder(newFolder)
-      console.log("newFolder££", newFolder);
     }
   }, [newFolderObj])
   useEffect(() => {
+    console.log("newFolder££", newFolder);
+  }, [newFolder])
+  useEffect(() => {
     if(newPartObj){
       setNewPart(newPart) 
-      console.log("newPart££", newPart);
     }
-  }, [newPartObj])
+  }, [newPartObj]);
+  useEffect(() => {
+    console.log("newPart££", newPart);
+  }, [newPart]);
 
   useEffect(() => {
     console.log("newFolderParams@@", newFolderParams);

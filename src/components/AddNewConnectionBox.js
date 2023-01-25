@@ -118,7 +118,6 @@ const AddNewConnectionBox = ({ app, params }) => {
     addingNewConnection,
     addingNewPart,
     addingNewFolder,
-    folderSet,
     doc,
   } = Object.fromEntries([...searchParams]);
 
@@ -237,7 +236,7 @@ const AddNewConnectionBox = ({ app, params }) => {
       folderToBeDisplayedIn: newFolderIndexKey,
     });
     
-    setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true});
+    setSearchParams({ team, appId, addingNewConnection, addingNewPart});
   };
 
   const keepExistingParams = () => {//!!!!!!!!!!!!!
@@ -252,7 +251,7 @@ const AddNewConnectionBox = ({ app, params }) => {
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderSet: true });
+    setSearchParams({ team, appId, addingNewConnection, addingNewPart});
   };
 
   const resetFolderInfo = () => {
@@ -496,7 +495,7 @@ const AddNewConnectionBox = ({ app, params }) => {
                       />
                     </Button>
                   )}
-                  {!folderSet && ( ///this logic is not tested yet!!!!!!!!!!!!!!
+                  {!folderOfNewPart && ( ///this logic is not tested yet!!!!!!!!!!!!!!
                     <Button onClick={() => clickingToAddNewFolder()}>
                       <Icon
                         addingButton={true}
