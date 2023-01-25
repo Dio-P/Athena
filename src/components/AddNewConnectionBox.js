@@ -146,6 +146,23 @@ const AddNewConnectionBox = ({ app, params }) => {
       />
     </Button>
   )
+  };
+
+  const InputUnit = ({ inputTitle, key, type, name, value, onChangeFunction }) => {
+    return (
+      <InputContainer>
+                  <label htmlFor="">
+                    {inputTitle}
+                  </label>
+                  <Input
+                    key={key}
+                    type={type}
+                    name={name}
+                    value={value}
+                    onChange={onChangeFunction}
+                  />
+                </InputContainer>
+    )
   }
 
   const existingAppsUniqueFolderKeys = useMemo(
