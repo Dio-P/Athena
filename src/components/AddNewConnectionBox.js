@@ -135,6 +135,16 @@ const AddNewConnectionBox = ({ app, params }) => {
   useEffect(() => {
     console.log("appId$$£$£$@", appId);
   }, [appId]);
+  const ButtonUnit = ({ addNewPartAndClear, addingButton, buttonTitle }) => {
+    return (
+    <Button onClick={addNewPartAndClear}>
+      <Icon
+        addingButton={addingButton}
+        buttonTitle={buttonTitle}
+      />
+    </Button>
+  )
+  }
 
   const existingAppsUniqueFolderKeys = useMemo(
     () =>
@@ -452,7 +462,7 @@ const AddNewConnectionBox = ({ app, params }) => {
 
                 <InputContainer>
                   <p> Folder to display new part in</p>
-                  {appToDisplay && !folderOfNewPart ? (
+                  {!folderOfNewPart ? (
                     !addingNewFolder ? (
                       <>
                         {appToDisplay.folders.map((folder) => (
@@ -488,32 +498,29 @@ const AddNewConnectionBox = ({ app, params }) => {
                       </NewFolderInputContainer>
                     )
                   ) : (
-                    <Button onClick={resetFolderInfo}>
-                      <Icon
-                        addingButton={true}
-                        buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
-                      />
-                    </Button>
+                    <ButtonUnit
+                      addNewPartAndClear={resetFolderInfo}
+                      addingButton={true}
+                      buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
+                    />
                   )}
-                  {!folderOfNewPart && ( ///this logic is not tested yet!!!!!!!!!!!!!!
-                    <Button onClick={() => clickingToAddNewFolder()}>
-                      <Icon
-                        addingButton={true}
-                        buttonTitle={
-                          addingNewFolder
-                            ? "- Back to Existing Folders"
-                            : "+ Add New Folder"
-                        }
-                      />
-                    </Button>
+                  {!folderOfNewPart && (
+                    <ButtonUnit
+                      addNewPartAndClear={clickingToAddNewFolder}
+                      addingButton={true}
+                      buttonTitle={
+                        addingNewFolder
+                          ? "- Back to Existing Folders"
+                          : "+ Add New Folder"
+                      }
+                    />
                   )}
                 </InputContainer>
-                <Button onClick={() => addNewPartAndClear()}>
-                  <Icon
-                    addingButton={true}
-                    buttonTitle={"add this part and start with another"}
-                  />
-                </Button>
+                <ButtonUnit
+                  addNewPartAndClear={addNewPartAndClear}
+                  addingButton={true}
+                  buttonTitle="add this part and start with another"
+                />
               </DisplayBox>
             )}
           </div>
