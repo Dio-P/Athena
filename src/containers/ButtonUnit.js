@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/ButtonIcon";
 
-const SimpleButtonWrapper = styled.button`
+const SimpleButtonContainer = styled.button`
   margin: auto;
   background: none;
   color: inherit;
@@ -12,7 +12,7 @@ const SimpleButtonWrapper = styled.button`
   outline: inherit;
 `;
 
-const NewlyAddedPartButtonWrapper = styled.button`
+const NewlyAddedPartButtonContainer = styled.button`
   margin: auto;
   background: none;
   color: red;
@@ -37,7 +37,7 @@ const ButtonUnit = ({
   onMouseLeaveFunction,
   conditionalDisplay
 }) => {
-  const ButtonWrapper = !onMouseEnterFunction? SimpleButtonWrapper : NewlyAddedPartButtonWrapper;
+  const ButtonWrapper = !onMouseEnterFunction? SimpleButtonContainer : NewlyAddedPartButtonContainer;
   return (
   <ButtonWrapper 
     onClick={onClickFunction}

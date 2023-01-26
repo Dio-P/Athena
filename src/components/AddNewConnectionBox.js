@@ -3,11 +3,11 @@ import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
-import Icon from "./ButtonIcon";
 import ButtonUnit from "../containers/ButtonUnit";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
+import InputUnit from "../containers/InputUnit";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -32,6 +32,7 @@ const TitleButtonWrapper = styled.div`
   margin-left: 12px;
 `;
 
+// this is double. here and in InputUnit
 const InputContainer = styled.div`
   text-align: center;
   margin-top: 4px;
@@ -43,58 +44,17 @@ const InputContainer = styled.div`
   margin: 1em;
 `;
 
-const Input = styled.input`
-  width: 95%;
-  border: solid black;
-  border-radius: 8px;
-  border-radius: 10px;
-  min-width: 200px;
-  min-height: 20px;
-  height: 24px;
-  text-align: center;
-  cursor: text;
-  margin: 0em;
-  padding: 0px;
-  border-width: 0px;
-`;
-
 const OptionsWraper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-// const Button = styled.button`
-//   margin: auto;
-//   background: none;
-//   color: inherit;
-//   border: none;
-//   padding: 0;
-//   font: inherit;
-//   cursor: pointer;
-//   outline: inherit;
-// `;
-
-// const NewlyAddedPartButton = styled.button`
-//   margin: auto;
-//   background: none;
-//   color: red;
-//   border: none;
-//   padding: 0;
-//   font: inherit;
-//   cursor: pointer;
-//   outline: inherit;
-
-//   &:hover {
-//     border: red solid;
-//   }
-// `;
 
 const NewFolderInputContainer = styled.div`
   height: 100%;
   background-color: #fffcfa;
 `;
 
-const AddNewConnectionBox = ({ app, params }) => {
+const AddNewConnectionBox = ({ params }) => {
   const [updatedApp, setUpdatedApp] = useState("");
   const [allAppParts, setAllAppParts] = useState([]);
 
@@ -136,35 +96,6 @@ const AddNewConnectionBox = ({ app, params }) => {
   useEffect(() => {
     console.log("appId$$£$£$@", appId);
   }, [appId]);
-  // const ButtonUnit = ({ onClickFunction, addingButton, buttonTitle, folder, part }) => {
-  //   return (
-  //   <Button onClick={onClickFunction}>
-  //     <Icon
-  //       addingButton={addingButton}
-  //       buttonTitle={buttonTitle}
-  //       folder={folder}
-  //       part={part}
-  //     />
-  //   </Button>
-  // )
-  // };
-
-  const InputUnit = ({ inputTitle, key, type, name, value, onChangeFunction }) => {
-    return (
-      <InputContainer>
-        <label htmlFor="">
-          {inputTitle}
-        </label>
-        <Input
-          key={key}
-          type={type}
-          name={name}
-          value={value}
-          onChange={onChangeFunction}
-        />
-      </InputContainer>
-    )
-  }
 
   const existingAppsUniqueFolderKeys = useMemo(
     () =>
