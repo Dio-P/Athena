@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import Icon from "./ButtonIcon";
+import ButtonUnit from "../containers/ButtonUnit";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
@@ -62,31 +63,31 @@ const OptionsWraper = styled.div`
   flex-direction: column;
 `;
 
-const Button = styled.button`
-  margin: auto;
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-`;
+// const Button = styled.button`
+//   margin: auto;
+//   background: none;
+//   color: inherit;
+//   border: none;
+//   padding: 0;
+//   font: inherit;
+//   cursor: pointer;
+//   outline: inherit;
+// `;
 
-const NewlyAddedPartButton = styled.button`
-  margin: auto;
-  background: none;
-  color: red;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+// const NewlyAddedPartButton = styled.button`
+//   margin: auto;
+//   background: none;
+//   color: red;
+//   border: none;
+//   padding: 0;
+//   font: inherit;
+//   cursor: pointer;
+//   outline: inherit;
 
-  &:hover {
-    border: red solid;
-  }
-`;
+//   &:hover {
+//     border: red solid;
+//   }
+// `;
 
 const NewFolderInputContainer = styled.div`
   height: 100%;
@@ -135,33 +136,33 @@ const AddNewConnectionBox = ({ app, params }) => {
   useEffect(() => {
     console.log("appId$$£$£$@", appId);
   }, [appId]);
-  const ButtonUnit = ({ onClickFunction, addingButton, buttonTitle, folder, part }) => {
-    return (
-    <Button onClick={onClickFunction}>
-      <Icon
-        addingButton={addingButton}
-        buttonTitle={buttonTitle}
-        folder={folder}
-        part={part}
-      />
-    </Button>
-  )
-  };
+  // const ButtonUnit = ({ onClickFunction, addingButton, buttonTitle, folder, part }) => {
+  //   return (
+  //   <Button onClick={onClickFunction}>
+  //     <Icon
+  //       addingButton={addingButton}
+  //       buttonTitle={buttonTitle}
+  //       folder={folder}
+  //       part={part}
+  //     />
+  //   </Button>
+  // )
+  // };
 
   const InputUnit = ({ inputTitle, key, type, name, value, onChangeFunction }) => {
     return (
       <InputContainer>
-                  <label htmlFor="">
-                    {inputTitle}
-                  </label>
-                  <Input
-                    key={key}
-                    type={type}
-                    name={name}
-                    value={value}
-                    onChange={onChangeFunction}
-                  />
-                </InputContainer>
+        <label htmlFor="">
+          {inputTitle}
+        </label>
+        <Input
+          key={key}
+          type={type}
+          name={name}
+          value={value}
+          onChange={onChangeFunction}
+        />
+      </InputContainer>
     )
   }
 
@@ -378,16 +379,14 @@ const AddNewConnectionBox = ({ app, params }) => {
       return (
         <FormContainer>
         <div>
-          <InputContainer>
-            <label htmlFor="">URL</label>
-            <Input
-              key={"urlInput"}
-              type="text"
-              name="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-          </InputContainer>
+          <InputUnit
+            inputTitle='URL'
+            key="urlInput"
+            type="text"
+            name="url"
+            value={url}
+            onChangeFunction={(e) => setUrl(e.target.value)}
+          />
           <div>
             <p>Choose an app part and display folder</p>
 
@@ -402,22 +401,20 @@ const AddNewConnectionBox = ({ app, params }) => {
               ))}
               {newPartsAdded &&
                 Object.values(newPartsAdded).map((part) => (
-                  <NewlyAddedPartButton
-                    onClick={() => deleteNewPart(part)}
-                    onMouseEnter={() =>
+                  <ButtonUnit
+                    onClickFunction={() => deleteNewPart(part)}
+                    onMouseEnterFunction={() =>
                       setDisplay({ ...display, deleteWarningNewPart: true })
                     }
-                    onMouseLeave={() =>
+                    onMouseLeaveFunction={() =>
                       setDisplay({ ...display, deleteWarningNewPart: false })
                     }
-                  >
-                    <Icon part={part.name} clicked={true}>
-                      {part}
-                    </Icon>
-                    {display.deleteWarningNewPart && (
+                    part={part.name}
+                    clicked={true}
+                    conditionalDisplay={display.deleteWarningNewPart && (
                       <p>Newly added Part: Click to delete</p>
                     )}
-                  </NewlyAddedPartButton>
+                  />
                 ))}
               <ButtonUnit
                 onClickFunction={clickingToAddNewPart}
@@ -432,49 +429,36 @@ const AddNewConnectionBox = ({ app, params }) => {
                 <TitleButtonWrapper>
                   <h3>New Part</h3>
                 </TitleButtonWrapper>
-
-                <InputContainer>
-                  <label htmlFor=""> New Part Name: {newPart.name}</label>
-                  <Input
-                    key={"newFolderInput"}
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.name}`}
+                    key="newFolderInput"
                     type="text"
                     name="newFolder"
                     value={newPart.name}
-                    onChange={(e) =>
+                    onChangeFunction={(e) =>
                       setNewPart({ ...newPart, name: e.target.value })
                     }
                   />
-                </InputContainer>
-
-                <InputContainer>
-                  <label htmlFor="">
-                    {" "}
-                    New Part's Main GitHub Repo: {newPart.ghRepo}
-                  </label>
-                  <Input
-                    key={"newPartGitHubRepo"}
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.ghRepo}`}
+                    key="newPartGitHubRepo"
                     type="text"
                     name="newPartGitHubRepo"
                     value={newPart.ghRepo}
-                    onChange={(e) =>
+                    onChangeFunction={(e) =>
                       setNewPart({ ...newPart, ghRepo: e.target.value })
                     }
                   />
-                </InputContainer>
-
-                <InputContainer>
-                  <label htmlFor=""> New Part Type: {newPart.type}</label>
-                  <Input
-                    key={"newPartType"}
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.type}`}
+                    key="newPartType"
                     type="text"
                     name="newPartType"
                     value={newPart.type}
-                    onChange={(e) =>
+                    onChangeFunction={(e) =>
                       setNewPart({ ...newPart, type: e.target.value })
                     }
                   />
-                </InputContainer>
-
                 <InputContainer>
                   <p> Folder to display new part in</p>
                   {!folderOfNewPart ? (
@@ -496,20 +480,19 @@ const AddNewConnectionBox = ({ app, params }) => {
                     ) : (
                       <NewFolderInputContainer>
                         <label> New Folder Name: {folderName} </label>
-                        <InputContainer>
                           <ButtonUnit
                             onClickFunction={addNewFolderAndClear}
                             addingButton={true}
                             buttonTitle="add"
                           />
-                          <Input
-                            key={"newFolderInput"}
-                            type="text"
-                            name="newFolder"
-                            value={folderName}
-                            onChange={(e) => setFolderName(e.target.value)}
-                          />
-                        </InputContainer>
+                        <InputUnit
+                          inputTitle={`New Part Name: ${newPart.type}`}
+                          key="newFolderInput"
+                          type="text"
+                          name="newFolder"
+                          value={folderName}
+                          onChangeFunction={(e) => setFolderName(e.target.value)}
+                        />
                       </NewFolderInputContainer>
                     )
                   ) : (
