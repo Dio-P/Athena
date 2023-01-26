@@ -462,8 +462,8 @@ const AddNewConnectionBox = ({ params }) => {
     </FormContainer>
     ) 
   }
-  const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
 
+  const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
   return (
     <DisplayBox>
         {VIEW}
