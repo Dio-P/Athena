@@ -8,7 +8,7 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
-import { renderCorrectView } from "../helpers/renderCorrectView";
+import useRenderCorrectView from "../hooks/useRenderCorrectView";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -462,10 +462,11 @@ const AddNewConnectionBox = ({ params }) => {
     </FormContainer>
     ) 
   }
+  const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
 
   return (
     <DisplayBox>
-        {renderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView())}
+        {VIEW}
     </DisplayBox>
   );
 };
