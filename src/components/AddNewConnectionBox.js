@@ -8,7 +8,7 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
-import AddNewFolderOptions from "../containers/AddNewFolderOptions";
+import AddNewFolderUnit from "./AddNewFolderUnit";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 
 const DisplayBox = styled.div`
@@ -34,17 +34,16 @@ const TitleButtonWrapper = styled.div`
   margin-left: 12px;
 `;
 
-// this is double. here and in InputUnit
-const InputContainer = styled.div`
-  text-align: center;
-  margin-top: 4px;
-  border: solid black;
-  border-radius: 10px;
-  padding: 1px 2px;
-  width: 95%;
-  min-height: 20px;
-  margin: 1em;
-`;
+// const InputContainer = styled.div`
+//   text-align: center;
+//   margin-top: 4px;
+//   border: solid black;
+//   border-radius: 10px;
+//   padding: 1px 2px;
+//   width: 95%;
+//   min-height: 20px;
+//   margin: 1em;
+// `;
 
 const OptionsWraper = styled.div`
   display: flex;
@@ -290,156 +289,343 @@ const AddNewConnectionBox = ({ params }) => {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart });
     }
   };
+  useEffect(() => {
+    console.log('folderOfNewPart@@@@', folderOfNewPart); 
+  }, [folderOfNewPart])
 
-  const addNewConnectionBoxView = () => {
-    return (
-      <FormContainer>
-      <div>
-        <InputUnit
-          inputTitle='URL'
-          key="urlInput"
-          type="text"
-          name="url"
-          value={url}
-          onChangeFunction={(e) => setUrl(e.target.value)}
-        />
+  // const addNewConnectionBoxView = () => {
+  //   return (
+  //     <FormContainer>
+  //     <div>
+  //       <InputUnit
+  //         inputTitle='URL'
+  //         key="urlInput"
+  //         type="text"
+  //         name="url"
+  //         value={url}
+  //         onChangeFunction={(e) => setUrl(e.target.value)}
+  //       />
+  //       <div>
+  //         <p>Choose an app part and display folder</p>
+
+  //         <OptionsWraper>
+  //           <label htmlFor="">Existing {appName} Parts</label>
+  //           {Object.values(allAppParts).map((part) => (
+  //             <ButtonUnit
+  //               onClickFunction={() => togglePartClicked(part)}
+  //               part={part.name}
+  //               clicked={allAppParts[part.name].clicked}
+  //             />
+  //           ))}
+  //           {newPartsAdded &&
+  //             Object.values(newPartsAdded).map((part) => (
+  //               <ButtonUnit
+  //                 onClickFunction={() => deleteNewPart(part)}
+  //                 onMouseEnterFunction={() =>
+  //                   setDisplay({ ...display, deleteWarningNewPart: true })
+  //                 }
+  //                 onMouseLeaveFunction={() =>
+  //                   setDisplay({ ...display, deleteWarningNewPart: false })
+  //                 }
+  //                 part={part.name}
+  //                 clicked={true}
+  //                 conditionalDisplay={display.deleteWarningNewPart && (
+  //                   <p>Newly added Part: Click to delete</p>
+  //                 )}
+  //               />
+  //             ))}
+  //           <ButtonUnit
+  //             onClickFunction={clickingToAddNewPart}
+  //             addingButton={true}
+  //             buttonTitle={
+  //               addingNewPart ? `- close` : `+ Add ${appName} Part`
+  //             } 
+  //           />
+  //         </OptionsWraper>
+  //         {addingNewPart && (
+  //           <DisplayBox>
+  //             <TitleButtonWrapper>
+  //               <h3>New Part</h3>
+  //             </TitleButtonWrapper>
+  //               <InputUnit
+  //                 inputTitle={`New Part Name: ${newPart.name}`}
+  //                 key="newFolderInput"
+  //                 type="text"
+  //                 name="newFolder"
+  //                 value={newPart.name}
+  //                 onChangeFunction={(e) =>
+  //                   setNewPart({ ...newPart, name: e.target.value })
+  //                 }
+  //               />
+  //               <InputUnit
+  //                 inputTitle={`New Part Name: ${newPart.ghRepo}`}
+  //                 key="newPartGitHubRepo"
+  //                 type="text"
+  //                 name="newPartGitHubRepo"
+  //                 value={newPart.ghRepo}
+  //                 onChangeFunction={(e) =>
+  //                   setNewPart({ ...newPart, ghRepo: e.target.value })
+  //                 }
+  //               />
+  //               <InputUnit
+  //                 inputTitle={`New Part Name: ${newPart.type}`}
+  //                 key="newPartType"
+  //                 type="text"
+  //                 name="newPartType"
+  //                 value={newPart.type}
+  //                 onChangeFunction={(e) =>
+  //                   setNewPart({ ...newPart, type: e.target.value })
+  //                 }
+  //               />
+  //               <AddNewFolderUnit
+  //                 folderOfNewPart={folderOfNewPart}
+  //                 addingNewFolder={addingNewFolder}
+  //                 allPreexistingFolders={appToDisplay.folders}
+  //                 allNewFolders={newFoldersToBeAddedToAll}
+  //                 folderInfoToState={folderInfoToState}
+  //                 newFolderName={folderName}
+  //                 addNewFolderAndClear={addNewFolderAndClear}
+  //                 newInputTitle={`New Part Name: ${newPart.type}`}
+  //                 setFolderName={(e) => setFolderName(e.target.value)}
+  //                 resetFolderInfo={resetFolderInfo}
+  //                 clickingToAddNewFolder={clickingToAddNewFolder}
+  //               />
+  //             {/* <InputContainer>
+  //               <p> Folder to display new part in</p>
+  //               {!folderOfNewPart ? (
+  //                 <AddNewFolderOptions
+  //                   addingNewFolder={addingNewFolder}
+  //                   allPreexistingFolders={appToDisplay.folders} 
+  //                   allNewFolders={newFoldersToBeAddedToAll} 
+  //                   folderInfoToState={folderInfoToState} 
+  //                   newFolderName={folderName} 
+  //                   addNewFolderAndClear={addNewFolderAndClear} 
+  //                   inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
+  //                   inputOnChangeFunction={(e) => setFolderName(e.target.value)}
+  //                 />
+  //               ) : (
+  //                 <ButtonUnit
+  //                   onClickFunction={resetFolderInfo}
+  //                   addingButton={true}
+  //                   buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
+  //                 />
+  //               )}
+  //               {!folderOfNewPart && (
+  //                 <ButtonUnit
+  //                   onClickFunction={clickingToAddNewFolder}
+  //                   addingButton={true}
+  //                   buttonTitle={
+  //                     addingNewFolder
+  //                       ? "- Back to Existing Folders"
+  //                       : "+ Add New Folder"
+  //                   }
+  //                 />
+  //               )}
+  //             </InputContainer> */}
+  //             <ButtonUnit
+  //               onClickFunction={addNewPartAndClear}
+  //               addingButton={true}
+  //               buttonTitle="add this part and start with another"
+  //             />
+  //           </DisplayBox>
+  //         )}
+  //       </div>
+  //       {/* {
+  //                     (url && folderName && part)
+  //                     ? */}
+  //       <button type="submit" onClick={addhasBeenClicked}>
+  //         Add
+  //       </button>
+  //       {/* :
+  //                         <button onClick>Add</button>
+  //                     } */}
+
+  //       {/* {url
+  //                     &&
+  //                         <UrlInputBox onClick={addhasBeenClicked}>
+  //                             {`add: ${url}`}
+  //                         </UrlInputBox>
+  //                     } */}
+  //     </div>
+  //   </FormContainer>
+  //   ) 
+  // }
+  const renderedView = () => {
+    if (loading) {
+      return <p>Loading...</p>;
+    }
+    if (error) {
+      return (
+        <p>
+          I am sad to say that the following error was just reported :
+          {JSON.stringify(error)}
+        </p>
+      );
+    }
+    if (appToDisplay) {
+      return (
+        <FormContainer>
         <div>
-          <p>Choose an app part and display folder</p>
-
-          <OptionsWraper>
-            <label htmlFor="">Existing {appName} Parts</label>
-            {Object.values(allAppParts).map((part) => (
-              <ButtonUnit
-                onClickFunction={() => togglePartClicked(part)}
-                part={part.name}
-                clicked={allAppParts[part.name].clicked}
-              />
-            ))}
-            {newPartsAdded &&
-              Object.values(newPartsAdded).map((part) => (
+          <InputUnit
+            inputTitle='URL'
+            key="urlInput"
+            type="text"
+            name="url"
+            value={url}
+            onChangeFunction={(e) => setUrl(e.target.value)}
+          />
+          <div>
+            <p>Choose an app part and display folder</p>
+  
+            <OptionsWraper>
+              <label htmlFor="">Existing {appName} Parts</label>
+              {Object.values(allAppParts).map((part) => (
                 <ButtonUnit
-                  onClickFunction={() => deleteNewPart(part)}
-                  onMouseEnterFunction={() =>
-                    setDisplay({ ...display, deleteWarningNewPart: true })
-                  }
-                  onMouseLeaveFunction={() =>
-                    setDisplay({ ...display, deleteWarningNewPart: false })
-                  }
+                  onClickFunction={() => togglePartClicked(part)}
                   part={part.name}
-                  clicked={true}
-                  conditionalDisplay={display.deleteWarningNewPart && (
-                    <p>Newly added Part: Click to delete</p>
-                  )}
+                  clicked={allAppParts[part.name].clicked}
                 />
               ))}
-            <ButtonUnit
-              onClickFunction={clickingToAddNewPart}
-              addingButton={true}
-              buttonTitle={
-                addingNewPart ? `- close` : `+ Add ${appName} Part`
-              } 
-            />
-          </OptionsWraper>
-          {addingNewPart && (
-            <DisplayBox>
-              <TitleButtonWrapper>
-                <h3>New Part</h3>
-              </TitleButtonWrapper>
-                <InputUnit
-                  inputTitle={`New Part Name: ${newPart.name}`}
-                  key="newFolderInput"
-                  type="text"
-                  name="newFolder"
-                  value={newPart.name}
-                  onChangeFunction={(e) =>
-                    setNewPart({ ...newPart, name: e.target.value })
-                  }
-                />
-                <InputUnit
-                  inputTitle={`New Part Name: ${newPart.ghRepo}`}
-                  key="newPartGitHubRepo"
-                  type="text"
-                  name="newPartGitHubRepo"
-                  value={newPart.ghRepo}
-                  onChangeFunction={(e) =>
-                    setNewPart({ ...newPart, ghRepo: e.target.value })
-                  }
-                />
-                <InputUnit
-                  inputTitle={`New Part Name: ${newPart.type}`}
-                  key="newPartType"
-                  type="text"
-                  name="newPartType"
-                  value={newPart.type}
-                  onChangeFunction={(e) =>
-                    setNewPart({ ...newPart, type: e.target.value })
-                  }
-                />
-              <InputContainer>
-                <p> Folder to display new part in</p>
-                {!folderOfNewPart ? (
-                  <AddNewFolderOptions
-                    addingNewFolder={addingNewFolder}
-                    allPreexistingFolders={appToDisplay.folders} 
-                    allNewFolders={newFoldersToBeAddedToAll} 
-                    folderInfoToState={folderInfoToState} 
-                    newFolderName={folderName} 
-                    addNewFolderAndClear={addNewFolderAndClear} 
-                    inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
-                    inputOnChangeFunction={(e) => setFolderName(e.target.value)}
-                  />
-                ) : (
+              {newPartsAdded &&
+                Object.values(newPartsAdded).map((part) => (
                   <ButtonUnit
-                    onClickFunction={resetFolderInfo}
-                    addingButton={true}
-                    buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
+                    onClickFunction={() => deleteNewPart(part)}
+                    onMouseEnterFunction={() =>
+                      setDisplay({ ...display, deleteWarningNewPart: true })
+                    }
+                    onMouseLeaveFunction={() =>
+                      setDisplay({ ...display, deleteWarningNewPart: false })
+                    }
+                    part={part.name}
+                    clicked={true}
+                    conditionalDisplay={display.deleteWarningNewPart && (
+                      <p>Newly added Part: Click to delete</p>
+                    )}
                   />
-                )}
-                {!folderOfNewPart && (
-                  <ButtonUnit
-                    onClickFunction={clickingToAddNewFolder}
-                    addingButton={true}
-                    buttonTitle={
-                      addingNewFolder
-                        ? "- Back to Existing Folders"
-                        : "+ Add New Folder"
+                ))}
+              <ButtonUnit
+                onClickFunction={clickingToAddNewPart}
+                addingButton={true}
+                buttonTitle={
+                  addingNewPart ? `- close` : `+ Add ${appName} Part`
+                } 
+              />
+            </OptionsWraper>
+            {addingNewPart && (
+              <DisplayBox>
+                <TitleButtonWrapper>
+                  <h3>New Part</h3>
+                </TitleButtonWrapper>
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.name}`}
+                    key="newFolderInput"
+                    type="text"
+                    name="newFolder"
+                    value={newPart.name}
+                    onChangeFunction={(e) =>
+                      setNewPart({ ...newPart, name: e.target.value })
                     }
                   />
-                )}
-              </InputContainer>
-              <ButtonUnit
-                onClickFunction={addNewPartAndClear}
-                addingButton={true}
-                buttonTitle="add this part and start with another"
-              />
-            </DisplayBox>
-          )}
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.ghRepo}`}
+                    key="newPartGitHubRepo"
+                    type="text"
+                    name="newPartGitHubRepo"
+                    value={newPart.ghRepo}
+                    onChangeFunction={(e) =>
+                      setNewPart({ ...newPart, ghRepo: e.target.value })
+                    }
+                  />
+                  <InputUnit
+                    inputTitle={`New Part Name: ${newPart.type}`}
+                    key="newPartType"
+                    type="text"
+                    name="newPartType"
+                    value={newPart.type}
+                    onChangeFunction={(e) =>
+                      setNewPart({ ...newPart, type: e.target.value })
+                    }
+                  />
+                  <AddNewFolderUnit
+                    folderOfNewPart={folderOfNewPart}
+                    addingNewFolder={addingNewFolder}
+                    allPreexistingFolders={appToDisplay.folders}
+                    allNewFolders={newFoldersToBeAddedToAll}
+                    folderInfoToState={folderInfoToState}
+                    newFolderName={folderName}
+                    addNewFolderAndClear={addNewFolderAndClear}
+                    newInputTitle={`New Part Name: ${newPart.type}`}
+                    setFolderName={(e) => setFolderName(e.target.value)}
+                    resetFolderInfo={resetFolderInfo}
+                    clickingToAddNewFolder={clickingToAddNewFolder}
+                  />
+                {/* <InputContainer>
+                  <p> Folder to display new part in</p>
+                  {!folderOfNewPart ? (
+                    <AddNewFolderOptions
+                      addingNewFolder={addingNewFolder}
+                      allPreexistingFolders={appToDisplay.folders} 
+                      allNewFolders={newFoldersToBeAddedToAll} 
+                      folderInfoToState={folderInfoToState} 
+                      newFolderName={folderName} 
+                      addNewFolderAndClear={addNewFolderAndClear} 
+                      inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
+                      inputOnChangeFunction={(e) => setFolderName(e.target.value)}
+                    />
+                  ) : (
+                    <ButtonUnit
+                      onClickFunction={resetFolderInfo}
+                      addingButton={true}
+                      buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
+                    />
+                  )}
+                  {!folderOfNewPart && (
+                    <ButtonUnit
+                      onClickFunction={clickingToAddNewFolder}
+                      addingButton={true}
+                      buttonTitle={
+                        addingNewFolder
+                          ? "- Back to Existing Folders"
+                          : "+ Add New Folder"
+                      }
+                    />
+                  )}
+                </InputContainer> */}
+                <ButtonUnit
+                  onClickFunction={addNewPartAndClear}
+                  addingButton={true}
+                  buttonTitle="add this part and start with another"
+                />
+              </DisplayBox>
+            )}
+          </div>
+          {/* {
+                        (url && folderName && part)
+                        ? */}
+          <button type="submit" onClick={addhasBeenClicked}>
+            Add
+          </button>
+          {/* :
+                            <button onClick>Add</button>
+                        } */}
+  
+          {/* {url
+                        &&
+                            <UrlInputBox onClick={addhasBeenClicked}>
+                                {`add: ${url}`}
+                            </UrlInputBox>
+                        } */}
         </div>
-        {/* {
-                      (url && folderName && part)
-                      ? */}
-        <button type="submit" onClick={addhasBeenClicked}>
-          Add
-        </button>
-        {/* :
-                          <button onClick>Add</button>
-                      } */}
+      </FormContainer>
+      ) 
+    }
+  };
 
-        {/* {url
-                      &&
-                          <UrlInputBox onClick={addhasBeenClicked}>
-                              {`add: ${url}`}
-                          </UrlInputBox>
-                      } */}
-      </div>
-    </FormContainer>
-    ) 
-  }
-
-  const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
+  // const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
   return (
     <DisplayBox>
-        {VIEW}
+        {/* {VIEW} */}
+        {renderedView()}
     </DisplayBox>
   );
 };

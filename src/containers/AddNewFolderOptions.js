@@ -8,8 +8,8 @@ const AddNewFolderOptions = ({
   folderInfoToState, 
   newFolderName, 
   addNewFolderAndClear, 
-  inputTitle, 
-  inputOnChangeFunction 
+  newInputTitle, 
+  setFolderName 
 }) => {
 
   return (
@@ -28,8 +28,8 @@ const AddNewFolderOptions = ({
       <AddNewFolderInputContainer
         newFolderName={newFolderName}
         addNewFolderAndClear={addNewFolderAndClear}
-        inputTitle={inputTitle}
-        inputOnChangeFunction={inputOnChangeFunction}
+        newInputTitle={newInputTitle}
+        setFolderName={setFolderName}
       />
     )
   )

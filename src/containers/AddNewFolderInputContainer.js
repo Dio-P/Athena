@@ -7,7 +7,7 @@ height: 100%;
 background-color: #fffcfa;
 `;
 
-const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, inputTitle, inputOnChangeFunction }) => {
+const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newInputTitle, setFolderName }) => {
   return (
     <NewFolderInputContainer>
       <label> New Folder Name: {newFolderName} </label>
@@ -17,12 +17,12 @@ const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, input
           buttonTitle="add"
         />
       <InputUnit
-        inputTitle={inputTitle}
+        newInputTitle={newInputTitle}
         key="newFolderInput"
         type="text"
         name="newFolder"
         value={newFolderName}
-        onChangeFunction={inputOnChangeFunction}
+        setFolderName={setFolderName}
       />
     </NewFolderInputContainer>
   )
