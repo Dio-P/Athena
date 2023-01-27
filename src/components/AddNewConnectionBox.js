@@ -555,7 +555,7 @@ const AddNewConnectionBox = ({ params }) => {
                     newFolderName={folderName}
                     addNewFolderAndClear={addNewFolderAndClear}
                     newInputTitle={`New Part Name: ${newPart.type}`}
-                    setFolderName={(e) => setFolderName(e.target.value)}
+                    setFolderName={(value) => setFolderName(value)}
                     resetFolderInfo={resetFolderInfo}
                     clickingToAddNewFolder={clickingToAddNewFolder}
                   />

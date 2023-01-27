@@ -26,7 +26,7 @@ const InputContainer = styled.div`
   margin: 1em;
 `;
 
-const InputUnit = ({ inputTitle, key, type, name, value, setFolderName }) => {
+const InputUnit = ({ inputTitle, key, type, name, value, onChangeFunction }) => {
   return (
     <InputContainer>
       <label htmlFor="">
@@ -37,7 +37,7 @@ const InputUnit = ({ inputTitle, key, type, name, value, setFolderName }) => {
         type={type}
         name={name}
         value={value}
-        onChange={(e)=>setFolderName(e.target.value)}
+        onChange={(e)=>onChangeFunction(e.target.value)}
       />
     </InputContainer>
   )

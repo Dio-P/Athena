@@ -22,7 +22,7 @@ const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newIn
         type="text"
         name="newFolder"
         value={newFolderName}
-        setFolderName={setFolderName}
+        onChangeFunction={setFolderName}
       />
     </NewFolderInputContainer>
   )
