@@ -8,7 +8,7 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
-import AddNewFolderUnit from "../containers/AddNewFolderUnit";
+import AddNewFolderOptions from "../containers/AddNewFolderOptions";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 
 const DisplayBox = styled.div`
@@ -378,7 +378,7 @@ const AddNewConnectionBox = ({ params }) => {
               <InputContainer>
                 <p> Folder to display new part in</p>
                 {!folderOfNewPart ? (
-                  <AddNewFolderUnit
+                  <AddNewFolderOptions
                     addingNewFolder={addingNewFolder}
                     allPreexistingFolders={appToDisplay.folders} 
                     allNewFolders={newFoldersToBeAddedToAll} 
@@ -388,30 +388,6 @@ const AddNewConnectionBox = ({ params }) => {
                     inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
                     inputOnChangeFunction={(e) => setFolderName(e.target.value)}
                   />
-
-                  // !addingNewFolder ? (
-                  //   <>
-                  //     {appToDisplay.folders.map((folder) => (
-                  //       <ButtonUnit
-                  //         onClickFunction={() => folderInfoToState(folder)}
-                  //         folder={folder.title}
-                  //       />
-                  //     ))}
-                  //     {newFoldersToBeAddedToAll.map((folder) => (
-                  //       <ButtonUnit
-                  //         onClickFunction={() => folderInfoToState(folder)}
-                  //         folder={folder.title}
-                  //       />
-                  //     ))}
-                  //   </>
-                  // ) : (
-                  //   <AddNewFolderInputContainer
-                  //     folderName={folderName}
-                  //     buttonOnClickFunction={addNewFolderAndClear}
-                  //     inputTitle={`New Part Name: ${newPart.type}`}
-                  //     inputOnChangeFunction={(e) => setFolderName(e.target.value)}
-                  //   />
-                  // )
                 ) : (
                   <ButtonUnit
                     onClickFunction={resetFolderInfo}

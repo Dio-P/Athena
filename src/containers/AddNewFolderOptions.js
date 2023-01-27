@@ -1,8 +1,7 @@
-import styled from "@emotion/styled";
-import ButtonUnit from "./ButtonUnit";
 import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
+import PopulateButtonUnits from "./PopulateButtonUnits";
 
-const AddNewFolderUnit = ({ 
+const AddNewFolderOptions = ({ 
   addingNewFolder, 
   allPreexistingFolders, 
   allNewFolders, 
@@ -16,18 +15,14 @@ const AddNewFolderUnit = ({
   return (
     !addingNewFolder ? (
       <>
-        {allPreexistingFolders.map((folder) => (
-          <ButtonUnit
-            onClickFunction={() => folderInfoToState(folder)}
-            folder={folder.title}
-          />
-        ))}
-        {allNewFolders.map((folder) => (
-          <ButtonUnit
-            onClickFunction={() => folderInfoToState(folder)}
-            folder={folder.title}
-          />
-        ))}
+        <PopulateButtonUnits 
+          data={allPreexistingFolders}
+          onClickFunction={folderInfoToState}
+        />
+        <PopulateButtonUnits 
+          data={allNewFolders}
+          onClickFunction={folderInfoToState}
+        />
       </>
     ) : (
       <AddNewFolderInputContainer
@@ -40,4 +35,4 @@ const AddNewFolderUnit = ({
   )
 }
 
-export default AddNewFolderUnit;
+export default AddNewFolderOptions;
