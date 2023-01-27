@@ -34,17 +34,6 @@ const TitleButtonWrapper = styled.div`
   margin-left: 12px;
 `;
 
-// const InputContainer = styled.div`
-//   text-align: center;
-//   margin-top: 4px;
-//   border: solid black;
-//   border-radius: 10px;
-//   padding: 1px 2px;
-//   width: 95%;
-//   min-height: 20px;
-//   margin: 1em;
-// `;
-
 const OptionsWraper = styled.div`
   display: flex;
   flex-direction: column;

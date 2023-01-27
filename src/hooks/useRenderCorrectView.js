@@ -4,9 +4,6 @@ const useRenderCorrectView = (loading, error, data, view) => {
   const [renderingView, setRenderingView] = useState(undefined);
 
   useEffect(() => {
-    console.log('loading', loading);
-    console.log('error', error);
-    console.log('data', data);
     if (loading) {
       setRenderingView(<h3>Loading...</h3>);
     }
@@ -22,7 +19,7 @@ const useRenderCorrectView = (loading, error, data, view) => {
       console.log('data£££', data);
       setRenderingView(view);
     }
-  }, [loading, error, data, view])
+  }, [loading, error, data])
   
   return renderingView;
 
