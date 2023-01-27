@@ -1,30 +1,42 @@
 import styled from "@emotion/styled";
 import ButtonUnit from "./ButtonUnit";
-import InputUnit from "./InputUnit";
+import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
 
-const NewFolderInputContainer = styled.div`
-height: 100%;
-background-color: #fffcfa;
-`;
+const AddNewFolderUnit = ({ 
+  addingNewFolder, 
+  allPreexistingFolders, 
+  allNewFolders, 
+  folderInfoToState, 
+  newFolderName, 
+  addNewFolderAndClear, 
+  inputTitle, 
+  inputOnChangeFunction 
+}) => {
 
-const AddNewFolderUnit = ({ folderName, buttonOnClickFunction, inputTitle, inputOnChangeFunction }) => {
   return (
-    <NewFolderInputContainer>
-      <label> New Folder Name: {folderName} </label>
-        <ButtonUnit
-          onClickFunction={buttonOnClickFunction}
-          addingButton={true}
-          buttonTitle="add"
-        />
-      <InputUnit
+    !addingNewFolder ? (
+      <>
+        {allPreexistingFolders.map((folder) => (
+          <ButtonUnit
+            onClickFunction={() => folderInfoToState(folder)}
+            folder={folder.title}
+          />
+        ))}
+        {allNewFolders.map((folder) => (
+          <ButtonUnit
+            onClickFunction={() => folderInfoToState(folder)}
+            folder={folder.title}
+          />
+        ))}
+      </>
+    ) : (
+      <AddNewFolderInputContainer
+        newFolderName={newFolderName}
+        addNewFolderAndClear={addNewFolderAndClear}
         inputTitle={inputTitle}
-        key="newFolderInput"
-        type="text"
-        name="newFolder"
-        value={folderName}
-        onChangeFunction={inputOnChangeFunction}
+        inputOnChangeFunction={inputOnChangeFunction}
       />
-    </NewFolderInputContainer>
+    )
   )
 }
 
