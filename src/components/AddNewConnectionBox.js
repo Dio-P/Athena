@@ -559,38 +559,6 @@ const AddNewConnectionBox = ({ params }) => {
                     resetFolderInfo={resetFolderInfo}
                     clickingToAddNewFolder={clickingToAddNewFolder}
                   />
-                {/* <InputContainer>
-                  <p> Folder to display new part in</p>
-                  {!folderOfNewPart ? (
-                    <AddNewFolderOptions
-                      addingNewFolder={addingNewFolder}
-                      allPreexistingFolders={appToDisplay.folders} 
-                      allNewFolders={newFoldersToBeAddedToAll} 
-                      folderInfoToState={folderInfoToState} 
-                      newFolderName={folderName} 
-                      addNewFolderAndClear={addNewFolderAndClear} 
-                      inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
-                      inputOnChangeFunction={(e) => setFolderName(e.target.value)}
-                    />
-                  ) : (
-                    <ButtonUnit
-                      onClickFunction={resetFolderInfo}
-                      addingButton={true}
-                      buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
-                    />
-                  )}
-                  {!folderOfNewPart && (
-                    <ButtonUnit
-                      onClickFunction={clickingToAddNewFolder}
-                      addingButton={true}
-                      buttonTitle={
-                        addingNewFolder
-                          ? "- Back to Existing Folders"
-                          : "+ Add New Folder"
-                      }
-                    />
-                  )}
-                </InputContainer> */}
                 <ButtonUnit
                   onClickFunction={addNewPartAndClear}
                   addingButton={true}
