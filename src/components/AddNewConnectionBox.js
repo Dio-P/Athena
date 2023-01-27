@@ -8,6 +8,7 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
+import AddNewFolderUnit from "../containers/AddNewFolderUnit";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 
 const DisplayBox = styled.div`
@@ -48,11 +49,6 @@ const InputContainer = styled.div`
 const OptionsWraper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const NewFolderInputContainer = styled.div`
-  height: 100%;
-  background-color: #fffcfa;
 `;
 
 const AddNewConnectionBox = ({ params }) => {
@@ -398,22 +394,12 @@ const AddNewConnectionBox = ({ params }) => {
                       ))}
                     </>
                   ) : (
-                    <NewFolderInputContainer>
-                      <label> New Folder Name: {folderName} </label>
-                        <ButtonUnit
-                          onClickFunction={addNewFolderAndClear}
-                          addingButton={true}
-                          buttonTitle="add"
-                        />
-                      <InputUnit
-                        inputTitle={`New Part Name: ${newPart.type}`}
-                        key="newFolderInput"
-                        type="text"
-                        name="newFolder"
-                        value={folderName}
-                        onChangeFunction={(e) => setFolderName(e.target.value)}
-                      />
-                    </NewFolderInputContainer>
+                    <AddNewFolderUnit
+                      folderName={folderName}
+                      buttonOnClickFunction={addNewFolderAndClear}
+                      inputTitle={`New Part Name: ${newPart.type}`}
+                      inputOnChangeFunction={(e) => setFolderName(e.target.value)}
+                    />
                   )
                 ) : (
                   <ButtonUnit
