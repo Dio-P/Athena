@@ -458,22 +458,6 @@ const AddNewConnectionBox = ({ params }) => {
                   <p>Newly added Part: Click to delete</p>
                 )}
               />
-              // Object.values(newPartsAdded).map((part) => (
-              //   <ButtonUnit
-              //     onClickFunction={() => deleteNewPart(part)}
-              //     onMouseEnterFunction={() =>
-              //       setDisplay({ ...display, deleteWarningNewPart: true })
-              //     }
-              //     onMouseLeaveFunction={() =>
-              //       setDisplay({ ...display, deleteWarningNewPart: false })
-              //     }
-              //     part={part.name}
-              //     clicked={true}
-              //     conditionalDisplay={display.deleteWarningNewPart && (
-              //       <p>Newly added Part: Click to delete</p>
-              //     )}
-              //   />
-              // ))
               }
             <ButtonUnit
               onClickFunction={clickingToAddNewPart}
