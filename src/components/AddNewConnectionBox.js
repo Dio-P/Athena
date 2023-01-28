@@ -9,6 +9,7 @@ import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
 import AddNewFolderUnit from "./AddNewFolderUnit";
+import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
 
@@ -475,7 +476,13 @@ const AddNewConnectionBox = ({ params }) => {
                 <TitleButtonWrapper>
                   <h3>New Part</h3>
                 </TitleButtonWrapper>
-                  <InputUnit
+                <AddNewPartInput
+                  newPart={newPart}
+                  setNewPart={(input) =>
+                    setNewPart({ ...newPart, name: input })
+                  }
+                />
+                  {/* <InputUnit
                     inputTitle={`New Part Name: ${newPart.name}`}
                     key="newFolderInput"
                     type="text"
@@ -504,7 +511,7 @@ const AddNewConnectionBox = ({ params }) => {
                     onChangeFunction={(e) =>
                       setNewPart({ ...newPart, type: e.target.value })
                     }
-                  />
+                  /> */}
                   <AddNewFolderUnit
                     folderOfNewPart={folderOfNewPart}
                     addingNewFolder={addingNewFolder}
