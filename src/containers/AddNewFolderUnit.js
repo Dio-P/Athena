@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import AddNewFolderOptions from "../containers/AddNewFolderOptions";
-import ButtonUnit from "../containers/ButtonUnit";
+import AddNewFolderOptions from "./AddNewFolderOptions";
+import ButtonUnit from "./ButtonUnit";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;

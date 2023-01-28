@@ -8,7 +8,8 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
-import AddNewFolderUnit from "./AddNewFolderUnit";
+import AddNewPartUnit from "../containers/AddNewPartUnit";
+import AddNewFolderUnit from "../containers/AddNewFolderUnit";
 import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
@@ -30,11 +31,11 @@ const FormContainer = styled.form`
   margin: 6px;
 `;
 
-const TitleButtonWrapper = styled.div`
-  display: "flex";
-  flex-direction: row;
-  margin-left: 12px;
-`;
+// const TitleButtonWrapper = styled.div`
+//   display: "flex";
+//   flex-direction: row;
+//   margin-left: 12px;
+// `;
 
 const OptionsWraper = styled.div`
   display: flex;
@@ -472,71 +473,65 @@ const AddNewConnectionBox = ({ params }) => {
               />
             </OptionsWraper>
             {addingNewPart && (
-              <DisplayBox>
-                <TitleButtonWrapper>
-                  <h3>New Part</h3>
-                </TitleButtonWrapper>
-                <AddNewPartInput
-                  newPart={newPart}
-                  setNewPartName={(input) =>
-                    setNewPart({ ...newPart, name: input })
-                  }
-                  setNewPartGhRepo={(input) =>
-                    setNewPart({ ...newPart, ghRepo: input })
-                  }
-                  setNewPartType={(input) =>
-                    setNewPart({ ...newPart, type: input })
-                  }
-                />
-                  {/* <InputUnit
-                    inputTitle={`New Part Name: ${newPart.name}`}
-                    key="newFolderInput"
-                    type="text"
-                    name="newFolder"
-                    value={newPart.name}
-                    onChangeFunction={(e) =>
-                      setNewPart({ ...newPart, name: e.target.value })
-                    }
-                  />
-                  <InputUnit
-                    inputTitle={`New Part Name: ${newPart.ghRepo}`}
-                    key="newPartGitHubRepo"
-                    type="text"
-                    name="newPartGitHubRepo"
-                    value={newPart.ghRepo}
-                    onChangeFunction={(e) =>
-                      setNewPart({ ...newPart, ghRepo: e.target.value })
-                    }
-                  />
-                  <InputUnit
-                    inputTitle={`New Part Name: ${newPart.type}`}
-                    key="newPartType"
-                    type="text"
-                    name="newPartType"
-                    value={newPart.type}
-                    onChangeFunction={(e) =>
-                      setNewPart({ ...newPart, type: e.target.value })
-                    }
-                  /> */}
-                  <AddNewFolderUnit
-                    folderOfNewPart={folderOfNewPart}
-                    addingNewFolder={addingNewFolder}
-                    allPreexistingFolders={appToDisplay.folders}
-                    allNewFolders={newFoldersToBeAddedToAll}
-                    folderInfoToState={folderInfoToState}
-                    newFolderName={folderName}
-                    addNewFolderAndClear={addNewFolderAndClear}
-                    newInputTitle={`New Part Name: ${newPart.type}`}
-                    setFolderName={(value) => setFolderName(value)}
-                    resetFolderInfo={resetFolderInfo}
-                    clickingToAddNewFolder={clickingToAddNewFolder}
-                  />
-                <ButtonUnit
-                  onClickFunction={addNewPartAndClear}
-                  addingButton={true}
-                  buttonTitle="add this part and start with another"
-                />
-              </DisplayBox>
+              <AddNewPartUnit
+                newPart={newPart}
+                setNewPartName={(input) =>
+                  setNewPart({ ...newPart, name: input })
+                }
+                setNewPartGhRepo={(input) =>
+                  setNewPart({ ...newPart, ghRepo: input })
+                }
+                setNewPartType={(input) =>
+                  setNewPart({ ...newPart, type: input })
+                }
+                folderOfNewPart={folderOfNewPart}
+                addingNewFolder={addingNewFolder}
+                allPreexistingFolders={appToDisplay.folders}
+                allNewFolders={newFoldersToBeAddedToAll}
+                folderInfoToState={folderInfoToState}
+                newFolderName={folderName}
+                addNewFolderAndClear={addNewFolderAndClear}
+                newInputTitle={`New Part Name: ${newPart.type}`}
+                setFolderName={(value) => setFolderName(value)}
+                resetFolderInfo={resetFolderInfo}
+                clickingToAddNewFolder={clickingToAddNewFolder}
+                onClickFunction={addNewPartAndClear}
+              />
+              // <DisplayBox>
+              //   <TitleButtonWrapper>
+              //     <h3>New Part</h3>
+              //   </TitleButtonWrapper>
+              //   <AddNewPartInput
+              //     newPart={newPart}
+              //     setNewPartName={(input) =>
+              //       setNewPart({ ...newPart, name: input })
+              //     }
+              //     setNewPartGhRepo={(input) =>
+              //       setNewPart({ ...newPart, ghRepo: input })
+              //     }
+              //     setNewPartType={(input) =>
+              //       setNewPart({ ...newPart, type: input })
+              //     }
+              //   />
+              //   <AddNewFolderUnit
+                  // folderOfNewPart={folderOfNewPart}
+                  // addingNewFolder={addingNewFolder}
+                  // allPreexistingFolders={appToDisplay.folders}
+                  // allNewFolders={newFoldersToBeAddedToAll}
+                  // folderInfoToState={folderInfoToState}
+                  // newFolderName={folderName}
+                  // addNewFolderAndClear={addNewFolderAndClear}
+                  // newInputTitle={`New Part Name: ${newPart.type}`}
+                  // setFolderName={(value) => setFolderName(value)}
+                  // resetFolderInfo={resetFolderInfo}
+                  // clickingToAddNewFolder={clickingToAddNewFolder}
+              //   />
+              //   <ButtonUnit
+                  // onClickFunction={addNewPartAndClear}
+              //     addingButton={true}
+              //     buttonTitle="add this part and start with another"
+              //   />
+              // </DisplayBox>
             )}
           </div>
           {/* {
