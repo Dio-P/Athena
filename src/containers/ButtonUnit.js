@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import GenericButtonIcon from "../components/ButtonIcon";
+import GenericButtonIcon from "../components/genericButtonIcon";
 
 const SimpleButtonContainer = styled.button`
   margin: auto;
@@ -35,7 +35,8 @@ const ButtonUnit = ({
   part, 
   onMouseEnterFunction, 
   onMouseLeaveFunction,
-  conditionalDisplay
+  conditionalDisplay,
+  label
 }) => {
   const ButtonWrapper = !onMouseEnterFunction? SimpleButtonContainer : NewlyAddedPartButtonContainer;
   return (
@@ -47,8 +48,9 @@ const ButtonUnit = ({
     <GenericButtonIcon
       addingButton={addingButton}
       buttonTitle={buttonTitle}
-      folder={folder}
-      part={part}
+      // folder={folder}
+      // part={part}
+      label={label}
     />
     {conditionalDisplay
     &&

@@ -13,6 +13,7 @@ import AddNewFolderUnit from "../containers/AddNewFolderUnit";
 import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
+import PopulateButtonUnits from "../containers/PopulateButtonUnits";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -30,12 +31,6 @@ const DisplayBox = styled.div`
 const FormContainer = styled.form`
   margin: 6px;
 `;
-
-// const TitleButtonWrapper = styled.div`
-//   display: "flex";
-//   flex-direction: row;
-//   margin-left: 12px;
-// `;
 
 const OptionsWraper = styled.div`
   display: flex;
@@ -448,6 +443,16 @@ const AddNewConnectionBox = ({ params }) => {
                 />
               ))}
               {newPartsAdded &&
+                <PopulateButtonUnits
+                  data={Object.values(newPartsAdded)}
+                  onClickFunction={() => deleteNewPart(part)}
+                  onMouseEnterFunction={() =>
+                    setDisplay({ ...display, deleteWarningNewPart: true })
+                  }
+                  onMouseLeaveFunction={() =>
+                    setDisplay({ ...display, deleteWarningNewPart: false })
+                  }
+                />
                 Object.values(newPartsAdded).map((part) => (
                   <ButtonUnit
                     onClickFunction={() => deleteNewPart(part)}
@@ -495,43 +500,8 @@ const AddNewConnectionBox = ({ params }) => {
                 setFolderName={(value) => setFolderName(value)}
                 resetFolderInfo={resetFolderInfo}
                 clickingToAddNewFolder={clickingToAddNewFolder}
-                onClickFunction={addNewPartAndClear}
+                addNewPartAndClear={addNewPartAndClear}
               />
-              // <DisplayBox>
-              //   <TitleButtonWrapper>
-              //     <h3>New Part</h3>
-              //   </TitleButtonWrapper>
-              //   <AddNewPartInput
-              //     newPart={newPart}
-              //     setNewPartName={(input) =>
-              //       setNewPart({ ...newPart, name: input })
-              //     }
-              //     setNewPartGhRepo={(input) =>
-              //       setNewPart({ ...newPart, ghRepo: input })
-              //     }
-              //     setNewPartType={(input) =>
-              //       setNewPart({ ...newPart, type: input })
-              //     }
-              //   />
-              //   <AddNewFolderUnit
-                  // folderOfNewPart={folderOfNewPart}
-                  // addingNewFolder={addingNewFolder}
-                  // allPreexistingFolders={appToDisplay.folders}
-                  // allNewFolders={newFoldersToBeAddedToAll}
-                  // folderInfoToState={folderInfoToState}
-                  // newFolderName={folderName}
-                  // addNewFolderAndClear={addNewFolderAndClear}
-                  // newInputTitle={`New Part Name: ${newPart.type}`}
-                  // setFolderName={(value) => setFolderName(value)}
-                  // resetFolderInfo={resetFolderInfo}
-                  // clickingToAddNewFolder={clickingToAddNewFolder}
-              //   />
-              //   <ButtonUnit
-                  // onClickFunction={addNewPartAndClear}
-              //     addingButton={true}
-              //     buttonTitle="add this part and start with another"
-              //   />
-              // </DisplayBox>
             )}
           </div>
           {/* {

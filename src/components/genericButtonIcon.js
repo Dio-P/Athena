@@ -70,7 +70,7 @@ outline: inherit;
 
 `;
 
-const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle }) => {
+const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButton, buttonTitle, label }) => {
   const [thisTeam, setThisTeam] = useState("");
   const [thisApp, setThisApp] = useState("");
   const [thisClicked, setThisClicked] = useState(false);
@@ -103,25 +103,31 @@ const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButto
     setThisAddingButton(addingButton)
   }, [addingButton]);
 
-  const defineName = () => {
-    if(!thisApp&& thisTeam && !folder && !part && !buttonTitle) {
-      return thisTeam.name
-    }
-    if(thisApp && !thisTeam && !folder && !part && !buttonTitle) {
-      return thisApp
-    }
-    if(!thisApp && !thisTeam && folder && !part && !buttonTitle) {
-      return folder
-    }
-    if(!thisApp && !thisTeam && !folder && part && !buttonTitle) {
-      console.log("part@@@", part);
-      return part
-    }
-    if(!thisApp && !thisTeam && !folder && !part && buttonTitle) {
-      return buttonTitle
-    }
-    return undefined;
-  }
+  // const defineName = () => {
+  //   if(label.type==='part'){
+      
+  //   }
+  //   if(label.type==='folder'){
+
+  //   }
+  //   if(!thisApp&& thisTeam && !folder && !part && !buttonTitle) {
+  //     return thisTeam.name
+  //   }
+  //   if(thisApp && !thisTeam && !folder && !part && !buttonTitle) {
+  //     return thisApp
+  //   }
+  //   if(!thisApp && !thisTeam && folder && !part && !buttonTitle) {
+  //     return folder
+  //   }
+  //   if(!thisApp && !thisTeam && !folder && part && !buttonTitle) {
+  //     console.log("part@@@", part);
+  //     return part
+  //   }
+  //   if(!thisApp && !thisTeam && !folder && !part && buttonTitle) {
+  //     return buttonTitle
+  //   }
+  //   return undefined;
+  // }
 
   const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: thisAddingButton? AddingButtonIconContainer : AppButtonIconContainer;
   // const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: AppButtonIconContainer;
@@ -130,7 +136,7 @@ const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButto
       <DecoratedLink>
         <CustomButtonContainer>
           <AppFolderButton> 
-            {useCapitaliseFirstLetter(defineName())}
+            {useCapitaliseFirstLetter(label)}
           </AppFolderButton>
         </CustomButtonContainer>
       </DecoratedLink>
