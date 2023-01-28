@@ -1,6 +1,6 @@
 import InputUnit from "./InputUnit";
 
-const AddNewPartInput = ({ newPart, setNewPart }) => {
+const AddNewPartInput = ({ newPart, setNewPartName, setNewPartGhRepo, setNewPartType }) => {
   return (
     <>
       <InputUnit
@@ -9,7 +9,7 @@ const AddNewPartInput = ({ newPart, setNewPart }) => {
         type="text"
         name="newFolder"
         value={newPart.name}
-        onChangeFunction={setNewPart}
+        onChangeFunction={setNewPartName}
       />
       <InputUnit
         inputTitle={`New Part Name: ${newPart.ghRepo}`}
@@ -17,9 +17,7 @@ const AddNewPartInput = ({ newPart, setNewPart }) => {
         type="text"
         name="newPartGitHubRepo"
         value={newPart.ghRepo}
-        onChangeFunction={(e) =>
-          setNewPart({ ...newPart, ghRepo: e.target.value })
-        }
+        onChangeFunction={setNewPartGhRepo}
       />
       <InputUnit
         inputTitle={`New Part Name: ${newPart.type}`}
@@ -27,9 +25,7 @@ const AddNewPartInput = ({ newPart, setNewPart }) => {
         type="text"
         name="newPartType"
         value={newPart.type}
-        onChangeFunction={(e) =>
-          setNewPart({ ...newPart, type: e.target.value })
-        }
+        onChangeFunction={setNewPartType}
       />
     </>
   );

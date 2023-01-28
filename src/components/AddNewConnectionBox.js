@@ -478,8 +478,14 @@ const AddNewConnectionBox = ({ params }) => {
                 </TitleButtonWrapper>
                 <AddNewPartInput
                   newPart={newPart}
-                  setNewPart={(input) =>
+                  setNewPartName={(input) =>
                     setNewPart({ ...newPart, name: input })
+                  }
+                  setNewPartGhRepo={(input) =>
+                    setNewPart({ ...newPart, ghRepo: input })
+                  }
+                  setNewPartType={(input) =>
+                    setNewPart({ ...newPart, type: input })
                   }
                 />
                   {/* <InputUnit
