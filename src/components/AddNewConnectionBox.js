@@ -10,6 +10,7 @@ import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
 import AddNewFolderUnit from "./AddNewFolderUnit";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
+import { useCallback } from "react";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -282,7 +283,7 @@ const AddNewConnectionBox = ({ params }) => {
     console.log('folderOfNewPart@@@@', folderOfNewPart); 
   }, [folderOfNewPart])
 
-  // const addNewConnectionBoxView = () => {
+  // const addNewConnectionBoxView = useCallback(() => {
   //   return (
   //     <FormContainer>
   //     <div>
@@ -375,42 +376,10 @@ const AddNewConnectionBox = ({ params }) => {
   //                 newFolderName={folderName}
   //                 addNewFolderAndClear={addNewFolderAndClear}
   //                 newInputTitle={`New Part Name: ${newPart.type}`}
-  //                 setFolderName={(e) => setFolderName(e.target.value)}
+  //                 setFolderName={(value) => setFolderName(value)}
   //                 resetFolderInfo={resetFolderInfo}
   //                 clickingToAddNewFolder={clickingToAddNewFolder}
   //               />
-  //             {/* <InputContainer>
-  //               <p> Folder to display new part in</p>
-  //               {!folderOfNewPart ? (
-  //                 <AddNewFolderOptions
-  //                   addingNewFolder={addingNewFolder}
-  //                   allPreexistingFolders={appToDisplay.folders} 
-  //                   allNewFolders={newFoldersToBeAddedToAll} 
-  //                   folderInfoToState={folderInfoToState} 
-  //                   newFolderName={folderName} 
-  //                   addNewFolderAndClear={addNewFolderAndClear} 
-  //                   inputTitle={`New Part Name: ${newPart.type}`} //is this .type correct ?
-  //                   inputOnChangeFunction={(e) => setFolderName(e.target.value)}
-  //                 />
-  //               ) : (
-  //                 <ButtonUnit
-  //                   onClickFunction={resetFolderInfo}
-  //                   addingButton={true}
-  //                   buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
-  //                 />
-  //               )}
-  //               {!folderOfNewPart && (
-  //                 <ButtonUnit
-  //                   onClickFunction={clickingToAddNewFolder}
-  //                   addingButton={true}
-  //                   buttonTitle={
-  //                     addingNewFolder
-  //                       ? "- Back to Existing Folders"
-  //                       : "+ Add New Folder"
-  //                   }
-  //                 />
-  //               )}
-  //             </InputContainer> */}
   //             <ButtonUnit
   //               onClickFunction={addNewPartAndClear}
   //               addingButton={true}
@@ -437,8 +406,9 @@ const AddNewConnectionBox = ({ params }) => {
   //                     } */}
   //     </div>
   //   </FormContainer>
-  //   ) 
-  // }
+  //   )
+  // }, [addNewFolderAndClear, addNewPartAndClear, addhasBeenClicked, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, folderName, folderOfNewPart, newFoldersToBeAddedToAll, newPart, newPartsAdded, resetFolderInfo, togglePartClicked, url])
+  
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;

@@ -4,16 +4,23 @@ import { useEffect, useState } from "react";
 const useRenderCorrectView = (loading, error, data, view) => {
   const [renderingView, setRenderingView] = useState(undefined);
 
-  const loadingMemo = useMemo(() => loading, [loading]);
-  const errorMemo = useMemo(() => error, [error]);
-  const dataMemo = useMemo(() => data, [data]);
   const viewMemo = useMemo(() => view, [view]);
 
+  const loadingMemoTrue = useMemo(() => !!loading, [loading]);
+  const errorMemoTrue = useMemo(() => !!error, [error]);
+  const dataMemoTrue = useMemo(() => !!data, [data]);
+
   useEffect(() => {
-    if (loadingMemo) {
+    console.log("loadingMemoTrue, errorMemoTrue, dataMemoTrue", loadingMemoTrue, errorMemoTrue, dataMemoTrue);
+    console.log("loading, error, data, view", loading, error, data, view);
+    
+  }, [loadingMemoTrue, errorMemoTrue, dataMemoTrue, loading, error, data, view]);
+
+  useEffect(() => {
+    if (loadingMemoTrue) {
       setRenderingView(<h3>Loading...</h3>);
     }
-    if (errorMemo) {
+    if (errorMemoTrue) {
       setRenderingView(
         <p>
           I am sad to say that the following error was just reported :
@@ -21,9 +28,9 @@ const useRenderCorrectView = (loading, error, data, view) => {
         </p>
       );
     }
-    if (dataMemo) {
-      console.log('data£££', dataMemo);
-      setRenderingView(viewMemo);
+    if (dataMemoTrue) {
+      console.log('data£££', dataMemoTrue);
+      setRenderingView(view);
     }
   }, [loading, error, data])
   
