@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
-import ButtonIcon from "../components/ButtonIcon";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
 
@@ -71,7 +71,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
         <AppPageTitle>
           {appToDisplay?.name}
           <AddDocButton onClick={clickingToAddNewConnection}>
-            <ButtonIcon
+            <GenericButtonIcon
               addingButton={true}
               buttonTitle={
                 (addingNewConnection ? "- " : "+ ") + "Add URL"

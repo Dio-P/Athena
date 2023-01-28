@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import GenericButtonIcon from "../components/genericButtonIcon";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const SimpleButtonContainer = styled.button`
   margin: auto;

@@ -12,7 +12,7 @@ const PopulateButtonUnits = ({
   onMouseEnterFunction, 
   onMouseLeaveFunction,
   conditionalDisplay,
-  label
+  // label
 }) => {
   useEffect(() => {
     console.log("data@@@$", data);
@@ -33,7 +33,7 @@ const PopulateButtonUnits = ({
       data.map((choice) => (
         <ButtonUnit
           onClickFunction={() => onClickFunction(choice)}
-          label={label}
+          label={choice.name}
         />
       ))
   )

@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import ButtonIcon from "../components/ButtonIcon";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
@@ -53,7 +53,7 @@ const AppsBox = ({
           teamApps.map((singleApp) => {
             return (
               <div onClick={() => setAppToDisplay(singleApp)}>
-                <ButtonIcon app={singleApp.name} />
+                <GenericButtonIcon app={singleApp.name} />
               </div>
             );
           })}

@@ -443,39 +443,45 @@ const AddNewConnectionBox = ({ params }) => {
                 />
               ))}
               {newPartsAdded &&
-                <PopulateButtonUnits
-                  data={Object.values(newPartsAdded)}
-                  onClickFunction={() => deleteNewPart(part)}
-                  onMouseEnterFunction={() =>
-                    setDisplay({ ...display, deleteWarningNewPart: true })
-                  }
-                  onMouseLeaveFunction={() =>
-                    setDisplay({ ...display, deleteWarningNewPart: false })
-                  }
-                />
-                Object.values(newPartsAdded).map((part) => (
-                  <ButtonUnit
-                    onClickFunction={() => deleteNewPart(part)}
-                    onMouseEnterFunction={() =>
-                      setDisplay({ ...display, deleteWarningNewPart: true })
-                    }
-                    onMouseLeaveFunction={() =>
-                      setDisplay({ ...display, deleteWarningNewPart: false })
-                    }
-                    part={part.name}
-                    clicked={true}
-                    conditionalDisplay={display.deleteWarningNewPart && (
-                      <p>Newly added Part: Click to delete</p>
-                    )}
-                  />
-                ))}
-              <ButtonUnit
-                onClickFunction={clickingToAddNewPart}
-                addingButton={true}
-                buttonTitle={
-                  addingNewPart ? `- close` : `+ Add ${appName} Part`
-                } 
+              <PopulateButtonUnits
+                data={Object.values(newPartsAdded)}
+                onClickFunction={(part) => deleteNewPart(part)}
+                onMouseEnterFunction={() =>
+                  setDisplay({ ...display, deleteWarningNewPart: true })
+                }
+                onMouseLeaveFunction={() =>
+                  setDisplay({ ...display, deleteWarningNewPart: false })
+                }
+                // label={part.name}
+                clicked={true}
+                conditionalDisplay={display.deleteWarningNewPart && (
+                  <p>Newly added Part: Click to delete</p>
+                )}
               />
+              // Object.values(newPartsAdded).map((part) => (
+              //   <ButtonUnit
+              //     onClickFunction={() => deleteNewPart(part)}
+              //     onMouseEnterFunction={() =>
+              //       setDisplay({ ...display, deleteWarningNewPart: true })
+              //     }
+              //     onMouseLeaveFunction={() =>
+              //       setDisplay({ ...display, deleteWarningNewPart: false })
+              //     }
+              //     part={part.name}
+              //     clicked={true}
+              //     conditionalDisplay={display.deleteWarningNewPart && (
+              //       <p>Newly added Part: Click to delete</p>
+              //     )}
+              //   />
+              // ))
+              }
+            <ButtonUnit
+              onClickFunction={clickingToAddNewPart}
+              addingButton={true}
+              buttonTitle={
+                addingNewPart ? `- close` : `+ Add ${appName} Part`
+              } 
+            />
             </OptionsWraper>
             {addingNewPart && (
               <AddNewPartUnit

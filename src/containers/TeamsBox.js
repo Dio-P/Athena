@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, } from "react-router-dom";
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
-import ButtonIcon from "../components/ButtonIcon";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 import useTeamAppsNamesSearch from "../hooks/queries/useTeamAppsNamesSearch";
 
 const TeamsBoxContainer = styled.div`
@@ -62,7 +62,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
       // <>
       //   {departments.map((department) => (
           <div onClick={() => clickIcon(chosenTeam)}>
-            <ButtonIcon department={ chosenTeam }/>
+            <GenericButtonIcon department={ chosenTeam }/>
           </div>
       //   ))}
       // </>
