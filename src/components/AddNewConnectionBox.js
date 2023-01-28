@@ -438,7 +438,7 @@ const AddNewConnectionBox = ({ params }) => {
               {Object.values(allAppParts).map((part) => (
                 <ButtonUnit
                   onClickFunction={() => togglePartClicked(part)}
-                  part={part.name}
+                  label={part.name}
                   clicked={allAppParts[part.name].clicked}
                 />
               ))}
@@ -478,7 +478,7 @@ const AddNewConnectionBox = ({ params }) => {
             <ButtonUnit
               onClickFunction={clickingToAddNewPart}
               addingButton={true}
-              buttonTitle={
+              label={
                 addingNewPart ? `- close` : `+ Add ${appName} Part`
               } 
             />

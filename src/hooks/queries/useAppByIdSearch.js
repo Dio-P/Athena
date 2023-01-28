@@ -8,7 +8,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
       name
       id
       folders {
-        title
+        name
         id
       }
       parts {
@@ -20,7 +20,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
       }
       properties {
         docs {
-          title
+          name
           url
           id
           source

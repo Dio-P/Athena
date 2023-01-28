@@ -73,7 +73,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
           <AddDocButton onClick={clickingToAddNewConnection}>
             <GenericButtonIcon
               addingButton={true}
-              buttonTitle={
+              label={
                 (addingNewConnection ? "- " : "+ ") + "Add URL"
               }
             />
@@ -87,7 +87,7 @@ const AppPage = ({ appIdToDisplay, params }) => {
       {appToDisplay &&
         appToDisplay?.folders?.map((folder) => (
           <Folder
-            folderName={folder.title}
+            folderName={folder.name}
             parts={folder.parts}
             appId={appToDisplay.id}
           />

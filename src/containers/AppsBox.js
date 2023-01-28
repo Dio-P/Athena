@@ -53,7 +53,7 @@ const AppsBox = ({
           teamApps.map((singleApp) => {
             return (
               <div onClick={() => setAppToDisplay(singleApp)}>
-                <GenericButtonIcon app={singleApp.name} />
+                <GenericButtonIcon label={singleApp.name} />
               </div>
             );
           })}

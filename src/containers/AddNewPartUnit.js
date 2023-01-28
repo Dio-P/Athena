@@ -67,7 +67,7 @@ const AddNewPartUnit = ({
                 <ButtonUnit
                   onClickFunction={addNewPartAndClear}
                   addingButton={true}
-                  buttonTitle="add this part and start with another"
+                  label="add this part and start with another"
                 />
               </DisplayBox>
     ) 

@@ -12,7 +12,7 @@ export const SEARCH_PART_BY_ID_QUERY = gql`
       folderToBeDisplayedIn
       appParent
       docs{
-        title,
+        name,
         url,
         id,
         source,

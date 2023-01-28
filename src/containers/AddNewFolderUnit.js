@@ -45,14 +45,14 @@ const AddNewFolderUnit = ({
         <ButtonUnit
           onClickFunction={resetFolderInfo}
           addingButton={true}
-          buttonTitle={`folder name: ${folderOfNewPart.title} click to edit`}
+          label={`folder name: ${folderOfNewPart.title} click to edit`}
         />
       )}
       {!folderOfNewPart && (
         <ButtonUnit
           onClickFunction={clickingToAddNewFolder}
           addingButton={true}
-          buttonTitle={
+          label={
             addingNewFolder
               ? "- Back to Existing Folders"
               : "+ Add New Folder"
