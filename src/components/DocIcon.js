@@ -39,9 +39,9 @@ const DocSingularInfoContainer = styled.div`
 `;
 
 const DocIcon = ({ doc, iconNu }) => {
-  const { title, url, source, lastModified, concerningParts } = doc;
+  const { name, url, source, lastModified, concerningParts } = doc;
 
-  const docTitle = useCapitaliseFirstLetter(title);
+  const docTitle = useCapitaliseFirstLetter(name);
   const docSource = useCapitaliseFirstLetter(source);
   const DocIconContainer =
     iconNu % 2 === 0 ? EvenIconContainerWrapper : OddIconContainerWrapper;

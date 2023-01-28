@@ -8,7 +8,7 @@ export const SEARCH_APP_BY_ID_WITH_FOLDERS_QUERY = gql`
       id
       name
       folders {
-        title
+        name
         id
         parts {
           name
@@ -17,7 +17,7 @@ export const SEARCH_APP_BY_ID_WITH_FOLDERS_QUERY = gql`
           type
           folderToBeDisplayedIn
           docs {
-            title
+            name
             url
             id
             source

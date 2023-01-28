@@ -170,7 +170,7 @@ const AddNewConnectionBox = ({ params }) => {
     const newFoldersLength = newFoldersToBeAddedToAll.length + 1 || 1;
     const newFolderIndexKey = preexistingFoldersLength + newFoldersLength;
     const newFolder = {
-      title: folderName,
+      name: folderName,
       id: newFolderIndexKey,
     };
     console.log('newFolder@@@', newFolder);
@@ -232,7 +232,7 @@ const AddNewConnectionBox = ({ params }) => {
 
   const addhasBeenClicked = async (e) => {
     e.preventDefault();
-    const { title, source } = await findConnectionParameters(url);
+    const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
       new Set(
         Object.values(newPartsAdded).map((part) => part.folderToBeDisplayedIn)
@@ -243,7 +243,7 @@ const AddNewConnectionBox = ({ params }) => {
       (key) => (filterFoldersToAll[key] = newFoldersToBeAddedToAll[key])
     );
     const newDoc = {
-      title: title,
+      name: name,
       id: uuidv4(),
       url: url,
       source: source,

@@ -9,7 +9,7 @@ const findConnectionParameters = async (link) => {
 
   const lastLinkIndx = linkParts.length -1;
 
-  const findTitle = (source) => {
+  const findName = (source) => {
     const lastLinkFragment = linkParts[lastLinkIndx];
 
     if(source==="paper"){
@@ -43,8 +43,8 @@ const findConnectionParameters = async (link) => {
   
   
   const source = findSource();
-  const title = await findTitle(source);
-  return {source, title};
+  const name = await findName(source);
+  return {source, name};
 }
 
 export default findConnectionParameters;
