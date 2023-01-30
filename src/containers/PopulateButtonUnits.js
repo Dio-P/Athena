@@ -33,6 +33,7 @@ const PopulateButtonUnits = ({
         <ButtonUnit
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
+          clicked={choice.clicked}
         />
       ))
   )

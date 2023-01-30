@@ -440,13 +440,15 @@ const AddNewConnectionBox = ({ params }) => {
                 onClickFunction={togglePartClicked}
                 clicked={allAppParts[part.name].clicked}
               /> */}
-              {Object.values(allAppParts).map((part) => (
-                <ButtonUnit
+              {Object.values(allAppParts).map((part) => {
+                console.log("@@part@@", part);
+                return <ButtonUnit
                   onClickFunction={() => togglePartClicked(part)}
                   label={part.name}
                   clicked={allAppParts[part.name].clicked}
                 />
-              ))}
+              }
+              )}
               {newPartsAdded &&
               <PopulateButtonUnits
                 data={Object.values(newPartsAdded)}
