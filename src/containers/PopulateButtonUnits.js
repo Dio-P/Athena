@@ -12,7 +12,6 @@ const PopulateButtonUnits = ({
   onMouseEnterFunction, 
   onMouseLeaveFunction,
   conditionalDisplay,
-  // label
 }) => {
   useEffect(() => {
     console.log("data@@@$", data);

@@ -435,6 +435,11 @@ const AddNewConnectionBox = ({ params }) => {
   
             <OptionsWraper>
               <label htmlFor="">Existing {appName} Parts</label>
+              {/* <PopulateButtonUnits
+                data={Object.values(allAppParts)}
+                onClickFunction={togglePartClicked}
+                clicked={allAppParts[part.name].clicked}
+              /> */}
               {Object.values(allAppParts).map((part) => (
                 <ButtonUnit
                   onClickFunction={() => togglePartClicked(part)}
