@@ -37,7 +37,7 @@ const OptionsWraper = styled.div`
   flex-direction: column;
 `;
 
-const AddNewConnectionBox = ({ params }) => {
+const AddNewConnectionBox = () => {
   const [updatedApp, setUpdatedApp] = useState("");
   const [allAppParts, setAllAppParts] = useState([]);
 
@@ -64,6 +64,8 @@ const AddNewConnectionBox = ({ params }) => {
     addingNewFolder,
     doc,
   } = Object.fromEntries([...searchParams]);
+  const params = Object.fromEntries([...searchParams]);
+  // is there a better way to do that ?
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
@@ -127,6 +129,7 @@ const AddNewConnectionBox = ({ params }) => {
   }, [appToDisplay?.parts]);
 
   const togglePartClicked = (part) => {
+    console.log("£part@@@", part);
     setAllAppParts({
       ...allAppParts,
       [part.name]: {
@@ -134,6 +137,7 @@ const AddNewConnectionBox = ({ params }) => {
         clicked: !part.clicked,
       },
     });
+    setSearchParams({ ...params });
   };
 
   const addNewPartAndClear = () => {
@@ -435,12 +439,12 @@ const AddNewConnectionBox = ({ params }) => {
   
             <OptionsWraper>
               <label htmlFor="">Existing {appName} Parts</label>
-              {/* <PopulateButtonUnits
+              <PopulateButtonUnits
                 data={Object.values(allAppParts)}
-                onClickFunction={togglePartClicked}
-                clicked={allAppParts[part.name].clicked}
-              /> */}
-              {Object.values(allAppParts).map((part) => {
+                onClickFunction={(part) => togglePartClicked(part)}
+                // clicked={allAppParts[part.name].clicked}
+              />
+              {/* {Object.values(allAppParts).map((part) => {
                 console.log("@@part@@", part);
                 return <ButtonUnit
                   onClickFunction={() => togglePartClicked(part)}
@@ -448,7 +452,7 @@ const AddNewConnectionBox = ({ params }) => {
                   clicked={allAppParts[part.name].clicked}
                 />
               }
-              )}
+              )} */}
               {newPartsAdded &&
               <PopulateButtonUnits
                 data={Object.values(newPartsAdded)}

@@ -36,7 +36,8 @@ const ButtonUnit = ({
   onMouseEnterFunction, 
   onMouseLeaveFunction,
   conditionalDisplay,
-  label
+  label,
+  clicked
 }) => {
   const ButtonWrapper = !onMouseEnterFunction? SimpleButtonContainer : NewlyAddedPartButtonContainer;
   return (
@@ -51,6 +52,7 @@ const ButtonUnit = ({
       // folder={folder}
       // part={part}
       label={label}
+      clicked={clicked}
     />
     {conditionalDisplay
     &&
