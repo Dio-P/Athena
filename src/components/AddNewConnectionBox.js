@@ -14,6 +14,7 @@ import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
 import PopulateButtonUnits from "../containers/PopulateButtonUnits";
+import useFindUniqueFolderKeys from "../hooks/useFindUniqueFolderKeys";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -50,7 +51,6 @@ const AddNewConnectionBox = () => {
     folderToBeDisplayedIn: "",
   });
   const [folderOfNewPart, setFolderOfNewPart] = useState("");
-
   const [newPartsAdded, setNewPartsAdded] = useState("");
   const [folderName, setFolderName] = useState("");
   const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
@@ -62,55 +62,19 @@ const AddNewConnectionBox = () => {
     addingNewConnection,
     addingNewPart,
     addingNewFolder,
-    doc,
   } = Object.fromEntries([...searchParams]);
   const params = Object.fromEntries([...searchParams]);
   // is there a better way to do that ?
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  const [docSearchParams] = useComposeNewDocSearchParam(folderOfNewPart, newPart);
+  // const [docSearchParams] = useComposeNewDocSearchParam(folderOfNewPart, newPart);
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
   });
 
-  useEffect(() => {
-    console.log("docSearchParams$$£$£$@", docSearchParams);
-  }, [docSearchParams]);
-  useEffect(() => {
-    console.log("appId$$£$£$@", appId);
-  }, [appId]);
-
-  const existingAppsUniqueFolderKeys = useMemo(
-    () =>
-      appToDisplay &&
-      Array.from(
-        new Set(
-          Object.values(appToDisplay.parts).map(
-            (part) => part.folderToBeDisplayedIn
-          )
-        )
-      ),
-    [appToDisplay.parts]
-  );
-
-  const newAppsUniqueFoldersKeys = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          Object.values(newPartsAdded).map(
-            (part) => part.folderToBeDisplayedIn + ""
-          )
-        )
-      ),
-    [newPartsAdded]
-  );
-
-  const allUniqueFolderKeys = useMemo(
-    () => [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
-    [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
-  );
+  const allUniqueFolderKeys = useFindUniqueFolderKeys(appToDisplay.parts, newPartsAdded)
 
   const appName = useCapitaliseFirstLetter(appToDisplay.name);
 
@@ -129,7 +93,6 @@ const AddNewConnectionBox = () => {
   }, [appToDisplay?.parts]);
 
   const togglePartClicked = (part) => {
-    console.log("£part@@@", part);
     setAllAppParts({
       ...allAppParts,
       [part.name]: {
@@ -177,7 +140,6 @@ const AddNewConnectionBox = () => {
       name: folderName,
       id: newFolderIndexKey,
     };
-    console.log('newFolder@@@', newFolder);
     setFolderOfNewPart(newFolder);
     setNewPart({
       ...newPart,
@@ -192,7 +154,6 @@ const AddNewConnectionBox = () => {
   };
 
   const folderInfoToState = (folder) => {
-    console.log('folder@@@', folder);
     setFolderName(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
@@ -280,9 +241,6 @@ const AddNewConnectionBox = () => {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart });
     }
   };
-  useEffect(() => {
-    console.log('folderOfNewPart@@@@', folderOfNewPart); 
-  }, [folderOfNewPart])
 
   // const addNewConnectionBoxView = useCallback(() => {
   //   return (
@@ -425,7 +383,6 @@ const AddNewConnectionBox = () => {
     if (appToDisplay) {
       return (
         <FormContainer>
-        <div>
           <InputUnit
             inputTitle='URL'
             key="urlInput"
@@ -442,17 +399,7 @@ const AddNewConnectionBox = () => {
               <PopulateButtonUnits
                 data={Object.values(allAppParts)}
                 onClickFunction={(part) => togglePartClicked(part)}
-                // clicked={allAppParts[part.name].clicked}
               />
-              {/* {Object.values(allAppParts).map((part) => {
-                console.log("@@part@@", part);
-                return <ButtonUnit
-                  onClickFunction={() => togglePartClicked(part)}
-                  label={part.name}
-                  clicked={allAppParts[part.name].clicked}
-                />
-              }
-              )} */}
               {newPartsAdded &&
               <PopulateButtonUnits
                 data={Object.values(newPartsAdded)}
@@ -521,7 +468,6 @@ const AddNewConnectionBox = () => {
                                 {`add: ${url}`}
                             </UrlInputBox>
                         } */}
-        </div>
       </FormContainer>
       ) 
     }
