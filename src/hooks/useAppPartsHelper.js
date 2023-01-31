@@ -1,7 +1,23 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 
-const useFindUniqueFolderKeys = (preexistingParts, newParts) => {
+const useAppPartsHelper = (preexistingParts, newParts) => {
+  const [allAppParts, setAllAppParts] = useState([]);
+
+
+  useEffect(() => {
+    const allAppPartsHelper = {};
+    if (preexistingParts) {
+      preexistingParts.forEach(
+        (part) =>
+          (allAppPartsHelper[part.name] = {
+            ...part,
+            clicked: false,
+          })
+      );
+      setAllAppParts(allAppPartsHelper);
+    }
+  }, [preexistingParts]);
 
   const existingAppsUniqueFolderKeys = useMemo(
     () =>
@@ -34,7 +50,7 @@ const useFindUniqueFolderKeys = (preexistingParts, newParts) => {
     [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
   );
 
-  return allUniqueFolderKeys;
+  return [allAppParts, setAllAppParts, allUniqueFolderKeys];
 }
 
-export default useFindUniqueFolderKeys; 
+export default useAppPartsHelper; 

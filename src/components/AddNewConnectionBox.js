@@ -14,7 +14,7 @@ import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
 import PopulateButtonUnits from "../containers/PopulateButtonUnits";
-import useFindUniqueFolderKeys from "../hooks/useFindUniqueFolderKeys";
+import useAppPartsHelper from "../hooks/useAppPartsHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -40,7 +40,7 @@ const OptionsWraper = styled.div`
 
 const AddNewConnectionBox = () => {
   const [updatedApp, setUpdatedApp] = useState("");
-  const [allAppParts, setAllAppParts] = useState([]);
+  // const [allAppParts, setAllAppParts] = useState([]);
 
   const [url, setUrl] = useState("");
   const [newPart, setNewPart] = useState({
@@ -68,29 +68,13 @@ const AddNewConnectionBox = () => {
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  // const [docSearchParams] = useComposeNewDocSearchParam(folderOfNewPart, newPart);
-
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
   });
 
-  const allUniqueFolderKeys = useFindUniqueFolderKeys(appToDisplay.parts, newPartsAdded)
+  const [allAppParts, setAllAppParts, allUniqueFolderKeys] = useAppPartsHelper(appToDisplay.parts, newPartsAdded);
 
   const appName = useCapitaliseFirstLetter(appToDisplay.name);
-
-  useEffect(() => {
-    const allAppPartsHelper = {};
-    if (appToDisplay?.parts) {
-      appToDisplay.parts.forEach(
-        (part) =>
-          (allAppPartsHelper[part.name] = {
-            ...part,
-            clicked: false,
-          })
-      );
-      setAllAppParts(allAppPartsHelper);
-    }
-  }, [appToDisplay?.parts]);
 
   const togglePartClicked = (part) => {
     setAllAppParts({
