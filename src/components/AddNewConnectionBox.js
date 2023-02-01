@@ -8,8 +8,8 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
-import AddNewPartUnit from "../containers/AddNewPartUnit";
-import AddNewFolderUnit from "../containers/AddNewFolderUnit";
+import AddingPartBlock from "../containers/AddingPartBlock";
+import AddingFolderBlock from "../containers/AddingFolderBlock";
 import AddNewPartInput from "../containers/AddNewPartInput";
 import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
@@ -52,7 +52,7 @@ const AddNewConnectionBox = () => {
   });
   const [folderOfNewPart, setFolderOfNewPart] = useState("");
   const [newPartsAdded, setNewPartsAdded] = useState("");
-  const [folderName, setFolderName] = useState("");
+  const [clickedFolder, setClickedFolder] = useState("");
   const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
 
   let [searchParams, setSearchParams] = useSearchParams();
@@ -76,7 +76,7 @@ const AddNewConnectionBox = () => {
 
   const appName = useCapitaliseFirstLetter(appToDisplay.name);
 
-  const togglePartClicked = (part) => {
+  const onClickPart = (part) => {
     setAllAppParts({
       ...allAppParts,
       [part.name]: {
@@ -104,7 +104,7 @@ const AddNewConnectionBox = () => {
       ghRepo: "",
       type: "",
     });
-    setFolderName("");
+    setClickedFolder("");
     setFolderOfNewPart("");
     setSearchParams({
       team,
@@ -121,7 +121,7 @@ const AddNewConnectionBox = () => {
     const newFoldersLength = newFoldersToBeAddedToAll.length + 1 || 1;
     const newFolderIndexKey = preexistingFoldersLength + newFoldersLength;
     const newFolder = {
-      name: folderName,
+      name: clickedFolder,
       id: newFolderIndexKey,
     };
     setFolderOfNewPart(newFolder);
@@ -138,7 +138,7 @@ const AddNewConnectionBox = () => {
   };
 
   const folderInfoToState = (folder) => {
-    setFolderName(folder.name);
+    setClickedFolder(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,
@@ -179,7 +179,7 @@ const AddNewConnectionBox = () => {
     return [...checkedExistingPartIds, ...newPartsIds];
   };
 
-  const addhasBeenClicked = async (e) => {
+  const onClickAdd = async (e) => {
     e.preventDefault();
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
@@ -245,7 +245,7 @@ const AddNewConnectionBox = () => {
   //           <label htmlFor="">Existing {appName} Parts</label>
   //           {Object.values(allAppParts).map((part) => (
   //             <ButtonUnit
-  //               onClickFunction={() => togglePartClicked(part)}
+  //               onClickFunction={() => onClickPart(part)}
   //               part={part.name}
   //               clicked={allAppParts[part.name].clicked}
   //             />
@@ -310,16 +310,16 @@ const AddNewConnectionBox = () => {
   //                   setNewPart({ ...newPart, type: e.target.value })
   //                 }
   //               />
-  //               <AddNewFolderUnit
+  //               <AddingFolderBlock
   //                 folderOfNewPart={folderOfNewPart}
   //                 addingNewFolder={addingNewFolder}
   //                 allPreexistingFolders={appToDisplay.folders}
   //                 allNewFolders={newFoldersToBeAddedToAll}
   //                 folderInfoToState={folderInfoToState}
-  //                 newFolderName={folderName}
+  //                 newclickedFolder={clickedFolder}
   //                 addNewFolderAndClear={addNewFolderAndClear}
   //                 newInputTitle={`New Part Name: ${newPart.type}`}
-  //                 setFolderName={(value) => setFolderName(value)}
+  //                 setClickedFolder={(value) => setClickedFolder(value)}
   //                 resetFolderInfo={resetFolderInfo}
   //                 clickingToAddNewFolder={clickingToAddNewFolder}
   //               />
@@ -332,9 +332,9 @@ const AddNewConnectionBox = () => {
   //         )}
   //       </div>
   //       {/* {
-  //                     (url && folderName && part)
+  //                     (url && clickedFolder && part)
   //                     ? */}
-  //       <button type="submit" onClick={addhasBeenClicked}>
+  //       <button type="submit" onClick={onClickAdd}>
   //         Add
   //       </button>
   //       {/* :
@@ -343,14 +343,14 @@ const AddNewConnectionBox = () => {
 
   //       {/* {url
   //                     &&
-  //                         <UrlInputBox onClick={addhasBeenClicked}>
+  //                         <UrlInputBox onClick={onClickAdd}>
   //                             {`add: ${url}`}
   //                         </UrlInputBox>
   //                     } */}
   //     </div>
   //   </FormContainer>
   //   )
-  // }, [addNewFolderAndClear, addNewPartAndClear, addhasBeenClicked, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, folderName, folderOfNewPart, newFoldersToBeAddedToAll, newPart, newPartsAdded, resetFolderInfo, togglePartClicked, url])
+  // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newFoldersToBeAddedToAll, newPart, newPartsAdded, resetFolderInfo, onClickPart, url])
   
   const renderedView = () => {
     if (loading) {
@@ -382,7 +382,7 @@ const AddNewConnectionBox = () => {
               <label htmlFor="">Existing {appName} Parts</label>
               <PopulateButtonUnits
                 data={Object.values(allAppParts)}
-                onClickFunction={(part) => togglePartClicked(part)}
+                onClickFunction={(part) => onClickPart(part)}
               />
               {newPartsAdded &&
               <PopulateButtonUnits
@@ -410,7 +410,7 @@ const AddNewConnectionBox = () => {
             />
             </OptionsWraper>
             {addingNewPart && (
-              <AddNewPartUnit
+              <AddingPartBlock
                 newPart={newPart}
                 setNewPartName={(input) =>
                   setNewPart({ ...newPart, name: input })
@@ -426,10 +426,10 @@ const AddNewConnectionBox = () => {
                 allPreexistingFolders={appToDisplay.folders}
                 allNewFolders={newFoldersToBeAddedToAll}
                 folderInfoToState={folderInfoToState}
-                newFolderName={folderName}
+                clickedFolder={clickedFolder}
                 addNewFolderAndClear={addNewFolderAndClear}
                 newInputTitle={`New Part Name: ${newPart.type}`}
-                setFolderName={(value) => setFolderName(value)}
+                onClickingFolder={(value) => setClickedFolder(value)}
                 resetFolderInfo={resetFolderInfo}
                 clickingToAddNewFolder={clickingToAddNewFolder}
                 addNewPartAndClear={addNewPartAndClear}
@@ -437,9 +437,9 @@ const AddNewConnectionBox = () => {
             )}
           </div>
           {/* {
-                        (url && folderName && part)
+                        (url && clickedFolder && part)
                         ? */}
-          <button type="submit" onClick={addhasBeenClicked}>
+          <button type="submit" onClick={onClickAdd}>
             Add
           </button>
           {/* :
@@ -448,7 +448,7 @@ const AddNewConnectionBox = () => {
   
           {/* {url
                         &&
-                            <UrlInputBox onClick={addhasBeenClicked}>
+                            <UrlInputBox onClick={onClickAdd}>
                                 {`add: ${url}`}
                             </UrlInputBox>
                         } */}

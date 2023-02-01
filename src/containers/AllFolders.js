@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
 import PopulateButtonUnits from "./PopulateButtonUnits";
 
-const AddNewFolderOptions = ({ 
+const AllFolders = ({ 
   addingNewFolder, 
   allPreexistingFolders, 
   allNewFolders, 
@@ -10,7 +9,7 @@ const AddNewFolderOptions = ({
   newFolderName, 
   addNewFolderAndClear, 
   newInputTitle, 
-  setFolderName 
+  onClickingFolder 
 }) => {
 
   return (
@@ -30,10 +29,10 @@ const AddNewFolderOptions = ({
         newFolderName={newFolderName}
         addNewFolderAndClear={addNewFolderAndClear}
         newInputTitle={newInputTitle}
-        setFolderName={setFolderName}
+        onClickingFolder={onClickingFolder}
       />
     )
   )
 }
 
-export default AddNewFolderOptions;
+export default AllFolders;

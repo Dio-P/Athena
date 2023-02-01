@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import AddNewPartInput from "./AddNewPartInput";
-import AddNewFolderUnit from "./AddNewFolderUnit";
+import AddingFolderBlock from "./AddingFolderBlock";
 import ButtonUnit from "./ButtonUnit";
 
 const DisplayBox = styled.div`
@@ -22,7 +22,7 @@ const TitleButtonWrapper = styled.div`
   margin-left: 12px;
 `;
 
-const AddNewPartUnit = ({ 
+const AddingPartBlock = ({ 
     newPart, 
     setNewPartName, 
     setNewPartGhRepo, 
@@ -32,10 +32,10 @@ const AddNewPartUnit = ({
     allPreexistingFolders,
     newFoldersToBeAddedToAll,
     folderInfoToState,
-    folderName,
+    clickedFolder,
     addNewFolderAndClear,
     newInputTitle,
-    setFolderName,
+    onClickingFolder,
     resetFolderInfo,
     clickingToAddNewFolder,
     addNewPartAndClear
@@ -51,16 +51,16 @@ const AddNewPartUnit = ({
                   setNewPartGhRepo={setNewPartGhRepo}
                   setNewPartType={setNewPartType}
                 />
-                <AddNewFolderUnit
+                <AddingFolderBlock
                   folderOfNewPart={folderOfNewPart}
                   addingNewFolder={addingNewFolder}
                   allPreexistingFolders={allPreexistingFolders}
                   allNewFolders={newFoldersToBeAddedToAll}
                   folderInfoToState={folderInfoToState}
-                  newFolderName={folderName}
+                  newclickedFolder={clickedFolder}
                   addNewFolderAndClear={addNewFolderAndClear}
                   newInputTitle={newInputTitle}
-                  setFolderName={setFolderName}
+                  onClickingFolder={onClickingFolder}
                   resetFolderInfo={resetFolderInfo}
                   clickingToAddNewFolder={clickingToAddNewFolder}
                 />
@@ -73,4 +73,4 @@ const AddNewPartUnit = ({
     ) 
 };
 
-export default AddNewPartUnit;
+export default AddingPartBlock;
