@@ -15,6 +15,8 @@ import useRenderCorrectView from "../hooks/useRenderCorrectView";
 import { useCallback } from "react";
 import PopulateButtonUnits from "../containers/PopulateButtonUnits";
 import useAppPartsHelper from "../hooks/useAppPartsHelper";
+import useFolderHelper from "../hooks/useFolderHelper";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -39,6 +41,8 @@ const OptionsWraper = styled.div`
 `;
 
 const AddNewConnectionBox = () => {
+  let [searchParams, setSearchParams] = useSearchParams();////////////@@@!
+
   const [updatedApp, setUpdatedApp] = useState("");
   // const [allAppParts, setAllAppParts] = useState([]);
 
@@ -53,20 +57,17 @@ const AddNewConnectionBox = () => {
   const [folderOfNewPart, setFolderOfNewPart] = useState("");
   const [newPartsAdded, setNewPartsAdded] = useState("");
   const [clickedFolder, setClickedFolder] = useState("");
-  const [newFoldersToBeAddedToAll, setNewFoldersToBeAddedToAll] = useState([]);
+  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
 
-  let [searchParams, setSearchParams] = useSearchParams();
   const {
-    team,
     appId,
-    addingNewConnection,
     addingNewPart,
     addingNewFolder,
   } = Object.fromEntries([...searchParams]);
-  const params = Object.fromEntries([...searchParams]);
-  // is there a better way to do that ?
-
+  
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
+  const [newFolderIndexKey] = useFolderHelper(appToDisplay.folders, newlyCreatedFolders);
+  const [clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams] = useParamsHelper();
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -76,6 +77,11 @@ const AddNewConnectionBox = () => {
 
   const appName = useCapitaliseFirstLetter(appToDisplay.name);
 
+  // const keepExistingParams = () => {
+  //   const params = Object.fromEntries([...searchParams]);
+  //   setSearchParams({...params});
+  // };
+
   const onClickPart = (part) => {
     setAllAppParts({
       ...allAppParts,
@@ -84,7 +90,7 @@ const AddNewConnectionBox = () => {
         clicked: !part.clicked,
       },
     });
-    setSearchParams({ ...params });
+    keepExistingParams();
   };
 
   const addNewPartAndClear = () => {
@@ -97,7 +103,7 @@ const AddNewConnectionBox = () => {
         // I need to create a singly function that is going to turn this and return a single item in both cases
       },
     });
-    setNewFoldersToBeAddedToAll([...newFoldersToBeAddedToAll, folderOfNewPart]); //////////////////////////////////
+    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
     setNewPart({
       ...newPart,
       name: "",
@@ -106,20 +112,10 @@ const AddNewConnectionBox = () => {
     });
     setClickedFolder("");
     setFolderOfNewPart("");
-    setSearchParams({
-      team,
-      appId,
-      addingNewConnection,
-      addingNewPart,
-      addingNewFolder,
-    });
     keepExistingParams();
   };
 
   const addNewFolderAndClear = () => {
-    const preexistingFoldersLength = appToDisplay.folders.length - 1 || 0;
-    const newFoldersLength = newFoldersToBeAddedToAll.length + 1 || 1;
-    const newFolderIndexKey = preexistingFoldersLength + newFoldersLength;
     const newFolder = {
       name: clickedFolder,
       id: newFolderIndexKey,
@@ -129,12 +125,8 @@ const AddNewConnectionBox = () => {
       ...newPart,
       folderToBeDisplayedIn: newFolderIndexKey,
     });
-    
-    setSearchParams({ team, appId, addingNewConnection, addingNewPart});
-  };
-
-  const keepExistingParams = () => {//!!!!!!!!!!!!!
-    setSearchParams({ ...params });
+  
+    keepExistingParams();
   };
 
   const folderInfoToState = (folder) => {
@@ -144,18 +136,11 @@ const AddNewConnectionBox = () => {
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    setSearchParams({ team, appId, addingNewConnection, addingNewPart});
+    keepExistingParams();
   };
 
   const resetFolderInfo = () => {
     setFolderOfNewPart("");
-    setSearchParams({
-      team,
-      appId,
-      addingNewConnection,
-      addingNewPart,
-      addingNewFolder,
-    });
     keepExistingParams();
   };
 
@@ -164,11 +149,11 @@ const AddNewConnectionBox = () => {
     delete newPartsAdded[part.name];
     setNewPartsAdded({ ...newPartsAdded });
     // delete the folders key if no app is using it
-    const updatedNewFoldersFolder = newFoldersToBeAddedToAll.filter(({ id }) =>
+    const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
       folderIdIsInUse(id)
     );
 
-    setNewFoldersToBeAddedToAll(updatedNewFoldersFolder);
+    setNewlyCreatedFolders(updatedNewFoldersFolder);
   };
 
   const findConserningParts = () => {
@@ -189,7 +174,7 @@ const AddNewConnectionBox = () => {
     );
     const filterFoldersToAll = {};
     newFoldersKeys.map(
-      (key) => (filterFoldersToAll[key] = newFoldersToBeAddedToAll[key])
+      (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key])
     );
     const newDoc = {
       name: name,
@@ -208,22 +193,6 @@ const AddNewConnectionBox = () => {
       folders: [...appToDisplay.folders, ...filterFoldersToAll],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
-  };
-
-  const clickingToAddNewPart = () => {
-    if (!addingNewPart) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
-    } else {
-      setSearchParams({ team, appId, addingNewConnection });
-    }
-  };
-
-  const clickingToAddNewFolder = () => {
-    if (!addingNewFolder) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart, addingNewFolder: true });
-    } else {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart });
-    }
   };
 
   // const addNewConnectionBoxView = useCallback(() => {
@@ -314,7 +283,7 @@ const AddNewConnectionBox = () => {
   //                 folderOfNewPart={folderOfNewPart}
   //                 addingNewFolder={addingNewFolder}
   //                 allPreexistingFolders={appToDisplay.folders}
-  //                 allNewFolders={newFoldersToBeAddedToAll}
+  //                 allNewFolders={newlyCreatedFolders}
   //                 folderInfoToState={folderInfoToState}
   //                 newclickedFolder={clickedFolder}
   //                 addNewFolderAndClear={addNewFolderAndClear}
@@ -350,7 +319,7 @@ const AddNewConnectionBox = () => {
   //     </div>
   //   </FormContainer>
   //   )
-  // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newFoldersToBeAddedToAll, newPart, newPartsAdded, resetFolderInfo, onClickPart, url])
+  // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickPart, url])
   
   const renderedView = () => {
     if (loading) {
@@ -424,7 +393,7 @@ const AddNewConnectionBox = () => {
                 folderOfNewPart={folderOfNewPart}
                 addingNewFolder={addingNewFolder}
                 allPreexistingFolders={appToDisplay.folders}
-                allNewFolders={newFoldersToBeAddedToAll}
+                allNewFolders={newlyCreatedFolders}
                 folderInfoToState={folderInfoToState}
                 clickedFolder={clickedFolder}
                 addNewFolderAndClear={addNewFolderAndClear}
