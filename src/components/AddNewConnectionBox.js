@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
@@ -6,13 +6,8 @@ import findConnectionParameters from "../helpers/findConnectionParameters";
 import ButtonUnit from "../containers/ButtonUnit";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
-import useComposeNewDocSearchParam from "../hooks/useComposeNewDocSearchParam";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
-import AddingFolderBlock from "../containers/AddingFolderBlock";
-import AddNewPartInput from "../containers/AddNewPartInput";
-import useRenderCorrectView from "../hooks/useRenderCorrectView";
-import { useCallback } from "react";
 import PopulateButtonUnits from "../containers/PopulateButtonUnits";
 import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
@@ -41,10 +36,9 @@ const OptionsWraper = styled.div`
 `;
 
 const AddNewConnectionBox = () => {
-  let [searchParams, setSearchParams] = useSearchParams();////////////@@@!
+  let [searchParams] = useSearchParams();
 
   const [updatedApp, setUpdatedApp] = useState("");
-  // const [allAppParts, setAllAppParts] = useState([]);
 
   const [url, setUrl] = useState("");
   const [newPart, setNewPart] = useState({
@@ -76,11 +70,6 @@ const AddNewConnectionBox = () => {
   const [allAppParts, setAllAppParts, allUniqueFolderKeys] = useAppPartsHelper(appToDisplay.parts, newPartsAdded);
 
   const appName = useCapitaliseFirstLetter(appToDisplay.name);
-
-  // const keepExistingParams = () => {
-  //   const params = Object.fromEntries([...searchParams]);
-  //   setSearchParams({...params});
-  // };
 
   const onClickPart = (part) => {
     setAllAppParts({
