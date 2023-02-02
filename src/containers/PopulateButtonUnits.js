@@ -16,8 +16,9 @@ const PopulateButtonUnits = ({
 
   return (
     data &&
-      data.map((choice) => (
+      data.map((choice, index) => (
         <ButtonUnit
+          key={index}
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
           clicked={choice.clicked}

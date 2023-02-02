@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import PopulateButtonUnits from "./PopulateButtonUnits";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useParamsHelper from "../hooks/useParamsHelper";
@@ -27,7 +28,7 @@ const StyledButton = styled.button`
 
 const AppsBox = ({ teamApps, teamName }) => {
   const { 
-    setAppToDisplay, 
+    toggleAppIdParamOnandOff, 
     params: {
       appId
     } 
@@ -36,7 +37,7 @@ const AppsBox = ({ teamApps, teamName }) => {
   return (
     <DepartmAppsBoxContainer>
       <div>
-        <StyledButton onClick={setAppToDisplay}>
+        <StyledButton onClick={toggleAppIdParamOnandOff}>
           <DepAppBoxPageTitle>
             {useCapitaliseFirstLetter(teamName)}
           </DepAppBoxPageTitle>
@@ -45,13 +46,18 @@ const AppsBox = ({ teamApps, teamName }) => {
       <>
         {teamApps &&
           !appId &&
-          teamApps.map((singleApp) => {
-            return (
-              <div onClick={() => setAppToDisplay(singleApp)}>
-                <GenericButtonIcon label={singleApp.name} />
-              </div>
-            );
-          })}
+          <PopulateButtonUnits
+            data={teamApps}
+            onClickFunction={(singleApp) => toggleAppIdParamOnandOff(singleApp)}
+          />
+          // teamApps.map((singleApp) => {
+          //   return (
+          //     <div onClick={() => toggleAppIdParamOnandOff(singleApp)}>
+          //       <GenericButtonIcon label={singleApp.name} />
+          //     </div>
+          //   );
+          // })
+        }
       </>
 
       {appId && <AppPage appIdToDisplay={appId} />}

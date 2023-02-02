@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
+import ButtonUnit from "./ButtonUnit";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
@@ -50,14 +51,13 @@ const AppPage = () => {
       <>
         <AppPageTitle>
           {appToDisplay?.name}
-          <AddDocButton onClick={clickingToAddNewConnection}>
-            <GenericButtonIcon
-              addingButton={true}
-              label={
-                (addingNewConnection ? "- " : "+ ") + "Add URL"
-              }
-            />
-          </AddDocButton>
+          <ButtonUnit
+            onClickFunction={clickingToAddNewConnection}
+            addingButton={true}
+            label={
+              (addingNewConnection ? "- " : "+ ") + "Add URL"
+            }
+          />
         </AppPageTitle>
       </>
       {addingNewConnection && appToDisplay && (
@@ -65,8 +65,9 @@ const AppPage = () => {
       )}
 
       {appToDisplay &&
-        appToDisplay?.folders?.map((folder) => (
+        appToDisplay?.folders?.map((folder, index) => (
           <Folder
+            key={index}
             folderName={folder.name}
             parts={folder.parts}
             appId={appToDisplay.id}

@@ -58,7 +58,7 @@ margin: 20px;
 font-size: 14px;
 `;
 
-const AppFolderButton = styled.button`
+const AppFolderButton = styled.div`
 margin: auto;
 background: none;
 color: inherit;

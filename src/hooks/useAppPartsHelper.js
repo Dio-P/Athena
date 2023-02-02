@@ -19,13 +19,13 @@ const useAppPartsHelper = (preexistingParts) => {
   });
 
   // const [_, __, keepExistingParams] = useParamsHelper();
-  const [
+  const {
     newlyCreatedFolders,
     setNewlyCreatedFolders, 
     clickedFolder, 
     setClickedFolder, 
     newFolderIndexKey
-  ] = useFolderHelper();
+  } = useFolderHelper();
 
   useEffect(() => {
     console.log("useAppPartHelper"); 
@@ -113,7 +113,7 @@ const useAppPartsHelper = (preexistingParts) => {
     [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
   );
 
-  return [
+  return {
     allAppParts, 
     newPartsAdded, 
     setNewPartsAdded, 
@@ -124,7 +124,7 @@ const useAppPartsHelper = (preexistingParts) => {
     allUniqueFolderKeys, 
     onClickingPart, 
     addNewPartAndClear
-  ];
+  };
 }
 
 export default useAppPartsHelper; 

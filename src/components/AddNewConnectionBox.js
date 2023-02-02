@@ -41,23 +41,22 @@ const AddNewConnectionBox = () => {
   const [updatedApp, setUpdatedApp] = useState("");
 
   const [url, setUrl] = useState("");
-
-  const {
+  
+  const {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, params: {
     appId,
     addingNewPart,
     addingNewFolder,
-  } = Object.fromEntries([...searchParams]);
-  
+  }} = useParamsHelper();
+
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  const {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, params} = useParamsHelper();
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
   });
 
   const foldersToDisplay = useMemo(() => appToDisplay.folders , [appToDisplay.folders]);
-  const [
+  const {
     newlyCreatedFolders, 
     setNewlyCreatedFolders, 
     clickedFolder, 
@@ -66,10 +65,10 @@ const AddNewConnectionBox = () => {
     // addNewFolderAndClear,
     // folderInfoToState,
     // resetFolderInfo
-  ] = useFolderHelper(foldersToDisplay);
+  } = useFolderHelper(foldersToDisplay);
 
   const partsToDisplay = useMemo(() => appToDisplay.parts , [appToDisplay.parts]);
-  const [
+  const {
     allAppParts, 
     newPartsAdded, 
     setNewPartsAdded, 
@@ -80,13 +79,13 @@ const AddNewConnectionBox = () => {
     allUniqueFolderKeys, 
     onClickingPart, 
     addNewPartAndClear
-  ] = useAppPartsHelper(partsToDisplay);
+ } = useAppPartsHelper(partsToDisplay);
 
   const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
   const APP_NAME = useCapitaliseFirstLetter(nameToDisplay);
 
   useEffect(() => {
-    console.log("foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay, "params", params);
+    console.log("foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay);
      
   }, [])
 
@@ -296,10 +295,8 @@ const AddNewConnectionBox = () => {
   //   )
   // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, APP_NAME, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickingPart, url])
   
-  // const appPartString = allAppParts && Object.values(allAppParts).join('')
-  // const appPartsArray = useMemo(() =>  Object.values(allAppParts), [appPartString, !!appPartString])
-  // const appPartAddedString = newPartsAdded && Object.values(newPartsAdded).join('')
-  // const newPartsAddedArray = useMemo(() => Object.values(newPartsAdded), [appPartAddedString, !!appPartAddedString])
+  const appPartsArray = useMemo(() => Object.values(allAppParts), [allAppParts])
+  const newPartsAddedArray = useMemo(() => Object.values(newPartsAdded), [newPartsAdded])
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;
@@ -317,7 +314,6 @@ const AddNewConnectionBox = () => {
         <FormContainer>
           <InputUnit
             inputTitle='URL'
-            key="urlInput"
             type="text"
             name="url"
             value={url}
@@ -329,12 +325,12 @@ const AddNewConnectionBox = () => {
             <OptionsWraper>
               <label htmlFor="">Existing {APP_NAME} Parts</label>
               <PopulateButtonUnits
-                data={Object.values(allAppParts)}
+                data={appPartsArray}
                 onClickFunction={(part) => onClickingPart(part)}
               />
               {newPartsAdded &&
               <PopulateButtonUnits
-                data={Object.values(newPartsAdded)}
+                data={newPartsAddedArray}
                 onClickFunction={(part) => deleteNewPart(part)}
                 onMouseEnterFunction={() =>
                   setDisplay({ ...display, deleteWarningNewPart: true })

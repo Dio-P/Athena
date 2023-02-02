@@ -26,14 +26,13 @@ const InputContainer = styled.div`
   margin: 1em;
 `;
 
-const InputUnit = ({ inputTitle, key, type, name, value, onChangeFunction }) => {
+const InputUnit = ({ inputTitle, type, name, value, onChangeFunction }) => {
   return (
     <InputContainer>
       <label htmlFor="">
         {inputTitle}
       </label>
       <InputBox
-        key={key}
         type={type}
         name={name}
         value={value}

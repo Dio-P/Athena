@@ -17,36 +17,15 @@ const useParamsHelper = () => {
     addingNewFolder,
   } = params;
 
-  const [
-    allAppParts, 
-    newPartsAdded, 
-    setNewPartsAdded, 
-    newPart, 
-    setNewPart,
-    folderOfNewPart, 
-    setFolderOfNewPart,
-    allUniqueFolderKeys, 
-    onClickingPart, 
-    addNewPartAndClear
-  ] = useAppPartsHelper();
-
-  const [
-    newlyCreatedFolders, 
-    setNewlyCreatedFolders, 
-    clickedFolder, 
-    setClickedFolder, 
-    newFolderIndexKey,
-    addNewFolderAndClear,
-    folderInfoToState,
-    resetFolderInfo
-  ] = useFolderHelper();
-
   useEffect(() => {
     console.log("useParamsHelper");
   }, []);
 
-  const setAppToDisplay = (singleApp) => {
+  const toggleAppIdParamOnandOff = (singleApp) => {
+    console.log("toggleAppIdParamOnandOff");
+
     if(!appId){
+      console.log("singleApp", singleApp);
       setSearchParams({ team, appId: singleApp.id }) 
     } else {
       setSearchParams({ team });
@@ -54,6 +33,8 @@ const useParamsHelper = () => {
   };
   
   const clickingToAddNewConnection = () => {
+    console.log("clickingToAddNewConnection");
+
     if (!addingNewConnection) {
       setSearchParams({ team, appId, addingNewConnection: true });
     } else {
@@ -79,13 +60,13 @@ const useParamsHelper = () => {
     }
   };
 
-  const keepExistingParams = useCallback(() => {
+  const keepExistingParams = () => {
     console.log("keepExistingParams");
     const params = Object.fromEntries([...searchParams]);
     setSearchParams({...params});
-  }, [addNewFolderAndClear, folderInfoToState, resetFolderInfo, onClickingPart, addNewPartAndClear] );
+  };
 
-  return {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, setAppToDisplay, params}
+  return {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, toggleAppIdParamOnandOff, params}
 };
 
 export default useParamsHelper;

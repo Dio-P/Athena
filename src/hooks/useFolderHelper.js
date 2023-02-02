@@ -7,7 +7,7 @@ const useFolderHelper = (preexistingFolders) => {
   const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
 
 
-  // const [
+  // const {
     // allAppParts, 
     // newPartsAdded, 
     // setNewPartsAdded, 
@@ -18,13 +18,13 @@ const useFolderHelper = (preexistingFolders) => {
     // allUniqueFolderKeys, 
     // onClickingPart, 
     // addNewPartAndClear
-  // ] = useAppPartsHelper();
+  // } = useAppPartsHelper();
 
   // const [_, __, keepExistingParams] = useParamsHelper();
 
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
-  const [clickedFolder, setClickedFolder] = useState(undefined);
+  const [clickedFolder, setClickedFolder] = useState("");
 
   useEffect(() => {
     console.log("useFolderHelper"); 
@@ -73,7 +73,7 @@ const useFolderHelper = (preexistingFolders) => {
   }
 
   
-  return [
+  return {
     newlyCreatedFolders, 
     setNewlyCreatedFolders, 
     clickedFolder, 
@@ -82,7 +82,7 @@ const useFolderHelper = (preexistingFolders) => {
     // addNewFolderAndClear,
     // folderInfoToState,
     // resetFolderInfo
-  ];
+  };
 }
 
 export default useFolderHelper
