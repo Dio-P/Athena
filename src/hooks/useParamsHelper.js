@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useEffect } from "react";
+import { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import useAppPartsHelper from "./useAppPartsHelper";
 import useFolderHelper from "./useFolderHelper";
@@ -7,8 +7,11 @@ import useFolderHelper from "./useFolderHelper";
 const useParamsHelper = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
-
+  // const changeInParams = useMemo(() => Object.fromEntries([...params]), [params]);
+  const paramsString = useRef(searchParams.toString())
+  // useMemo(() => searchParams.toString(), [searchParams]);
+  const [params, setParams] = useState(Object.fromEntries([...searchParams]));
+  // console.log("params", params.team);
   const {
     team,
     appId,
@@ -17,9 +20,26 @@ const useParamsHelper = () => {
     addingNewFolder,
   } = params;
 
+//  const paramsStrMemo = useMemo(() => Object.values(changeInParams).join(''), [changeInParams])
+
+  useEffect(() => {
+    console.log("paramsString", paramsString);
+    console.log("searchParamsparams.toString()", searchParams.toString());
+    console.log("paramsStrMemo", typeof changeInParams);
+    setParams(Object.fromEntries([...searchParams]))
+  }, [paramsString.current]);
+
   useEffect(() => {
     console.log("useParamsHelper");
   }, []);
+  // useEffect(() => {
+  //   console.log("params changed");
+  // }, [params]);
+
+  const clickingOnTeam = (defaultTeam) => {
+    console.log("clicking on team");
+      setSearchParams({team: defaultTeam})
+  };
 
   const toggleAppIdParamOnandOff = (singleApp) => {
     console.log("toggleAppIdParamOnandOff");
@@ -66,7 +86,7 @@ const useParamsHelper = () => {
     setSearchParams({...params});
   };
 
-  return {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, toggleAppIdParamOnandOff, params}
+  return {clickingOnTeam, clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, toggleAppIdParamOnandOff, params}
 };
 
 export default useParamsHelper;

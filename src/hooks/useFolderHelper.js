@@ -20,7 +20,7 @@ const useFolderHelper = (preexistingFolders) => {
     // addNewPartAndClear
   // } = useAppPartsHelper();
 
-  // const [_, __, keepExistingParams] = useParamsHelper();
+  const { keepExistingParams } = useParamsHelper();
 
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);

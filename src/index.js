@@ -35,8 +35,8 @@ const router = createBrowserRouter(
     <>
       <Route path="/" 
       element={<App/>}
-        loader={(obj) => {
-          // console.log("obj['*']", obj);
+        loader={({params}) => {
+          console.log("params['*']", params);
         }}
         action={({ params }) => {}}
       />

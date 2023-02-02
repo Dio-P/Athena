@@ -18,13 +18,13 @@ const useAppPartsHelper = (preexistingParts) => {
     folderToBeDisplayedIn: "",
   });
 
-  // const [_, __, keepExistingParams] = useParamsHelper();
+  const { keepExistingParams } = useParamsHelper();
   const {
     newlyCreatedFolders,
     setNewlyCreatedFolders, 
-    clickedFolder, 
+    // clickedFolder, 
     setClickedFolder, 
-    newFolderIndexKey
+    // newFolderIndexKey
   } = useFolderHelper();
 
   useEffect(() => {
@@ -32,6 +32,7 @@ const useAppPartsHelper = (preexistingParts) => {
   }, []);
 
   useEffect(() => {
+    console.log("main part helper uef");
     const allAppPartsHelper = {};
     if (preExistingPartsMemo) {
       preExistingPartsMemo.forEach(
@@ -46,6 +47,7 @@ const useAppPartsHelper = (preexistingParts) => {
   }, [preExistingPartsMemo]);
 
   const onClickingPart = (part) => {
+    console.log("on clicking part out");
     if(part){
       console.log("onClickingPart");
       setAllAppParts({
@@ -56,7 +58,7 @@ const useAppPartsHelper = (preexistingParts) => {
         },
       });
     }
-    // keepExistingParams();
+    keepExistingParams();
   };
 
   const addNewPartAndClear = () => {
@@ -79,7 +81,7 @@ const useAppPartsHelper = (preexistingParts) => {
     });
     setClickedFolder("");
     setFolderOfNewPart("");
-    // keepExistingParams();
+    keepExistingParams();
   };
 
   const existingAppsUniqueFolderKeys = useMemo(

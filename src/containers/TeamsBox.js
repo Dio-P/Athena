@@ -4,6 +4,7 @@ import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import useTeamAppsNamesSearch from "../hooks/queries/useTeamAppsNamesSearch";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const TeamsBoxContainer = styled.div`
   margin-left: 10px;
@@ -14,6 +15,14 @@ margin: 0px;
 `;
 
 const TeamsBox = ({ defaultDepartment, params }) => {
+  const {
+    clickingOnTeam,
+    keepExistingParams,
+    params:{
+      team
+    }
+  } = useParamsHelper();
+
   const [chosenTeam, setChosenTeam] = useState("");
   const [chosenDepApps, setChosenDepApps] = useState("");
   const [
@@ -25,6 +34,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
   const newParams = Object.fromEntries([...searchParams]);
 
   useEffect(() => {
+    console.log("params teamsBox@", params);
     if(!chosenTeam && params.team){
       setChosenTeam(params.team)
     }
@@ -46,6 +56,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 
   useEffect(() => {
     if(apps){
+      console.log("appsTeamsBox", apps);
       setChosenDepApps(apps)
     }
   }, [apps])
@@ -58,6 +69,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
         {
           (defaultDepartment && !chosenTeam)
           &&
+
       // <>
       //   {departments.map((department) => (
           <div onClick={() => clickIcon(chosenTeam)}>
