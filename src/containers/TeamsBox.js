@@ -92,6 +92,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 }
 
 export default TeamsBox
+// maybe is the api call that is actually breaking for some reason.
 
 // bug when allready in team and pressing back to query with app, 
 // app page does not appear because the app component wher the logic is 
