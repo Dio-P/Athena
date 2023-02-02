@@ -81,19 +81,10 @@ const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButto
   useEffect(() => {
     setThisTeam(department) 
   }, [department]);
-  // useEffect(() => {
-  //   console.log("buttonTitle!!!", buttonTitle)
-  // }, [buttonTitle]);
-  // useEffect(() => {
-  //   console.log("folder!!!", folder)
-  // }, [folder]);
 
   useEffect(() => {
     setThisApp(app);
   }, [app]);
-  // useEffect(() => {
-  //   setThisFolder(folder)
-  // }, [folder]);
 
   useEffect(() => {
       setThisClicked(clicked)
@@ -102,32 +93,6 @@ const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButto
   useEffect(() => {
     setThisAddingButton(addingButton)
   }, [addingButton]);
-
-  // const defineName = () => {
-  //   if(label.type==='part'){
-      
-  //   }
-  //   if(label.type==='folder'){
-
-  //   }
-  //   if(!thisApp&& thisTeam && !folder && !part && !buttonTitle) {
-  //     return thisTeam.name
-  //   }
-  //   if(thisApp && !thisTeam && !folder && !part && !buttonTitle) {
-  //     return thisApp
-  //   }
-  //   if(!thisApp && !thisTeam && folder && !part && !buttonTitle) {
-  //     return folder
-  //   }
-  //   if(!thisApp && !thisTeam && !folder && part && !buttonTitle) {
-  //     console.log("part@@@", part);
-  //     return part
-  //   }
-  //   if(!thisApp && !thisTeam && !folder && !part && buttonTitle) {
-  //     return buttonTitle
-  //   }
-  //   return undefined;
-  // }
 
   const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: thisAddingButton? AddingButtonIconContainer : AppButtonIconContainer;
   // const CustomButtonContainer = thisClicked? ClickedAppButtonIconContainer: AppButtonIconContainer;

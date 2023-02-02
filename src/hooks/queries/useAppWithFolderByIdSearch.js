@@ -46,7 +46,6 @@ const useAppWithFolderByIdSearch = (id) => {
   useEffect(() => {
     if (data && data.getAppWithFoldersById) {
       const newApp = data.getAppWithFoldersById;
-      console.log("newApp@!@!@!@!@@@!", newApp);
       setAppToDisplay({ ...newApp });
     }
   }, [data]);

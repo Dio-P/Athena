@@ -54,12 +54,7 @@ const PartIcon = ({ part, appId }) => {
     const partName = useCapitaliseFirstLetter(part.name);
     const partType = useCapitaliseFirstLetter(part.type);
     const ghRepo = part.ghRepo;
-
-    // useEffect(() => {
-    //     console.log("part@@@", part); 
-    // }, [part])
     
-  
     return (
         <PartsContainer>
             <Link 

@@ -13,19 +13,6 @@ const PopulateButtonUnits = ({
   onMouseLeaveFunction,
   conditionalDisplay,
 }) => {
-  useEffect(() => {
-    console.log("data@@@$", data);
-    
-  }, [data]);
-
-  // const label = () => {
-  //   if(!!folder){
-  //     return {text: folder.title, type: 'folder'}
-  //   }
-  //   if(!!part){
-  //     return {text: part.name, type: 'part'}
-  //   }
-  // };
 
   return (
     data &&

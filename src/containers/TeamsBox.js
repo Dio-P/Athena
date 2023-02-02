@@ -25,7 +25,6 @@ const TeamsBox = ({ defaultDepartment, params }) => {
   const newParams = Object.fromEntries([...searchParams]);
 
   useEffect(() => {
-    console.log("params teamsBox@", params);
     if(!chosenTeam && params.team){
       setChosenTeam(params.team)
     }
@@ -47,7 +46,6 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 
   useEffect(() => {
     if(apps){
-      console.log("appsTeamsBox", apps);
       setChosenDepApps(apps)
     }
   }, [apps])

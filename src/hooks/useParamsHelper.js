@@ -1,5 +1,7 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import useAppPartsHelper from "./useAppPartsHelper";
+import useFolderHelper from "./useFolderHelper";
 
 
 const useParamsHelper = () => {
@@ -11,9 +13,39 @@ const useParamsHelper = () => {
     addingNewConnection,
     addingNewPart,
     addingNewFolder,
-  } = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]) ;
+  } = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
+
+  const [
+    allAppParts, 
+    newPartsAdded, 
+    setNewPartsAdded, 
+    newPart, 
+    setNewPart,
+    folderOfNewPart, 
+    setFolderOfNewPart,
+    allUniqueFolderKeys, 
+    onClickingPart, 
+    addNewPartAndClear
+  ] = useAppPartsHelper();
+
+  const [
+    newlyCreatedFolders, 
+    setNewlyCreatedFolders, 
+    clickedFolder, 
+    setClickedFolder, 
+    newFolderIndexKey,
+    addNewFolderAndClear,
+    folderInfoToState,
+    resetFolderInfo
+  ] = useFolderHelper();
+
+  useEffect(() => {
+    console.log("useParamsHelper");
+  }, [])
+  
 
   const clickingToAddNewPart = () => {
+    console.log("clickingToAddNewPart");
     if (!addingNewPart) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
     } else {
@@ -22,6 +54,7 @@ const useParamsHelper = () => {
   };
 
   const clickingToAddNewFolder = () => {
+    console.log("clickingToAddNewFolder");
     if (!addingNewFolder) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart, addingNewFolder: true });
     } else {
@@ -29,10 +62,11 @@ const useParamsHelper = () => {
     }
   };
 
-  const keepExistingParams = () => {
+  const keepExistingParams = useCallback(() => {
+    console.log("keepExistingParams");
     const params = Object.fromEntries([...searchParams]);
     setSearchParams({...params});
-  };
+  }, [addNewFolderAndClear, folderInfoToState, resetFolderInfo, onClickingPart, addNewPartAndClear] );
 
   return [clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams]
 };

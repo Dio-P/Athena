@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
@@ -41,17 +41,6 @@ const AddNewConnectionBox = () => {
   const [updatedApp, setUpdatedApp] = useState("");
 
   const [url, setUrl] = useState("");
-  // const [newPart, setNewPart] = useState({
-  //   name: "",
-  //   id: uuidv4(),
-  //   ghRepo: "",
-  //   type: "",
-  //   folderToBeDisplayedIn: "",
-  // });
-  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
-  // const [newPartsAdded, setNewPartsAdded] = useState("");
-  // const [clickedFolder, setClickedFolder] = useState("");
-  // const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
 
   const {
     appId,
@@ -67,14 +56,19 @@ const AddNewConnectionBox = () => {
     deleteWarningNewPart: false,
   });
 
+  const foldersToDisplay = useMemo(() => appToDisplay.folders , [appToDisplay.folders]);
   const [
     newlyCreatedFolders, 
     setNewlyCreatedFolders, 
     clickedFolder, 
     setClickedFolder, 
-    newFolderIndexKey
-  ] = useFolderHelper(appToDisplay.folders);
+    newFolderIndexKey,
+    // addNewFolderAndClear,
+    // folderInfoToState,
+    // resetFolderInfo
+  ] = useFolderHelper(foldersToDisplay);
 
+  const partsToDisplay = useMemo(() => appToDisplay.parts , [appToDisplay.parts]);
   const [
     allAppParts, 
     newPartsAdded, 
@@ -86,31 +80,10 @@ const AddNewConnectionBox = () => {
     allUniqueFolderKeys, 
     onClickingPart, 
     addNewPartAndClear
-  ] = useAppPartsHelper(appToDisplay.parts);
+  ] = useAppPartsHelper(partsToDisplay);
 
-  const APP_NAME = useCapitaliseFirstLetter(appToDisplay.name);
-
-  // const addNewPartAndClear = () => {
-  //   setNewPartsAdded({
-  //     ...newPartsAdded,
-  //     [newPart.name]: {
-  //       ...newPart,
-  //       folderToBeDisplayedIn:
-  //         folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-  //       // I need to create a singly function that is going to turn this and return a single item in both cases
-  //     },
-  //   });
-  //   setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
-  //   setNewPart({
-  //     ...newPart,
-  //     name: "",
-  //     ghRepo: "",
-  //     type: "",
-  //   });
-  //   setClickedFolder("");
-  //   setFolderOfNewPart("");
-  //   keepExistingParams();
-  // };
+  const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
+  const APP_NAME = useCapitaliseFirstLetter(nameToDisplay);
 
   const addNewFolderAndClear = () => {
     const newFolder = {
@@ -318,6 +291,10 @@ const AddNewConnectionBox = () => {
   //   )
   // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, APP_NAME, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickingPart, url])
   
+  // const appPartString = allAppParts && Object.values(allAppParts).join('')
+  // const appPartsArray = useMemo(() =>  Object.values(allAppParts), [appPartString, !!appPartString])
+  // const appPartAddedString = newPartsAdded && Object.values(newPartsAdded).join('')
+  // const newPartsAddedArray = useMemo(() => Object.values(newPartsAdded), [appPartAddedString, !!appPartAddedString])
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;

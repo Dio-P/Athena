@@ -36,14 +36,14 @@ const router = createBrowserRouter(
       <Route path="/" 
       element={<App/>}
         loader={(obj) => {
-          console.log("obj['*']", obj);
+          // console.log("obj['*']", obj);
         }}
         action={({ params }) => {}}
       />
       <Route path="/:appId/:partId"
       element={<SinglePartPage/>}
       loader={({params}) => {
-        console.log("params['*']", params);
+        // console.log("params['*']", params);
       }}
       /> 
     </>

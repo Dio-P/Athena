@@ -1,4 +1,3 @@
-import React, { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
@@ -25,25 +24,11 @@ const AddDocButton = styled.button`
   outline: inherit;
 `;
 
-const AppPage = ({ appIdToDisplay, params }) => {
+const AppPage = ({ params }) => {
   let [searchParams, setSearchParams] = useSearchParams();
   const {addingNewConnection, team, appId} = Object.fromEntries([...searchParams]);
 
-  // const queryId = useMemo(() => {
-  //   console.log("appId in appPage@£", appId);
-  //   if (!appIdToDisplay && appId) {
-  //     console.log("appId", appId);
-  //     return appId;
-  //   }
-  //   console.log("appIdToDisplay", appIdToDisplay);
-  //   return appIdToDisplay;
-  // }, [appId, appIdToDisplay]);
-
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
-
-  useEffect(() => {
-    console.log("appToDisplay@@", appToDisplay);
-  }, [appToDisplay]);
 
   const clickingToAddNewConnection = () => {
     if (!addingNewConnection) {
