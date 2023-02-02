@@ -41,17 +41,17 @@ const AddNewConnectionBox = () => {
   const [updatedApp, setUpdatedApp] = useState("");
 
   const [url, setUrl] = useState("");
-  const [newPart, setNewPart] = useState({
-    name: "",
-    id: uuidv4(),
-    ghRepo: "",
-    type: "",
-    folderToBeDisplayedIn: "",
-  });
-  const [folderOfNewPart, setFolderOfNewPart] = useState("");
-  const [newPartsAdded, setNewPartsAdded] = useState("");
-  const [clickedFolder, setClickedFolder] = useState("");
-  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+  // const [newPart, setNewPart] = useState({
+  //   name: "",
+  //   id: uuidv4(),
+  //   ghRepo: "",
+  //   type: "",
+  //   folderToBeDisplayedIn: "",
+  // });
+  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  // const [newPartsAdded, setNewPartsAdded] = useState("");
+  // const [clickedFolder, setClickedFolder] = useState("");
+  // const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
 
   const {
     appId,
@@ -60,49 +60,57 @@ const AddNewConnectionBox = () => {
   } = Object.fromEntries([...searchParams]);
   
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
-  const [newFolderIndexKey] = useFolderHelper(appToDisplay.folders, newlyCreatedFolders);
+
   const [clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams] = useParamsHelper();
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
   });
 
-  const [allAppParts, setAllAppParts, allUniqueFolderKeys] = useAppPartsHelper(appToDisplay.parts, newPartsAdded);
+  const [
+    newlyCreatedFolders, 
+    setNewlyCreatedFolders, 
+    clickedFolder, 
+    setClickedFolder, 
+    newFolderIndexKey
+  ] = useFolderHelper(appToDisplay.folders);
 
-  const appName = useCapitaliseFirstLetter(appToDisplay.name);
+  const [
+    allAppParts, 
+    newPartsAdded, 
+    setNewPartsAdded, 
+    newPart, 
+    setNewPart,
+    folderOfNewPart, 
+    setFolderOfNewPart,
+    allUniqueFolderKeys, 
+    onClickingPart, 
+    addNewPartAndClear
+  ] = useAppPartsHelper(appToDisplay.parts);
 
-  const onClickPart = (part) => {
-    setAllAppParts({
-      ...allAppParts,
-      [part.name]: {
-        ...allAppParts[part.name],
-        clicked: !part.clicked,
-      },
-    });
-    keepExistingParams();
-  };
+  const APP_NAME = useCapitaliseFirstLetter(appToDisplay.name);
 
-  const addNewPartAndClear = () => {
-    setNewPartsAdded({
-      ...newPartsAdded,
-      [newPart.name]: {
-        ...newPart,
-        folderToBeDisplayedIn:
-          folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-        // I need to create a singly function that is going to turn this and return a single item in both cases
-      },
-    });
-    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
-    setNewPart({
-      ...newPart,
-      name: "",
-      ghRepo: "",
-      type: "",
-    });
-    setClickedFolder("");
-    setFolderOfNewPart("");
-    keepExistingParams();
-  };
+  // const addNewPartAndClear = () => {
+  //   setNewPartsAdded({
+  //     ...newPartsAdded,
+  //     [newPart.name]: {
+  //       ...newPart,
+  //       folderToBeDisplayedIn:
+  //         folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+  //       // I need to create a singly function that is going to turn this and return a single item in both cases
+  //     },
+  //   });
+  //   setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+  //   setNewPart({
+  //     ...newPart,
+  //     name: "",
+  //     ghRepo: "",
+  //     type: "",
+  //   });
+  //   setClickedFolder("");
+  //   setFolderOfNewPart("");
+  //   keepExistingParams();
+  // };
 
   const addNewFolderAndClear = () => {
     const newFolder = {
@@ -200,10 +208,10 @@ const AddNewConnectionBox = () => {
   //         <p>Choose an app part and display folder</p>
 
   //         <OptionsWraper>
-  //           <label htmlFor="">Existing {appName} Parts</label>
+  //           <label htmlFor="">Existing {APP_NAME} Parts</label>
   //           {Object.values(allAppParts).map((part) => (
   //             <ButtonUnit
-  //               onClickFunction={() => onClickPart(part)}
+  //               onClickFunction={() => onClickingPart(part)}
   //               part={part.name}
   //               clicked={allAppParts[part.name].clicked}
   //             />
@@ -229,7 +237,7 @@ const AddNewConnectionBox = () => {
   //             onClickFunction={clickingToAddNewPart}
   //             addingButton={true}
   //             buttonTitle={
-  //               addingNewPart ? `- close` : `+ Add ${appName} Part`
+  //               addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`
   //             } 
   //           />
   //         </OptionsWraper>
@@ -308,7 +316,7 @@ const AddNewConnectionBox = () => {
   //     </div>
   //   </FormContainer>
   //   )
-  // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, appName, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickPart, url])
+  // }, [addNewFolderAndClear, addNewPartAndClear, onClickAdd, addingNewFolder, addingNewPart, allAppParts, APP_NAME, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickingPart, url])
   
   const renderedView = () => {
     if (loading) {
@@ -337,10 +345,10 @@ const AddNewConnectionBox = () => {
             <p>Choose an app part and display folder</p>
   
             <OptionsWraper>
-              <label htmlFor="">Existing {appName} Parts</label>
+              <label htmlFor="">Existing {APP_NAME} Parts</label>
               <PopulateButtonUnits
                 data={Object.values(allAppParts)}
-                onClickFunction={(part) => onClickPart(part)}
+                onClickFunction={(part) => onClickingPart(part)}
               />
               {newPartsAdded &&
               <PopulateButtonUnits
@@ -363,7 +371,7 @@ const AddNewConnectionBox = () => {
               onClickFunction={clickingToAddNewPart}
               addingButton={true}
               label={
-                addingNewPart ? `- close` : `+ Add ${appName} Part`
+                addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`
               } 
             />
             </OptionsWraper>
@@ -456,7 +464,7 @@ export default AddNewConnectionBox;
 // the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
 // make the warning nicer
-// should all new part fields be withing the same object? useState({name: "someAppName", gitHub: "someAppGitHub"})
+// should all new part fields be withing the same object? useState({name: "someAPP_NAME", gitHub: "someAppGitHub"})
 
 // add editing parts and folders logic
 

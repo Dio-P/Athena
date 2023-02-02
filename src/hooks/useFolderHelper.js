@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
 
-const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
-  const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined)
+const useFolderHelper = (preexistingFolders) => {
+  const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
+  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+  const [clickedFolder, setClickedFolder] = useState("");
 
   useEffect(() => {
       if(preexistingFolders){
@@ -12,7 +14,7 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
       }
     }, [preexistingFolders, newlyCreatedFolders])
   
-  return [newFolderIndexKey]
+  return [newlyCreatedFolders, setNewlyCreatedFolders, clickedFolder, setClickedFolder, newFolderIndexKey]
 }
 
 export default useFolderHelper
