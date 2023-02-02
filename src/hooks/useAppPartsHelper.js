@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useParamsHelper from "./useParamsHelper";
 import useFolderHelper from "./useFolderHelper";
@@ -6,10 +6,10 @@ import useFolderHelper from "./useFolderHelper";
 const useAppPartsHelper = (preexistingParts) => {
   const preExistingPartsMemo = useMemo(() => preexistingParts && preexistingParts, [preexistingParts]);
 
-  const [allAppParts, setAllAppParts] = useState(undefined);
-  const [newPartsAdded, setNewPartsAdded] = useState(undefined);
+  const [allAppParts, setAllAppParts] = useState([]);
+  const [newPartsAdded, setNewPartsAdded] = useState("");
 
-  const [folderOfNewPart, setFolderOfNewPart] = useState(undefined);
+  const [folderOfNewPart, setFolderOfNewPart] = useState("");
   const [newPart, setNewPart] = useState({
     name: "",
     id: uuidv4(),
@@ -25,29 +25,12 @@ const useAppPartsHelper = (preexistingParts) => {
     clickedFolder, 
     setClickedFolder, 
     newFolderIndexKey
-  ] = useFolderHelper(undefined);
+  ] = useFolderHelper();
 
-  const newlyCreatedFoldersMemo = useMemo(() => newlyCreatedFolders, [newlyCreatedFolders])
-  const setNewlyCreatedFoldersMemo = useCallback(() => setNewlyCreatedFolders, [setNewlyCreatedFolders])
-  const clickedFolderMemo = useCallback(() => clickedFolder, [clickedFolder])
-  const setClickedFolderMemo = useCallback(() => setClickedFolder, [setClickedFolder])
-  const newFolderIndexKeyMemo= useCallback(() => newFolderIndexKey, [newFolderIndexKey])
-
-
-  // useEffect(() => {
-  //   console.log("newlyCreatedFoldersMemo");
-  // }, [newlyCreatedFoldersMemo])
-  // useEffect(() => {
-  //   console.log("setNewlyCreatedFoldersMemo");
-  // }, [setNewlyCreatedFoldersMemo])
-  // useEffect(() => {
-  //   console.log("setClickedFolderMemo");
-  // }, [setClickedFolderMemo])
 
   useEffect(() => {
     const allAppPartsHelper = {};
     if (preExistingPartsMemo) {
-      console.log("main uef in useAppPartsHelper");
       preExistingPartsMemo.forEach(
         (part) =>
           (allAppPartsHelper[part.name] = {
@@ -75,27 +58,25 @@ const useAppPartsHelper = (preexistingParts) => {
 
   const addNewPartAndClear = () => {
     console.log("addNewPartAndClear");
-    if(newPartsAdded && newPart && folderOfNewPart){
-      setNewPartsAdded({
-        ...newPartsAdded,
-        [newPart.name]: {
-          ...newPart,
-          folderToBeDisplayedIn:
-            folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-          // I need to create a singly function that is going to turn this and return a single item in both cases
-        },
-      });
-      setNewlyCreatedFoldersMemo([...newlyCreatedFoldersMemo, folderOfNewPart]); //////////////////////////////////
-      setNewPart({
+    setNewPartsAdded({
+      ...newPartsAdded,
+      [newPart.name]: {
         ...newPart,
-        name: "",
-        ghRepo: "",
-        type: "",
-      });
-      setClickedFolderMemo("");
-      setFolderOfNewPart("");
-      // keepExistingParams();
-    }
+        folderToBeDisplayedIn:
+          folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+        // I need to create a singly function that is going to turn this and return a single item in both cases
+      },
+    });
+    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+    setNewPart({
+      ...newPart,
+      name: "",
+      ghRepo: "",
+      type: "",
+    });
+    setClickedFolder("");
+    setFolderOfNewPart("");
+    // keepExistingParams();
   };
 
   const existingAppsUniqueFolderKeys = useMemo(
@@ -111,18 +92,16 @@ const useAppPartsHelper = (preexistingParts) => {
     [preExistingPartsMemo]
   );
   
-  const newlyAddedPartsMemo = useMemo(() => newPartsAdded && Object.values(newPartsAdded), [newPartsAdded])
   const newAppsUniqueFoldersKeys = useMemo(
     () =>
-    !!newlyAddedPartsMemo &&
       Array.from(
         new Set(
-          newlyAddedPartsMemo.map(
+          Object.values(newPartsAdded).map(
             (part) => part.folderToBeDisplayedIn + ""
           )
         )
       ),
-    [newlyAddedPartsMemo]
+    [newPartsAdded]
   );
   
   const allUniqueFolderKeys = useMemo(
