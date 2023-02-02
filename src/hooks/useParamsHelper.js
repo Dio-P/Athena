@@ -7,13 +7,15 @@ import useFolderHelper from "./useFolderHelper";
 const useParamsHelper = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
+  const params = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
+
   const {
     team,
     appId,
     addingNewConnection,
     addingNewPart,
     addingNewFolder,
-  } = useMemo(() => Object.fromEntries([...searchParams]), [searchParams]);
+  } = params;
 
   const [
     allAppParts, 
@@ -41,8 +43,23 @@ const useParamsHelper = () => {
 
   useEffect(() => {
     console.log("useParamsHelper");
-  }, [])
+  }, []);
+
+  const setAppToDisplay = (singleApp) => {
+    if(!appId){
+      setSearchParams({ team, appId: singleApp.id }) 
+    } else {
+      setSearchParams({ team });
+    }
+  };
   
+  const clickingToAddNewConnection = () => {
+    if (!addingNewConnection) {
+      setSearchParams({ team, appId, addingNewConnection: true });
+    } else {
+      setSearchParams({ team, appId });
+    }
+  };
 
   const clickingToAddNewPart = () => {
     console.log("clickingToAddNewPart");
@@ -68,7 +85,7 @@ const useParamsHelper = () => {
     setSearchParams({...params});
   }, [addNewFolderAndClear, folderInfoToState, resetFolderInfo, onClickingPart, addNewPartAndClear] );
 
-  return [clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams]
+  return {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, setAppToDisplay, params}
 };
 
 export default useParamsHelper;

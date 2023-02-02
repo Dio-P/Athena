@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
 
@@ -24,24 +25,18 @@ const StyledButton = styled.button`
   outline: inherit;
 `;
 
-const AppsBox = ({
-  teamApps,
-  teamName,
-  params,
-}) => {
-  let [searchParams, setSearchParams] = useSearchParams();
-  const {team, appId} = Object.fromEntries([...searchParams]);
+const AppsBox = ({ teamApps, teamName }) => {
+  const { 
+    setAppToDisplay, 
+    params: {
+      appId
+    } 
+  } = useParamsHelper();
 
-  const setAppToDisplay = (singleApp) => {
-    if(!appId){
-      const existingParams = Object.fromEntries([...searchParams]);
-      setSearchParams({...existingParams, appId: singleApp.id}) 
-    }
-  }
   return (
     <DepartmAppsBoxContainer>
       <div>
-        <StyledButton onClick={() => setSearchParams({team})}>
+        <StyledButton onClick={setAppToDisplay}>
           <DepAppBoxPageTitle>
             {useCapitaliseFirstLetter(teamName)}
           </DepAppBoxPageTitle>
@@ -59,10 +54,7 @@ const AppsBox = ({
           })}
       </>
 
-      {appId && <AppPage 
-        appIdToDisplay={appId}
-        params={params} //does this still need to be passed?
-      />}
+      {appId && <AppPage appIdToDisplay={appId} />}
     </DepartmAppsBoxContainer>
   );
 };

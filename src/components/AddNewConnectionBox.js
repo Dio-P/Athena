@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
@@ -50,7 +50,7 @@ const AddNewConnectionBox = () => {
   
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
 
-  const [clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams] = useParamsHelper();
+  const {clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, params} = useParamsHelper();
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -84,6 +84,11 @@ const AddNewConnectionBox = () => {
 
   const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
   const APP_NAME = useCapitaliseFirstLetter(nameToDisplay);
+
+  useEffect(() => {
+    console.log("foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay, "params", params);
+     
+  }, [])
 
   const addNewFolderAndClear = () => {
     const newFolder = {

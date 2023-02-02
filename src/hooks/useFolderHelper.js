@@ -1,64 +1,77 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useAppPartsHelper from "./useAppPartsHelper";
 import useParamsHelper from "./useParamsHelper";
 
 
 const useFolderHelper = (preexistingFolders) => {
+  const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
+
 
   // const [
-  //   allAppParts, 
-  //   newPartsAdded, 
-  //   setNewPartsAdded, 
-  //   newPart, 
-  //   setNewPart,
-  //   folderOfNewPart, 
-  //   setFolderOfNewPart,
-  //   allUniqueFolderKeys, 
-  //   onClickingPart, 
-  //   addNewPartAndClear
+    // allAppParts, 
+    // newPartsAdded, 
+    // setNewPartsAdded, 
+    // newPart, 
+    // setNewPart,
+    // folderOfNewPart, 
+    // setFolderOfNewPart,
+    // allUniqueFolderKeys, 
+    // onClickingPart, 
+    // addNewPartAndClear
   // ] = useAppPartsHelper();
+
   // const [_, __, keepExistingParams] = useParamsHelper();
 
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
-  const [clickedFolder, setClickedFolder] = useState("");
+  const [clickedFolder, setClickedFolder] = useState(undefined);
 
   useEffect(() => {
-      if(preexistingFolders){
-      const preexistingFoldersLength = preexistingFolders.length - 1 || 0;
+    console.log("useFolderHelper"); 
+  }, [])
+
+  useEffect(() => {
+      if(preExistingFoldersMemo){
+        console.log("preExistingFoldersMemo uef");
+      const preexistingFoldersLength = preExistingFoldersMemo.length - 1 || 0;
       const newlyCreatedFoldersLength = newlyCreatedFolders.length + 1 || 1;
       setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
       }
-    }, [preexistingFolders, newlyCreatedFolders]);
+    }, [preExistingFoldersMemo, newlyCreatedFolders]);
 
-    // const addNewFolderAndClear = () => {
-    //   const newFolder = {
-    //     name: clickedFolder,
-    //     id: newFolderIndexKey,
-    //   };
-    //   setFolderOfNewPart(newFolder);
-    //   setNewPart({
-    //     ...newPart,
-    //     folderToBeDisplayedIn: newFolderIndexKey,
-    //   });
+  if(preExistingFoldersMemo){
+
+  
+      // const addNewFolderAndClear = () => {
+      //   const newFolder = {
+      //     name: clickedFolder,
+      //     id: newFolderIndexKey,
+      //   };
+      //   setFolderOfNewPart(newFolder);
+      //   setNewPart({
+      //     ...newPart,
+      //     folderToBeDisplayedIn: newFolderIndexKey,
+      //   });
+      
+      //   keepExistingParams();
+      // };
     
-    //   keepExistingParams();
-    // };
-  
-    // const folderInfoToState = (folder) => {
-    //   setClickedFolder(folder.name);
-    //   setFolderOfNewPart(folder);
-    //   setNewPart({
-    //     ...newPart,
-    //     folderToBeDisplayedIn: folder.id,
-    //   });
-    //   keepExistingParams();
-    // };
-  
-    // const resetFolderInfo = () => {
-    //   setFolderOfNewPart("");
-    //   keepExistingParams();
-    // };
+      // const folderInfoToState = (folder) => {
+      //   setClickedFolder(folder.name);
+      //   setFolderOfNewPart(folder);
+      //   setNewPart({
+      //     ...newPart,
+      //     folderToBeDisplayedIn: folder.id,
+      //   });
+      //   keepExistingParams();
+      // };
+    
+      // const resetFolderInfo = () => {
+      //   setFolderOfNewPart("");
+      //   keepExistingParams();
+      // };
+  }
+
   
   return [
     newlyCreatedFolders, 

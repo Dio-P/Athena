@@ -4,6 +4,7 @@ import AddNewConnectionBox from "../components/AddNewConnectionBox";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -24,19 +25,13 @@ const AddDocButton = styled.button`
   outline: inherit;
 `;
 
-const AppPage = ({ params }) => {
-  let [searchParams, setSearchParams] = useSearchParams();
-  const {addingNewConnection, team, appId} = Object.fromEntries([...searchParams]);
+const AppPage = () => {
+  let [searchParams] = useSearchParams();
+  const {addingNewConnection, appId} = Object.fromEntries([...searchParams]);
 
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
 
-  const clickingToAddNewConnection = () => {
-    if (!addingNewConnection) {
-      setSearchParams({ ...params, addingNewConnection: true });
-    } else {
-      setSearchParams({ team, appId });
-    }
-  };
+  const {clickingToAddNewConnection} = useParamsHelper();
 
   const pickFromRenderingOptions = () => {
     if (loading) {
@@ -66,7 +61,7 @@ const AppPage = ({ params }) => {
         </AppPageTitle>
       </>
       {addingNewConnection && appToDisplay && (
-        <AddNewConnectionBox app={appToDisplay} params={params} />
+        <AddNewConnectionBox app={appToDisplay} />
       )}
 
       {appToDisplay &&

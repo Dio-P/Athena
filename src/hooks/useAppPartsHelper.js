@@ -27,6 +27,9 @@ const useAppPartsHelper = (preexistingParts) => {
     newFolderIndexKey
   ] = useFolderHelper();
 
+  useEffect(() => {
+    console.log("useAppPartHelper"); 
+  }, []);
 
   useEffect(() => {
     const allAppPartsHelper = {};
