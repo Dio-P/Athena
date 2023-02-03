@@ -14,9 +14,9 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ defaultDepartment, params }) => {
+const TeamsBox = ({ department, params }) => {
   const {
-    clickingOnTeam,
+    clickingOnTeamMock,
     keepExistingParams,
     params:{
       team
@@ -35,20 +35,22 @@ const TeamsBox = ({ defaultDepartment, params }) => {
 
   useEffect(() => {
     console.log("params teamsBox@", params);
-    if(!chosenTeam && params.team){
-      setChosenTeam(params.team)
+    if(!chosenTeam && team){
+      setChosenTeam(team)
     }
-  }, [params]);
+  }, [team]);
 
   useEffect(() => {
-    if(!params.team){
-      setSearchParams({team:chosenTeam})
+    if(!team){
+      console.log("chosenTeam", chosenTeam);
+      console.log("team", team);
+      clickingOnTeamMock({team:chosenTeam})
     }
   }, [chosenTeam]);
 
   useEffect(() => {
-    setChosenTeam(defaultDepartment)
-  }, [defaultDepartment]);
+    setChosenTeam(department)
+  }, [department]);
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);
@@ -67,7 +69,7 @@ const TeamsBox = ({ defaultDepartment, params }) => {
         Product Group
       </TeamsBoxTitle>
         {
-          (defaultDepartment && !chosenTeam)
+          (department && !chosenTeam)
           &&
 
       // <>

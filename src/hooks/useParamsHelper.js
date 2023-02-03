@@ -36,10 +36,10 @@ const useParamsHelper = () => {
   //   console.log("params changed");
   // }, [params]);
 
-  const clickingOnTeam = (defaultTeam) => {
-    console.log("clicking on team");
-      setSearchParams({team: defaultTeam})
-  };
+  const clickingOnTeamMock = (defaultTeam) => {
+    console.log("clickingOnTeamMock@");
+      setSearchParams({team: defaultTeam}) 
+  };  
 
   const toggleAppIdParamOnandOff = (singleApp) => {
     console.log("toggleAppIdParamOnandOff");
@@ -86,7 +86,15 @@ const useParamsHelper = () => {
     setSearchParams({...params});
   };
 
-  return {clickingOnTeam, clickingToAddNewPart, clickingToAddNewFolder, keepExistingParams, clickingToAddNewConnection, toggleAppIdParamOnandOff, params}
+  return {
+    clickingOnTeamMock, 
+    clickingToAddNewPart, 
+    clickingToAddNewFolder, 
+    keepExistingParams, 
+    clickingToAddNewConnection, 
+    toggleAppIdParamOnandOff, 
+    params
+  }
 };
 
 export default useParamsHelper;
