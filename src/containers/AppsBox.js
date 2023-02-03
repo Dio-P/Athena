@@ -5,6 +5,7 @@ import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
+import { useEffect } from "react";
 
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
@@ -29,10 +30,15 @@ const StyledButton = styled.button`
 const AppsBox = ({ teamApps, teamName }) => {
   const { 
     toggleAppIdParamOnandOff, 
-    params: {
-      appId
-    } 
+    params
   } = useParamsHelper();
+
+  // useEffect(() => {
+  //   console.log("appId@@@", appId);
+  // }, [appId])
+  useEffect(() => {
+    console.log("params@@@", params);
+  }, [params])
 
   return (
     <DepartmAppsBoxContainer>
@@ -44,8 +50,8 @@ const AppsBox = ({ teamApps, teamName }) => {
         </StyledButton>
       </div>
       <>
-        {teamApps &&
-          !appId &&
+        {(teamApps &&
+          !params.appId) &&
           <PopulateButtonUnits
             data={teamApps}
             onClickFunction={(singleApp) => toggleAppIdParamOnandOff(singleApp)}
@@ -60,7 +66,7 @@ const AppsBox = ({ teamApps, teamName }) => {
         }
       </>
 
-      {appId && <AppPage appIdToDisplay={appId} />}
+      {params.appId && <AppPage appIdToDisplay={params.appId} />}
     </DepartmAppsBoxContainer>
   );
 };

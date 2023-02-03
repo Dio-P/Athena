@@ -23,11 +23,11 @@ const useParamsHelper = () => {
 //  const paramsStrMemo = useMemo(() => Object.values(changeInParams).join(''), [changeInParams])
 
   useEffect(() => {
-    console.log("paramsString", paramsString);
-    console.log("searchParamsparams.toString()", searchParams.toString());
-    console.log("paramsStrMemo", typeof changeInParams);
+    // console.log("paramsString", paramsString);
+    // console.log("searchParamsparams.toString()", searchParams.toString());
+    // console.log("paramsStrMemo", typeof changeInParams);
     setParams(Object.fromEntries([...searchParams]))
-  }, [paramsString.current]);
+  }, [searchParams]);
 
   useEffect(() => {
     console.log("useParamsHelper");
@@ -47,7 +47,7 @@ const useParamsHelper = () => {
     console.log("toggleAppIdParamOnandOff");
 
     if(singleApp.id && !appId){
-      console.log("singleApp", singleApp);
+      console.log("singleApp true", singleApp);
       setSearchParams({ team, appId: singleApp.id }) 
     } else {
       setSearchParams({ team });
@@ -84,7 +84,6 @@ const useParamsHelper = () => {
 
   const keepExistingParams = () => {
     console.log("keepExistingParams");
-    const params = Object.fromEntries([...searchParams]);
     setSearchParams({...params});
   };
 
