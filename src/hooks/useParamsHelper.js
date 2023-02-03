@@ -38,13 +38,15 @@ const useParamsHelper = () => {
 
   const clickingOnTeamMock = (defaultTeam) => {
     console.log("clickingOnTeamMock@");
-      setSearchParams({team: defaultTeam}) 
+    if(!team){
+      setSearchParams({team: defaultTeam});
+    }
   };  
 
   const toggleAppIdParamOnandOff = (singleApp) => {
     console.log("toggleAppIdParamOnandOff");
 
-    if(!appId){
+    if(singleApp.id && !appId){
       console.log("singleApp", singleApp);
       setSearchParams({ team, appId: singleApp.id }) 
     } else {
