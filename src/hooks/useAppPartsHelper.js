@@ -5,8 +5,11 @@ import useFolderHelper from "./useFolderHelper";
 
 const addClickedToPreexParts = (preExistingPartsMemo) => {
   console.log("addClickedToPreexParts");
-    const allAppPartsHelper = {};
-    if (preExistingPartsMemo) {
+  console.log("preExistingPartsMemo", preExistingPartsMemo);
+
+  if (preExistingPartsMemo) {
+    console.log("inside preex parts memo", preExistingPartsMemo);
+      const allAppPartsHelper = {};
       preExistingPartsMemo.forEach(
         (part) =>
           (allAppPartsHelper[part.name] = {
@@ -19,8 +22,8 @@ const addClickedToPreexParts = (preExistingPartsMemo) => {
 }
 
 const useAppPartsHelper = (preexistingParts) => {
-  const preExistingPartsMemo = useMemo(() => preexistingParts && preexistingParts, [preexistingParts]);
-
+  // const preExistingPartsMemo = useMemo(() => preexistingParts && preexistingParts, [preexistingParts]);
+  console.log("hi");
   const [allAppParts, setAllAppParts] = useState([]);
   // const allAppParts = useMemo(() => preExistingPartsMemo && addClickedToPreexParts(preExistingPartsMemo), [preExistingPartsMemo]);
   const [newPartsAdded, setNewPartsAdded] = useState("");
@@ -34,7 +37,7 @@ const useAppPartsHelper = (preexistingParts) => {
     folderToBeDisplayedIn: "",
   });
    const didMountRef = useRef(false);
-  const partsWithAdded = useMemo(()=> addClickedToPreexParts(preExistingPartsMemo),[preExistingPartsMemo]);
+  const partsWithAdded = useMemo(()=> preexistingParts && addClickedToPreexParts(preexistingParts),[preexistingParts]);
 
   const { keepExistingParams } = useParamsHelper();
   const {
@@ -48,81 +51,81 @@ const useAppPartsHelper = (preexistingParts) => {
   useEffect(() => {
     console.log("useAppPartHelper"); 
   }, []);
-  
+
   useEffect(() => {
     if (didMountRef.current && partsWithAdded) { 
       setAllAppParts(partsWithAdded);
     }
     didMountRef.current = true;
-  }, [preExistingPartsMemo]);
+  }, [preexistingParts]);
 
-  const onClickingPart = (part) => {
-    console.log("on clicking part out");
-    if(part){
-      setAllAppParts({
-        ...allAppParts,
-        [part.name]: {
-          ...allAppParts[part.name],
-          clicked: !part.clicked,
-        },
-      });
-    }
-    keepExistingParams();
-  };
+  // const onClickingPart = (part) => {
+  //   console.log("on clicking part out");
+  //   if(part){
+  //     setAllAppParts({
+  //       ...allAppParts,
+  //       [part.name]: {
+  //         ...allAppParts[part.name],
+  //         clicked: !part.clicked,
+  //       },
+  //     });
+  //   }
+  //   keepExistingParams();
+  // };
 
-  const addNewPartAndClear = () => {
-    console.log("addNewPartAndClear");
-    setNewPartsAdded({
-      ...newPartsAdded,
-      [newPart.name]: {
-        ...newPart,
-        folderToBeDisplayedIn:
-          folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-        // I need to create a singly function that is going to turn this and return a single item in both cases
-      },
-    });
-    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
-    setNewPart({
-      ...newPart,
-      name: "",
-      ghRepo: "",
-      type: "",
-    });
-    setClickedFolder("");
-    setFolderOfNewPart("");
-    keepExistingParams();
-  };
+  // const addNewPartAndClear = () => {
+  //   console.log("addNewPartAndClear");
+  //   setNewPartsAdded({
+  //     ...newPartsAdded,
+  //     [newPart.name]: {
+  //       ...newPart,
+  //       folderToBeDisplayedIn:
+  //         folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+  //       // I need to create a singly function that is going to turn this and return a single item in both cases
+  //     },
+  //   });
+  //   setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+  //   setNewPart({
+  //     ...newPart,
+  //     name: "",
+  //     ghRepo: "",
+  //     type: "",
+  //   });
+  //   setClickedFolder("");
+  //   setFolderOfNewPart("");
+  //   keepExistingParams();
+  // };
 
-  const existingAppsUniqueFolderKeys = useMemo(
-    () =>
-    !!preExistingPartsMemo &&
-      Array.from(
-        new Set(
-          Object.values(preExistingPartsMemo).map(
-            (part) => part.folderToBeDisplayedIn
-          )
-        )
-      ),
-    [preExistingPartsMemo]
-  );
+  // const existingAppsUniqueFolderKeys = useMemo(
+  //   () =>
+  //   !!preexistingParts &&
+  //     Array.from(
+  //       new Set(
+  //         Object.values(preexistingParts).map(
+  //           (part) => part.folderToBeDisplayedIn
+  //         )
+  //       )
+  //     ),
+  //   [preexistingParts]
+  // );
   
-  const newAppsUniqueFoldersKeys = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          Object.values(newPartsAdded).map(
-            (part) => part.folderToBeDisplayedIn + ""
-          )
-        )
-      ),
-    [newPartsAdded]
-  );
+  // const newAppsUniqueFoldersKeys = useMemo(
+  //   () =>
+  //     Array.from(
+  //       new Set(
+  //         Object.values(newPartsAdded).map(
+  //           (part) => part.folderToBeDisplayedIn + ""
+  //         )
+  //       )
+  //     ),
+  //   [newPartsAdded]
+  // );
   
-  const allUniqueFolderKeys = useMemo(
-    () => !!preExistingPartsMemo &&
-    [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
-    [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
-  );
+  // const allUniqueFolderKeys = useMemo(
+  //   () => !!preexistingParts &&
+  //   [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
+  //   [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
+  // );
 
   return {
     allAppParts, 
@@ -132,9 +135,9 @@ const useAppPartsHelper = (preexistingParts) => {
     setNewPart,
     folderOfNewPart, 
     setFolderOfNewPart,
-    allUniqueFolderKeys, 
-    onClickingPart, 
-    addNewPartAndClear
+    // allUniqueFolderKeys, 
+    // onClickingPart, 
+    // addNewPartAndClear
   };
 }
 

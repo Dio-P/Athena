@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
@@ -37,6 +37,8 @@ const OptionsWraper = styled.div`
 
 const AddNewConnectionBox = () => {
   let [searchParams] = useSearchParams();
+  const didMountRef = useRef(false);
+
 
   const [updatedApp, setUpdatedApp] = useState("");
 
@@ -55,7 +57,7 @@ const AddNewConnectionBox = () => {
     deleteWarningNewPart: false,
   });
 
-  const foldersToDisplay = useMemo(() => appToDisplay.folders , [appToDisplay.folders]);
+  const foldersToDisplay = (appToDisplay && didMountRef) && appToDisplay.folders
   const {
     newlyCreatedFolders, 
     setNewlyCreatedFolders, 
@@ -67,7 +69,7 @@ const AddNewConnectionBox = () => {
     // resetFolderInfo
   } = useFolderHelper(foldersToDisplay);
 
-  const partsToDisplay = useMemo(() => appToDisplay.parts , [appToDisplay.parts]);
+  const partsToDisplay = (appToDisplay && didMountRef) && appToDisplay.parts;
   const {
     allAppParts, 
     newPartsAdded, 
@@ -85,6 +87,10 @@ const AddNewConnectionBox = () => {
   const APP_NAME = useCapitaliseFirstLetter(nameToDisplay);
 
   useEffect(() => {
+    if(didMountRef.current){
+      console.log("mounted add new connection box ");
+    }
+    didMountRef.current = true;
     console.log("add new connection box rendered", 
       "foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay);
      
