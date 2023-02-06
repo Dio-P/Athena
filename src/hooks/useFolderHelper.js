@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import useAppPartsHelper from "./useAppPartsHelper";
 import useParamsHelper from "./useParamsHelper";
 
@@ -7,18 +7,18 @@ const useFolderHelper = (preexistingFolders) => {
   const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
 
 
-  // const {
-  //   allAppParts, 
-  //   newPartsAdded, 
-  //   setNewPartsAdded, 
-  //   newPart, 
-  //   setNewPart,
-  //   folderOfNewPart, 
-  //   setFolderOfNewPart,
-  //   allUniqueFolderKeys, 
-  //   onClickingPart, 
-  //   addNewPartAndClear
-  // } = useAppPartsHelper();
+  const {
+    allAppParts, 
+    newPartsAdded, 
+    setNewPartsAdded, 
+    newPart, 
+    setNewPart,
+    folderOfNewPart, 
+    setFolderOfNewPart,
+    allUniqueFolderKeys, 
+    onClickingPart, 
+    addNewPartAndClear
+  } = useAppPartsHelper();
 
   const { keepExistingParams } = useParamsHelper();
 
@@ -26,17 +26,21 @@ const useFolderHelper = (preexistingFolders) => {
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   const [clickedFolder, setClickedFolder] = useState("");
 
+  const preexistingFoldersLength = useMemo(() => preExistingFoldersMemo && (preExistingFoldersMemo.length - 1 || 0), [preExistingFoldersMemo]);
+  const newlyCreatedFoldersLength = useMemo(() => newlyCreatedFolders && (newlyCreatedFolders.length + 1 || 1), [newlyCreatedFolders]);
+
+  const didMountRef = useRef(false);
+
   useEffect(() => {
     console.log("useFolderHelper"); 
   }, [])
 
   useEffect(() => {
-      if(preExistingFoldersMemo){
-        console.log("preExistingFoldersMemo uef");
-      const preexistingFoldersLength = preExistingFoldersMemo.length - 1 || 0;
-      const newlyCreatedFoldersLength = newlyCreatedFolders.length + 1 || 1;
-      setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
+      if(preExistingFoldersMemo && !!didMountRef.current){
+        console.log("preExistingFoldersMemo uef"); 
+        setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
       }
+      didMountRef.current = true;
     }, [preExistingFoldersMemo, newlyCreatedFolders]);
 
   if(preExistingFoldersMemo){

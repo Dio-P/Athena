@@ -1,31 +1,20 @@
-import { useSearchParams } from "react-router-dom";
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
-import AppPage from "./containers/AppPage";
-import SinglePartPage from "./containers/SinglePartPage";
-import { useEffect, useMemo, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
-import useValuesFromUrlParams from "./hooks/useValuesFromUrlParams";
+import { useEffect, useMemo } from "react";
+
 function App() {
-  const DEFAULT_DEPARTMENT = "DPub";
+  const DEFAULT_DEPARTMENT = useMemo(() => "DPub", []);
 
   useEffect(() => {
   console.log("app rendered");  
 }, [])
-  
-  // let [searchParams, setSearchParams] = useSearchParams();
-
-
-  // const params = useMemo(() => Object.fromEntries([...searchParams]) ,[searchParams]) ;
 
   return (
-    <div className="">
+    <div>
       <h1>Athena</h1>
       <Header/>
       <TeamsBox
         department={DEFAULT_DEPARTMENT}
-        // params={params}
-        // updatingParams={setSearchParams}
       />
 
     </div>

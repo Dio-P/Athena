@@ -12,6 +12,7 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
 `
 
 const useTeamAppsNamesSearch = (team) => {
+
   const teamMemo = useMemo(() => team, [team])
   const [apps, setApps] = useState("");
 
@@ -21,21 +22,18 @@ const useTeamAppsNamesSearch = (team) => {
     console.log("useTeamAppsNamesSearch", "teamMemo", teamMemo, "team", team, loading, error, data);  
   }, []);
 
-  useEffect(() => {
-    console.log("team", team);
-    console.log("teamMemo", teamMemo);
-} , [team, teamMemo])
+//   useEffect(() => {
+//     console.log("team", team);
+//     console.log("teamMemo", teamMemo);
+// } , [team, teamMemo])
 
   useEffect(() => {
-    // if(!team){
-    //   setApps([]);
-    //   return;
-    // }
-
-    searchApps({ 
-      variables: 
-        { team: teamMemo } 
-      })
+    if(teamMemo){
+      searchApps({ 
+        variables: 
+          { team: teamMemo } 
+        })
+    }
     
   }, [teamMemo])
 
@@ -51,6 +49,7 @@ const useTeamAppsNamesSearch = (team) => {
     };
     
   }, [data]);
+
 
   return [apps, loading, error];
 }

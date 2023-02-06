@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { useSearchParams, } from "react-router-dom";
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
@@ -15,6 +15,8 @@ margin: 0px;
 `;
 
 const TeamsBox = ({ department, params }) => {
+  const didMountRef = useRef(false);
+  const departmentMemo = useMemo(() => department, [department]);
   const {
     clickingOnTeamMock,
     params:{
@@ -48,8 +50,11 @@ const TeamsBox = ({ department, params }) => {
   }, [chosenTeam]);
 
   useEffect(() => {
-    setChosenTeam(department)
-  }, [department]);
+    if(departmentMemo && !!didMountRef.current){
+      setChosenTeam(departmentMemo)
+    };
+    didMountRef.current = true;
+  }, [departmentMemo]);
 
   const clickIcon = (chosenTeam) => {
     setChosenTeam(chosenTeam);

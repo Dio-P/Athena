@@ -48,30 +48,13 @@ const useAppPartsHelper = (preexistingParts) => {
   useEffect(() => {
     console.log("useAppPartHelper"); 
   }, []);
-
-  // const didMountRef = useRef(false);
-
+  
   useEffect(() => {
     if (didMountRef.current && partsWithAdded) { 
       setAllAppParts(partsWithAdded);
     }
     didMountRef.current = true;
   }, [preExistingPartsMemo]);
-
-  // useEffect(() => {
-  //   console.log("main part helper uef");
-  //   const allAppPartsHelper = {};
-  //   if (preExistingPartsMemo) {
-  //     preExistingPartsMemo.forEach(
-  //       (part) =>
-  //         (allAppPartsHelper[part.name] = {
-  //           ...part,
-  //           clicked: false,
-  //         })
-  //     );
-  //     setAllAppParts(allAppPartsHelper);
-  //   }
-  // }, [preExistingPartsMemo]);
 
   const onClickingPart = (part) => {
     console.log("on clicking part out");
