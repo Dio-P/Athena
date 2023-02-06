@@ -30,43 +30,31 @@ const StyledButton = styled.button`
 const AppsBox = ({ teamApps, teamName }) => {
   const { 
     toggleAppIdParamOnandOff, 
-    params
+    params: {
+      appId
+    }
   } = useParamsHelper();
 
-  // useEffect(() => {
-  //   console.log("appId@@@", appId);
-  // }, [appId])
   useEffect(() => {
-    console.log("params@@@", params);
-  }, [params])
+    console.log("AppsBox rendered");  
+  }, [])
 
   return (
     <DepartmAppsBoxContainer>
-      <div>
-        <StyledButton onClick={toggleAppIdParamOnandOff}>
-          <DepAppBoxPageTitle>
-            {useCapitaliseFirstLetter(teamName)}
-          </DepAppBoxPageTitle>
-        </StyledButton>
-      </div>
-      <>
-        {(teamApps &&
-          !params.appId) &&
-          <PopulateButtonUnits
-            data={teamApps}
-            onClickFunction={(singleApp) => toggleAppIdParamOnandOff(singleApp)}
-          />
-          // teamApps.map((singleApp) => {
-          //   return (
-          //     <div onClick={() => toggleAppIdParamOnandOff(singleApp)}>
-          //       <GenericButtonIcon label={singleApp.name} />
-          //     </div>
-          //   );
-          // })
-        }
-      </>
+      <StyledButton onClick={toggleAppIdParamOnandOff}>
+        <DepAppBoxPageTitle>
+          {useCapitaliseFirstLetter(teamName)}
+        </DepAppBoxPageTitle>
+      </StyledButton>
 
-      {params.appId && <AppPage appIdToDisplay={params.appId} />}
+      {(teamApps &&
+        !appId) &&
+        <PopulateButtonUnits
+          data={teamApps}
+          onClickFunction={(singleApp) => toggleAppIdParamOnandOff(singleApp)}
+        />
+      }
+      {appId && <AppPage appIdToDisplay={appId} />}
     </DepartmAppsBoxContainer>
   );
 };

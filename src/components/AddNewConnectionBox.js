@@ -85,7 +85,8 @@ const AddNewConnectionBox = () => {
   const APP_NAME = useCapitaliseFirstLetter(nameToDisplay);
 
   useEffect(() => {
-    console.log("foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay);
+    console.log("add new connection box rendered", 
+      "foldersToDisplay", foldersToDisplay, "partsToDisplay", partsToDisplay);
      
   }, [])
 

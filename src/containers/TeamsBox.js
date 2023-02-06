@@ -17,7 +17,6 @@ margin: 0px;
 const TeamsBox = ({ department, params }) => {
   const {
     clickingOnTeamMock,
-    keepExistingParams,
     params:{
       team
     }
@@ -30,11 +29,12 @@ const TeamsBox = ({ department, params }) => {
     loading,
     error
   ]= useTeamAppsNamesSearch(chosenTeam);
-  let [searchParams, setSearchParams] = useSearchParams();
-  const newParams = Object.fromEntries([...searchParams]);
+  
+  useEffect(() => {
+    console.log("teams box rendered");  
+  }, [])
 
   useEffect(() => {
-    console.log("params teamsBox@", params);
     if(!chosenTeam && team){
       setChosenTeam(team)
     }
@@ -42,8 +42,6 @@ const TeamsBox = ({ department, params }) => {
 
   useEffect(() => {
     if(!team){
-      console.log("chosenTeam", chosenTeam);
-      console.log("team", team);
       clickingOnTeamMock({team:chosenTeam})
     }
   }, [chosenTeam]);
@@ -58,7 +56,6 @@ const TeamsBox = ({ department, params }) => {
 
   useEffect(() => {
     if(apps){
-      console.log("appsTeamsBox", apps);
       setChosenDepApps(apps)
     }
   }, [apps])
@@ -86,7 +83,6 @@ const TeamsBox = ({ department, params }) => {
           department={chosenTeam}
           teamApps={chosenDepApps}
           teamName={chosenTeam}
-          params={params || newParams}
         />
       }
     </TeamsBoxContainer>

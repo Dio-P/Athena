@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBox from "../components/AddNewConnectionBox";
@@ -33,6 +34,11 @@ const AppPage = () => {
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
 
   const {clickingToAddNewConnection} = useParamsHelper();
+
+  useEffect(() => {
+    console.log("AppPage rendering");
+  }, [])
+  
 
   const pickFromRenderingOptions = () => {
     if (loading) {

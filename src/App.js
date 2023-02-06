@@ -8,11 +8,15 @@ import { v4 as uuidv4 } from 'uuid';
 import useValuesFromUrlParams from "./hooks/useValuesFromUrlParams";
 function App() {
   const DEFAULT_DEPARTMENT = "DPub";
+
+  useEffect(() => {
+  console.log("app rendered");  
+}, [])
   
-  let [searchParams, setSearchParams] = useSearchParams();
+  // let [searchParams, setSearchParams] = useSearchParams();
 
 
-  const params = useMemo(() => Object.fromEntries([...searchParams]) ,[searchParams]) ;
+  // const params = useMemo(() => Object.fromEntries([...searchParams]) ,[searchParams]) ;
 
   return (
     <div className="">
@@ -20,7 +24,7 @@ function App() {
       <Header/>
       <TeamsBox
         department={DEFAULT_DEPARTMENT}
-        params={params}
+        // params={params}
         // updatingParams={setSearchParams}
       />
 
