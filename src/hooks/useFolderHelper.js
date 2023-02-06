@@ -8,16 +8,16 @@ const useFolderHelper = (preexistingFolders) => {
 
 
   // const {
-    // allAppParts, 
-    // newPartsAdded, 
-    // setNewPartsAdded, 
-    // newPart, 
-    // setNewPart,
-    // folderOfNewPart, 
-    // setFolderOfNewPart,
-    // allUniqueFolderKeys, 
-    // onClickingPart, 
-    // addNewPartAndClear
+  //   allAppParts, 
+  //   newPartsAdded, 
+  //   setNewPartsAdded, 
+  //   newPart, 
+  //   setNewPart,
+  //   folderOfNewPart, 
+  //   setFolderOfNewPart,
+  //   allUniqueFolderKeys, 
+  //   onClickingPart, 
+  //   addNewPartAndClear
   // } = useAppPartsHelper();
 
   const { keepExistingParams } = useParamsHelper();

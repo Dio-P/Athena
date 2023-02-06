@@ -1,12 +1,28 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useParamsHelper from "./useParamsHelper";
 import useFolderHelper from "./useFolderHelper";
+
+const addClickedToPreexParts = (preExistingPartsMemo) => {
+  console.log("addClickedToPreexParts");
+    const allAppPartsHelper = {};
+    if (preExistingPartsMemo) {
+      preExistingPartsMemo.forEach(
+        (part) =>
+          (allAppPartsHelper[part.name] = {
+            ...part,
+            clicked: false,
+          })
+      );
+      return allAppPartsHelper;
+    }
+}
 
 const useAppPartsHelper = (preexistingParts) => {
   const preExistingPartsMemo = useMemo(() => preexistingParts && preexistingParts, [preexistingParts]);
 
   const [allAppParts, setAllAppParts] = useState([]);
+  // const allAppParts = useMemo(() => preExistingPartsMemo && addClickedToPreexParts(preExistingPartsMemo), [preExistingPartsMemo]);
   const [newPartsAdded, setNewPartsAdded] = useState("");
 
   const [folderOfNewPart, setFolderOfNewPart] = useState("");
@@ -17,6 +33,8 @@ const useAppPartsHelper = (preexistingParts) => {
     type: "",
     folderToBeDisplayedIn: "",
   });
+   const didMountRef = useRef(false);
+  const partsWithAdded = useMemo(()=> addClickedToPreexParts(preExistingPartsMemo),[preExistingPartsMemo]);
 
   const { keepExistingParams } = useParamsHelper();
   const {
@@ -31,25 +49,33 @@ const useAppPartsHelper = (preexistingParts) => {
     console.log("useAppPartHelper"); 
   }, []);
 
+  // const didMountRef = useRef(false);
+
   useEffect(() => {
-    console.log("main part helper uef");
-    const allAppPartsHelper = {};
-    if (preExistingPartsMemo) {
-      preExistingPartsMemo.forEach(
-        (part) =>
-          (allAppPartsHelper[part.name] = {
-            ...part,
-            clicked: false,
-          })
-      );
-      setAllAppParts(allAppPartsHelper);
+    if (didMountRef.current && partsWithAdded) { 
+      setAllAppParts(partsWithAdded);
     }
+    didMountRef.current = true;
   }, [preExistingPartsMemo]);
+
+  // useEffect(() => {
+  //   console.log("main part helper uef");
+  //   const allAppPartsHelper = {};
+  //   if (preExistingPartsMemo) {
+  //     preExistingPartsMemo.forEach(
+  //       (part) =>
+  //         (allAppPartsHelper[part.name] = {
+  //           ...part,
+  //           clicked: false,
+  //         })
+  //     );
+  //     setAllAppParts(allAppPartsHelper);
+  //   }
+  // }, [preExistingPartsMemo]);
 
   const onClickingPart = (part) => {
     console.log("on clicking part out");
     if(part){
-      console.log("onClickingPart");
       setAllAppParts({
         ...allAppParts,
         [part.name]: {

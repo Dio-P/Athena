@@ -22,8 +22,9 @@ const TeamsBox = ({ department, params }) => {
     }
   } = useParamsHelper();
 
-  const [chosenTeam, setChosenTeam] = useState("");
+  const [chosenTeam, setChosenTeam] = useState(undefined);
   const [chosenDepApps, setChosenDepApps] = useState("");
+
   const [
     apps,
     loading,

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLazyQuery } from "@apollo/client";
 import gql from 'graphql-tag';
 
@@ -12,13 +12,19 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
 `
 
 const useTeamAppsNamesSearch = (team) => {
+  const teamMemo = useMemo(() => team, [team])
   const [apps, setApps] = useState("");
 
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-    console.log("useTeamAppsNamesSearch rendered");  
-  }, [])
+    console.log("useTeamAppsNamesSearch", "teamMemo", teamMemo, "team", team, loading, error, data);  
+  }, []);
+
+  useEffect(() => {
+    console.log("team", team);
+    console.log("teamMemo", teamMemo);
+} , [team, teamMemo])
 
   useEffect(() => {
     // if(!team){
@@ -28,10 +34,10 @@ const useTeamAppsNamesSearch = (team) => {
 
     searchApps({ 
       variables: 
-        { team } 
+        { team: teamMemo } 
       })
     
-  }, [team])
+  }, [teamMemo])
 
   useEffect(() => {
     if(data && data.getAppsByTeam){

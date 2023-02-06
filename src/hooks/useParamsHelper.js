@@ -8,10 +8,11 @@ const useParamsHelper = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   // const changeInParams = useMemo(() => Object.fromEntries([...params]), [params]);
-  const paramsString = useRef(searchParams.toString())
-  // useMemo(() => searchParams.toString(), [searchParams]);
-  const [params, setParams] = useState(Object.fromEntries([...searchParams]));
+  // const paramsString = useRef(searchParams.toString())
+  // const paramsStringMemo = useMemo(() => searchParams.toString(), [searchParams]);
+  // const [params, setParams] = useState(Object.fromEntries([...searchParams]));
   // console.log("params", params.team);
+  const params = Object.fromEntries([...searchParams]);
   const {
     team,
     appId,
@@ -22,12 +23,12 @@ const useParamsHelper = () => {
 
 //  const paramsStrMemo = useMemo(() => Object.values(changeInParams).join(''), [changeInParams])
 
-  useEffect(() => {
-    // console.log("paramsString", paramsString);
-    // console.log("searchParamsparams.toString()", searchParams.toString());
-    // console.log("paramsStrMemo", typeof changeInParams);
-    setParams(Object.fromEntries([...searchParams]))
-  }, [searchParams]);
+  // useEffect(() => {
+  //   // console.log("paramsString", paramsString);
+  //   // console.log("searchParamsparams.toString()", searchParams.toString());
+  //   // console.log("paramsStrMemo", typeof changeInParams);
+  //   setParams(Object.fromEntries([...searchParams]))
+  // }, [paramsStringMemo]);
 
   useEffect(() => {
     console.log("useParamsHelper");
