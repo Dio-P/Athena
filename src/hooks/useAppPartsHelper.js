@@ -128,6 +128,18 @@ const useAppPartsHelper = (preexistingParts) => {
     [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
   );
 
+  const deleteNewPart = (part) => {
+    const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
+    delete newPartsAdded[part.name];
+    setNewPartsAdded({ ...newPartsAdded });
+    // delete the folders key if no app is using it
+    const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
+      folderIdIsInUse(id)
+    );
+
+    setNewlyCreatedFolders(updatedNewFoldersFolder);
+  };
+
   return {
     allAppParts, 
     newPartsAdded, 
@@ -138,7 +150,8 @@ const useAppPartsHelper = (preexistingParts) => {
     setFolderOfNewPart,
     allUniqueFolderKeys, 
     onClickingPart, 
-    addNewPartAndClear
+    addNewPartAndClear,
+    deleteNewPart
   };
 }
 

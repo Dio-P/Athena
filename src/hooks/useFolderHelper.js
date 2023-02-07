@@ -44,8 +44,6 @@ const useFolderHelper = (preexistingFolders) => {
       didMountRef.current = true;
     }, [preExistingFoldersMemo, newlyCreatedFolders]);
 
-  if(preExistingFoldersMemo){
-
   
       // const addNewFolderAndClear = () => {
       //   const newFolder = {
@@ -75,7 +73,7 @@ const useFolderHelper = (preexistingFolders) => {
       //   setFolderOfNewPart("");
       //   keepExistingParams();
       // };
-  }
+      
 
   
   return {
