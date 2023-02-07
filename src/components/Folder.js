@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import PartIcon from "./PartIcon";
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 
 const FolderContainer = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const Folder = ({ folderName, parts, appId }) => {
     // }, [parts])
     
 
-  const NAME = useCapitaliseFirstLetter(folderName);
+  const NAME = capitaliseFirstLetter(folderName);
   const triangleUp = () => {
     return (
       <svg height="20" width="20" style={{fill:"black", stroke:"purple"}}>

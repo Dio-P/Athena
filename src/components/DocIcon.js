@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect, useMemo } from "react";
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 
 const OddIconContainerWrapper = styled.div`
   display: flex;
@@ -41,8 +41,8 @@ const DocSingularInfoContainer = styled.div`
 const DocIcon = ({ doc, iconNu }) => {
   const { name, url, source, lastModified, concerningParts } = doc;
 
-  const docTitle = useCapitaliseFirstLetter(name);
-  const docSource = useCapitaliseFirstLetter(source);
+  const docTitle = capitaliseFirstLetter(name);
+  const docSource = capitaliseFirstLetter(source);
   const DocIconContainer =
     iconNu % 2 === 0 ? EvenIconContainerWrapper : OddIconContainerWrapper;
 

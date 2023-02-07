@@ -1,7 +1,5 @@
-import { useSearchParams } from "react-router-dom";
 import PopulateButtonUnits from "./PopulateButtonUnits";
-import GenericButtonIcon from "../components/GenericButtonIcon";
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
@@ -43,7 +41,7 @@ const AppsBox = ({ teamApps, teamName }) => {
     <DepartmAppsBoxContainer>
       <StyledButton onClick={toggleAppIdParamOnandOff}>
         <DepAppBoxPageTitle>
-          {useCapitaliseFirstLetter(teamName)}
+          {capitaliseFirstLetter(teamName)}
         </DepAppBoxPageTitle>
       </StyledButton>
 

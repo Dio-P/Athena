@@ -5,14 +5,16 @@ import useFolderHelper from "./useFolderHelper";
 
 
 const useParamsHelper = () => {
+  console.log("hi from useParams");
   let [searchParams, setSearchParams] = useSearchParams();
-
   // const changeInParams = useMemo(() => Object.fromEntries([...params]), [params]);
   // const paramsString = useRef(searchParams.toString())
   // const paramsStringMemo = useMemo(() => searchParams.toString(), [searchParams]);
   // const [params, setParams] = useState(Object.fromEntries([...searchParams]));
   // console.log("params", params.team);
   const params = Object.fromEntries([...searchParams]);
+  console.log("params", params);
+
   const {
     team,
     appId,
@@ -38,7 +40,7 @@ const useParamsHelper = () => {
   // }, [params]);
 
   const clickingOnTeamMock = (defaultTeam) => {
-    console.log("clickingOnTeamMock@");
+    console.log("defaultTeam@", defaultTeam);
     if(!team){
       setSearchParams({team: defaultTeam});
     }

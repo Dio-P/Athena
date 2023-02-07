@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from '@emotion/styled';
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 
 const DecoratedLink = styled(Link)`
 display: flex;
@@ -101,7 +101,7 @@ const GenericButtonIcon = ({ app, department, folder, part, clicked, addingButto
       <DecoratedLink>
         <CustomButtonContainer>
           <AppFolderButton> 
-            {useCapitaliseFirstLetter(label)}
+            {capitaliseFirstLetter(label)}
           </AppFolderButton>
         </CustomButtonContainer>
       </DecoratedLink>

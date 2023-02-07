@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import useCapitaliseFirstLetter from "../hooks/useCapitaliseFirstLetter";
+import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 
 const PartsContainer = styled.div`
     display: flex
@@ -51,8 +51,8 @@ a {
 `;
 const PartIcon = ({ part, appId }) => {
 
-    const partName = useCapitaliseFirstLetter(part.name);
-    const partType = useCapitaliseFirstLetter(part.type);
+    const partName = capitaliseFirstLetter(part.name);
+    const partType = capitaliseFirstLetter(part.type);
     const ghRepo = part.ghRepo;
     
     return (

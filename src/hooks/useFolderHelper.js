@@ -21,8 +21,6 @@ const useFolderHelper = (preexistingFolders) => {
   //   addNewPartAndClear
   // } = useAppPartsHelper();
 
-  const { keepExistingParams } = useParamsHelper();
-
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   const [clickedFolder, setClickedFolder] = useState("");

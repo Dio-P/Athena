@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState, useRef } from "react";
-import { useSearchParams, } from "react-router-dom";
 import AppsBox from "./AppsBox";
 import styled from '@emotion/styled';
 import GenericButtonIcon from "../components/GenericButtonIcon";
@@ -14,7 +13,8 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ department, params }) => {
+const TeamsBox = ({ department }) => {
+  console.log("department", department);
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
   const {
@@ -45,7 +45,8 @@ const TeamsBox = ({ department, params }) => {
 
   useEffect(() => {
     if(!team){
-      clickingOnTeamMock({team:chosenTeam})
+      console.log("clickingOnTeamMock", );
+      clickingOnTeamMock(chosenTeam)
     }
   }, [chosenTeam]);
 

@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import AddNewPartInput from "./AddNewPartInput";
 import AddingFolderBlock from "./AddingFolderBlock";
 import ButtonUnit from "./ButtonUnit";
+import useAppPartsHelper from "../hooks/useAppPartsHelper";
+import useFolderHelper from "../hooks/useFolderHelper";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -22,8 +27,7 @@ const TitleButtonWrapper = styled.div`
   margin-left: 12px;
 `;
 
-const AddingPartBlock = ({ 
-    newPart, 
+const AddingPartBlock = ({
     setNewPartName, 
     setNewPartGhRepo, 
     setNewPartType,
@@ -34,12 +38,60 @@ const AddingPartBlock = ({
     folderInfoToState,
     clickedFolder,
     addNewFolderAndClear,
-    newInputTitle,
+    // newInputTitle,
     onClickingFolder,
     resetFolderInfo,
     clickingToAddNewFolder,
-    addNewPartAndClear
 }) => {
+
+  const {
+    allAppParts,
+    setAllAppParts,
+    newPartsAdded,
+    setNewPartsAdded
+  } = useAppPartsHelper();
+
+  const {
+    keepExistingParams
+  } = useParamsHelper();
+
+  const {
+    newlyCreatedFolders,
+    setNewlyCreatedFolders,
+    setClickedFolder,
+    setFolderOfNewPart
+  } = useFolderHelper();
+
+  const [newPart, setNewPart] = useState({
+    name: "",
+    id: uuidv4(),
+    ghRepo: "",
+    type: "",
+    folderToBeDisplayedIn: "",
+  });
+
+  const addNewPartAndClear = () => {
+    console.log("addNewPartAndClear");
+    setNewPartsAdded({
+      ...newPartsAdded,
+      [newPart.name]: {
+        ...newPart,
+        folderToBeDisplayedIn:
+          folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+        // I need to create a singly function that is going to turn this and return a single item in both cases
+      },
+    });
+    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+    setNewPart({
+      ...newPart,
+      name: "",
+      ghRepo: "",
+      type: "",
+    });
+    setClickedFolder("");
+    setFolderOfNewPart("");
+    keepExistingParams();
+  };
     return (
         <DisplayBox>
                 <TitleButtonWrapper>
@@ -59,7 +111,7 @@ const AddingPartBlock = ({
                   folderInfoToState={folderInfoToState}
                   newclickedFolder={clickedFolder}
                   addNewFolderAndClear={addNewFolderAndClear}
-                  newInputTitle={newInputTitle}
+                  newInputTitle={`New Part Name: ${newPart.type}`}
                   onClickingFolder={onClickingFolder}
                   resetFolderInfo={resetFolderInfo}
                   clickingToAddNewFolder={clickingToAddNewFolder}
