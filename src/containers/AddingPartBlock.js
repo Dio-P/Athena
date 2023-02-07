@@ -28,18 +28,18 @@ const TitleButtonWrapper = styled.div`
 `;
 
 const AddingPartBlock = ({
-    setNewPartName, 
-    setNewPartGhRepo, 
-    setNewPartType,
+    // setNewPartName, 
+    // setNewPartGhRepo, 
+    // setNewPartType,
     folderOfNewPart,
     addingNewFolder,
     allPreexistingFolders,
     newFoldersToBeAddedToAll,
-    folderInfoToState,
+    // folderInfoToState,
     clickedFolder,
-    addNewFolderAndClear,
+    // addNewFolderAndClear,
     // newInputTitle,
-    onClickingFolder,
+    // onClickingFolder,
     resetFolderInfo,
     clickingToAddNewFolder,
 }) => {
@@ -99,20 +99,28 @@ const AddingPartBlock = ({
                 </TitleButtonWrapper>
                 <AddNewPartInput
                   newPart={newPart}
-                  setNewPartName={setNewPartName}
-                  setNewPartGhRepo={setNewPartGhRepo}
-                  setNewPartType={setNewPartType}
+                  setNewPartName={(input) =>
+                    setNewPart({ ...newPart, name: input })
+                  }
+                  setNewPartGhRepo={(input) =>
+                    setNewPart({ ...newPart, ghRepo: input })
+                  }
+                  setNewPartType={(input) =>
+                    setNewPart({ ...newPart, type: input })
+                  }
                 />
                 <AddingFolderBlock
+                  newPart={newPart}
+                  setNewPart={setNewPart}
                   folderOfNewPart={folderOfNewPart}
                   addingNewFolder={addingNewFolder}
                   allPreexistingFolders={allPreexistingFolders}
                   allNewFolders={newFoldersToBeAddedToAll}
-                  folderInfoToState={folderInfoToState}
+                  // folderInfoToState={folderInfoToState}
                   newclickedFolder={clickedFolder}
-                  addNewFolderAndClear={addNewFolderAndClear}
+                  // addNewFolderAndClear={addNewFolderAndClear}
                   newInputTitle={`New Part Name: ${newPart.type}`}
-                  onClickingFolder={onClickingFolder}
+                  // onClickingFolder={onClickingFolder}
                   resetFolderInfo={resetFolderInfo}
                   clickingToAddNewFolder={clickingToAddNewFolder}
                 />

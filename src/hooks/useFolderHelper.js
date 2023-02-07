@@ -21,6 +21,10 @@ const useFolderHelper = (preexistingFolders) => {
   //   addNewPartAndClear
   // } = useAppPartsHelper();
 
+  const {
+    keepExistingParams
+  } = useParamsHelper();
+
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   const [clickedFolder, setClickedFolder] = useState("");
@@ -66,11 +70,14 @@ const useFolderHelper = (preexistingFolders) => {
       //   });
       //   keepExistingParams();
       // };
-    
-      // const resetFolderInfo = () => {
-      //   setFolderOfNewPart("");
-      //   keepExistingParams();
-      // };
+
+      const onClickingPreExistingFolder = (value) => {
+        setClickedFolder(value);
+        keepExistingParams();
+
+
+      }
+  
       
 
   
@@ -80,6 +87,7 @@ const useFolderHelper = (preexistingFolders) => {
     clickedFolder, 
     setClickedFolder, 
     newFolderIndexKey,
+    onClickingPreExistingFolder,
     // addNewFolderAndClear,
     // folderInfoToState,
     // resetFolderInfo

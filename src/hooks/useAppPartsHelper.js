@@ -125,6 +125,11 @@ const useAppPartsHelper = (preexistingParts) => {
     setNewlyCreatedFolders(updatedNewFoldersFolder);
   };
 
+  const resetFolderInfo = () => {
+    setFolderOfNewPart("");
+    keepExistingParams();
+  };
+
   return {
     allAppParts, 
     newPartsAdded, 
@@ -134,7 +139,8 @@ const useAppPartsHelper = (preexistingParts) => {
     folderOfNewPart, 
     setFolderOfNewPart,
     // allUniqueFolderKeys, 
-    onClickingPart, 
+    onClickingPart,
+    resetFolderInfo
     // addNewPartAndClear,
     // deleteNewlyAddedPart
   };

@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import AllFolders from "./AllFolders";
 import ButtonUnit from "./ButtonUnit";
+import useAppPartsHelper from "../hooks/useAppPartsHelper";
+import useFolderHelper from "../hooks/useFolderHelper";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;
@@ -13,19 +16,72 @@ const MainAddNewFolderContainer = styled.div`
   margin: 1em;
 `;
 
-const AddingFolderBlock = ({ 
+const AddingFolderBlock = ({
+  newPart,
+  setNewPart,
   folderOfNewPart,
   addingNewFolder,
   allPreexistingFolders,
   allNewFolders,
-  folderInfoToState,
+  // folderInfoToState,
   newFolderName,
-  addNewFolderAndClear,
   newInputTitle,
   onClickingFolder,
-  resetFolderInfo,
+  // resetFolderInfo,
   clickingToAddNewFolder
 }) => {
+
+  const {
+    resetFolderInfo,
+    setFolderOfNewPart,
+    allAppParts,
+    setAllAppParts,
+    newPartsAdded,
+    setNewPartsAdded
+  } = useAppPartsHelper();
+
+  const {
+    keepExistingParams
+  } = useParamsHelper();
+
+  const {
+    newlyCreatedFolders,
+    setNewlyCreatedFolders,
+    clickedFolder,
+    setClickedFolder,
+    
+    newFolderIndexKey,
+    onClickingPreExistingFolder
+  } = useFolderHelper();
+
+  const addNewFolderAndClear = () => {
+    const newFolder = {
+      name: clickedFolder,
+      id: newFolderIndexKey,
+    };
+    setFolderOfNewPart(newFolder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: newFolderIndexKey,
+    });
+  
+    keepExistingParams();
+  };
+
+  const folderInfoToState = (folder) => {
+    setClickedFolder(folder.name);
+    setFolderOfNewPart(folder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: folder.id,
+    });
+    keepExistingParams();
+  };
+
+  // const resetFolderInfo = () => {
+  //   setFolderOfNewPart("");
+  //   keepExistingParams();
+  // };
 
   return (
     <MainAddNewFolderContainer>
@@ -35,11 +91,11 @@ const AddingFolderBlock = ({
           addingNewFolder={addingNewFolder}
           allPreexistingFolders={allPreexistingFolders} 
           allNewFolders={allNewFolders} 
-          folderInfoToState={folderInfoToState} 
+          folderInfoToState={(value) => folderInfoToState(value)}
           newFolderName={newFolderName} 
           addNewFolderAndClear={addNewFolderAndClear} 
           newInputTitle={newInputTitle}
-          onClickingFolder={onClickingFolder}
+          onClickingFolder={(value) => onClickingPreExistingFolder(value)}
         />
       ) : (
         <ButtonUnit

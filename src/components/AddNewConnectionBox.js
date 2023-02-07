@@ -68,6 +68,7 @@ const AddNewConnectionBox = () => {
     clickedFolder, 
     setClickedFolder, 
     newFolderIndexKey,
+    onClickingPreExistingFolder,
     // addNewFolderAndClear,
     // folderInfoToState,
     // resetFolderInfo
@@ -85,7 +86,7 @@ const AddNewConnectionBox = () => {
     folderOfNewPart, 
     setFolderOfNewPart,
     allUniqueFolderKeys, 
-    addNewPartAndClear,
+    // addNewPartAndClear,
     onClickingPart,
     deleteNewlyAddedPart
  } = useAppPartsHelper(test);
@@ -118,34 +119,21 @@ const AddNewConnectionBox = () => {
   //   keepExistingParams();
   // };
 
-  const addNewFolderAndClear = () => {
-    const newFolder = {
-      name: clickedFolder,
-      id: newFolderIndexKey,
-    };
-    setFolderOfNewPart(newFolder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: newFolderIndexKey,
-    });
-  
-    keepExistingParams();
-  };
 
-  const folderInfoToState = (folder) => {
-    setClickedFolder(folder.name);
-    setFolderOfNewPart(folder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: folder.id,
-    });
-    keepExistingParams();
-  };
+  // const folderInfoToState = (folder) => {
+  //   setClickedFolder(folder.name);
+  //   setFolderOfNewPart(folder);
+  //   setNewPart({
+  //     ...newPart,
+  //     folderToBeDisplayedIn: folder.id,
+  //   });
+  //   keepExistingParams();
+  // };
 
-  const resetFolderInfo = () => {
-    setFolderOfNewPart("");
-    keepExistingParams();
-  };
+  // const resetFolderInfo = () => {
+  //   setFolderOfNewPart("");
+  //   keepExistingParams();
+  // };
 
   // const deleteNewlyAddedPart = (part) => {
   //   const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
@@ -384,28 +372,28 @@ const AddNewConnectionBox = () => {
             </OptionsWraper>
             {addingNewPart && (
               <AddingPartBlock
-                newPart={newPart}
-                setNewPartName={(input) =>
-                  setNewPart({ ...newPart, name: input })
-                }
-                setNewPartGhRepo={(input) =>
-                  setNewPart({ ...newPart, ghRepo: input })
-                }
-                setNewPartType={(input) =>
-                  setNewPart({ ...newPart, type: input })
-                }
+                // newPart={newPart}
+                // setNewPartName={(input) =>
+                //   setNewPart({ ...newPart, name: input })
+                // }
+                // setNewPartGhRepo={(input) =>
+                //   setNewPart({ ...newPart, ghRepo: input })
+                // }
+                // setNewPartType={(input) =>
+                //   setNewPart({ ...newPart, type: input })
+                // }
                 folderOfNewPart={folderOfNewPart}
                 addingNewFolder={addingNewFolder}
                 allPreexistingFolders={appToDisplay.folders}
                 allNewFolders={newlyCreatedFolders}
-                folderInfoToState={folderInfoToState}
+                // folderInfoToState={folderInfoToState}
                 clickedFolder={clickedFolder}
-                addNewFolderAndClear={addNewFolderAndClear}
+                // addNewFolderAndClear={addNewFolderAndClear}
                 // newInputTitle={`New Part Name: ${newPart.type}`}
-                onClickingFolder={(value) => setClickedFolder(value)}
-                resetFolderInfo={resetFolderInfo}
+                // onClickingFolder={(value) => onClickingPreExistingFolder(value)}
+                // resetFolderInfo={resetFolderInfo}
                 clickingToAddNewFolder={clickingToAddNewFolder}
-                addNewPartAndClear={addNewPartAndClear}
+                // addNewPartAndClear={addNewPartAndClear}
               />
             )}
           </div>
