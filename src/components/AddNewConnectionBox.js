@@ -60,7 +60,7 @@ const AddNewConnectionBox = () => {
 } = useParamsHelper();
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
-  const preexistingParts = useMemo(() => appToDisplay, [appToDisplay])
+  const preexistingParts = useMemo(() => appToDisplay.parts, [appToDisplay])
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
