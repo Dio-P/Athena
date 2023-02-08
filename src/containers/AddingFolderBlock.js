@@ -32,6 +32,7 @@ const AddingFolderBlock = ({
 }) => {
 
   const {
+
     folderOfNewPart,
     resetFolderInfo,
     setFolderOfNewPart,
@@ -71,6 +72,7 @@ const AddingFolderBlock = ({
 
   const folderInfoToState = (folder) => {
     console.log("folder info to state from addingFolderBlock");
+    console.log("folder that is not set", folder);
     setClickedFolder(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
@@ -103,7 +105,7 @@ const AddingFolderBlock = ({
         <ButtonUnit
           onClickFunction={resetFolderInfo}
           addingButton={true}
-          label={`folder name: ${folderOfNewPart.title} click to edit`}
+          label={`folder name: ${folderOfNewPart.name} click to edit`}
         />
       )}
       {!folderOfNewPart && (

@@ -20,6 +20,10 @@ const useAppPartsHelper = (preexistingParts) => {
   //   folderToBeDisplayedIn: "",
   // });
   // console.log("newPart", newPart);
+  // useEffect(() => {
+  //   console.log("folderOfNewPart@", folderOfNewPart);
+  //   folderOfNewPartRef = folderOfNewPart
+  // }, [folderOfNewPart])
 
    const didMountRef = useRef(false);
 
