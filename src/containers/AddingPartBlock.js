@@ -31,7 +31,7 @@ const AddingPartBlock = ({
     // setNewPartName, 
     // setNewPartGhRepo, 
     // setNewPartType,
-    folderOfNewPart,
+    // folderOfNewPart,
     addingNewFolder,
     allPreexistingFolders,
     newFoldersToBeAddedToAll,
@@ -56,6 +56,7 @@ const AddingPartBlock = ({
   } = useParamsHelper();
 
   const {
+    folderOfNewPart,
     newlyCreatedFolders,
     setNewlyCreatedFolders,
     setClickedFolder,
@@ -112,7 +113,7 @@ const AddingPartBlock = ({
                 <AddingFolderBlock
                   newPart={newPart}
                   setNewPart={setNewPart}
-                  folderOfNewPart={folderOfNewPart}
+                  // folderOfNewPart={folderOfNewPart}
                   addingNewFolder={addingNewFolder}
                   allPreexistingFolders={allPreexistingFolders}
                   allNewFolders={newFoldersToBeAddedToAll}

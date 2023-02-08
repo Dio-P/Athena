@@ -382,7 +382,7 @@ const AddNewConnectionBox = () => {
                 // setNewPartType={(input) =>
                 //   setNewPart({ ...newPart, type: input })
                 // }
-                folderOfNewPart={folderOfNewPart}
+                // folderOfNewPart={folderOfNewPart}
                 addingNewFolder={addingNewFolder}
                 allPreexistingFolders={appToDisplay.folders}
                 allNewFolders={newlyCreatedFolders}

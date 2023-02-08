@@ -5,7 +5,7 @@ import useFolderHelper from "./useFolderHelper";
 
 
 const useParamsHelper = () => {
-  console.log("hi from useParams");
+  // console.log("hi from useParams");
   let [searchParams, setSearchParams] = useSearchParams();
   // const changeInParams = useMemo(() => Object.fromEntries([...params]), [params]);
   // const paramsString = useRef(searchParams.toString())
@@ -13,7 +13,7 @@ const useParamsHelper = () => {
   // const [params, setParams] = useState(Object.fromEntries([...searchParams]));
   // console.log("params", params.team);
   const params = Object.fromEntries([...searchParams]);
-  console.log("params", params);
+  // console.log("params", params);
 
   const {
     team,

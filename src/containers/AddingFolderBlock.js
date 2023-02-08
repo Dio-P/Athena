@@ -19,7 +19,7 @@ const MainAddNewFolderContainer = styled.div`
 const AddingFolderBlock = ({
   newPart,
   setNewPart,
-  folderOfNewPart,
+  // folderOfNewPart,
   addingNewFolder,
   allPreexistingFolders,
   allNewFolders,
@@ -32,6 +32,7 @@ const AddingFolderBlock = ({
 }) => {
 
   const {
+    folderOfNewPart,
     resetFolderInfo,
     setFolderOfNewPart,
     allAppParts,
@@ -69,6 +70,7 @@ const AddingFolderBlock = ({
   };
 
   const folderInfoToState = (folder) => {
+    console.log("folder info to state from addingFolderBlock");
     setClickedFolder(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
