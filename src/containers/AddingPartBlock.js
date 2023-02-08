@@ -28,27 +28,35 @@ const TitleButtonWrapper = styled.div`
 `;
 
 const AddingPartBlock = ({
-    // setNewPartName, 
-    // setNewPartGhRepo, 
-    // setNewPartType,
-    // folderOfNewPart,
-    addingNewFolder,
-    allPreexistingFolders,
-    newFoldersToBeAddedToAll,
-    // folderInfoToState,
-    clickedFolder,
-    // addNewFolderAndClear,
-    // newInputTitle,
-    // onClickingFolder,
-    resetFolderInfo,
-    clickingToAddNewFolder,
+  newPartsAdded,
+  setNewPartsAdded,
+  // setNewPartName, 
+  // setNewPartGhRepo, 
+  // setNewPartType,
+  // folderOfNewPart,
+  addingNewFolder,
+  allPreexistingFolders,
+  newFoldersToBeAddedToAll,
+  // folderInfoToState,
+  clickedFolder,
+  // addNewFolderAndClear,
+  // newInputTitle,
+  // onClickingFolder,
+  // resetFolderInfo,
+  clickingToAddNewFolder,
 }) => {
 
   const {
-    allAppParts,
-    setAllAppParts,
-    newPartsAdded,
-    setNewPartsAdded
+    folderOfNewPartRef,
+    updateFolderOfNewPart,
+    // folderOfNewPart, 
+    // setFolderOfNewPart,
+    // newPartsAdded,
+    // setNewPartsAdded,
+    hi,
+    // newPart, 
+    // setNewPart,
+    // addNewPartAndClear
   } = useAppPartsHelper();
 
   const {
@@ -56,11 +64,9 @@ const AddingPartBlock = ({
   } = useParamsHelper();
 
   const {
-    folderOfNewPart,
     newlyCreatedFolders,
     setNewlyCreatedFolders,
     setClickedFolder,
-    setFolderOfNewPart
   } = useFolderHelper();
 
   const [newPart, setNewPart] = useState({
@@ -70,15 +76,21 @@ const AddingPartBlock = ({
     type: "",
     folderToBeDisplayedIn: "",
   });
+  const [folderOfNewPart, setFolderOfNewPart] = useState("");
+
 
   const addNewPartAndClear = () => {
-    console.log("addNewPartAndClear");
+    // console.log("addNewPartAndClear");
+    // console.log("hi", hi);
+    // console.log("folderOfNewPart@@@", folderOfNewPart);
+    // console.log("folderOfNewPartRef", folderOfNewPartRef.current);
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
         ...newPart,
         folderToBeDisplayedIn:
           folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+          // folderOfNewPartRef.current.id || Object.values(folderOfNewPartRef.current)[0].id,
         // I need to create a singly function that is going to turn this and return a single item in both cases
       },
     });
@@ -93,6 +105,14 @@ const AddingPartBlock = ({
     setFolderOfNewPart("");
     keepExistingParams();
   };
+
+   const resetFolderInfo = () => {
+    setFolderOfNewPart("");
+    keepExistingParams();
+  };
+
+
+
     return (
         <DisplayBox>
                 <TitleButtonWrapper>
@@ -113,6 +133,8 @@ const AddingPartBlock = ({
                 <AddingFolderBlock
                   newPart={newPart}
                   setNewPart={setNewPart}
+                  folderOfNewPart={folderOfNewPart}
+                  setFolderOfNewPart={setFolderOfNewPart}
                   // folderOfNewPart={folderOfNewPart}
                   addingNewFolder={addingNewFolder}
                   allPreexistingFolders={allPreexistingFolders}

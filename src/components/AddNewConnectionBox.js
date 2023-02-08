@@ -11,7 +11,7 @@ import PopulateButtonUnits from "../containers/PopulateButtonUnits";
 import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
-import { addClickedKeyToPreexParts } from "../helpers/addNewDocHelper";
+import { addClickedKeyToPreexParts, findConserningParts } from "../helpers/addNewDocHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -41,6 +41,10 @@ const AddNewConnectionBox = () => {
 
 
   const [updatedApp, setUpdatedApp] = useState("");
+  const [newPartsAdded, setNewPartsAdded] = useState("");
+  const [allAppParts, setAllAppParts] = useState([]);
+
+
 
   const [url, setUrl] = useState("");
   
@@ -56,6 +60,7 @@ const AddNewConnectionBox = () => {
 } = useParamsHelper();
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
+  const preexistingParts = useMemo(() => appToDisplay, [appToDisplay])
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -74,50 +79,55 @@ const AddNewConnectionBox = () => {
     // resetFolderInfo
   } = useFolderHelper(foldersToDisplay);
 
-  const partsToDisplay = (appToDisplay && didMountRef) && appToDisplay.parts;
-  const test =  useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay.parts] ) ;
-  const {
-    setAllAppParts,
-    allAppParts, 
-    newPartsAdded, 
-    setNewPartsAdded, 
-    newPart, 
-    setNewPart,
-    folderOfNewPart, 
-    setFolderOfNewPart,
-    allUniqueFolderKeys, 
-    // addNewPartAndClear,
-    onClickingPart,
-    deleteNewlyAddedPart
- } = useAppPartsHelper(test);
+  // const partsToDisplay = (appToDisplay && didMountRef) && appToDisplay.parts;
+  // const test =  useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay.parts] ) ;
+//   const {
+//     // setAllAppParts,
+//     // allAppParts, 
+//     // newPartsAdded, 
+//     // setNewPartsAdded, 
+//     newPart, 
+//     setNewPart,
+//     folderOfNewPart, 
+//     setFolderOfNewPart,
+//     // allUniqueFolderKeys, 
+//     // addNewPartAndClear,
+//     // onClickingPart,
+//     // deleteNewlyAddedPart
+//  } = useAppPartsHelper(test);
   // const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
-  const APP_NAME = capitaliseFirstLetter(appToDisplay.name);
+  const APP_NAME = useMemo(() => capitaliseFirstLetter(appToDisplay.name), [appToDisplay.name]) ;
+
+  // useEffect(() => {
+  //   if(didMountRef.current){
+  //     console.log("mounted add new connection box ");
+  //   }
+  //   didMountRef.current = true;
+  //   console.log("add new connection box rendered", 
+  //     "foldersToDisplay", foldersToDisplay,);
+     
+  // }, []);
 
   useEffect(() => {
-    if(didMountRef.current){
-      console.log("mounted add new connection box ");
-    }
-    didMountRef.current = true;
-    console.log("add new connection box rendered", 
-      "foldersToDisplay", foldersToDisplay,);
-     
-  }, []);
+    setAllAppParts(preexistingParts);////////////////////////////!!!!!THAT IS WHAT I DID LAST!!@
+  }, [preexistingParts])
+  
 
 // Why isn't this working?
 
-  // const onClickingPart = (part) => {
-  //   console.log("on clicking part out");
-  //   if(part){
-  //     setAllAppParts({
-  //       ...allAppParts,
-  //       [part.name]: {
-  //         ...allAppParts[part.name],
-  //         clicked: !part.clicked,
-  //       },
-  //     });
-  //   }
-  //   keepExistingParams();
-  // };
+  const onClickingPart = (part) => {
+    console.log("on clicking part out");
+    if(part){
+      setAllAppParts({
+        ...allAppParts,
+        [part.name]: {
+          ...allAppParts[part.name],
+          clicked: !part.clicked,
+        },
+      });
+    }
+    keepExistingParams();
+  };
 
 
   // const folderInfoToState = (folder) => {
@@ -147,13 +157,13 @@ const AddNewConnectionBox = () => {
   //   setNewlyCreatedFolders(updatedNewFoldersFolder);
   // };
 
-  const findConserningParts = () => {
-    const checkedExistingPartIds = Object.values(allAppParts)
-      .filter((part) => part.clicked)
-      .map((part) => part.id);
-    const newPartsIds = Object.values(newPartsAdded).map((part) => part.id);
-    return [...checkedExistingPartIds, ...newPartsIds];
-  };
+  // const findConserningParts = () => {
+  //   const checkedExistingPartIds = Object.values(allAppParts)
+  //     .filter((part) => part.clicked)
+  //     .map((part) => part.id);
+  //   const newPartsIds = Object.values(newPartsAdded).map((part) => part.id);
+  //   return [...checkedExistingPartIds, ...newPartsIds];
+  // };
 
   const onClickingAdd = async (e) => {
     e.preventDefault();
@@ -173,7 +183,7 @@ const AddNewConnectionBox = () => {
       url: url,
       source: source,
       lastModified: "someDate",
-      concerningParts: findConserningParts(),
+      concerningParts: findConserningParts(allAppParts, newPartsAdded),
       flags: {
         isLinkUpToDate: true, //tickbox checked
       },
@@ -185,6 +195,49 @@ const AddNewConnectionBox = () => {
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
   };
+
+  const deleteNewlyAddedPart = (part) => {
+    const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
+    delete newPartsAdded[part.name];
+    setNewPartsAdded({ ...newPartsAdded });
+    // delete the folders key if no app is using it
+    const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
+      folderIdIsInUse(id)
+    );
+
+    setNewlyCreatedFolders(updatedNewFoldersFolder);
+  };
+
+  const existingAppsUniqueFolderKeys = useMemo(
+    () =>
+    !!preexistingParts &&
+      Array.from(
+        new Set(
+          Object.values(preexistingParts).map(
+            (part) => part.folderToBeDisplayedIn
+          )
+        )
+      ),
+    [preexistingParts]
+  );
+  
+  const newAppsUniqueFoldersKeys = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          Object.values(newPartsAdded).map(
+            (part) => part.folderToBeDisplayedIn + ""
+          )
+        )
+      ),
+    [newPartsAdded]
+  );
+  
+  const allUniqueFolderKeys = useMemo(
+    () => !!preexistingParts &&
+    [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
+    [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
+  );
 
   // const addNewConnectionBoxView = useCallback(() => {
   //   return (
@@ -372,6 +425,9 @@ const AddNewConnectionBox = () => {
             </OptionsWraper>
             {addingNewPart && (
               <AddingPartBlock
+              newPartsAdded={newPartsAdded}
+              setNewPartsAdded={setNewPartsAdded}
+
                 // newPart={newPart}
                 // setNewPartName={(input) =>
                 //   setNewPart({ ...newPart, name: input })

@@ -6,11 +6,13 @@ import useFolderHelper from "./useFolderHelper";
 
 const useAppPartsHelper = (preexistingParts) => {
   console.log("hi useAppPartsHelper");
-  const [allAppParts, setAllAppParts] = useState([]);
-  const [newPartsAdded, setNewPartsAdded] = useState("");
-  const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  // const [allAppParts, setAllAppParts] = useState([]);
+  // const [newPartsAdded, setNewPartsAdded] = useState("");
+  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  let folderOfNewPartRef = useRef()
+  const hi = "hello"
 
-  // const newPartId = useMemo(() => uuidv4(), [])
+  const newPartId = useMemo(() => uuidv4(), [])
 
   // const [newPart, setNewPart] = useState({
   //   name: "",
@@ -22,8 +24,15 @@ const useAppPartsHelper = (preexistingParts) => {
   // console.log("newPart", newPart);
   // useEffect(() => {
   //   console.log("folderOfNewPart@", folderOfNewPart);
-  //   folderOfNewPartRef = folderOfNewPart
+  //   folderOfNewPartRef.current = folderOfNewPart
+  //   console.log("folderOfNewPartRef.current", folderOfNewPartRef.current);
   // }, [folderOfNewPart])
+  
+
+  const updateFolderOfNewPart = (folder) => {
+    console.log("hi");
+    // folderOfNewPartRef.current = folder
+  }
 
    const didMountRef = useRef(false);
 
@@ -41,30 +50,38 @@ const useAppPartsHelper = (preexistingParts) => {
     console.log("useAppPartHelper"); 
   }, []);
 
-  useEffect(() => {
-    console.log("useAppParts uef 57");
-    if (didMountRef.current && preexistingParts) { 
-      setAllAppParts(preexistingParts);
-    }
-    didMountRef.current = true;
-  }, [preexistingParts]);
+  // useEffect(() => {
+  //   console.log("useAppParts uef 57");
+  //   if (didMountRef.current && preexistingParts) { 
+  //     setAllAppParts(preexistingParts);
+  //   }
+  //   didMountRef.current = true;
+  // }, [preexistingParts]);
 
-  const onClickingPart = (part) => {
-    console.log("on clicking part out");
-    if(part){
-      setAllAppParts({
-        ...allAppParts,
-        [part.name]: {
-          ...allAppParts[part.name],
-          clicked: !part.clicked,
-        },
-      });
-    }
-    keepExistingParams();
-  };
+  // const onClickingPart = (part) => {
+  //   console.log("on clicking part out");
+  //   if(part){
+  //     setAllAppParts({
+  //       ...allAppParts,
+  //       [part.name]: {
+  //         ...allAppParts[part.name],
+  //         clicked: !part.clicked,
+  //       },
+  //     });
+  //   }
+  //   keepExistingParams();
+  // };
+  
 
   // const addNewPartAndClear = () => {
+  //   keepExistingParams();
   //   console.log("addNewPartAndClear");
+  //   console.log("folderOfNewPart", folderOfNewPart);
+  //   console.log("folderOfNewPart.id", folderOfNewPart.id);
+  //   console.log("folderOfNewPartRef.current", folderOfNewPartRef.current);
+
+  //   console.log("Object.values(folderOfNewPart)[0].id", Object.values(folderOfNewPart)[0].id);
+
   //   setNewPartsAdded({
   //     ...newPartsAdded,
   //     [newPart.name]: {
@@ -83,68 +100,70 @@ const useAppPartsHelper = (preexistingParts) => {
   //   });
   //   setClickedFolder("");
   //   setFolderOfNewPart("");
+  // };
+
+  // const existingAppsUniqueFolderKeys = useMemo(
+  //   () =>
+  //   !!preexistingParts &&
+  //     Array.from(
+  //       new Set(
+  //         Object.values(preexistingParts).map(
+  //           (part) => part.folderToBeDisplayedIn
+  //         )
+  //       )
+  //     ),
+  //   [preexistingParts]
+  // );
+  
+  // const newAppsUniqueFoldersKeys = useMemo(
+  //   () =>
+  //     Array.from(
+  //       new Set(
+  //         Object.values(newPartsAdded).map(
+  //           (part) => part.folderToBeDisplayedIn + ""
+  //         )
+  //       )
+  //     ),
+  //   [newPartsAdded]
+  // );
+  
+  // const allUniqueFolderKeys = useMemo(
+  //   () => !!preexistingParts &&
+  //   [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
+  //   [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
+  // );
+
+  // const deleteNewlyAddedPart = (part) => {
+  //   const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
+  //   delete newPartsAdded[part.name];
+  //   setNewPartsAdded({ ...newPartsAdded });
+  //   // delete the folders key if no app is using it
+  //   const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
+  //     folderIdIsInUse(id)
+  //   );
+
+  //   setNewlyCreatedFolders(updatedNewFoldersFolder);
+  // };
+
+  // const resetFolderInfo = () => {
+  //   setFolderOfNewPart("");
   //   keepExistingParams();
   // };
 
-  const existingAppsUniqueFolderKeys = useMemo(
-    () =>
-    !!preexistingParts &&
-      Array.from(
-        new Set(
-          Object.values(preexistingParts).map(
-            (part) => part.folderToBeDisplayedIn
-          )
-        )
-      ),
-    [preexistingParts]
-  );
-  
-  const newAppsUniqueFoldersKeys = useMemo(
-    () =>
-      Array.from(
-        new Set(
-          Object.values(newPartsAdded).map(
-            (part) => part.folderToBeDisplayedIn + ""
-          )
-        )
-      ),
-    [newPartsAdded]
-  );
-  
-  const allUniqueFolderKeys = useMemo(
-    () => !!preexistingParts &&
-    [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
-    [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
-  );
-
-  const deleteNewlyAddedPart = (part) => {
-    const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
-    delete newPartsAdded[part.name];
-    setNewPartsAdded({ ...newPartsAdded });
-    // delete the folders key if no app is using it
-    const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
-      folderIdIsInUse(id)
-    );
-
-    setNewlyCreatedFolders(updatedNewFoldersFolder);
-  };
-
-  const resetFolderInfo = () => {
-    setFolderOfNewPart("");
-    keepExistingParams();
-  };
-
   return {
-    allAppParts, 
-    newPartsAdded, 
-    setNewPartsAdded, 
+    hi,
+    folderOfNewPartRef,
+    updateFolderOfNewPart,
+    // allAppParts, 
+    // newPartsAdded, 
+    // setNewPartsAdded, 
     // newPart, 
     // setNewPart,
-    folderOfNewPart, 
-    setFolderOfNewPart,
+    // folderOfNewPart, 
+    // setFolderOfNewPart,
     // allUniqueFolderKeys, 
-    onClickingPart,
-    resetFolderInfo
+    // onClickingPart,
+    // resetFolderInfo,
     // addNewPartAndClear,
     // deleteNewlyAddedPart
   };

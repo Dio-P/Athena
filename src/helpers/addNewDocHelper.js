@@ -16,4 +16,12 @@ export const addClickedKeyToPreexParts = (preExistingParts) => {
       );
       return allAppPartsHelper;
     }
-}
+};
+
+export   const findConserningParts = (allAppParts, newPartsAdded) => {
+  const checkedExistingPartIds = Object.values(allAppParts)
+    .filter((part) => part.clicked)
+    .map((part) => part.id);
+  const newPartsIds = Object.values(newPartsAdded).map((part) => part.id);
+  return [...checkedExistingPartIds, ...newPartsIds];
+};

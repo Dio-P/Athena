@@ -19,6 +19,8 @@ const MainAddNewFolderContainer = styled.div`
 const AddingFolderBlock = ({
   newPart,
   setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
   // folderOfNewPart,
   addingNewFolder,
   allPreexistingFolders,
@@ -28,14 +30,15 @@ const AddingFolderBlock = ({
   newInputTitle,
   onClickingFolder,
   // resetFolderInfo,
-  clickingToAddNewFolder
+  clickingToAddNewFolder,
 }) => {
 
   const {
-
-    folderOfNewPart,
-    resetFolderInfo,
-    setFolderOfNewPart,
+    folderOfNewPartRef,
+    updateFolderOfNewPart,
+    // folderOfNewPart,
+    // resetFolderInfo,
+    // setFolderOfNewPart,
     allAppParts,
     setAllAppParts,
     newPartsAdded,
@@ -74,6 +77,7 @@ const AddingFolderBlock = ({
     console.log("folder info to state from addingFolderBlock");
     console.log("folder that is not set", folder);
     setClickedFolder(folder.name);
+    updateFolderOfNewPart(folder)////////
     setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,
@@ -82,10 +86,10 @@ const AddingFolderBlock = ({
     keepExistingParams();
   };
 
-  // const resetFolderInfo = () => {
-  //   setFolderOfNewPart("");
-  //   keepExistingParams();
-  // };
+  const resetFolderInfo = () => {
+    setFolderOfNewPart("");
+    keepExistingParams();
+  };
 
   return (
     <MainAddNewFolderContainer>
