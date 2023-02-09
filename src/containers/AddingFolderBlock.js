@@ -33,17 +33,17 @@ const AddingFolderBlock = ({
   clickingToAddNewFolder,
 }) => {
 
-  const {
-    folderOfNewPartRef,
-    updateFolderOfNewPart,
-    // folderOfNewPart,
-    // resetFolderInfo,
-    // setFolderOfNewPart,
-    allAppParts,
-    setAllAppParts,
-    newPartsAdded,
-    setNewPartsAdded
-  } = useAppPartsHelper();
+  // const {
+  //   folderOfNewPartRef,
+  //   updateFolderOfNewPart,
+  //   // folderOfNewPart,
+  //   // resetFolderInfo,
+  //   // setFolderOfNewPart,
+  //   allAppParts,
+  //   setAllAppParts,
+  //   newPartsAdded,
+  //   setNewPartsAdded
+  // } = useAppPartsHelper();
 
   const {
     keepExistingParams
@@ -54,7 +54,6 @@ const AddingFolderBlock = ({
     setNewlyCreatedFolders,
     clickedFolder,
     setClickedFolder,
-    
     newFolderIndexKey,
     onClickingPreExistingFolder
   } = useFolderHelper();
@@ -77,7 +76,6 @@ const AddingFolderBlock = ({
     console.log("folder info to state from addingFolderBlock");
     console.log("folder that is not set", folder);
     setClickedFolder(folder.name);
-    updateFolderOfNewPart(folder)////////
     setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,

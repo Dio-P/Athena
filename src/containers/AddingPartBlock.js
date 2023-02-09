@@ -46,18 +46,18 @@ const AddingPartBlock = ({
   clickingToAddNewFolder,
 }) => {
 
-  const {
-    folderOfNewPartRef,
-    updateFolderOfNewPart,
-    // folderOfNewPart, 
-    // setFolderOfNewPart,
-    // newPartsAdded,
-    // setNewPartsAdded,
-    hi,
-    // newPart, 
-    // setNewPart,
-    // addNewPartAndClear
-  } = useAppPartsHelper();
+  // const {
+  //   folderOfNewPartRef,
+  //   updateFolderOfNewPart,
+  //   // folderOfNewPart, 
+  //   // setFolderOfNewPart,
+  //   // newPartsAdded,
+  //   // setNewPartsAdded,
+  //   hi,
+  //   // newPart, 
+  //   // setNewPart,
+  //   // addNewPartAndClear
+  // } = useAppPartsHelper();
 
   const {
     keepExistingParams
@@ -90,8 +90,7 @@ const AddingPartBlock = ({
         ...newPart,
         folderToBeDisplayedIn:
           folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-          // folderOfNewPartRef.current.id || Object.values(folderOfNewPartRef.current)[0].id,
-        // I need to create a singly function that is going to turn this and return a single item in both cases
+        // the above right now returns undefined
       },
     });
     setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////

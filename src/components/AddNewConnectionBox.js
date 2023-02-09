@@ -400,7 +400,7 @@ const AddNewConnectionBox = () => {
               {newPartsAdded &&
               <PopulateButtonUnits
                 data={newPartsAddedArray}
-                onClickFunction={(part) => deleteNewlyAddedPart(part)}
+                onClickFunction={(part) => onClickingPart(part)}
                 onMouseEnterFunction={() =>
                   setDisplay({ ...display, deleteWarningNewPart: true })
                 }

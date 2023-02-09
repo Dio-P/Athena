@@ -12,7 +12,7 @@ const useAppPartsHelper = (preexistingParts) => {
   let folderOfNewPartRef = useRef()
   const hi = "hello"
 
-  const newPartId = useMemo(() => uuidv4(), [])
+  // const newPartId = useMemo(() => uuidv4(), [])
 
   // const [newPart, setNewPart] = useState({
   //   name: "",
@@ -37,18 +37,18 @@ const useAppPartsHelper = (preexistingParts) => {
    const didMountRef = useRef(false);
 
 
-  const { keepExistingParams } = useParamsHelper();
-  const {
-    newlyCreatedFolders,
-    setNewlyCreatedFolders, 
-    // clickedFolder, 
-    setClickedFolder, 
-    // newFolderIndexKey
-  } = useFolderHelper();
+  // const { keepExistingParams } = useParamsHelper();
+  // const {
+  //   newlyCreatedFolders,
+  //   setNewlyCreatedFolders, 
+  //   // clickedFolder, 
+  //   setClickedFolder, 
+  //   // newFolderIndexKey
+  // } = useFolderHelper();
 
-  useEffect(() => {
-    console.log("useAppPartHelper"); 
-  }, []);
+  // useEffect(() => {
+  //   console.log("useAppPartHelper"); 
+  // }, []);
 
   // useEffect(() => {
   //   console.log("useAppParts uef 57");
@@ -150,23 +150,23 @@ const useAppPartsHelper = (preexistingParts) => {
   //   keepExistingParams();
   // };
 
-  return {
-    hi,
-    folderOfNewPartRef,
-    updateFolderOfNewPart,
-    // allAppParts, 
-    // newPartsAdded, 
-    // setNewPartsAdded, 
-    // newPart, 
-    // setNewPart,
-    // folderOfNewPart, 
-    // setFolderOfNewPart,
-    // allUniqueFolderKeys, 
-    // onClickingPart,
-    // resetFolderInfo,
-    // addNewPartAndClear,
-    // deleteNewlyAddedPart
-  };
+  // return {
+  //   hi,
+  //   folderOfNewPartRef,
+  //   updateFolderOfNewPart,
+  //   // allAppParts, 
+  //   // newPartsAdded, 
+  //   // setNewPartsAdded, 
+  //   // newPart, 
+  //   // setNewPart,
+  //   // folderOfNewPart, 
+  //   // setFolderOfNewPart,
+  //   // allUniqueFolderKeys, 
+  //   // onClickingPart,
+  //   // resetFolderInfo,
+  //   // addNewPartAndClear,
+  //   // deleteNewlyAddedPart
+  // };
 }
 
 export default useAppPartsHelper; 
