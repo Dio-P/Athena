@@ -365,8 +365,8 @@ const AddNewConnectionBox = () => {
   //   )
   // }, [addNewFolderAndClear, addNewPartAndClear, onClickingAdd, addingNewFolder, addingNewPart, allAppParts, APP_NAME, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewlyAddedPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickingPart, url])
   
-  const appPartsArray = useMemo(() => Object.values(allAppParts), [allAppParts])
-  const newPartsAddedArray = useMemo(() => Object.values(newPartsAdded), [newPartsAdded])
+  const appPartsArray = useMemo(() => allAppParts && Object.values(allAppParts), [allAppParts])
+  const newPartsAddedArray = useMemo(() => newPartsAdded && Object.values(newPartsAdded), [newPartsAdded])
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;
@@ -387,7 +387,7 @@ const AddNewConnectionBox = () => {
             type="text"
             name="url"
             value={url}
-            onChangeFunction={(e) => setUrl(e.target.value)}
+            onChangeFunction={(input) => setUrl(input)}
           />
           <div>
             <p>Choose an app part and display folder</p>
