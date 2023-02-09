@@ -7,6 +7,7 @@ import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
+import AddConnectionStateManager from "./AddNewConnectionStateManager";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -29,16 +30,15 @@ const AddDocButton = styled.button`
 
 const AppPage = () => {
   let [searchParams] = useSearchParams();
-  const {addingNewConnection, appId} = Object.fromEntries([...searchParams]);
+  const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
 
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
 
-  const {clickingToAddNewConnection} = useParamsHelper();
+  const { clickingToAddNewConnection } = useParamsHelper();
 
   useEffect(() => {
     console.log("AppPage rendering");
-  }, [])
-  
+  }, []);
 
   const pickFromRenderingOptions = () => {
     if (loading) {
@@ -52,42 +52,40 @@ const AppPage = () => {
         </p>
       );
     }
-    if(appToDisplay){
-      return <>
-      <>
-        <AppPageTitle>
-          {appToDisplay?.name}
-          <ButtonUnit
-            onClickFunction={clickingToAddNewConnection}
-            addingButton={true}
-            label={
-              (addingNewConnection ? "- " : "+ ") + "Add URL"
-            }
-          />
-        </AppPageTitle>
-      </>
-      {addingNewConnection && appToDisplay && (
-        <AddNewConnectionBox app={appToDisplay} />
-      )}
+    if (appToDisplay) {
+      return (
+        <>
+          <>
+            <AppPageTitle>
+              {appToDisplay?.name}
+              <ButtonUnit
+                onClickFunction={clickingToAddNewConnection}
+                addingButton={true}
+                label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
+              />
+            </AppPageTitle>
+          </>
 
-      {appToDisplay &&
-        appToDisplay?.folders?.map((folder, index) => (
-          <Folder
-            key={index}
-            folderName={folder.name}
-            parts={folder.parts}
-            appId={appToDisplay.id}
+          <AddConnectionStateManager
+            addingNewConnection={addingNewConnection}
+            appToDisplay={appToDisplay}
           />
-        ))}
-    </>
-    } 
-  }
 
-  return (
-    <AppPageContainer>
-      {pickFromRenderingOptions()}
-    </AppPageContainer>
-  );
+          {appToDisplay &&
+            appToDisplay?.folders?.map((folder, index) => (
+              <Folder
+                key={index}
+                folderName={folder.name}
+                parts={folder.parts}
+                appId={appToDisplay.id}
+              />
+            ))}
+        </>
+      );
+    }
+  };
+
+  return <AppPageContainer>{pickFromRenderingOptions()}</AppPageContainer>;
 };
 
 export default AppPage;

@@ -11,7 +11,10 @@ import PopulateButtonUnits from "../containers/PopulateButtonUnits";
 import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
-import { addClickedKeyToPreexParts, findConserningParts } from "../helpers/addNewDocHelper";
+import {
+  addClickedKeyToPreexParts,
+  findConserningParts,
+} from "../helpers/addNewDocHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -35,43 +38,51 @@ const OptionsWraper = styled.div`
   flex-direction: column;
 `;
 
-const AddNewConnectionBox = () => {
+const AddNewConnectionBox = ({
+  url,
+  setUrl,
+  newPartsAdded,
+  setNewPartsAdded,
+  allAppParts,
+  setAllAppParts,
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
+}) => {
+
   console.log("AddNewConnectionBox");
   const didMountRef = useRef(false);
 
-
   const [updatedApp, setUpdatedApp] = useState("");
-  const [newPartsAdded, setNewPartsAdded] = useState("");
-  const [allAppParts, setAllAppParts] = useState([]);
+  // const [newPartsAdded, setNewPartsAdded] = useState("");
+  // const [allAppParts, setAllAppParts] = useState([]);
 
+  // const [url, setUrl] = useState("");
 
-
-  const [url, setUrl] = useState("");
-  
   const {
-    clickingToAddNewPart, 
-    clickingToAddNewFolder, 
-    keepExistingParams, 
-    params: {
-      appId,
-      addingNewPart,
-      addingNewFolder,
-    }
-} = useParamsHelper();
+    clickingToAddNewPart,
+    clickingToAddNewFolder,
+    keepExistingParams,
+    params: { appId, addingNewPart, addingNewFolder },
+  } = useParamsHelper();
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
-  const preexistingParts = useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay])
+  const preexistingParts = useMemo(
+    () => addClickedKeyToPreexParts(appToDisplay.parts),
+    [appToDisplay]
+  );
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
   });
 
-  const foldersToDisplay = (appToDisplay && didMountRef) && appToDisplay.folders
+  const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
   const {
-    newlyCreatedFolders, 
-    setNewlyCreatedFolders, 
-    clickedFolder, 
-    setClickedFolder, 
+    newlyCreatedFolders,
+    setNewlyCreatedFolders,
+    clickedFolder,
+    setClickedFolder,
     newFolderIndexKey,
     onClickingPreExistingFolder,
     // addNewFolderAndClear,
@@ -81,42 +92,47 @@ const AddNewConnectionBox = () => {
 
   // const partsToDisplay = (appToDisplay && didMountRef) && appToDisplay.parts;
   // const test =  useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay.parts] ) ;
-//   const {
-//     // setAllAppParts,
-//     // allAppParts, 
-//     // newPartsAdded, 
-//     // setNewPartsAdded, 
-//     newPart, 
-//     setNewPart,
-//     folderOfNewPart, 
-//     setFolderOfNewPart,
-//     // allUniqueFolderKeys, 
-//     // addNewPartAndClear,
-//     // onClickingPart,
-//     // deleteNewlyAddedPart
-//  } = useAppPartsHelper(test);
+  //   const {
+  //     // setAllAppParts,
+  //     // allAppParts,
+  //     // newPartsAdded,
+  //     // setNewPartsAdded,
+  //     newPart,
+  //     setNewPart,
+  //     folderOfNewPart,
+  //     setFolderOfNewPart,
+  //     // allUniqueFolderKeys,
+  //     // addNewPartAndClear,
+  //     // onClickingPart,
+  //     // deleteNewlyAddedPart
+  //  } = useAppPartsHelper(test);
   // const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
-  const APP_NAME = useMemo(() => capitaliseFirstLetter(appToDisplay.name), [appToDisplay.name]) ;
+  const APP_NAME = useMemo(
+    () => capitaliseFirstLetter(appToDisplay.name),
+    [appToDisplay.name]
+  );
 
   // useEffect(() => {
   //   if(didMountRef.current){
   //     console.log("mounted add new connection box ");
   //   }
   //   didMountRef.current = true;
-  //   console.log("add new connection box rendered", 
+  //   console.log("add new connection box rendered",
   //     "foldersToDisplay", foldersToDisplay,);
-     
+
   // }, []);
 
   useEffect(() => {
-    setAllAppParts(preexistingParts);////////////////////////////!!!!!THAT IS WHAT I DID LAST!!@
-  }, [preexistingParts])
-  
+    allAppParts && console.log("allAppParts.length@@", allAppParts.length); 
+    if(preexistingParts && allAppParts?.length === 0){
+      setAllAppParts(preexistingParts); ////////////////////////////!!!!!THAT IS WHAT I DID LAST!!@
+    }
+  }, [preexistingParts]);
 
   const onClickingPart = (part) => {
     console.log("on clicking part@", part);
     console.log("all app parts@", allAppParts);
-    if(part){
+    if (part) {
       setAllAppParts({
         ...allAppParts,
         [part.name]: {
@@ -127,7 +143,6 @@ const AddNewConnectionBox = () => {
     }
     keepExistingParams();
   };
-
 
   // const folderInfoToState = (folder) => {
   //   setClickedFolder(folder.name);
@@ -210,7 +225,7 @@ const AddNewConnectionBox = () => {
 
   const existingAppsUniqueFolderKeys = useMemo(
     () =>
-    !!preexistingParts &&
+      !!preexistingParts &&
       Array.from(
         new Set(
           Object.values(preexistingParts).map(
@@ -220,7 +235,7 @@ const AddNewConnectionBox = () => {
       ),
     [preexistingParts]
   );
-  
+
   const newAppsUniqueFoldersKeys = useMemo(
     () =>
       Array.from(
@@ -232,10 +247,13 @@ const AddNewConnectionBox = () => {
       ),
     [newPartsAdded]
   );
-  
+
   const allUniqueFolderKeys = useMemo(
-    () => !!preexistingParts &&
-    [...newAppsUniqueFoldersKeys, ...existingAppsUniqueFolderKeys],
+    () =>
+      !!preexistingParts && [
+        ...newAppsUniqueFoldersKeys,
+        ...existingAppsUniqueFolderKeys,
+      ],
     [newAppsUniqueFoldersKeys, existingAppsUniqueFolderKeys]
   );
 
@@ -285,7 +303,7 @@ const AddNewConnectionBox = () => {
   //             addingButton={true}
   //             buttonTitle={
   //               addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`
-  //             } 
+  //             }
   //           />
   //         </OptionsWraper>
   //         {addingNewPart && (
@@ -364,9 +382,15 @@ const AddNewConnectionBox = () => {
   //   </FormContainer>
   //   )
   // }, [addNewFolderAndClear, addNewPartAndClear, onClickingAdd, addingNewFolder, addingNewPart, allAppParts, APP_NAME, appToDisplay.folders, clickingToAddNewFolder, clickingToAddNewPart, deleteNewlyAddedPart, display, folderInfoToState, clickedFolder, folderOfNewPart, newlyCreatedFolders, newPart, newPartsAdded, resetFolderInfo, onClickingPart, url])
-  
-  const appPartsArray = useMemo(() => allAppParts && Object.values(allAppParts), [allAppParts])
-  const newPartsAddedArray = useMemo(() => newPartsAdded && Object.values(newPartsAdded), [newPartsAdded])
+
+  const appPartsArray = useMemo(
+    () => allAppParts && Object.values(allAppParts),
+    [allAppParts]
+  );
+  const newPartsAddedArray = useMemo(
+    () => newPartsAdded && Object.values(newPartsAdded),
+    [newPartsAdded]
+  );
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;
@@ -383,7 +407,7 @@ const AddNewConnectionBox = () => {
       return (
         <FormContainer>
           <InputUnit
-            inputTitle='URL'
+            inputTitle="URL"
             type="text"
             name="url"
             value={url}
@@ -391,43 +415,46 @@ const AddNewConnectionBox = () => {
           />
           <div>
             <p>Choose an app part and display folder</p>
-  
+
             <OptionsWraper>
               <label htmlFor="">Existing {APP_NAME} Parts</label>
               <PopulateButtonUnits
                 data={appPartsArray}
                 onClickFunction={(part) => onClickingPart(part)}
               />
-              {newPartsAdded &&
-              <PopulateButtonUnits
-                data={newPartsAddedArray}
-                onClickFunction={(part) => deleteNewlyAddedPart(part)}
-                onMouseEnterFunction={() =>
-                  setDisplay({ ...display, deleteWarningNewPart: true })
-                }
-                onMouseLeaveFunction={() =>
-                  setDisplay({ ...display, deleteWarningNewPart: false })
-                }
-                // label={part.name}
-                clicked={true}
-                conditionalDisplay={display.deleteWarningNewPart && (
-                  <p>Newly added Part: Click to delete</p>
-                )}
+              {newPartsAdded && (
+                <PopulateButtonUnits
+                  data={newPartsAddedArray}
+                  onClickFunction={(part) => deleteNewlyAddedPart(part)}
+                  onMouseEnterFunction={() =>
+                    setDisplay({ ...display, deleteWarningNewPart: true })
+                  }
+                  onMouseLeaveFunction={() =>
+                    setDisplay({ ...display, deleteWarningNewPart: false })
+                  }
+                  // label={part.name}
+                  clicked={true}
+                  conditionalDisplay={
+                    display.deleteWarningNewPart && (
+                      <p>Newly added Part: Click to delete</p>
+                    )
+                  }
+                />
+              )}
+              <ButtonUnit
+                onClickFunction={clickingToAddNewPart}
+                addingButton={true}
+                label={addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`}
               />
-              }
-            <ButtonUnit
-              onClickFunction={clickingToAddNewPart}
-              addingButton={true}
-              label={
-                addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`
-              } 
-            />
             </OptionsWraper>
             {addingNewPart && (
               <AddingPartBlock
-              newPartsAdded={newPartsAdded}
-              setNewPartsAdded={setNewPartsAdded}
-
+                newPartsAdded={newPartsAdded}
+                setNewPartsAdded={setNewPartsAdded}
+                newPart={newPart}
+                setNewPart={setNewPart}
+                folderOfNewPart={folderOfNewPart}
+                setFolderOfNewPart={setFolderOfNewPart}
                 // newPart={newPart}
                 // setNewPartName={(input) =>
                 //   setNewPart({ ...newPart, name: input })
@@ -462,23 +489,23 @@ const AddNewConnectionBox = () => {
           {/* :
                             <button onClick>Add</button>
                         } */}
-  
+
           {/* {url
                         &&
                             <UrlInputBox onClick={onClickingAdd}>
                                 {`add: ${url}`}
                             </UrlInputBox>
                         } */}
-      </FormContainer>
-      ) 
+        </FormContainer>
+      );
     }
   };
 
   // const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
   return (
     <DisplayBox>
-        {/* {VIEW} */}
-        {renderedView()}
+      {/* {VIEW} */}
+      {renderedView()}
     </DisplayBox>
   );
 };

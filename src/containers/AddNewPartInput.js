@@ -12,7 +12,7 @@ const AddNewPartInput = ({ newPart, setNewPartName, setNewPartGhRepo, setNewPart
         onChangeFunction={setNewPartName}
       />
       <InputUnit
-        inputTitle={`New Part Name: ${newPart.ghRepo}`}
+        inputTitle={`New Part Git Hub Repo: ${newPart.ghRepo}`}
         key="newPartGitHubRepo"
         type="text"
         name="newPartGitHubRepo"
@@ -20,7 +20,7 @@ const AddNewPartInput = ({ newPart, setNewPartName, setNewPartGhRepo, setNewPart
         onChangeFunction={setNewPartGhRepo}
       />
       <InputUnit
-        inputTitle={`New Part Name: ${newPart.type}`}
+        inputTitle={`New Part Type: ${newPart.type}`}
         key="newPartType"
         type="text"
         name="newPartType"

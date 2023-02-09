@@ -30,6 +30,10 @@ const TitleButtonWrapper = styled.div`
 const AddingPartBlock = ({
   newPartsAdded,
   setNewPartsAdded,
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
   // setNewPartName, 
   // setNewPartGhRepo, 
   // setNewPartType,
@@ -44,6 +48,7 @@ const AddingPartBlock = ({
   // onClickingFolder,
   // resetFolderInfo,
   clickingToAddNewFolder,
+
 }) => {
 
   // const {
@@ -69,14 +74,14 @@ const AddingPartBlock = ({
     setClickedFolder,
   } = useFolderHelper();
 
-  const [newPart, setNewPart] = useState({
-    name: "",
-    id: uuidv4(),
-    ghRepo: "",
-    type: "",
-    folderToBeDisplayedIn: "",
-  });
-  const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  // const [newPart, setNewPart] = useState({
+  //   name: "",
+  //   id: uuidv4(),
+  //   ghRepo: "",
+  //   type: "",
+  //   folderToBeDisplayedIn: "",
+  // });
+  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
 
 
   const addNewPartAndClear = () => {
