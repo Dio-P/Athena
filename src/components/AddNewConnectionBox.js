@@ -60,7 +60,7 @@ const AddNewConnectionBox = () => {
 } = useParamsHelper();
 
   const [appToDisplay, loading, error] = useAppByIdSearch(appId);
-  const preexistingParts = useMemo(() => appToDisplay.parts, [appToDisplay])
+  const preexistingParts = useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay])
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -113,10 +113,9 @@ const AddNewConnectionBox = () => {
   }, [preexistingParts])
   
 
-// Why isn't this working?
-
   const onClickingPart = (part) => {
-    console.log("on clicking part out");
+    console.log("on clicking part@", part);
+    console.log("all app parts@", allAppParts);
     if(part){
       setAllAppParts({
         ...allAppParts,
