@@ -5,6 +5,7 @@ import ButtonUnit from "./ButtonUnit"
 const PopulateButtonUnits = ({ 
   data, 
   onClickFunction,
+  clicked,
   addingButton, 
   buttonTitle, 
   folder, 
@@ -21,7 +22,7 @@ const PopulateButtonUnits = ({
           key={index}
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
-          clicked={choice.clicked}
+          clicked={choice.clicked || clicked}
         />
       ))
   )

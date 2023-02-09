@@ -205,6 +205,7 @@ const AddNewConnectionBox = () => {
     );
 
     setNewlyCreatedFolders(updatedNewFoldersFolder);
+    keepExistingParams();
   };
 
   const existingAppsUniqueFolderKeys = useMemo(
@@ -400,7 +401,7 @@ const AddNewConnectionBox = () => {
               {newPartsAdded &&
               <PopulateButtonUnits
                 data={newPartsAddedArray}
-                onClickFunction={(part) => onClickingPart(part)}
+                onClickFunction={(part) => deleteNewlyAddedPart(part)}
                 onMouseEnterFunction={() =>
                   setDisplay({ ...display, deleteWarningNewPart: true })
                 }
