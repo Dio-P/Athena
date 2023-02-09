@@ -57,10 +57,6 @@ const AddNewConnectionBox = ({
   const didMountRef = useRef(false);
 
   const [updatedApp, setUpdatedApp] = useState("");
-  // const [newPartsAdded, setNewPartsAdded] = useState("");
-  // const [allAppParts, setAllAppParts] = useState([]);
-
-  // const [url, setUrl] = useState("");
 
   const {
     clickingToAddNewPart,
@@ -68,12 +64,6 @@ const AddNewConnectionBox = ({
     keepExistingParams,
     params: { addingNewPart, addingNewFolder },
   } = useParamsHelper();
-
-  // const [appToDisplay, loading, error] = useAppByIdSearch(appId);
-  // const preexistingParts = useMemo(
-  //   () => addClickedKeyToPreexParts(appToDisplay.parts),
-  //   [appToDisplay]
-  // );
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -84,52 +74,12 @@ const AddNewConnectionBox = ({
     newlyCreatedFolders,
     setNewlyCreatedFolders,
     clickedFolder,
-    setClickedFolder,
-    newFolderIndexKey,
-    onClickingPreExistingFolder,
-    // addNewFolderAndClear,
-    // folderInfoToState,
-    // resetFolderInfo
   } = useFolderHelper(foldersToDisplay);
 
-  // const partsToDisplay = (appToDisplay && didMountRef) && appToDisplay.parts;
-  // const test =  useMemo(() => addClickedKeyToPreexParts(appToDisplay.parts), [appToDisplay.parts] ) ;
-  //   const {
-  //     // setAllAppParts,
-  //     // allAppParts,
-  //     // newPartsAdded,
-  //     // setNewPartsAdded,
-  //     newPart,
-  //     setNewPart,
-  //     folderOfNewPart,
-  //     setFolderOfNewPart,
-  //     // allUniqueFolderKeys,
-  //     // addNewPartAndClear,
-  //     // onClickingPart,
-  //     // deleteNewlyAddedPart
-  //  } = useAppPartsHelper(test);
-  // const nameToDisplay = useMemo(() => appToDisplay.name, [appToDisplay.name])
   const APP_NAME = useMemo(
     () => capitaliseFirstLetter(appToDisplay.name),
     [appToDisplay.name]
   );
-
-  // useEffect(() => {
-  //   if(didMountRef.current){
-  //     console.log("mounted add new connection box ");
-  //   }
-  //   didMountRef.current = true;
-  //   console.log("add new connection box rendered",
-  //     "foldersToDisplay", foldersToDisplay,);
-
-  // }, []);
-
-  // useEffect(() => {
-  //   allAppParts && console.log("allAppParts.length@@", allAppParts.length);
-  //   if(preexistingParts && allAppParts?.length === 0){
-  //     setAllAppParts(preexistingParts);
-  //   }
-  // }, [preexistingParts]);
 
   const onClickingPart = (part) => {
     console.log("on clicking part@", part);
@@ -145,41 +95,6 @@ const AddNewConnectionBox = ({
     }
     keepExistingParams();
   };
-
-  // const folderInfoToState = (folder) => {
-  //   setClickedFolder(folder.name);
-  //   setFolderOfNewPart(folder);
-  //   setNewPart({
-  //     ...newPart,
-  //     folderToBeDisplayedIn: folder.id,
-  //   });
-  //   keepExistingParams();
-  // };
-
-  // const resetFolderInfo = () => {
-  //   setFolderOfNewPart("");
-  //   keepExistingParams();
-  // };
-
-  // const deleteNewlyAddedPart = (part) => {
-  //   const folderIdIsInUse = (id) => allUniqueFolderKeys.includes(id);
-  //   delete newPartsAdded[part.name];
-  //   setNewPartsAdded({ ...newPartsAdded });
-  //   // delete the folders key if no app is using it
-  //   const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
-  //     folderIdIsInUse(id)
-  //   );
-
-  //   setNewlyCreatedFolders(updatedNewFoldersFolder);
-  // };
-
-  // const findConserningParts = () => {
-  //   const checkedExistingPartIds = Object.values(allAppParts)
-  //     .filter((part) => part.clicked)
-  //     .map((part) => part.id);
-  //   const newPartsIds = Object.values(newPartsAdded).map((part) => part.id);
-  //   return [...checkedExistingPartIds, ...newPartsIds];
-  // };
 
   const onClickingAdd = async (e) => {
     e.preventDefault();
@@ -235,7 +150,6 @@ const AddNewConnectionBox = ({
     [newPartsAdded]
   );
 
-  // const VIEW = useRenderCorrectView(loading, error, appToDisplay, addNewConnectionBoxView());
   return (
     <DisplayBox>
       <FormContainer>
@@ -288,28 +202,11 @@ const AddNewConnectionBox = ({
               setNewPart={setNewPart}
               folderOfNewPart={folderOfNewPart}
               setFolderOfNewPart={setFolderOfNewPart}
-              // newPart={newPart}
-              // setNewPartName={(input) =>
-              //   setNewPart({ ...newPart, name: input })
-              // }
-              // setNewPartGhRepo={(input) =>
-              //   setNewPart({ ...newPart, ghRepo: input })
-              // }
-              // setNewPartType={(input) =>
-              //   setNewPart({ ...newPart, type: input })
-              // }
-              // folderOfNewPart={folderOfNewPart}
               addingNewFolder={addingNewFolder}
               allPreexistingFolders={appToDisplay.folders}
               allNewFolders={newlyCreatedFolders}
-              // folderInfoToState={folderInfoToState}
               clickedFolder={clickedFolder}
-              // addNewFolderAndClear={addNewFolderAndClear}
-              // newInputTitle={`New Part Name: ${newPart.type}`}
-              // onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-              // resetFolderInfo={resetFolderInfo}
               clickingToAddNewFolder={clickingToAddNewFolder}
-              // addNewPartAndClear={addNewPartAndClear}
             />
           )}
         </div>
