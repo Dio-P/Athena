@@ -7,7 +7,8 @@ import { addClickedKeyToPreexParts } from "../helpers/addNewDocHelper";
 
 const AddConnectionStateManager = ({ addingNewConnection }) => {
   const { keepExistingParams, params: { appId, } } = useParamsHelper();
-  const [appToDisplay, loading, error] = useAppByIdSearch(appId);
+  const id = useMemo(() => appId, [appId])
+  const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
   const preexistingParts = useMemo(
     () => addClickedKeyToPreexParts(appToDisplay.parts),
     [appToDisplay]

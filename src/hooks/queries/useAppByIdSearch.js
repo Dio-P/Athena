@@ -32,7 +32,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
   }
 `;
 
-const useAppByIdSearch = (id) => {
+const useAppByIdSearch = (id, shouldQuery) => {
   const [appToDisplay, setAppToDisplay] = useState("");
 
   const [searchApp, { loading, error, data }] = useLazyQuery(
@@ -40,10 +40,13 @@ const useAppByIdSearch = (id) => {
   );
 
   useEffect(() => {
-    searchApp({
-      variables: { id: id },
-    });
-  }, [id]);
+    if(id && shouldQuery) {
+      console.log("it should query!!!");
+      searchApp({
+        variables: { id: id },
+      });
+    }
+  }, [id, shouldQuery]);
 
   useEffect(() => {
     if (data && data.getAppById) {
