@@ -35,7 +35,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   const onClickingRefresh = () => {
     setUrl("");
     setNewPartsAdded("");
-    setAllAppParts([]);
+    setAllAppParts(appToDisplay.parts || []);
     setNewPart(DEFAULT_NEW_PART);
     setFolderOfNewPart("");
     keepExistingParams();
