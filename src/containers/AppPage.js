@@ -68,7 +68,7 @@ const AppPage = () => {
 
           <AddConnectionStateManager
             addingNewConnection={addingNewConnection}
-            appToDisplay={appToDisplay}
+            // appToDisplay={appToDisplay}
           />
 
           {appToDisplay &&
