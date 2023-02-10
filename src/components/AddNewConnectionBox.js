@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import ButtonUnit from "../containers/ButtonUnit";
-import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
@@ -79,7 +79,7 @@ const AddNewConnectionBox = ({
     useFolderHelper(foldersToDisplay);
 
   const APP_NAME = useMemo(
-    () => capitaliseFirstLetter(appToDisplay.name),
+    () => capitaliseFirstLetters(appToDisplay.name),
     [appToDisplay.name]
   );
 

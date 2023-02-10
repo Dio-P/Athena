@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
-import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const WholeButtonWrapper = styled.div`
   display: flex;
@@ -85,7 +85,7 @@ const GenericButtonIcon = ({
     <WholeButtonWrapper>
       <CustomButtonContainer>
         <BtnLabelContainer>
-          {capitaliseFirstLetter(label)}
+          {capitaliseFirstLetters(label)}
         </BtnLabelContainer>
       </CustomButtonContainer>
     </WholeButtonWrapper>

@@ -1,5 +1,5 @@
 
-const capitaliseFirstLetter = (string) => {
+const capitaliseFirstLetters = (string) => {
     if(string){
       const countWords = string.split(" ");
       if(countWords.length === 1){
@@ -18,4 +18,4 @@ const capitaliseFirstLetter = (string) => {
   return "..."
 }
 
-export default capitaliseFirstLetter;
+export default capitaliseFirstLetters;

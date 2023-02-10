@@ -1,5 +1,5 @@
 import PopulateButtonUnits from "./PopulateButtonUnits";
-import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
@@ -41,7 +41,7 @@ const AppsBox = ({ teamApps, teamName }) => {
     <DepartmAppsBoxContainer>
       <StyledButton onClick={toggleAppIdParamOnandOff}>
         <DepAppBoxPageTitle>
-          {capitaliseFirstLetter(teamName)}
+          {capitaliseFirstLetters(teamName)}
         </DepAppBoxPageTitle>
       </StyledButton>
 
