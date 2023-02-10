@@ -18,20 +18,19 @@ import {
 
 const DisplayBox = styled.div`
   margin: 10px;
-  position: absolute;
+  position: relative;
+  height: 100%;
   border: solid black;
   border-radius: 15px;
   background-color: #fffcfa;
   box-shadow: #2b2a28 0.5em 0.5em 0.3em;
   z-index: 1;
   width: 90%;
-  height: 30em;
-  max-height: 100%;
+  height: 100%;
 `;
 
-const FormContainer = styled.form`
+const FormContainer = styled.div`
   margin: 6px;
-  
 `;
 
 const OptionsWraper = styled.div`
