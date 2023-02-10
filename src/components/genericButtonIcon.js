@@ -61,13 +61,20 @@ const BtnLabelContainer = styled.div`
   margin: auto;
   color: #ffffff;
   padding: 8px;
-  min-width: 115px;
+  min-width: 141px;
   min-height: 50px;
   max-width: 140px;
   max-height: 60px;
   display: flex;
-    align-items: center;
+  align-items: center;
+  text-align: left;
 `;
+
+const BtnLabel = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 
 const TickBoxWrapper = styled.div`
   display: flex;
@@ -124,7 +131,9 @@ const GenericButtonIcon = ({
       <WholeButtonWrapper>
         <CustomButtonContainer>
           <BtnLabelContainer>
-            {capitaliseFirstLetters(label)}
+            <BtnLabel>
+              {capitaliseFirstLetters(label)}
+            </BtnLabel>
           </BtnLabelContainer>
           {type!=="add"
           &&
@@ -142,3 +151,5 @@ const GenericButtonIcon = ({
 };
 
 export default GenericButtonIcon;
+
+// make everything left align
