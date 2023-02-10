@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import capitaliseFirstLetter from "../helpers/capitaliseFirstLetter";
 
-const DecoratedLink = styled(Link)`
+const WholeButtonWrapper = styled.div`
   display: flex;
-  color: #ffffff;
-  text-decoration: none;
   margin: auto;
 `;
 
-const ClickedAppButtonIconContainer = styled.div`
+const ClickedPlainButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
   background-color: #1ee685;
@@ -26,7 +24,7 @@ const ClickedAppButtonIconContainer = styled.div`
   font-size: 18px;
 `;
 
-const AppButtonIconContainer = styled.div`
+const PlainButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
   background-color: #1d4587;
@@ -58,15 +56,10 @@ const AddingButtonIconContainer = styled.div`
   font-size: 14px;
 `;
 
-const AppFolderButton = styled.div`
+const BtnLabelContainer = styled.div`
   margin: auto;
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+  color: #ffffff;
+  padding: 8px;
 `;
 
 const GenericButtonIcon = ({
@@ -81,19 +74,21 @@ const GenericButtonIcon = ({
       return AddingButtonIconContainer
     }
     if(!!clicked){
-      return ClickedAppButtonIconContainer
+      return ClickedPlainButtonIconContainer
     }
-    return AppButtonIconContainer
+    return PlainButtonIconContainer
   }
 
   const CustomButtonContainer = findButtonType(type, clicked);
 
   return (
-    <DecoratedLink>
+    <WholeButtonWrapper>
       <CustomButtonContainer>
-        <AppFolderButton>{capitaliseFirstLetter(label)}</AppFolderButton>
+        <BtnLabelContainer>
+          {capitaliseFirstLetter(label)}
+        </BtnLabelContainer>
       </CustomButtonContainer>
-    </DecoratedLink>
+    </WholeButtonWrapper>
   );
 };
 
