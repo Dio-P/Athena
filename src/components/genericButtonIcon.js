@@ -153,3 +153,14 @@ const GenericButtonIcon = ({
 export default GenericButtonIcon;
 
 // make everything left align
+// for the parts:
+  // make a greed
+  // to be scrolling down in case of more than two rows of three
+  // add a finder
+// for the folder:
+  // make it a dropdown
+  // when clicked, the same functionality ass the tick but instead of tick same green smaller shape as the white box
+  // make this a dropdown
+  // to add new have a popup with the existing box
+    // instead of back to existing folders have a pink X top right
+  // "if you leave this folder empty it will be deleted"
