@@ -1,14 +1,12 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
 import ButtonUnit from "../containers/ButtonUnit";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
-import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
 import PopulateButtonUnits from "../containers/PopulateButtonUnits";
-import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import {
@@ -243,7 +241,6 @@ const AddNewConnectionBox = ({
 export default AddNewConnectionBox;
 
 // working:
-// style of button to have padding
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
 // add safety in the case the user just wants to add a link

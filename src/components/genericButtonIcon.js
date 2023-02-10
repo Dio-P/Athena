@@ -3,25 +3,16 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
+const ButtonAndTickBoxWrapper = styled.div`
+  display: flex;
+  width: 120%;
+  
+`;
+
 const WholeButtonWrapper = styled.div`
   display: flex;
   margin: auto;
-`;
-
-const ClickedPlainButtonIconContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: #1ee685;
-  min-width: 115px;
-  min-height: 50px;
-  max-width: 140px;
-  max-height: 60px;
-  width: 100%;
-  height: 100%;
-  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-  border-radius: 15px 10%;
-  margin: 20px;
-  font-size: 18px;
+  align-items: center;
 `;
 
 const PlainButtonIconContainer = styled.div`
@@ -34,9 +25,24 @@ const PlainButtonIconContainer = styled.div`
   max-height: 60px;
   width: 100%;
   height: 100%;
-  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
   border-radius: 15px 10%;
-  margin: 20px;
+  margin: 20px 0px 20px 0px;
+  font-size: 18px;
+`;
+
+const ClickedPlainButtonIconContainer = styled.div`
+  display: flex;
+  align-content: center;
+  background-color: #1d4587;
+  min-width: 115px;
+  min-height: 50px;
+  max-width: 140px;
+  max-height: 60px;
+  width: 100%;
+  height: 100%;
+  border: solid #1ee685;
+  border-radius: 15px 10%;
+  margin: 20px 0px 20px 10px;
   font-size: 18px;
 `;
 
@@ -62,6 +68,35 @@ const BtnLabelContainer = styled.div`
   padding: 8px;
 `;
 
+const TickBoxWrapper = styled.div`
+  display: flex;
+  border-radius: 15px 10%;
+  align-items:center;
+  background-color: #1d4587;
+  height: 100%;
+  width: 100%;
+
+`;
+
+const TickBox = styled.div`
+  border-radius: 15px 10%;
+  background-color: #ffffff;
+  margin: auto;
+  height: 80%;
+  width: 80%;
+`;
+
+const Tick = () =>  (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    aria-label="confirm icon"
+    // class="css-1n8p6mz"
+  >
+    <path fill="#1ee685" d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"></path>
+  </svg>
+);
+
 const GenericButtonIcon = ({
   label,
   clicked,
@@ -82,13 +117,25 @@ const GenericButtonIcon = ({
   const CustomButtonContainer = findButtonType(type, clicked);
 
   return (
-    <WholeButtonWrapper>
-      <CustomButtonContainer>
-        <BtnLabelContainer>
-          {capitaliseFirstLetters(label)}
-        </BtnLabelContainer>
-      </CustomButtonContainer>
-    </WholeButtonWrapper>
+    <ButtonAndTickBoxWrapper>
+
+      <WholeButtonWrapper>
+        <CustomButtonContainer>
+          <BtnLabelContainer>
+            {capitaliseFirstLetters(label)}
+          </BtnLabelContainer>
+          {type!=="add"
+          &&
+            <TickBoxWrapper>
+              <TickBox>
+            {clicked && <Tick/>}
+              </TickBox>
+            </TickBoxWrapper>
+          }
+        </CustomButtonContainer>
+      </WholeButtonWrapper>
+    </ButtonAndTickBoxWrapper>
+    
   );
 };
 
