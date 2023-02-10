@@ -13,37 +13,32 @@ const WholeButtonWrapper = styled.div`
   display: flex;
   margin: auto;
   align-items: center;
+  width: 100%;
+
 `;
 
 const PlainButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
   background-color: #1d4587;
-  min-width: 115px;
-  min-height: 50px;
-  max-width: 140px;
-  max-height: 60px;
   width: 100%;
-  height: 100%;
   border-radius: 15px 10%;
   margin: 20px 0px 20px 0px;
   font-size: 18px;
+  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
+
 `;
 
 const ClickedPlainButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
   background-color: #1d4587;
-  min-width: 115px;
-  min-height: 50px;
-  max-width: 140px;
-  max-height: 60px;
   width: 100%;
-  height: 100%;
   border: solid #1ee685;
   border-radius: 15px 10%;
   margin: 20px 0px 20px 10px;
   font-size: 18px;
+  
 `;
 
 const AddingButtonIconContainer = styled.div`
@@ -66,6 +61,12 @@ const BtnLabelContainer = styled.div`
   margin: auto;
   color: #ffffff;
   padding: 8px;
+  min-width: 115px;
+  min-height: 50px;
+  max-width: 140px;
+  max-height: 60px;
+  display: flex;
+    align-items: center;
 `;
 
 const TickBoxWrapper = styled.div`
@@ -73,8 +74,9 @@ const TickBoxWrapper = styled.div`
   border-radius: 15px 10%;
   align-items:center;
   background-color: #1d4587;
-  height: 100%;
   width: 100%;
+  min-width: 30px;
+  max-width: 60px;
 
 `;
 
