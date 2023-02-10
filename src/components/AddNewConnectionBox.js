@@ -245,16 +245,13 @@ const AddNewConnectionBox = ({
 export default AddNewConnectionBox;
 
 // working:
-// see if you can have the update params with true and remove, logic as a function generic to avoid repeating yourself
-// navigation by url to be working
-// bring the parts in from mongo?
-// delete the old display state and use only params instead (if you want) (this will probably mean that
-// you'll need to store values as false instead of completely delte them)
-// move params distructuring on top
-
-// line 240 shows a new part with empty string
-// start putting things into specific functions and use TDD
-// can I move the set new part logic to folder to be displayed in within the new app? And feed it with a functions result?
+// for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
+// instead of them being green make a green stroke and a tick sign, also remove the shadow
+// add safety in the case the user just wants to add a link
+// add safety so adding is not possible if empty fields.
+// add safety so the duplication of the parts is not possible.
+// change the ButtonUnit component to accept a type instead of addingButton
+// style of button to have padding
 
 // to work:
 // the state to display new parts delete worning makes it display for all new parts. Needs to be only for the one.
@@ -262,14 +259,7 @@ export default AddNewConnectionBox;
 // I could also move the upating of the final object in a function to call this instead of updating the state
 // in two different places
 
-// for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
-// instead of them being green make a green stroke and a tick sign, also remove the shadow
 // logic witch manages the folder to display inside the documnent
-// add safety in the case the user just wants to add a link
-// add safety so adding is not possible if empty fields.
-// add safety so the duplication of the parts is not possible.
-
-// devide into seperato components if possible
 
 // the name of the new folder button should allway have "click to delete" on a new line
 // adding parts logic
