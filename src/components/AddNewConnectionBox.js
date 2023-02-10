@@ -38,6 +38,11 @@ const OptionsWraper = styled.div`
   flex-direction: column;
 `;
 
+const AddConnectionButtonWrapper = styled.div`
+  display: flex;
+  align-text: center;
+`;
+
 const AddNewConnectionBox = ({
   appToDisplay,
   url,
@@ -212,9 +217,16 @@ const AddNewConnectionBox = ({
         {/* {
                         (url && clickedFolder && part)
                         ? */}
-        <button type="submit" onClick={onClickingAdd}>
+          <AddConnectionButtonWrapper >
+            <ButtonUnit
+              label="+ Add New Connection"
+              onClickFunction={onClickingAdd}
+              addingButton={true}
+            />
+          </AddConnectionButtonWrapper>              
+        {/* <button type="submit" onClick={onClickingAdd}>
           Add
-        </button>
+        </button> */}
         {/* :
                             <button onClick>Add</button>
                         } */}
