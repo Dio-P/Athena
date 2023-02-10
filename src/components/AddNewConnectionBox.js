@@ -31,6 +31,7 @@ const DisplayBox = styled.div`
 
 const FormContainer = styled.form`
   margin: 6px;
+  
 `;
 
 const OptionsWraper = styled.div`
@@ -70,11 +71,8 @@ const AddNewConnectionBox = ({
   });
 
   const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
-  const {
-    newlyCreatedFolders,
-    setNewlyCreatedFolders,
-    clickedFolder,
-  } = useFolderHelper(foldersToDisplay);
+  const { newlyCreatedFolders, setNewlyCreatedFolders, clickedFolder } =
+    useFolderHelper(foldersToDisplay);
 
   const APP_NAME = useMemo(
     () => capitaliseFirstLetter(appToDisplay.name),
@@ -152,6 +150,8 @@ const AddNewConnectionBox = ({
 
   return (
     <DisplayBox>
+      <ButtonUnit label={"refresh"} onClickFunction={onClickingRefresh} />
+
       <FormContainer>
         <InputUnit
           inputTitle="URL"
@@ -226,7 +226,6 @@ const AddNewConnectionBox = ({
                                 {`add: ${url}`}
                             </UrlInputBox>
                         } */}
-        <ButtonUnit label={"refresh"} onClickFunction={onClickingRefresh} />
       </FormContainer>
     </DisplayBox>
   );

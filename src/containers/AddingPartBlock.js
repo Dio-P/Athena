@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import AddNewPartInput from "./AddNewPartInput";
 import AddingFolderBlock from "./AddingFolderBlock";
 import ButtonUnit from "./ButtonUnit";
-import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 
@@ -34,61 +31,18 @@ const AddingPartBlock = ({
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  // setNewPartName, 
-  // setNewPartGhRepo, 
-  // setNewPartType,
-  // folderOfNewPart,
   addingNewFolder,
   allPreexistingFolders,
   newFoldersToBeAddedToAll,
-  // folderInfoToState,
   clickedFolder,
-  // addNewFolderAndClear,
-  // newInputTitle,
-  // onClickingFolder,
-  // resetFolderInfo,
   clickingToAddNewFolder,
-
 }) => {
+  const { keepExistingParams } = useParamsHelper();
 
-  // const {
-  //   folderOfNewPartRef,
-  //   updateFolderOfNewPart,
-  //   // folderOfNewPart, 
-  //   // setFolderOfNewPart,
-  //   // newPartsAdded,
-  //   // setNewPartsAdded,
-  //   hi,
-  //   // newPart, 
-  //   // setNewPart,
-  //   // addNewPartAndClear
-  // } = useAppPartsHelper();
-
-  const {
-    keepExistingParams
-  } = useParamsHelper();
-
-  const {
-    newlyCreatedFolders,
-    setNewlyCreatedFolders,
-    setClickedFolder,
-  } = useFolderHelper();
-
-  // const [newPart, setNewPart] = useState({
-  //   name: "",
-  //   id: uuidv4(),
-  //   ghRepo: "",
-  //   type: "",
-  //   folderToBeDisplayedIn: "",
-  // });
-  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
-
+  const { newlyCreatedFolders, setNewlyCreatedFolders, setClickedFolder } =
+    useFolderHelper();
 
   const addNewPartAndClear = () => {
-    // console.log("addNewPartAndClear");
-    // console.log("hi", hi);
-    // console.log("folderOfNewPart@@@", folderOfNewPart);
-    // console.log("folderOfNewPartRef", folderOfNewPartRef.current);
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
@@ -110,54 +64,42 @@ const AddingPartBlock = ({
     keepExistingParams();
   };
 
-   const resetFolderInfo = () => {
+  const resetFolderInfo = () => {
     setFolderOfNewPart("");
     keepExistingParams();
   };
 
-
-
-    return (
-        <DisplayBox>
-                <TitleButtonWrapper>
-                  <h3>New Part</h3>
-                </TitleButtonWrapper>
-                <AddNewPartInput
-                  newPart={newPart}
-                  setNewPartName={(input) =>
-                    setNewPart({ ...newPart, name: input })
-                  }
-                  setNewPartGhRepo={(input) =>
-                    setNewPart({ ...newPart, ghRepo: input })
-                  }
-                  setNewPartType={(input) =>
-                    setNewPart({ ...newPart, type: input })
-                  }
-                />
-                <AddingFolderBlock
-                  newPart={newPart}
-                  setNewPart={setNewPart}
-                  folderOfNewPart={folderOfNewPart}
-                  setFolderOfNewPart={setFolderOfNewPart}
-                  // folderOfNewPart={folderOfNewPart}
-                  addingNewFolder={addingNewFolder}
-                  allPreexistingFolders={allPreexistingFolders}
-                  allNewFolders={newFoldersToBeAddedToAll}
-                  // folderInfoToState={folderInfoToState}
-                  newclickedFolder={clickedFolder}
-                  // addNewFolderAndClear={addNewFolderAndClear}
-                  newInputTitle={`New Part Name: ${newPart.type}`}
-                  // onClickingFolder={onClickingFolder}
-                  resetFolderInfo={resetFolderInfo}
-                  clickingToAddNewFolder={clickingToAddNewFolder}
-                />
-                <ButtonUnit
-                  onClickFunction={addNewPartAndClear}
-                  addingButton={true}
-                  label="add this part and start with another"
-                />
-              </DisplayBox>
-    ) 
+  return (
+    <DisplayBox>
+      <TitleButtonWrapper>
+        <h3>New Part</h3>
+      </TitleButtonWrapper>
+      <AddNewPartInput
+        newPart={newPart}
+        setNewPartName={(input) => setNewPart({ ...newPart, name: input })}
+        setNewPartGhRepo={(input) => setNewPart({ ...newPart, ghRepo: input })}
+        setNewPartType={(input) => setNewPart({ ...newPart, type: input })}
+      />
+      <AddingFolderBlock
+        newPart={newPart}
+        setNewPart={setNewPart}
+        folderOfNewPart={folderOfNewPart}
+        setFolderOfNewPart={setFolderOfNewPart}
+        addingNewFolder={addingNewFolder}
+        allPreexistingFolders={allPreexistingFolders}
+        allNewFolders={newFoldersToBeAddedToAll}
+        newclickedFolder={clickedFolder}
+        newInputTitle={`New Part Name: ${newPart.type}`}
+        resetFolderInfo={resetFolderInfo}
+        clickingToAddNewFolder={clickingToAddNewFolder}
+      />
+      <ButtonUnit
+        onClickFunction={addNewPartAndClear}
+        addingButton={true}
+        label="add this part and start with another"
+      />
+    </DisplayBox>
+  );
 };
 
 export default AddingPartBlock;
