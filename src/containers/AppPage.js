@@ -60,7 +60,7 @@ const AppPage = () => {
               {appToDisplay?.name}
               <ButtonUnit
                 onClickFunction={clickingToAddNewConnection}
-                addingButton={true}
+                type="add"
                 label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
               />
             </AppPageTitle>

@@ -151,8 +151,6 @@ const AddNewConnectionBox = ({
     keepExistingParams();
   };
 
-
-
   return (
     <DisplayBox>
       <ButtonUnit label={"refresh"} onClickFunction={onClickingRefresh} />
@@ -217,13 +215,13 @@ const AddNewConnectionBox = ({
         {/* {
                         (url && clickedFolder && part)
                         ? */}
-          <AddConnectionButtonWrapper >
-            <ButtonUnit
-              label="+ Add New Connection"
-              onClickFunction={onClickingAdd}
-              type="add"
-            />
-          </AddConnectionButtonWrapper>              
+        <AddConnectionButtonWrapper>
+          <ButtonUnit
+            label="+ Add New Connection"
+            onClickFunction={onClickingAdd}
+            type="add"
+          />
+        </AddConnectionButtonWrapper>
         {/* <button type="submit" onClick={onClickingAdd}>
           Add
         </button> */}
@@ -245,7 +243,6 @@ const AddNewConnectionBox = ({
 export default AddNewConnectionBox;
 
 // working:
-// change the ButtonUnit component to accept a type instead of addingButton
 // style of button to have padding
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow

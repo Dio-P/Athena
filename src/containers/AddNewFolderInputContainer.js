@@ -13,7 +13,7 @@ const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newIn
       <label> New Folder Name: {newFolderName} </label>
         <ButtonUnit
           onClickFunction={addNewFolderAndClear}
-          addingButton={true}
+          type="add"
           label="add"
         />
       <InputUnit

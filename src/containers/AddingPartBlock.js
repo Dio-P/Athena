@@ -94,7 +94,7 @@ const AddingPartBlock = ({
       />
       <ButtonUnit
         onClickFunction={addNewPartAndClear}
-        addingButton={true}
+        type="add"
         label="add this part and start with another"
       />
     </DisplayBox>
