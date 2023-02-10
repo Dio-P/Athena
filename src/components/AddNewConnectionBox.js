@@ -83,9 +83,17 @@ const AddNewConnectionBox = ({
     [appToDisplay.name]
   );
 
+  const appPartsArray = useMemo(
+    () => allAppParts && Object.values(allAppParts),
+    [allAppParts]
+  );
+
+  const newPartsAddedArray = useMemo(
+    () => newPartsAdded && Object.values(newPartsAdded),
+    [newPartsAdded]
+  );
+
   const onClickingPart = (part) => {
-    console.log("on clicking part@", part);
-    console.log("all app parts@", allAppParts);
     if (part) {
       setAllAppParts({
         ...allAppParts,
@@ -143,14 +151,7 @@ const AddNewConnectionBox = ({
     keepExistingParams();
   };
 
-  const appPartsArray = useMemo(
-    () => allAppParts && Object.values(allAppParts),
-    [allAppParts]
-  );
-  const newPartsAddedArray = useMemo(
-    () => newPartsAdded && Object.values(newPartsAdded),
-    [newPartsAdded]
-  );
+
 
   return (
     <DisplayBox>
@@ -183,7 +184,6 @@ const AddNewConnectionBox = ({
                 onMouseLeaveFunction={() =>
                   setDisplay({ ...display, deleteWarningNewPart: false })
                 }
-                // label={part.name}
                 clicked={true}
                 conditionalDisplay={
                   display.deleteWarningNewPart && (
@@ -194,7 +194,7 @@ const AddNewConnectionBox = ({
             )}
             <ButtonUnit
               onClickFunction={clickingToAddNewPart}
-              addingButton={true}
+              type="add"
               label={addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`}
             />
           </OptionsWraper>
@@ -221,7 +221,7 @@ const AddNewConnectionBox = ({
             <ButtonUnit
               label="+ Add New Connection"
               onClickFunction={onClickingAdd}
-              addingButton={true}
+              type="add"
             />
           </AddConnectionButtonWrapper>              
         {/* <button type="submit" onClick={onClickingAdd}>
@@ -245,13 +245,13 @@ const AddNewConnectionBox = ({
 export default AddNewConnectionBox;
 
 // working:
+// change the ButtonUnit component to accept a type instead of addingButton
+// style of button to have padding
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
 // add safety in the case the user just wants to add a link
 // add safety so adding is not possible if empty fields.
 // add safety so the duplication of the parts is not possible.
-// change the ButtonUnit component to accept a type instead of addingButton
-// style of button to have padding
 
 // to work:
 // the state to display new parts delete worning makes it display for all new parts. Needs to be only for the one.

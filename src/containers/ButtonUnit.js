@@ -29,15 +29,12 @@ const NewlyAddedPartButtonContainer = styled.button`
 
 const ButtonUnit = ({ 
   onClickFunction,
-  addingButton, 
-  buttonTitle, 
-  folder, 
-  part, 
   onMouseEnterFunction, 
   onMouseLeaveFunction,
   conditionalDisplay,
   label,
-  clicked
+  clicked,
+  type
 }) => {
   const ButtonWrapper = !onMouseEnterFunction? SimpleButtonContainer : NewlyAddedPartButtonContainer;
   return (
@@ -47,12 +44,10 @@ const ButtonUnit = ({
     onMouseLeave={onMouseLeaveFunction}
   >
     <GenericButtonIcon
-      addingButton={addingButton}
-      buttonTitle={buttonTitle}
-      // folder={folder}
-      // part={part}
+      // addingButton={addingButton}
       label={label}
       clicked={clicked}
+      type={type}
     />
     {conditionalDisplay
     &&

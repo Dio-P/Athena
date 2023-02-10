@@ -12,13 +12,7 @@ const PopulateButtonUnits = ({
   data, 
   onClickFunction,
   clicked,
-  addingButton, 
-  buttonTitle, 
-  folder, 
-  part, 
-  onMouseEnterFunction, 
-  onMouseLeaveFunction,
-  conditionalDisplay,
+  type,
 }) => {
 
   return (
@@ -31,6 +25,7 @@ const PopulateButtonUnits = ({
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
           clicked={choice.clicked || clicked}
+          type={type}
         />
       ))}
     </ButtonUnitWrapper>
