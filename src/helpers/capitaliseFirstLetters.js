@@ -3,7 +3,6 @@ const capitaliseFirstLetters = (string) => {
     if(string){
       const countWords = string.split(" ");
       if(countWords.length === 1){
-        console.log("countWords", countWords);
         return (countWords[0].charAt(0).toUpperCase() 
         + string.slice(1));
       }

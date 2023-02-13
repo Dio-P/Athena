@@ -44,7 +44,6 @@ const ButtonUnit = ({
     onMouseLeave={onMouseLeaveFunction}
   >
     <GenericButtonIcon
-      // addingButton={addingButton}
       label={label}
       clicked={clicked}
       type={type}

@@ -1,5 +1,6 @@
 import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
 import PopulateButtonUnits from "./PopulateButtonUnits";
+import DropDown from "../components/DropDown";
 
 const AllFolders = ({ 
   addingNewFolder, 
@@ -15,14 +16,19 @@ const AllFolders = ({
   return (
     !addingNewFolder ? (
       <>
-        <PopulateButtonUnits 
+        <DropDown
+          preexistingFolders={allPreexistingFolders}
+          newFolders={allNewFolders}
+          onClickFunction={folderInfoToState}
+        />
+        {/* <PopulateButtonUnits 
           data={allPreexistingFolders}
           onClickFunction={folderInfoToState}
         />
         <PopulateButtonUnits 
           data={allNewFolders}
           onClickFunction={folderInfoToState}
-        />
+        /> */}
       </>
     ) : (
       <AddNewFolderInputContainer
