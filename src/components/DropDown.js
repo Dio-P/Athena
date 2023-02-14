@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
@@ -11,7 +11,9 @@ const DropDownUnitWrapper = styled.div`
   width: 180px;
 `;
 
-const DropDownWrapper = styled.div`
+const SearchBarWrapper = styled.div``;
+
+const OptionsWrapper = styled.div`
   display: flex;
   height: 100px;
   width: 180px;
@@ -41,12 +43,10 @@ const DropDown = ({
   newFolders,
   onClickFunction,
   clickingToAddNewFolder,
-  folderOfNewPart
+  folderOfNewPart,
 }) => {
   const {
-    params: {
-      addingNewFolder
-    }
+    params: { addingNewFolder },
   } = useParamsHelper();
 
   const allFolders = useMemo(
@@ -54,22 +54,44 @@ const DropDown = ({
       newFolders ? [...preexistingFolders, ...newFolders] : preexistingFolders,
     [preexistingFolders, newFolders]
   );
+
+  const [searchingFolder, setSearchingFolder] = useState(undefined);
+
+  const searchFolder = (e) => {
+    setSearchingFolder(e.target.value)
+  };
   return (
     <DropDownUnitWrapper>
-      <DropDownWrapper>
-        {allFolders.map((folder) => (
+      <SearchBarWrapper>
+        <input type="text" value={searchingFolder} onChange={searchFolder} />
+      </SearchBarWrapper>
+      <OptionsWrapper>
+
+        {!searchingFolder?
+        allFolders.map((folder) => (
           <SingleDropDownElement onClick={() => onClickFunction(folder)}>
             <DropDownLabel>{capitaliseFirstLetters(folder.name)}</DropDownLabel>
           </SingleDropDownElement>
-        ))}
-      </DropDownWrapper>
+        ))
+        :
+        allFolders.filter((folder) => (
+          folder.name.includes(searchingFolder)
+        )).map((folder) => (
+          <SingleDropDownElement onClick={() => onClickFunction(folder)}>
+            <DropDownLabel>{capitaliseFirstLetters(folder.name)}</DropDownLabel>
+          </SingleDropDownElement>
+        ))
+        }
+      </OptionsWrapper>
       {!folderOfNewPart && (
         <div>
           <ButtonUnit
             onClickFunction={clickingToAddNewFolder}
             type="add"
             label={
-              addingNewFolder ? "- Back to Existing Folders" : "+ Add New Folder"
+              addingNewFolder
+                ? "- Back to Existing Folders"
+                : "+ Add New Folder"
             }
           />
         </div>
