@@ -1,17 +1,25 @@
 import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
 import PopulateButtonUnits from "./PopulateButtonUnits";
 import DropDown from "../components/DropDown";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const AllFolders = ({ 
-  addingNewFolder, 
   allPreexistingFolders, 
   allNewFolders, 
   folderInfoToState, 
   newFolderName, 
   addNewFolderAndClear, 
   newInputTitle, 
-  onClickingFolder 
+  onClickingFolder,
+  clickingToAddNewFolder,
+  folderOfNewPart,
 }) => {
+
+  const {
+    params: {
+      addingNewFolder
+    }
+  } = useParamsHelper();
 
   return (
     !addingNewFolder ? (
@@ -20,6 +28,8 @@ const AllFolders = ({
           preexistingFolders={allPreexistingFolders}
           newFolders={allNewFolders}
           onClickFunction={folderInfoToState}
+          clickingToAddNewFolder={clickingToAddNewFolder}
+          folderOfNewPart={folderOfNewPart}
         />
         {/* <PopulateButtonUnits 
           data={allPreexistingFolders}

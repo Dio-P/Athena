@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import AllFolders from "./AllFolders";
 import ButtonUnit from "./ButtonUnit";
-import useAppPartsHelper from "../hooks/useAppPartsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
+import { arrowDown, arrowUp } from "../helpers/svgIcons";
+import { useState } from "react";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;
@@ -16,47 +17,38 @@ const MainAddNewFolderContainer = styled.div`
   margin: 1em;
 `;
 
+const FolderButtonContainer = styled.div`
+  display: flex;
+`;
+
+const ArrowContainer = styled.div`
+  height: 20px;
+  width: 20px;
+`;
+
 const AddingFolderBlock = ({
   newPart,
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  // folderOfNewPart,
   addingNewFolder,
   allPreexistingFolders,
   allNewFolders,
-  // folderInfoToState,
   newFolderName,
   newInputTitle,
   onClickingFolder,
-  // resetFolderInfo,
   clickingToAddNewFolder,
 }) => {
-
-  // const {
-  //   folderOfNewPartRef,
-  //   updateFolderOfNewPart,
-  //   // folderOfNewPart,
-  //   // resetFolderInfo,
-  //   // setFolderOfNewPart,
-  //   allAppParts,
-  //   setAllAppParts,
-  //   newPartsAdded,
-  //   setNewPartsAdded
-  // } = useAppPartsHelper();
+  const { keepExistingParams } = useParamsHelper();
 
   const {
-    keepExistingParams
-  } = useParamsHelper();
-
-  const {
-    newlyCreatedFolders,
-    setNewlyCreatedFolders,
     clickedFolder,
     setClickedFolder,
     newFolderIndexKey,
-    onClickingPreExistingFolder
+    onClickingPreExistingFolder,
   } = useFolderHelper();
+
+  const [isDropDownOpen, setIsDropDownOpen] = useState(true);
 
   const addNewFolderAndClear = () => {
     const newFolder = {
@@ -68,7 +60,7 @@ const AddingFolderBlock = ({
       ...newPart,
       folderToBeDisplayedIn: newFolderIndexKey,
     });
-  
+
     keepExistingParams();
   };
 
@@ -91,26 +83,35 @@ const AddingFolderBlock = ({
 
   return (
     <MainAddNewFolderContainer>
-      <p> Folder to display new part in</p>
-      {!folderOfNewPart ? (
+      <FolderButtonContainer onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
+        Folder to display new part in 
+        <ArrowContainer>
+          {isDropDownOpen ? arrowUp : arrowDown}
+        </ArrowContainer>
+      </FolderButtonContainer>
+      {isDropDownOpen
+      &&
         <AllFolders
-          addingNewFolder={addingNewFolder}
-          allPreexistingFolders={allPreexistingFolders} 
-          allNewFolders={allNewFolders} 
-          folderInfoToState={(value) => folderInfoToState(value)}
-          newFolderName={newFolderName} 
-          addNewFolderAndClear={addNewFolderAndClear} 
-          newInputTitle={newInputTitle}
-          onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-        />
-      ) : (
+        addingNewFolder={addingNewFolder}
+        allPreexistingFolders={allPreexistingFolders}
+        allNewFolders={allNewFolders}
+        folderInfoToState={(value) => folderInfoToState(value)}
+        newFolderName={newFolderName}
+        addNewFolderAndClear={addNewFolderAndClear}
+        newInputTitle={newInputTitle}
+        onClickingFolder={(value) => onClickingPreExistingFolder(value)}
+        clickingToAddNewFolder={clickingToAddNewFolder}
+        folderOfNewPart={folderOfNewPart}
+      />}
+      {folderOfNewPart
+      &&
         <ButtonUnit
           onClickFunction={resetFolderInfo}
           type="add"
           label={`folder name: ${folderOfNewPart.name} click to edit`}
         />
-      )}
-      {!folderOfNewPart && (
+      }
+      {/* {!folderOfNewPart && (
         <ButtonUnit
           onClickFunction={clickingToAddNewFolder}
           type="add"
@@ -120,9 +121,9 @@ const AddingFolderBlock = ({
               : "+ Add New Folder"
           }
         />
-      )}
-  </MainAddNewFolderContainer>
-  )
-}
+      )} */}
+    </MainAddNewFolderContainer>
+  );
+};
 
 export default AddingFolderBlock;
