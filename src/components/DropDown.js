@@ -39,8 +39,8 @@ const DropDownLabel = styled.div`
 `;
 
 const DropDown = ({
-  preexistingFolders,
-  newFolders,
+  preexistingData,
+  newData,
   onClickFunction,
   // clickingToAddNewFolder,
   folderOfNewPart,
@@ -50,23 +50,23 @@ const DropDown = ({
     params: { folderDdOpen },
   } = useParamsHelper();
 
-  const allFolders = useMemo(
+  const [searchingQuery, setSearchingQuery] = useState(undefined);
+
+  const allData = useMemo(
     () =>
-      newFolders ? [...preexistingFolders, ...newFolders] : preexistingFolders,
-    [preexistingFolders, newFolders]
+      newData ? [...preexistingData, ...newData] : preexistingData,
+    [preexistingData, newData]
   );
 
-  const [searchingFolder, setSearchingFolder] = useState(undefined);
-
-  const filteredFolders = useMemo(
-    () => allFolders.filter((folder) => folder.name.includes(searchingFolder)),
-    [searchingFolder]
+  const filteredData = useMemo(
+    () => allData.filter((folder) => folder.name.includes(searchingQuery)),
+    [searchingQuery]
   );
 
-  const foldersToRender = !searchingFolder ? allFolders : filteredFolders;
+  const foldersToRender = !searchingQuery ? allData : filteredData;
 
   const searchFolder = (e) => {
-    setSearchingFolder(e.target.value);
+    setSearchingQuery(e.target.value);
   };
   return (
     <DropDownUnitWrapper>
@@ -74,7 +74,7 @@ const DropDown = ({
         <input
           type="text"
           name="dropDownSearch"
-          value={searchingFolder}
+          value={searchingQuery}
           onChange={searchFolder}
         />
       </SearchBarWrapper>
@@ -101,3 +101,4 @@ const DropDown = ({
 export default DropDown;
 
 // rounded corners once arround the main box
+// change this to a generic component that can be reused

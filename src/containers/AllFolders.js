@@ -8,14 +8,12 @@ const AllFolders = ({
 }) => {
 
   return (
-      <>
         <DropDown
-          preexistingFolders={allPreexistingFolders}
-          newFolders={allNewFolders}
+          preexistingData={allPreexistingFolders}
+          newData={allNewFolders}
           onClickFunction={folderInfoToState}
           folderOfNewPart={folderOfNewPart}
         />
-      </>
   )
 }
 
