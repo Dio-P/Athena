@@ -42,8 +42,8 @@ const DropDown = ({
   preexistingData,
   newData,
   onClickFunction,
-  // manageFolderDdOpenParam,
   folderOfNewPart,
+  dDBtnLabel
 }) => {
   const {
     manageFolderDdOpenParam,
@@ -90,7 +90,7 @@ const DropDown = ({
           <ButtonUnit
             onClickFunction={manageFolderDdOpenParam}
             type="add"
-            label="+ Add New Folder"
+            label={dDBtnLabel}
           />
         </div>
       )}

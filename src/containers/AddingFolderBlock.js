@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
-import AllFolders from "./AllFolders";
-import ButtonUnit from "./ButtonUnit";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import { arrowDown, arrowUp } from "../helpers/svgIcons";
 import { useState } from "react";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+import DropDown from "../components/DropDown";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;
@@ -32,13 +31,8 @@ const AddingFolderBlock = ({
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  // folderDdOpen,
   allPreexistingFolders,
   allNewFolders,
-  newFolderName,
-  newInputTitle,
-  onClickingFolder,
-  // manageFolderDdOpenParam,
 }) => {
   const { manageFolderDdOpenParam, keepExistingParams, params:{
     folderDdOpen
@@ -96,37 +90,15 @@ const AddingFolderBlock = ({
         <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
       </FolderButtonContainer>
       {folderDdOpen && (
-        <AllFolders
-          folderDdOpen={folderDdOpen}
-          allPreexistingFolders={allPreexistingFolders}
-          allNewFolders={allNewFolders}
-          folderInfoToState={(value) => folderInfoToState(value)}
-          newFolderName={newFolderName}
-          addNewFolderAndClear={addNewFolderAndClear}
-          newInputTitle={newInputTitle}
-          onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-          // manageFolderDdOpenParam={manageFolderDdOpenParam}
-          folderOfNewPart={folderOfNewPart}
-        />
+        <DropDown
+        preexistingData={allPreexistingFolders}
+        newData={allNewFolders}
+        onClickFunction={folderInfoToState}
+        folderOfNewPart={folderOfNewPart}
+        dDBtnLabel="+ Add New Folder"
+      />
       )}
-      {/* {folderOfNewPart && (
-        <ButtonUnit
-          onClickFunction={resetFolderInfo}
-          type="add"
-          label={`folder name: ${folderOfNewPart.name} click to edit`}
-        />
-      )} */}
-      {/* {!folderOfNewPart && (
-        <ButtonUnit
-          onClickFunction={manageFolderDdOpenParam}
-          type="add"
-          label={
-            folderDdOpen
-              ? "- Back to Existing Folders"
-              : "+ Add New Folder"
-          }
-        />
-      )} */}
+
     </MainAddNewFolderContainer>
   );
 };
