@@ -5,6 +5,7 @@ import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import { arrowDown, arrowUp } from "../helpers/svgIcons";
 import { useState } from "react";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;
@@ -81,36 +82,39 @@ const AddingFolderBlock = ({
     keepExistingParams();
   };
 
+  const dropDownToogleButtonTitle = folderOfNewPart
+    ? `Folder to display new part in: ${capitaliseFirstLetters(
+        folderOfNewPart.name
+      )}`
+    : "Choose a folder to display part in";
+
   return (
     <MainAddNewFolderContainer>
       <FolderButtonContainer onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
-        Folder to display new part in 
-        <ArrowContainer>
-          {isDropDownOpen ? arrowUp : arrowDown}
-        </ArrowContainer>
+        {dropDownToogleButtonTitle}
+        <ArrowContainer>{isDropDownOpen ? arrowUp : arrowDown}</ArrowContainer>
       </FolderButtonContainer>
-      {isDropDownOpen
-      &&
+      {isDropDownOpen && (
         <AllFolders
-        addingNewFolder={addingNewFolder}
-        allPreexistingFolders={allPreexistingFolders}
-        allNewFolders={allNewFolders}
-        folderInfoToState={(value) => folderInfoToState(value)}
-        newFolderName={newFolderName}
-        addNewFolderAndClear={addNewFolderAndClear}
-        newInputTitle={newInputTitle}
-        onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-        clickingToAddNewFolder={clickingToAddNewFolder}
-        folderOfNewPart={folderOfNewPart}
-      />}
-      {folderOfNewPart
-      &&
+          addingNewFolder={addingNewFolder}
+          allPreexistingFolders={allPreexistingFolders}
+          allNewFolders={allNewFolders}
+          folderInfoToState={(value) => folderInfoToState(value)}
+          newFolderName={newFolderName}
+          addNewFolderAndClear={addNewFolderAndClear}
+          newInputTitle={newInputTitle}
+          onClickingFolder={(value) => onClickingPreExistingFolder(value)}
+          clickingToAddNewFolder={clickingToAddNewFolder}
+          folderOfNewPart={folderOfNewPart}
+        />
+      )}
+      {folderOfNewPart && (
         <ButtonUnit
           onClickFunction={resetFolderInfo}
           type="add"
           label={`folder name: ${folderOfNewPart.name} click to edit`}
         />
-      }
+      )}
       {/* {!folderOfNewPart && (
         <ButtonUnit
           onClickFunction={clickingToAddNewFolder}
