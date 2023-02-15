@@ -57,13 +57,17 @@ const DropDown = ({
 
   const [searchingFolder, setSearchingFolder] = useState(undefined);
 
+  const filteredFolders = useMemo(() => allFolders.filter((folder) => (
+    folder.name.includes(searchingFolder)
+  )), [searchingFolder])
+
   const searchFolder = (e) => {
     setSearchingFolder(e.target.value)
   };
   return (
     <DropDownUnitWrapper>
       <SearchBarWrapper>
-        <input type="text" value={searchingFolder} onChange={searchFolder} />
+        <input type="text" name="dropDownSearch" value={searchingFolder} onChange={searchFolder} />
       </SearchBarWrapper>
       <OptionsWrapper>
 
@@ -74,9 +78,7 @@ const DropDown = ({
           </SingleDropDownElement>
         ))
         :
-        allFolders.filter((folder) => (
-          folder.name.includes(searchingFolder)
-        )).map((folder) => (
+        filteredFolders.map((folder) => (
           <SingleDropDownElement onClick={() => onClickFunction(folder)}>
             <DropDownLabel>{capitaliseFirstLetters(folder.name)}</DropDownLabel>
           </SingleDropDownElement>
