@@ -42,11 +42,11 @@ const DropDown = ({
   preexistingData,
   newData,
   onClickFunction,
-  // clickingToAddNewFolder,
+  // manageFolderDdOpenParam,
   folderOfNewPart,
 }) => {
   const {
-    clickingToAddNewFolder,
+    manageFolderDdOpenParam,
     params: { folderDdOpen },
   } = useParamsHelper();
 
@@ -88,7 +88,7 @@ const DropDown = ({
       {!folderOfNewPart && (
         <div>
           <ButtonUnit
-            onClickFunction={clickingToAddNewFolder}
+            onClickFunction={manageFolderDdOpenParam}
             type="add"
             label="+ Add New Folder"
           />

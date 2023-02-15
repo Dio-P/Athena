@@ -62,8 +62,8 @@ const AddNewConnectionBox = ({
   const [updatedApp, setUpdatedApp] = useState("");
 
   const {
-    clickingToAddNewPart,
-    clickingToAddNewFolder,
+    manageAddingNewPartParam,
+    manageFolderDdOpenParam,
     keepExistingParams,
     params: { addingNewPart, addingNewFolder },
   } = useParamsHelper();
@@ -189,7 +189,7 @@ const AddNewConnectionBox = ({
               />
             )}
             <ButtonUnit
-              onClickFunction={clickingToAddNewPart}
+              onClickFunction={manageAddingNewPartParam}
               type="add"
               label={addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`}
             />
@@ -206,7 +206,7 @@ const AddNewConnectionBox = ({
               allPreexistingFolders={appToDisplay.folders}
               allNewFolders={newlyCreatedFolders}
               clickedFolder={clickedFolder}
-              // clickingToAddNewFolder={clickingToAddNewFolder}
+              // manageFolderDdOpenParam={manageFolderDdOpenParam}
             />
           )}
         </div>

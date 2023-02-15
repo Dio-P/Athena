@@ -14,15 +14,15 @@ const useParamsHelper = () => {
     folderDdOpen,
   } = params;
 
-  const clickingOnTeamMock = (defaultTeam) => {
+  const manageTeamParam = (defaultTeam) => {
     console.log("defaultTeam@", defaultTeam);
     if(!team){
       setSearchParams({team: defaultTeam});
     }
   };  
 
-  const toggleAppIdParamOnandOff = (singleApp) => {
-    console.log("toggleAppIdParamOnandOff");
+  const manageAppIdParam = (singleApp) => {
+    console.log("manageAppIdParam");
 
     if(singleApp.id && !appId){
       console.log("singleApp true", singleApp);
@@ -32,8 +32,8 @@ const useParamsHelper = () => {
     }
   };
   
-  const clickingToAddNewConnection = () => {
-    console.log("clickingToAddNewConnection");
+  const manageAddingNewConnectionParam = () => {
+    console.log("manageAddingNewConnectionParam");
 
     if (!addingNewConnection) {
       setSearchParams({ team, appId, addingNewConnection: true });
@@ -42,8 +42,8 @@ const useParamsHelper = () => {
     }
   };
 
-  const clickingToAddNewPart = () => {
-    console.log("clickingToAddNewPart");
+  const manageAddingNewPartParam = () => {
+    console.log("manageAddingNewPartParam");
     if (!addingNewPart) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
     } else {
@@ -51,8 +51,8 @@ const useParamsHelper = () => {
     }
   };
 
-  const clickingToAddNewFolder = () => {
-    console.log("clickingToAddNewFolder");
+  const manageFolderDdOpenParam = () => {
+    console.log("manageFolderDdOpenParam");
     if (!folderDdOpen) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderDdOpen: true });
     } else {
@@ -66,12 +66,12 @@ const useParamsHelper = () => {
   };
 
   return {
-    clickingOnTeamMock, 
-    clickingToAddNewPart, 
-    clickingToAddNewFolder, 
+    manageTeamParam, 
+    manageAddingNewPartParam, 
+    manageFolderDdOpenParam, 
     keepExistingParams, 
-    clickingToAddNewConnection, 
-    toggleAppIdParamOnandOff, 
+    manageAddingNewConnectionParam, 
+    manageAppIdParam, 
     params
   }
 };

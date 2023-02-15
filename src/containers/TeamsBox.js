@@ -18,7 +18,7 @@ const TeamsBox = ({ department }) => {
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
   const {
-    clickingOnTeamMock,
+    manageTeamParam,
     params:{
       team
     }
@@ -45,8 +45,8 @@ const TeamsBox = ({ department }) => {
 
   useEffect(() => {
     if(!team){
-      console.log("clickingOnTeamMock", );
-      clickingOnTeamMock(chosenTeam)
+      console.log("manageTeamParam", );
+      manageTeamParam(chosenTeam)
     }
   }, [chosenTeam]);
 

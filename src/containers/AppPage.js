@@ -34,7 +34,7 @@ const AppPage = () => {
 
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
 
-  const { clickingToAddNewConnection } = useParamsHelper();
+  const { manageAddingNewConnectionParam } = useParamsHelper();
 
   useEffect(() => {
     console.log("AppPage rendering");
@@ -59,7 +59,7 @@ const AppPage = () => {
             <AppPageTitle>
               {appToDisplay?.name}
               <ButtonUnit
-                onClickFunction={clickingToAddNewConnection}
+                onClickFunction={manageAddingNewConnectionParam}
                 type="add"
                 label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
               />

@@ -27,7 +27,7 @@ const StyledButton = styled.button`
 
 const AppsBox = ({ teamApps, teamName }) => {
   const { 
-    toggleAppIdParamOnandOff, 
+    manageAppIdParam, 
     params: {
       appId
     }
@@ -39,7 +39,7 @@ const AppsBox = ({ teamApps, teamName }) => {
 
   return (
     <DepartmAppsBoxContainer>
-      <StyledButton onClick={toggleAppIdParamOnandOff}>
+      <StyledButton onClick={manageAppIdParam}>
         <DepAppBoxPageTitle>
           {capitaliseFirstLetters(teamName)}
         </DepAppBoxPageTitle>
@@ -49,7 +49,7 @@ const AppsBox = ({ teamApps, teamName }) => {
         !appId) &&
         <PopulateButtonUnits
           data={teamApps}
-          onClickFunction={(singleApp) => toggleAppIdParamOnandOff(singleApp)}
+          onClickFunction={(singleApp) => manageAppIdParam(singleApp)}
         />
       }
       {appId && <AppPage appIdToDisplay={appId} />}

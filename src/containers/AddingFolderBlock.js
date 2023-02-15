@@ -38,9 +38,9 @@ const AddingFolderBlock = ({
   newFolderName,
   newInputTitle,
   onClickingFolder,
-  // clickingToAddNewFolder,
+  // manageFolderDdOpenParam,
 }) => {
-  const { clickingToAddNewFolder, keepExistingParams, params:{
+  const { manageFolderDdOpenParam, keepExistingParams, params:{
     folderDdOpen
   } } = useParamsHelper();
 
@@ -74,7 +74,7 @@ const AddingFolderBlock = ({
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    clickingToAddNewFolder();
+    manageFolderDdOpenParam();
   };
 
   // where was the bellow used ?
@@ -91,7 +91,7 @@ const AddingFolderBlock = ({
 
   return (
     <MainAddNewFolderContainer>
-      <FolderButtonContainer onClick={clickingToAddNewFolder}>
+      <FolderButtonContainer onClick={manageFolderDdOpenParam}>
         {dropDownToogleButtonTitle}
         <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
       </FolderButtonContainer>
@@ -105,7 +105,7 @@ const AddingFolderBlock = ({
           addNewFolderAndClear={addNewFolderAndClear}
           newInputTitle={newInputTitle}
           onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-          // clickingToAddNewFolder={clickingToAddNewFolder}
+          // manageFolderDdOpenParam={manageFolderDdOpenParam}
           folderOfNewPart={folderOfNewPart}
         />
       )}
@@ -118,7 +118,7 @@ const AddingFolderBlock = ({
       )} */}
       {/* {!folderOfNewPart && (
         <ButtonUnit
-          onClickFunction={clickingToAddNewFolder}
+          onClickFunction={manageFolderDdOpenParam}
           type="add"
           label={
             folderDdOpen
