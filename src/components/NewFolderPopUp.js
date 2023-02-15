@@ -1,16 +1,25 @@
 import OverlayElem from "./OverlayElem";
 import styled from "@emotion/styled";
+import AddNewFolderInputContainer from "../containers/AddNewFolderInputContainer";
 
-const OverlayWrapper = styled.div`
+const NewFolderPopUpWrapper = styled.div`
   width: 100%;
   height: 100%
 `;
 
+const NewFolderInputContainerWrapper = styled.div`
+  z-index: 101;
+  position: relative;
+`;
+
 const NewFolderPopUp = () => {
   return (
-    <OverlayWrapper>
+    <NewFolderPopUpWrapper>
       <OverlayElem/>
-    </OverlayWrapper>
+      <NewFolderInputContainerWrapper>
+        <AddNewFolderInputContainer/>
+      </NewFolderInputContainerWrapper>
+    </NewFolderPopUpWrapper>
 
   ) 
 };

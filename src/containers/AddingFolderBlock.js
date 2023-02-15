@@ -74,6 +74,12 @@ const AddingFolderBlock = ({
   };
 
   // where was the bellow used ?
+
+  // <ButtonUnit
+  //         onClickFunction={resetFolderInfo}
+  //         type="add"
+  //         label={`folder name: ${folderOfNewPart.name} click to edit`}
+  //       />
   const resetFolderInfo = () => {
     setFolderOfNewPart("");
     keepExistingParams();

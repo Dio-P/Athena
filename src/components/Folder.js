@@ -66,3 +66,4 @@ const Folder = ({ folderName, parts, appId }) => {
 export default Folder;
 
 // add swaping arrow up and down symbol displaying next to folded rame
+// move the triangle to the helper and make them work

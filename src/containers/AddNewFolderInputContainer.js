@@ -3,8 +3,8 @@ import ButtonUnit from "./ButtonUnit";
 import InputUnit from "./InputUnit";
 
 const NewFolderInputContainer = styled.div`
-height: 100%;
-background-color: #fffcfa;
+  height: 100%;
+  background-color: #fffcfa;
 `;
 
 const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newInputTitle, onClickingFolder }) => {
