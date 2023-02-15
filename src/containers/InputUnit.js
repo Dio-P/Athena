@@ -29,17 +29,15 @@ const InputContainer = styled.div`
 const InputUnit = ({ inputTitle, type, name, value, onChangeFunction }) => {
   return (
     <InputContainer>
-      <label htmlFor="">
-        {inputTitle}
-      </label>
+      <label htmlFor="">{inputTitle}</label>
       <InputBox
         type={type}
         name={name}
         value={value}
-        onChange={(e)=>onChangeFunction(e.target.value)}
+        onChange={(e) => onChangeFunction(e.target.value)}
       />
     </InputContainer>
-  )
+  );
 };
 
 export default InputUnit;

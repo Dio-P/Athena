@@ -43,3 +43,5 @@ const useFolderHelper = (preexistingFolders) => {
 }
 
 export default useFolderHelper
+
+// move this to addNewDocStateManager

@@ -7,15 +7,21 @@ const NewFolderInputContainer = styled.div`
   background-color: #fffcfa;
 `;
 
-const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newInputTitle, onClickingFolder }) => {
+const AddNewFolderInputContainer = ({
+  newFolderName,
+  addNewFolderAndClear,
+  newInputTitle,
+  onClickingFolder,
+}) => {
+
   return (
     <NewFolderInputContainer>
       <label> New Folder Name: {newFolderName} </label>
-        <ButtonUnit
-          onClickFunction={addNewFolderAndClear}
-          type="add"
-          label="add"
-        />
+      <ButtonUnit
+        onClickFunction={addNewFolderAndClear}
+        type="add"
+        label="add"
+      />
       <InputUnit
         newInputTitle={newInputTitle}
         key="newFolderInput"
@@ -25,7 +31,7 @@ const AddNewFolderInputContainer = ({ newFolderName, addNewFolderAndClear, newIn
         onChangeFunction={onClickingFolder}
       />
     </NewFolderInputContainer>
-  )
-}
+  );
+};
 
 export default AddNewFolderInputContainer;
