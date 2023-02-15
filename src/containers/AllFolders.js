@@ -17,12 +17,12 @@ const AllFolders = ({
 
   const {
     params: {
-      addingNewFolder
+      folderDdOpen
     }
   } = useParamsHelper();
 
   return (
-    // addingNewFolder && 
+    // folderDdOpen && 
     // (
       <>
         <DropDown

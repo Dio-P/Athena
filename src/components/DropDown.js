@@ -47,7 +47,7 @@ const DropDown = ({
 }) => {
   const {
     clickingToAddNewFolder,
-    params: { addingNewFolder },
+    params: { folderDdOpen },
   } = useParamsHelper();
 
   const allFolders = useMemo(
@@ -90,11 +90,7 @@ const DropDown = ({
           <ButtonUnit
             onClickFunction={clickingToAddNewFolder}
             type="add"
-            label={
-              addingNewFolder
-                ? "- Back to Existing Folders"
-                : "+ Add New Folder"
-            }
+            label="+ Add New Folder"
           />
         </div>
       )}

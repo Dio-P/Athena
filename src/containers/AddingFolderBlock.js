@@ -32,7 +32,7 @@ const AddingFolderBlock = ({
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  // addingNewFolder,
+  // folderDdOpen,
   allPreexistingFolders,
   allNewFolders,
   newFolderName,
@@ -41,7 +41,7 @@ const AddingFolderBlock = ({
   // clickingToAddNewFolder,
 }) => {
   const { clickingToAddNewFolder, keepExistingParams, params:{
-    addingNewFolder
+    folderDdOpen
   } } = useParamsHelper();
 
   const {
@@ -93,11 +93,11 @@ const AddingFolderBlock = ({
     <MainAddNewFolderContainer>
       <FolderButtonContainer onClick={clickingToAddNewFolder}>
         {dropDownToogleButtonTitle}
-        <ArrowContainer>{addingNewFolder ? arrowUp : arrowDown}</ArrowContainer>
+        <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
       </FolderButtonContainer>
-      {addingNewFolder && (
+      {folderDdOpen && (
         <AllFolders
-          addingNewFolder={addingNewFolder}
+          folderDdOpen={folderDdOpen}
           allPreexistingFolders={allPreexistingFolders}
           allNewFolders={allNewFolders}
           folderInfoToState={(value) => folderInfoToState(value)}
@@ -121,7 +121,7 @@ const AddingFolderBlock = ({
           onClickFunction={clickingToAddNewFolder}
           type="add"
           label={
-            addingNewFolder
+            folderDdOpen
               ? "- Back to Existing Folders"
               : "+ Add New Folder"
           }

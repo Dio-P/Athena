@@ -11,7 +11,7 @@ const useParamsHelper = () => {
     appId,
     addingNewConnection,
     addingNewPart,
-    addingNewFolder,
+    folderDdOpen,
   } = params;
 
   const clickingOnTeamMock = (defaultTeam) => {
@@ -53,8 +53,8 @@ const useParamsHelper = () => {
 
   const clickingToAddNewFolder = () => {
     console.log("clickingToAddNewFolder");
-    if (!addingNewFolder) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart, addingNewFolder: true });
+    if (!folderDdOpen) {
+      setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderDdOpen: true });
     } else {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart });
     }

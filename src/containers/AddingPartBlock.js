@@ -30,7 +30,7 @@ const AddingPartBlock = ({
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  addingNewFolder,
+  // folderDdOpen,
   allPreexistingFolders,
   newFoldersToBeAddedToAll,
   clickedFolder,
@@ -84,7 +84,7 @@ const AddingPartBlock = ({
         setNewPart={setNewPart}
         folderOfNewPart={folderOfNewPart}
         setFolderOfNewPart={setFolderOfNewPart}
-        addingNewFolder={addingNewFolder}
+        // folderDdOpen={folderDdOpen}
         allPreexistingFolders={allPreexistingFolders}
         allNewFolders={newFoldersToBeAddedToAll}
         newclickedFolder={clickedFolder}
