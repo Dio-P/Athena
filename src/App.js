@@ -1,7 +1,6 @@
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
 import { useEffect, useMemo } from "react";
-
 function App() {
   const DEFAULT_DEPARTMENT = useMemo(() => "DPub", []);
 

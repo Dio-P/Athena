@@ -5,6 +5,7 @@ import { arrowDown, arrowUp } from "../helpers/svgIcons";
 import { useState } from "react";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import DropDown from "../components/DropDown";
+import NewFolderPopUp from "../components/NewFolderPopUp";
 
 const MainAddNewFolderContainer = styled.div`
   text-align: center;
@@ -26,6 +27,7 @@ const ArrowContainer = styled.div`
   width: 20px;
 `;
 
+
 const AddingFolderBlock = ({
   newPart,
   setNewPart,
@@ -45,7 +47,7 @@ const AddingFolderBlock = ({
     onClickingPreExistingFolder,
   } = useFolderHelper();
 
-  const [isDropDownOpen, setIsDropDownOpen] = useState(true);
+  const [isNewFolderPopUpOpen, setIsNewFolderPopUpOpen] = useState(false);
 
   const addNewFolderAndClear = () => {
     const newFolder = {
@@ -78,7 +80,8 @@ const AddingFolderBlock = ({
   };
 
   const renderAddNewFolderPopUp = () => {
-
+    console.log("setIsNewFolderPopUpOpen to be set to true");
+    setIsNewFolderPopUpOpen(true);
   };
 
   const dropDownToogleButtonTitle = folderOfNewPart
@@ -103,7 +106,10 @@ const AddingFolderBlock = ({
         dDBtnLabel="+ Add New Folder"
       />
       )}
-
+      {isNewFolderPopUpOpen
+       &&
+       <NewFolderPopUp/>
+      }
     </MainAddNewFolderContainer>
   );
 };
