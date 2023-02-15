@@ -43,11 +43,11 @@ const DropDown = ({
   newData,
   onClickFunction,
   folderOfNewPart,
+  onClickingBtnFunction,
   dDBtnLabel
 }) => {
   const {
     manageFolderDdOpenParam,
-    params: { folderDdOpen },
   } = useParamsHelper();
 
   const [searchingQuery, setSearchingQuery] = useState(undefined);
@@ -88,7 +88,7 @@ const DropDown = ({
       {!folderOfNewPart && (
         <div>
           <ButtonUnit
-            onClickFunction={manageFolderDdOpenParam}
+            onClickFunction={onClickingBtnFunction}
             type="add"
             label={dDBtnLabel}
           />

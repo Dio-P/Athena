@@ -77,6 +77,10 @@ const AddingFolderBlock = ({
     keepExistingParams();
   };
 
+  const renderAddNewFolderPopUp = () => {
+
+  };
+
   const dropDownToogleButtonTitle = folderOfNewPart
     ? `Folder to display new part in: ${capitaliseFirstLetters(
         folderOfNewPart.name
@@ -95,6 +99,7 @@ const AddingFolderBlock = ({
         newData={allNewFolders}
         onClickFunction={folderInfoToState}
         folderOfNewPart={folderOfNewPart}
+        onClickingBtnFunction={renderAddNewFolderPopUp}
         dDBtnLabel="+ Add New Folder"
       />
       )}
