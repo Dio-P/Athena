@@ -206,7 +206,7 @@ const AddNewConnectionBox = ({
               allPreexistingFolders={appToDisplay.folders}
               allNewFolders={newlyCreatedFolders}
               clickedFolder={clickedFolder}
-              clickingToAddNewFolder={clickingToAddNewFolder}
+              // clickingToAddNewFolder={clickingToAddNewFolder}
             />
           )}
         </div>

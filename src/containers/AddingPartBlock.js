@@ -34,7 +34,7 @@ const AddingPartBlock = ({
   allPreexistingFolders,
   newFoldersToBeAddedToAll,
   clickedFolder,
-  clickingToAddNewFolder,
+  // clickingToAddNewFolder,
 }) => {
   const { keepExistingParams } = useParamsHelper();
 
@@ -90,7 +90,7 @@ const AddingPartBlock = ({
         newclickedFolder={clickedFolder}
         newInputTitle={`New Part Name: ${newPart.type}`}
         resetFolderInfo={resetFolderInfo}
-        clickingToAddNewFolder={clickingToAddNewFolder}
+        // clickingToAddNewFolder={clickingToAddNewFolder}
       />
       <ButtonUnit
         onClickFunction={addNewPartAndClear}

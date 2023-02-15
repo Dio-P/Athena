@@ -32,15 +32,17 @@ const AddingFolderBlock = ({
   setNewPart,
   folderOfNewPart,
   setFolderOfNewPart,
-  addingNewFolder,
+  // addingNewFolder,
   allPreexistingFolders,
   allNewFolders,
   newFolderName,
   newInputTitle,
   onClickingFolder,
-  clickingToAddNewFolder,
+  // clickingToAddNewFolder,
 }) => {
-  const { keepExistingParams } = useParamsHelper();
+  const { clickingToAddNewFolder, keepExistingParams, params:{
+    addingNewFolder
+  } } = useParamsHelper();
 
   const {
     clickedFolder,
@@ -66,17 +68,16 @@ const AddingFolderBlock = ({
   };
 
   const folderInfoToState = (folder) => {
-    console.log("folder info to state from addingFolderBlock");
-    console.log("folder that is not set", folder);
     setClickedFolder(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    keepExistingParams();
+    clickingToAddNewFolder();
   };
 
+  // where was the bellow used ?
   const resetFolderInfo = () => {
     setFolderOfNewPart("");
     keepExistingParams();
@@ -90,11 +91,11 @@ const AddingFolderBlock = ({
 
   return (
     <MainAddNewFolderContainer>
-      <FolderButtonContainer onClick={() => setIsDropDownOpen(!isDropDownOpen)}>
+      <FolderButtonContainer onClick={clickingToAddNewFolder}>
         {dropDownToogleButtonTitle}
-        <ArrowContainer>{isDropDownOpen ? arrowUp : arrowDown}</ArrowContainer>
+        <ArrowContainer>{addingNewFolder ? arrowUp : arrowDown}</ArrowContainer>
       </FolderButtonContainer>
-      {isDropDownOpen && (
+      {addingNewFolder && (
         <AllFolders
           addingNewFolder={addingNewFolder}
           allPreexistingFolders={allPreexistingFolders}
@@ -104,17 +105,17 @@ const AddingFolderBlock = ({
           addNewFolderAndClear={addNewFolderAndClear}
           newInputTitle={newInputTitle}
           onClickingFolder={(value) => onClickingPreExistingFolder(value)}
-          clickingToAddNewFolder={clickingToAddNewFolder}
+          // clickingToAddNewFolder={clickingToAddNewFolder}
           folderOfNewPart={folderOfNewPart}
         />
       )}
-      {folderOfNewPart && (
+      {/* {folderOfNewPart && (
         <ButtonUnit
           onClickFunction={resetFolderInfo}
           type="add"
           label={`folder name: ${folderOfNewPart.name} click to edit`}
         />
-      )}
+      )} */}
       {/* {!folderOfNewPart && (
         <ButtonUnit
           onClickFunction={clickingToAddNewFolder}

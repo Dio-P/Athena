@@ -11,7 +11,7 @@ const AllFolders = ({
   addNewFolderAndClear, 
   newInputTitle, 
   onClickingFolder,
-  clickingToAddNewFolder,
+  // clickingToAddNewFolder,
   folderOfNewPart,
 }) => {
 
@@ -22,32 +22,26 @@ const AllFolders = ({
   } = useParamsHelper();
 
   return (
-    !addingNewFolder ? (
+    // addingNewFolder && 
+    // (
       <>
         <DropDown
           preexistingFolders={allPreexistingFolders}
           newFolders={allNewFolders}
           onClickFunction={folderInfoToState}
-          clickingToAddNewFolder={clickingToAddNewFolder}
+          // clickingToAddNewFolder={clickingToAddNewFolder}
           folderOfNewPart={folderOfNewPart}
         />
-        {/* <PopulateButtonUnits 
-          data={allPreexistingFolders}
-          onClickFunction={folderInfoToState}
-        />
-        <PopulateButtonUnits 
-          data={allNewFolders}
-          onClickFunction={folderInfoToState}
-        /> */}
       </>
-    ) : (
-      <AddNewFolderInputContainer
-        newFolderName={newFolderName}
-        addNewFolderAndClear={addNewFolderAndClear}
-        newInputTitle={newInputTitle}
-        onClickingFolder={onClickingFolder}
-      />
-    )
+    // ) 
+  //   : (
+  //     <AddNewFolderInputContainer
+  //       newFolderName={newFolderName}
+  //       addNewFolderAndClear={addNewFolderAndClear}
+  //       newInputTitle={newInputTitle}
+  //       onClickingFolder={onClickingFolder}
+  //     />
+  //   )
   )
 }
 

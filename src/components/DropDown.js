@@ -42,10 +42,11 @@ const DropDown = ({
   preexistingFolders,
   newFolders,
   onClickFunction,
-  clickingToAddNewFolder,
+  // clickingToAddNewFolder,
   folderOfNewPart,
 }) => {
   const {
+    clickingToAddNewFolder,
     params: { addingNewFolder },
   } = useParamsHelper();
 
