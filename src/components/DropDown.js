@@ -3,32 +3,33 @@ import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
 import ButtonUnit from "../containers/ButtonUnit";
-import useParamsHelper from "../hooks/useParamsHelper";
 
 const DropDownUnitWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   border: solid red;
   height: 100%;
-  width: 180px;
+  width: 200px;
 `;
 
 const SearchBarWrapper = styled.div``;
 
 const OptionsWrapper = styled.div`
   display: flex;
-  height: 100px;
-  width: 180px;
   flex-direction: column;
-  align-items: center;
-  border: solid red;
   overflow: scroll;
 `;
 
 const SingleDropDownElement = styled.div`
   display: flex;
   align-items: center;
-  width: 180px;
+  width: 100%;
   height: 45px;
-  background-color: ${styleVariables.colours.mainBlue};
+  background-color: ${(props) =>
+    !props.dropDownButton
+      ? styleVariables.colours.mainBlue
+      : styleVariables.colours.mainPink};
   border-radius: ${styleVariables.borderRadious.main};
   color: ${styleVariables.colours.lightLetters};
   margin: 1px;
@@ -38,23 +39,22 @@ const DropDownLabel = styled.div`
   margin: auto;
 `;
 
+const DropDownButton = styled.div`
+  background-color: ${styleVariables.colours.mainPink};
+`;
+
 const DropDown = ({
   preexistingData,
   newData,
   onClickFunction,
   folderOfNewPart,
   onClickingBtnFunction,
-  dDBtnLabel
+  dDBtnLabel,
 }) => {
-  const {
-    manageFolderDdOpenParam,
-  } = useParamsHelper();
-
   const [searchingQuery, setSearchingQuery] = useState(undefined);
 
   const allData = useMemo(
-    () =>
-      newData ? [...preexistingData, ...newData] : preexistingData,
+    () => (newData ? [...preexistingData, ...newData] : preexistingData),
     [preexistingData, newData]
   );
 
@@ -87,11 +87,12 @@ const DropDown = ({
       </OptionsWrapper>
       {!folderOfNewPart && (
         <div>
-          <ButtonUnit
-            onClickFunction={onClickingBtnFunction}
-            type="add"
-            label={dDBtnLabel}
-          />
+          <SingleDropDownElement
+            dropDownButton={true}
+            onClick={onClickingBtnFunction}
+          >
+            {dDBtnLabel}
+          </SingleDropDownElement>
         </div>
       )}
     </DropDownUnitWrapper>

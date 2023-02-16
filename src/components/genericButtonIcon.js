@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+import styleVariables from "../styleVariables";
 
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const ClickedPlainButtonIconContainer = styled.div`
 const AddingButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
-  background-color: #e6056e;
+  background-color: ${styleVariables.colours.mainPink};
   min-width: 100px;
   min-height: 50px;
   max-width: 140px;
