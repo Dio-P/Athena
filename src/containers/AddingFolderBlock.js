@@ -6,19 +6,29 @@ import { useState } from "react";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import DropDown from "../components/DropDown";
 import NewFolderPopUp from "../components/NewFolderPopUp";
+import styleVariables from "../styleVariables";
 
 const MainAddNewFolderContainer = styled.div`
-  text-align: center;
   margin-top: 4px;
-  border: solid black;
-  border-radius: 10px;
   padding: 1px 2px;
-  width: 95%;
-  min-height: 20px;
+  width: 100%;
   margin: 1em;
 `;
 
+const FolderButtonContainerWrapper = styled.div`
+  display: flex;
+  border: solid black;
+  align-content: center;
+  width: 300px;
+  border-radius: ${styleVariables.borderRadious.secondary};
+`;
+
 const FolderButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const AddingFolderBodyContainer = styled.div`
   display: flex;
 `;
 
@@ -98,24 +108,28 @@ const AddingFolderBlock = ({
 
   return (
     <MainAddNewFolderContainer>
-      <FolderButtonContainer onClick={manageFolderDdOpenParam}>
-        {dropDownToogleButtonTitle}
-        <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
-      </FolderButtonContainer>
-      {folderDdOpen && (
-        <DropDown
-        preexistingData={allPreexistingFolders}
-        newData={allNewFolders}
-        onClickFunction={folderInfoToState}
-        folderOfNewPart={folderOfNewPart}
-        onClickingBtnFunction={renderAddNewFolderPopUp}
-        dDBtnLabel="+ Add New Folder"
-      />
-      )}
-      {isNewFolderPopUpOpen
-       &&
-       <NewFolderPopUp/>
-      }
+      <FolderButtonContainerWrapper>
+        <FolderButtonContainer onClick={manageFolderDdOpenParam}>
+          <div> {dropDownToogleButtonTitle} </div>
+          <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
+        </FolderButtonContainer>
+      </FolderButtonContainerWrapper>
+      <AddingFolderBodyContainer>
+        {folderDdOpen && (
+          <DropDown
+          preexistingData={allPreexistingFolders}
+          newData={allNewFolders}
+          onClickFunction={folderInfoToState}
+          folderOfNewPart={folderOfNewPart}
+          onClickingBtnFunction={renderAddNewFolderPopUp}
+          dDBtnLabel="+ Add New Folder"
+        />
+        )}
+        {isNewFolderPopUpOpen
+        &&
+        <NewFolderPopUp/>
+        }
+      </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>
   );
 };

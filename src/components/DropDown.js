@@ -7,9 +7,14 @@ import ButtonUnit from "../containers/ButtonUnit";
 
 const DropDownUnitWrapper = styled.div`
   display: flex;
+  border-radius: ${styleVariables.borderRadious.main};
+  box-shadow: ${styleVariables.boxShadow};
   flex-direction: column;
   align-content: center;
-  border: solid red;
+  background-color: ${styleVariables.colours.primaryLight};
+  border: solid ${styleVariables.colours.secondaryOrange};
+  padding: 6px 7px;
+  overlay: hidden;
   height: 100%;
   width: 200px;
 `;
@@ -18,6 +23,7 @@ const SearchBarWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 200px;
+  margin-bottom: 3px;
 `;
 
 const MagnifyingGlassWrapper = styled.div`
@@ -29,12 +35,14 @@ const MagnifyingGlassWrapper = styled.div`
 const SearchInput = styled.input`
   width: 100%;
   margin-right: 3px;
+  border-radius: ${styleVariables.borderRadious.main};
 `;
 
 const OptionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  border-radius: ${styleVariables.borderRadious.main};
 `;
 
 const SingleDropDownElement = styled.div`
@@ -45,17 +53,18 @@ const SingleDropDownElement = styled.div`
   background-color: ${(props) =>
     !props.dropDownButton
       ? styleVariables.colours.tertiaryBlue
-      : styleVariables.colours.primaryPink};
-  border-radius: ${styleVariables.borderRadious.main};
-  color: ${(props) =>
-    !props.dropDownButton ? "black" : styleVariables.colours.lightLetters};
+      : styleVariables.colours.tertiaryPink};
+  border-radius: ${(props) =>
+    !props.dropDownButton ? null : styleVariables.borderRadious.main};
+  color: black;
   margin: 1px;
+  margin-top: ${(props) => props.dropDownButton && "4px"};
 
   &:hover {
     background-color: ${(props) =>
       !props.dropDownButton
         ? styleVariables.colours.secondaryBlue
-        : styleVariables.colours.primaryPink};
+        : styleVariables.colours.secondaryPink};
   }
 `;
 
@@ -106,16 +115,12 @@ const DropDown = ({
           </SingleDropDownElement>
         ))}
       </OptionsWrapper>
-      {!folderOfNewPart && (
-        <div>
-          <SingleDropDownElement
-            dropDownButton={true}
-            onClick={onClickingBtnFunction}
-          >
-            <DropDownLabel>{dDBtnLabel}</DropDownLabel>
-          </SingleDropDownElement>
-        </div>
-      )}
+      <SingleDropDownElement
+        dropDownButton={true}
+        onClick={onClickingBtnFunction}
+      >
+        <DropDownLabel>{capitaliseFirstLetters(dDBtnLabel)}</DropDownLabel>
+      </SingleDropDownElement>
     </DropDownUnitWrapper>
   );
 };

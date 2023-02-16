@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
+import styleVariables from "../styleVariables";
 
 const InputBox = styled.input`
   width: 95%;
   border: solid black;
   border-radius: 8px;
-  border-radius: 10px;
+  border-radius: ${styleVariables.borderRadious.secondary};
   min-width: 200px;
   min-height: 20px;
   height: 24px;
@@ -19,7 +20,7 @@ const InputContainer = styled.div`
   text-align: center;
   margin-top: 4px;
   border: solid black;
-  border-radius: 10px;
+  border-radius: ${styleVariables.borderRadious.secondary};
   padding: 1px 2px;
   width: 95%;
   min-height: 20px;
