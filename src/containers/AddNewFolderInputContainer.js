@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import ButtonUnit from "./ButtonUnit";
 import InputUnit from "./InputUnit";
 import styleVariables from "../styleVariables";
+import { WarningElement } from "../components/specialElements";
 import useParamsHelper from "../hooks/useParamsHelper";
 
 const NewFolderInputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 400px;
+  border-radius: ${styleVariables.borderRadious.secondary};
+  height: 310px;
   width: 400px;
   background-color: #fffcfa;
 `;
@@ -21,16 +23,23 @@ const ClosePopUpButton = styled.div`
   background-color: ${styleVariables.colours.primaryPink};
   box-shadow: ${styleVariables.boxShadow.smallButton};
   border-radius: ${styleVariables.borderRadious.secondary};
-  margin: 6px;
+  margin: 8px;
+  align-self: end;
 `;
 
 const XIconContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 35px;
-
   margin: auto;
   height: 100%;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  
 `;
 
 const AddNewFolderInputContainer = ({
@@ -45,24 +54,26 @@ const AddNewFolderInputContainer = ({
       <ClosePopUpButton onClick={() => setIsNewFolderPopUpOpen(false)}>
         <XIconContainer>X</XIconContainer>
       </ClosePopUpButton>
-      <p>
-        If the newly created folder is not choosen to contain the new part,
-        if will be deleted
-      </p>
-      <label> New Folder Name: {newFolderName} </label>
-      <ButtonUnit
-        onClickFunction={addNewFolderAndClear}
-        type="add"
-        label="add"
-      />
-      <InputUnit
-        newInputTitle={newInputTitle}
-        key="newFolderInput"
-        type="text"
-        name="newFolder"
-        value={newFolderName}
-        onChangeFunction={onClickingFolder}
-      />
+      <Body>
+        <WarningElement
+          label="If the newly created folder is not choosen to contain the new part,
+          it will be deleted"
+        />
+        <InputUnit
+        // pass the new folder logic
+          inputTitle={`New Folder Name: ${newFolderName}`}
+          key="newFolderInput"
+          type="text"
+          name="newFolder"
+          value={newFolderName}
+          onChangeFunction={onClickingFolder}
+        />
+        <ButtonUnit
+          onClickFunction={addNewFolderAndClear}
+          type="add"
+          label="add"
+        />
+      </Body>
     </NewFolderInputContainer>
   );
 };

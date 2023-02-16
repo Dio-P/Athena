@@ -1,10 +1,24 @@
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 
+
+const InputContainer = styled.div`
+  text-align: left;
+  margin-top: 4px;
+  border-radius: ${styleVariables.borderRadious.secondary};
+  padding: 1px 2px;
+  width: 95%;
+  min-height: 20px;
+  margin: auto;
+`;
+
+const InputLabel = styled.div`
+  margin: 6px;
+`;
+
 const InputBox = styled.input`
   width: 95%;
   border: solid black;
-  border-radius: 8px;
   border-radius: ${styleVariables.borderRadious.secondary};
   min-width: 200px;
   min-height: 20px;
@@ -13,24 +27,12 @@ const InputBox = styled.input`
   cursor: text;
   margin: 0em;
   padding: 0px;
-  border-width: 0px;
-`;
-
-const InputContainer = styled.div`
-  text-align: center;
-  margin-top: 4px;
-  border: solid black;
-  border-radius: ${styleVariables.borderRadious.secondary};
-  padding: 1px 2px;
-  width: 95%;
-  min-height: 20px;
-  margin: 1em;
 `;
 
 const InputUnit = ({ inputTitle, type, name, value, onChangeFunction }) => {
   return (
     <InputContainer>
-      <label htmlFor="">{inputTitle}</label>
+      <InputLabel>{inputTitle}</InputLabel>
       <InputBox
         type={type}
         name={name}
