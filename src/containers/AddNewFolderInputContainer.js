@@ -55,10 +55,6 @@ const AddNewFolderInputContainer = ({
         <XIconContainer>X</XIconContainer>
       </ClosePopUpButton>
       <Body>
-        <WarningElement
-          label="If the newly created folder is not choosen to contain the new part,
-          it will be deleted"
-        />
         <InputUnit
         // pass the new folder logic
           inputTitle={`New Folder Name: ${newFolderName}`}
@@ -72,6 +68,10 @@ const AddNewFolderInputContainer = ({
           onClickFunction={addNewFolderAndClear}
           type="add"
           label="add"
+        />
+        <WarningElement
+          label="If the newly created folder is not choosen to contain the new part,
+          it will be deleted"
         />
       </Body>
     </NewFolderInputContainer>

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
-import { magnifyingGlass } from "../helpers/svgIcons";
+import { magnifyingGlassIcon } from "../helpers/svgIcons";
 import ButtonUnit from "../containers/ButtonUnit";
 
 const DropDownUnitWrapper = styled.div`
@@ -26,7 +26,7 @@ const SearchBarWrapper = styled.div`
   margin-bottom: 3px;
 `;
 
-const MagnifyingGlassWrapper = styled.div`
+const magnifyingGlassIconWrapper = styled.div`
   width: 23px;
   height: 23px;
   padding: 3px;
@@ -100,7 +100,7 @@ const DropDown = ({
   return (
     <DropDownUnitWrapper>
       <SearchBarWrapper>
-        <MagnifyingGlassWrapper>{magnifyingGlass}</MagnifyingGlassWrapper>
+        <magnifyingGlassIconWrapper>{magnifyingGlassIcon}</magnifyingGlassIconWrapper>
         <SearchInput
           type="text"
           name="dropDownSearch"

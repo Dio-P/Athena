@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
-import { arrowDown, arrowUp } from "../helpers/svgIcons";
+import { arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { useState } from "react";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import DropDown from "../components/DropDown";
@@ -111,7 +111,7 @@ const AddingFolderBlock = ({
       <FolderButtonContainerWrapper>
         <FolderButtonContainer onClick={manageFolderDdOpenParam}>
           <div> {dropDownToogleButtonTitle} </div>
-          <ArrowContainer>{folderDdOpen ? arrowUp : arrowDown}</ArrowContainer>
+          <ArrowContainer>{folderDdOpen ? arrowUpIcon : arrowDownIcon}</ArrowContainer>
         </FolderButtonContainer>
       </FolderButtonContainerWrapper>
       <AddingFolderBodyContainer>
