@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
+import { magnifyingGlass } from "../helpers/svgIcons";
 import ButtonUnit from "../containers/ButtonUnit";
 
 const DropDownUnitWrapper = styled.div`
@@ -13,7 +14,22 @@ const DropDownUnitWrapper = styled.div`
   width: 200px;
 `;
 
-const SearchBarWrapper = styled.div``;
+const SearchBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+`;
+
+const MagnifyingGlassWrapper = styled.div`
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  margin-right: 3px;
+`;
 
 const OptionsWrapper = styled.div`
   display: flex;
@@ -28,19 +44,23 @@ const SingleDropDownElement = styled.div`
   height: 45px;
   background-color: ${(props) =>
     !props.dropDownButton
-      ? styleVariables.colours.mainBlue
-      : styleVariables.colours.mainPink};
+      ? styleVariables.colours.tertiaryBlue
+      : styleVariables.colours.primaryPink};
   border-radius: ${styleVariables.borderRadious.main};
-  color: ${styleVariables.colours.lightLetters};
+  color: ${(props) =>
+    !props.dropDownButton ? "black" : styleVariables.colours.lightLetters};
   margin: 1px;
+
+  &:hover {
+    background-color: ${(props) =>
+      !props.dropDownButton
+        ? styleVariables.colours.secondaryBlue
+        : styleVariables.colours.primaryPink};
+  }
 `;
 
 const DropDownLabel = styled.div`
   margin: auto;
-`;
-
-const DropDownButton = styled.div`
-  background-color: ${styleVariables.colours.mainPink};
 `;
 
 const DropDown = ({
@@ -71,7 +91,8 @@ const DropDown = ({
   return (
     <DropDownUnitWrapper>
       <SearchBarWrapper>
-        <input
+        <MagnifyingGlassWrapper>{magnifyingGlass}</MagnifyingGlassWrapper>
+        <SearchInput
           type="text"
           name="dropDownSearch"
           value={searchingQuery}
@@ -91,7 +112,7 @@ const DropDown = ({
             dropDownButton={true}
             onClick={onClickingBtnFunction}
           >
-            {dDBtnLabel}
+            <DropDownLabel>{dDBtnLabel}</DropDownLabel>
           </SingleDropDownElement>
         </div>
       )}

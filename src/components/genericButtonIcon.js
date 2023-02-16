@@ -43,7 +43,7 @@ const ClickedPlainButtonIconContainer = styled.div`
 const AddingButtonIconContainer = styled.div`
   display: flex;
   align-content: center;
-  background-color: ${styleVariables.colours.mainPink};
+  background-color: ${styleVariables.colours.primaryPink};
   min-width: 100px;
   min-height: 50px;
   max-width: 140px;
