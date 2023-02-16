@@ -14,7 +14,10 @@ const styleVariables = {
     main: "15px 10%",
     secondary: "10px",
   },
-  boxShadow: "#2b2a28 0.5em 0.5em 0.3em",
+  boxShadow: {
+    bigButton: "#2b2a28 0.5em 0.5em 0.3em",
+    smallButton: "#2b2a28 0.2em 0.2em 0.1em",
+  }
 };
 
 export default styleVariables;

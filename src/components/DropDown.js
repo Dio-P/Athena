@@ -8,7 +8,7 @@ import ButtonUnit from "../containers/ButtonUnit";
 const DropDownUnitWrapper = styled.div`
   display: flex;
   border-radius: ${styleVariables.borderRadious.main};
-  box-shadow: ${styleVariables.boxShadow};
+  box-shadow: ${styleVariables.boxShadow.bigButton};
   flex-direction: column;
   align-content: center;
   background-color: ${styleVariables.colours.primaryLight};

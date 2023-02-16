@@ -127,7 +127,9 @@ const AddingFolderBlock = ({
         )}
         {isNewFolderPopUpOpen
         &&
-        <NewFolderPopUp/>
+        <NewFolderPopUp
+          setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+        />
         }
       </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>

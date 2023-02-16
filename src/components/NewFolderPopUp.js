@@ -12,12 +12,12 @@ const NewFolderInputContainerWrapper = styled.div`
   position: relative;
 `;
 
-const NewFolderPopUp = () => {
+const NewFolderPopUp = ({ setIsNewFolderPopUpOpen }) => {
   return (
     <NewFolderPopUpWrapper>
       <OverlayElem/>
       <NewFolderInputContainerWrapper>
-        <AddNewFolderInputContainer/>
+        <AddNewFolderInputContainer setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen} />
       </NewFolderInputContainerWrapper>
     </NewFolderPopUpWrapper>
 
