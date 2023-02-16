@@ -14,11 +14,13 @@ const InputContainer = styled.div`
 
 const InputLabel = styled.div`
   margin: 6px;
+  color: black;
+  font-weight: bold;
 `;
 
 const InputBox = styled.input`
   width: 95%;
-  border: solid black;
+  border: solid ${styleVariables.colours.tertiaryOrange};
   border-radius: ${styleVariables.borderRadious.secondary};
   min-width: 200px;
   min-height: 20px;

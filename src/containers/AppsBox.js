@@ -1,13 +1,14 @@
+import { useEffect } from "react";
 import PopulateButtonUnits from "./PopulateButtonUnits";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
-import { useEffect } from "react";
+import styleVariables from "../styleVariables";
 
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
-  color: orange;
+  color: "black";
 `;
 
 const DepAppBoxPageTitle = styled.h2`

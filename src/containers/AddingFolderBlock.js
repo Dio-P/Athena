@@ -20,12 +20,15 @@ const FolderButtonContainerWrapper = styled.div`
   border: solid black;
   align-content: center;
   width: 300px;
+  height: 35px;
+  align-items: center;
   border-radius: ${styleVariables.borderRadious.secondary};
 `;
 
 const FolderButtonContainer = styled.div`
   display: flex;
   width: 100%;
+  align-items: center;
 `;
 
 const AddingFolderBodyContainer = styled.div`

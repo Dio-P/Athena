@@ -5,7 +5,6 @@ import styleVariables from "../styleVariables";
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
   width: 120%;
-  
 `;
 
 const WholeButtonWrapper = styled.div`
@@ -13,7 +12,28 @@ const WholeButtonWrapper = styled.div`
   margin: auto;
   align-items: center;
   width: 100%;
+`;
 
+const SmallButtonWrapper = styled.div`
+  right: 0;
+  display: flex;
+  height: 35px;
+  width: 35px;
+  color: black;
+  background-color: ${styleVariables.colours.primaryPink};
+  box-shadow: ${styleVariables.boxShadow.smallButton};
+  border-radius: ${styleVariables.borderRadious.secondary};
+  margin: 8px;
+  align-self: end;
+`;
+
+const SmallButtonIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+  margin: auto;
+  height: 100%;
+  cursor: pointer;
 `;
 
 const PlainButtonIconContainer = styled.div`
@@ -25,7 +45,6 @@ const PlainButtonIconContainer = styled.div`
   margin: 20px 0px 20px 0px;
   font-size: 18px;
   box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-
 `;
 
 const ClickedPlainButtonIconContainer = styled.div`
@@ -37,7 +56,6 @@ const ClickedPlainButtonIconContainer = styled.div`
   border-radius: 15px 10%;
   margin: 20px 0px 20px 10px;
   font-size: 18px;
-  
 `;
 
 const AddingButtonIconContainer = styled.div`
@@ -74,16 +92,14 @@ const BtnLabel = styled.div`
   align-items: center;
 `;
 
-
 const TickBoxWrapper = styled.div`
   display: flex;
   border-radius: 15px 10%;
-  align-items:center;
+  align-items: center;
   background-color: #1d4587;
   width: 100%;
   min-width: 30px;
   max-width: 60px;
-
 `;
 
 const TickBox = styled.div`
@@ -94,58 +110,78 @@ const TickBox = styled.div`
   width: 80%;
 `;
 
-const Tick = () =>  (
+const Tick = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
     aria-label="confirm icon"
     // class="css-1n8p6mz"
   >
-    <path fill="#1ee685" d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"></path>
+    <path
+      fill="#1ee685"
+      d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"
+    ></path>
   </svg>
 );
 
-const GenericButtonIcon = ({
-  label,
-  clicked,
-  type,
-}) => {
+const SmallButton = ({ icon }) => {
+  return (
+    <SmallButtonWrapper>
+      <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
+    </SmallButtonWrapper>
+  );
+};
 
-  const findButtonType = (type, clicked) => {
-    console.log("type", type, "clicked", clicked);
-    if(type === "add") {
-      return AddingButtonIconContainer
-    }
-    if(!!clicked){
-      return ClickedPlainButtonIconContainer
-    }
-    return PlainButtonIconContainer
-  }
-
-  const CustomButtonContainer = findButtonType(type, clicked);
-
+const MainButton = ({ CustomButtonContainer, type, label, clicked }) => {
   return (
     <ButtonAndTickBoxWrapper>
-
       <WholeButtonWrapper>
         <CustomButtonContainer>
           <BtnLabelContainer>
-            <BtnLabel>
-              {capitaliseFirstLetters(label)}
-            </BtnLabel>
+            <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
           </BtnLabelContainer>
-          {type!=="add"
-          &&
+          {type !== "add" && (
             <TickBoxWrapper>
-              <TickBox>
-            {clicked && <Tick/>}
-              </TickBox>
+              <TickBox>{clicked && <Tick />}</TickBox>
             </TickBoxWrapper>
-          }
+          )}
         </CustomButtonContainer>
       </WholeButtonWrapper>
     </ButtonAndTickBoxWrapper>
-    
+  );
+};
+
+const GenericButtonIcon = ({ label, clicked, type, icon }) => {
+  if (type === "small") {
+    return <SmallButton icon={icon} />;
+  }
+  if (type === "add") {
+    return (
+      <MainButton
+        CustomButtonContainer={AddingButtonIconContainer}
+        type={type}
+        label={label}
+        clicked={clicked}
+      />
+    );
+  }
+  if (!!clicked) {
+    return (
+      <MainButton
+        CustomButtonContainer={ClickedPlainButtonIconContainer}
+        type={type}
+        label={label}
+        clicked={clicked}
+      />
+    );
+  }
+  return (
+    <MainButton
+      CustomButtonContainer={PlainButtonIconContainer}
+      type={type}
+      label={label}
+      clicked={clicked}
+    />
   );
 };
 
@@ -153,13 +189,13 @@ export default GenericButtonIcon;
 
 // make everything left align
 // for the parts:
-  // make a greed
-  // to be scrolling down in case of more than two rows of three
-  // add a finder
+// make a greed
+// to be scrolling down in case of more than two rows of three
+// add a finder
 // for the folder:
-  // make it a dropdown
-  // when clicked, the same functionality ass the tick but instead of tick same green smaller shape as the white box
-  // make this a dropdown
-  // to add new have a popup with the existing box
-    // instead of back to existing folders have a pink X top right
-  // "if you leave this folder empty it will be deleted"
+// make it a dropdown
+// when clicked, the same functionality ass the tick but instead of tick same green smaller shape as the white box
+// make this a dropdown
+// to add new have a popup with the existing box
+// instead of back to existing folders have a pink X top right
+// "if you leave this folder empty it will be deleted"

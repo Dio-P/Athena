@@ -34,7 +34,8 @@ const ButtonUnit = ({
   conditionalDisplay,
   label,
   clicked,
-  type
+  type,
+  icon
 }) => {
   const ButtonWrapper = !onMouseEnterFunction? SimpleButtonContainer : NewlyAddedPartButtonContainer;
   return (
@@ -47,6 +48,7 @@ const ButtonUnit = ({
       label={label}
       clicked={clicked}
       type={type}
+      icon={icon}
     />
     {conditionalDisplay
     &&

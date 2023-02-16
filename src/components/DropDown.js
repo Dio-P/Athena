@@ -26,7 +26,7 @@ const SearchBarWrapper = styled.div`
   margin-bottom: 3px;
 `;
 
-const magnifyingGlassIconWrapper = styled.div`
+const MagnifyingGlassIconWrapper = styled.div`
   width: 23px;
   height: 23px;
   padding: 3px;
@@ -66,6 +66,7 @@ const SingleDropDownElement = styled.div`
         ? styleVariables.colours.secondaryBlue
         : styleVariables.colours.secondaryPink};
   }
+  cursor: pointer;
 `;
 
 const DropDownLabel = styled.div`
@@ -100,7 +101,7 @@ const DropDown = ({
   return (
     <DropDownUnitWrapper>
       <SearchBarWrapper>
-        <magnifyingGlassIconWrapper>{magnifyingGlassIcon}</magnifyingGlassIconWrapper>
+        <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>
         <SearchInput
           type="text"
           name="dropDownSearch"

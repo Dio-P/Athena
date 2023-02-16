@@ -13,6 +13,7 @@ import {
   findConserningParts,
   allUniqueFolderKeys,
 } from "../helpers/addNewDocHelper";
+import styleVariables from "../styleVariables";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -40,6 +41,8 @@ const AddConnectionButtonWrapper = styled.div`
   display: flex;
   align-text: center;
 `;
+
+const SmallButton = styleVariables.customStyledElements.SmallButton;
 
 const AddNewConnectionBox = ({
   appToDisplay,
@@ -151,8 +154,7 @@ const AddNewConnectionBox = ({
 
   return (
     <DisplayBox>
-      <ButtonUnit label={"refresh"} onClickFunction={onClickingRefresh} />
-
+      <ButtonUnit onClickFunction={onClickingRefresh} type="small" icon="Refresh"/>
       <FormContainer>
         <InputUnit
           inputTitle="URL"
