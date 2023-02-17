@@ -9,7 +9,12 @@ const NewFolderPopUpWrapper = styled.div`
 
 const NewFolderInputContainerWrapper = styled.div`
   z-index: 101;
-  position: relative;
+  position: absolute;
+  width: auto;
+  margin-left: -200px;
+  left: 50%;
+  margin-bottom: -200px;
+  bottom: 50%;
 `;
 
 const NewFolderPopUp = ({
