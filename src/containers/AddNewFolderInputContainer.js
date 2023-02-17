@@ -4,6 +4,7 @@ import InputUnit from "./InputUnit";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
 import useParamsHelper from "../hooks/useParamsHelper";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const NewFolderInputContainer = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const NewFolderInputContainer = styled.div`
   background-color: #fffcfa;
 `;
 
-const SmallButton = styleVariables.customStyledElements.SmallButton;
+// const SmallButton = styleVariables.customStyledElements.SmallButton;
 
 // const ClosePopUpButton = styled.div`
 //   right: 0;
@@ -44,9 +45,9 @@ const AddNewFolderInputContainer = ({
 }) => {
   return (
     <NewFolderInputContainer>
-      <ButtonUnit
+      <GenericButtonIcon
         onClickFunction={() => setIsNewFolderPopUpOpen(false)}
-        type={"small"}
+        type="small"
         icon={"X"}
       />
       <Body>

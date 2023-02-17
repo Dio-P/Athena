@@ -46,3 +46,16 @@ export const warningIcon = (
     </svg>
   </span>
 );
+
+export const refreshIcon = (
+  <span class="icon">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+      aria-label="refresh icon"
+      class="css-1n8p6mz"
+    >
+      <path d="M7.6 22.3l-2 1.4c2.1 3.4 5.8 5.5 10.6 5.5 6.7 0 12.4-4.9 12.4-12.7v-1.8h-2.5v1.8c0 6.3-4.4 10.2-10.1 10.2-3.9.1-6.9-1.8-8.4-4.4zM32 18v-2.2l-4.7-3.3-4.7 3.3V18l4.7-3.1L32 18zm-7.5-8.3l2-1.4C24.4 5 20.7 2.8 15.9 2.8 9.2 2.8 3.5 7.7 3.5 15.5v1.8H6v-1.8C6 9.1 10.4 5.2 16.1 5.2c3.9 0 6.8 1.9 8.4 4.5zM0 14v2.2l4.7 3.3 4.7-3.3V14l-4.7 3.1L0 14z"></path>
+    </svg>
+  </span>
+);

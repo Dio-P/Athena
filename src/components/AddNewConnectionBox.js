@@ -14,6 +14,8 @@ import {
   allUniqueFolderKeys,
 } from "../helpers/addNewDocHelper";
 import styleVariables from "../styleVariables";
+import GenericButtonIcon from "./GenericButtonIcon";
+import { refreshIcon } from "../helpers/svgIcons";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -154,7 +156,7 @@ const AddNewConnectionBox = ({
 
   return (
     <DisplayBox>
-      <ButtonUnit onClickFunction={onClickingRefresh} type="small" icon="Refresh"/>
+      <GenericButtonIcon onClickFunction={onClickingRefresh} type="small" icon={refreshIcon}/>
       <FormContainer>
         <InputUnit
           inputTitle="URL"
