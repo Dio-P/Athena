@@ -48,6 +48,8 @@ const AddingFolderBlock = ({
   setFolderOfNewPart,
   allPreexistingFolders,
   allNewFolders,
+  folderBeenCreated,
+  setFolderBeenCreated,
 }) => {
   const { manageFolderDdOpenParam, keepExistingParams, params:{
     folderDdOpen
@@ -64,7 +66,7 @@ const AddingFolderBlock = ({
 
   const addNewFolderAndClear = () => {
     const newFolder = {
-      name: clickedFolder,
+      name: folderBeenCreated,
       id: newFolderIndexKey,
     };
     setFolderOfNewPart(newFolder);
@@ -73,12 +75,14 @@ const AddingFolderBlock = ({
       folderToBeDisplayedIn: newFolderIndexKey,
     });
 
-    keepExistingParams();
+    setIsNewFolderPopUpOpen(false);
+    setClickedFolder(folderBeenCreated);
+    manageFolderDdOpenParam();
   };
 
   const folderInfoToState = (folder) => {
     setClickedFolder(folder.name);
-    setFolderOfNewPart(folder);
+    // setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: folder.id,
@@ -105,7 +109,7 @@ const AddingFolderBlock = ({
 
   const dropDownToogleButtonTitle = folderOfNewPart
     ? `Folder to display new part in: ${capitaliseFirstLetters(
-        folderOfNewPart.name
+      clickedFolder
       )}`
     : "Choose a folder to display part in";
 
@@ -126,12 +130,17 @@ const AddingFolderBlock = ({
           folderOfNewPart={folderOfNewPart}
           onClickingBtnFunction={renderAddNewFolderPopUp}
           dDBtnLabel="+ Add New Folder"
+          // folderBeenCreated={folderBeenCreated}
         />
         )}
         {isNewFolderPopUpOpen
         &&
         <NewFolderPopUp
           setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+          folderOfNewPart={folderOfNewPart}
+          onClickFunction={addNewFolderAndClear}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
         />
         }
       </AddingFolderBodyContainer>

@@ -60,6 +60,10 @@ const AddNewConnectionBox = ({
   folderOfNewPart,
   setFolderOfNewPart,
   onClickingRefresh,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
+  folderBeenCreated,
+  setFolderBeenCreated,
 }) => {
   console.log("AddNewConnectionBox");
   const didMountRef = useRef(false);
@@ -77,9 +81,10 @@ const AddNewConnectionBox = ({
     deleteWarningNewPart: false,
   });
 
-  const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
-  const { newlyCreatedFolders, setNewlyCreatedFolders, clickedFolder } =
-    useFolderHelper(foldersToDisplay);
+  // const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
+  const { clickedFolder } =
+    useFolderHelper();
+    // useFolderHelper(foldersToDisplay);
 
   const APP_NAME = useMemo(
     () => capitaliseFirstLetters(appToDisplay.name),
@@ -210,6 +215,8 @@ const AddNewConnectionBox = ({
               allPreexistingFolders={appToDisplay.folders}
               allNewFolders={newlyCreatedFolders}
               clickedFolder={clickedFolder}
+              folderBeenCreated={folderBeenCreated}
+              setFolderBeenCreated={setFolderBeenCreated}
               // manageFolderDdOpenParam={manageFolderDdOpenParam}
             />
           )}

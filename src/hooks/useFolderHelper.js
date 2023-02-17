@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, useRef } from "react";
 import useParamsHelper from "./useParamsHelper";
 
 
-const useFolderHelper = (preexistingFolders) => {
+const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
 
   const {
@@ -10,7 +10,7 @@ const useFolderHelper = (preexistingFolders) => {
   } = useParamsHelper();
 
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
-  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+  // const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   const [clickedFolder, setClickedFolder] = useState("");
 
   const preexistingFoldersLength = useMemo(() => preExistingFoldersMemo && (preExistingFoldersMemo.length - 1 || 0), [preExistingFoldersMemo]);
@@ -33,8 +33,6 @@ const useFolderHelper = (preexistingFolders) => {
       }
   
   return {
-    newlyCreatedFolders, 
-    setNewlyCreatedFolders, 
     clickedFolder, 
     setClickedFolder, 
     newFolderIndexKey,

@@ -17,7 +17,7 @@ const WarningIconContainer = styled.div`
   width: 20px;
 `;
 
-export const WarningElement = ({ label }) => {
+export const WarningElement = ({ info }) => {
   return (
     <WarningElementWrapper>
       <WarningHeaderContainer>
@@ -26,7 +26,7 @@ export const WarningElement = ({ label }) => {
         </WarningIconContainer>
         <strong>Warning: </strong>  
       </WarningHeaderContainer>
-      {label}
+      {info}
     </WarningElementWrapper>
   ) 
 }

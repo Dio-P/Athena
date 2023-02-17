@@ -14,7 +14,7 @@ const DropDownUnitWrapper = styled.div`
   background-color: ${styleVariables.colours.primaryLight};
   border: solid ${styleVariables.colours.secondaryOrange};
   padding: 6px 7px;
-  overlay: hidden;
+  overflow: hidden;  
   height: 100%;
   width: 200px;
 `;
@@ -48,7 +48,7 @@ const OptionsWrapper = styled.div`
 const SingleDropDownElement = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 99%;
   height: 45px;
   background-color: ${(props) =>
     !props.dropDownButton
@@ -80,12 +80,13 @@ const DropDown = ({
   folderOfNewPart,
   onClickingBtnFunction,
   dDBtnLabel,
+  // folderOfNewPart,
 }) => {
   const [searchingQuery, setSearchingQuery] = useState(undefined);
 
   const allData = useMemo(
-    () => (newData ? [...preexistingData, ...newData] : preexistingData),
-    [preexistingData, newData]
+    () => (folderOfNewPart ? [...preexistingData, folderOfNewPart] : preexistingData),
+    [preexistingData, folderOfNewPart]
   );
 
   const filteredData = useMemo(

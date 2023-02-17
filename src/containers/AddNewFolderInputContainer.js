@@ -5,6 +5,7 @@ import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
 import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
+import useFolderHelper from "../hooks/useFolderHelper";
 
 const NewFolderInputContainer = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const NewFolderInputContainer = styled.div`
   width: 400px;
   background-color: #fffcfa;
 `;
+
 
 // const SmallButton = styleVariables.customStyledElements.SmallButton;
 
@@ -42,7 +44,18 @@ const AddNewFolderInputContainer = ({
   newInputTitle,
   onClickingFolder,
   setIsNewFolderPopUpOpen,
+  folderOfNewPart,
+  onClickFunction,
+  folderBeenCreated,
+  setFolderBeenCreated,
 }) => {
+
+  const { setClickedFolder } = useFolderHelper();
+
+  const onAddingNewFolder = () => {
+    
+  }
+
   return (
     <NewFolderInputContainer>
       <GenericButtonIcon
@@ -53,20 +66,20 @@ const AddNewFolderInputContainer = ({
       <Body>
         <InputUnit
           // pass the new folder logic
-          inputTitle={`New Folder Name: ${newFolderName}`}
+          inputTitle={`New Folder Name: ${folderBeenCreated}`}
           key="newFolderInput"
           type="text"
           name="newFolder"
-          value={newFolderName}
-          onChangeFunction={onClickingFolder}
+          value={folderBeenCreated}
+          onChangeFunction={setFolderBeenCreated}
         />
         <ButtonUnit
-          onClickFunction={addNewFolderAndClear}
+          onClickFunction={onClickFunction}
           type="add"
           label="add"
         />
         <WarningElement
-          label="If the newly created folder is not choosen to contain the new part,
+          info="If the newly created folder is not choosen to contain the new part,
           it will be deleted"
         />
       </Body>

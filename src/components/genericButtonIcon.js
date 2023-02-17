@@ -31,8 +31,8 @@ const SmallButtonIconContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 35px;
+  height: 25px;
   margin: auto;
-  height: 100%;
   cursor: pointer;
 `;
 
@@ -124,9 +124,9 @@ const Tick = () => (
   </svg>
 );
 
-const SmallButton = ({ icon }) => {
+const SmallButton = ({ icon, onClickFunction }) => {
   return (
-    <SmallButtonWrapper>
+    <SmallButtonWrapper onClick={onClickFunction}>
       <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
     </SmallButtonWrapper>
   );
@@ -151,9 +151,9 @@ const MainButton = ({ CustomButtonContainer, type, label, clicked }) => {
   );
 };
 
-const GenericButtonIcon = ({ label, clicked, type, icon }) => {
+const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
   if (type === "small") {
-    return <SmallButton icon={icon} />;
+    return <SmallButton icon={icon} onClickFunction={onClickFunction}/>;
   }
   if (type === "add") {
     return (

@@ -4,7 +4,7 @@ import AddNewFolderInputContainer from "../containers/AddNewFolderInputContainer
 
 const NewFolderPopUpWrapper = styled.div`
   width: 100%;
-  height: 100%
+  height: 100%;
 `;
 
 const NewFolderInputContainerWrapper = styled.div`
@@ -12,16 +12,27 @@ const NewFolderInputContainerWrapper = styled.div`
   position: relative;
 `;
 
-const NewFolderPopUp = ({ setIsNewFolderPopUpOpen }) => {
+const NewFolderPopUp = ({
+  setIsNewFolderPopUpOpen,
+  folderOfNewPart,
+  onClickFunction,
+  folderBeenCreated,
+  setFolderBeenCreated,
+}) => {
   return (
     <NewFolderPopUpWrapper>
-      <OverlayElem/>
+      <OverlayElem />
       <NewFolderInputContainerWrapper>
-        <AddNewFolderInputContainer setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen} />
+        <AddNewFolderInputContainer
+          setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+          folderOfNewPart={folderOfNewPart}
+          onClickFunction={onClickFunction}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
+        />
       </NewFolderInputContainerWrapper>
     </NewFolderPopUpWrapper>
-
-  ) 
+  );
 };
 
 export default NewFolderPopUp;
