@@ -6,6 +6,9 @@ const PartsOptionsContainer = styled.div`
   display: flex;
   padding: 10px;
   margin: auto;
+  overflow: scroll;
+  max-height: 250px;
+
 `;
 
 const PartsOptions = ({dbPartsWithClickedKey, onClickingPart, newPartsAdded, APP_NAME}) => {
