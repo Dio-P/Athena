@@ -49,7 +49,7 @@ const findConnectionParameters = async (link) => {
 
 export default findConnectionParameters;
 
-  // fetch(https://github.com/Dio-P/Athena/blob/main/src/components/AddNewConnectionBox.js)
+  // fetch(https://github.com/Dio-P/Athena/blob/main/src/components/AddNewConnectionBlock.js)
   // https://paper.dropbox.com/doc/Imposter-syndrome-workshop-ideas--BtYF4rZRzasgUTPjgE7J0osIAg-vIsKjOV2rmXL6H3g39LgZ
   // https://jira.dev.bbc.co.uk/browse/DPUB-6213
   // https://confluence.dev.bbc.co.uk/display/NEWSART/Optimo+Articles+Runbook

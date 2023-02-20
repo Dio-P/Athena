@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import AddNewConnectionBox from "../components/AddNewConnectionBox";
+import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";

@@ -12,7 +12,7 @@ import useParamsHelper from "../hooks/useParamsHelper";
 import {
   findConserningParts,
   allUniqueFolderKeys,
-} from "../helpers/addNewDocHelper";
+} from "../helpers/AddNewConnectionBlockHelper";
 import styleVariables from "../styleVariables";
 import { refreshIcon } from "../helpers/svgIcons";
 
@@ -45,7 +45,7 @@ const AddConnectionButtonWrapper = styled.div`
 
 const SmallButton = styleVariables.customStyledElements.SmallButton;
 
-const AddNewConnectionBox = ({
+const AddNewConnectionBlock = ({
   appToDisplay,
   url,
   setUrl,
@@ -64,7 +64,7 @@ const AddNewConnectionBox = ({
   folderBeenCreated,
   setFolderBeenCreated,
 }) => {
-  console.log("AddNewConnectionBox");
+  console.log("AddNewConnectionBlock");
   const didMountRef = useRef(false);
 
   const [updatedApp, setUpdatedApp] = useState("");
@@ -248,7 +248,7 @@ const AddNewConnectionBox = ({
   );
 };
 
-export default AddNewConnectionBox;
+export default AddNewConnectionBlock;
 
 // working:
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many

@@ -1,10 +1,10 @@
 import { useState, useMemo, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import AddNewConnectionBox from "../components/AddNewConnectionBox";
+import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
 import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
-import { addClickedKeyToPreexParts } from "../helpers/addNewDocHelper";
+import { addClickedKeyToPreexParts } from "../helpers/AddNewConnectionBlockHelper";
 
 const AddConnectionStateManager = ({ addingNewConnection }) => {
   const { keepExistingParams, params: { appId, } } = useParamsHelper();
@@ -70,7 +70,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
       );
     }
     if (appToDisplay) {
-      return <AddNewConnectionBox
+      return <AddNewConnectionBlock
       // do I need appToDisplay Down?
       appToDisplay={appToDisplay}
       url={url}

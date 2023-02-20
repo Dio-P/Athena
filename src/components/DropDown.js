@@ -4,7 +4,7 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
 import { magnifyingGlassIcon } from "../helpers/svgIcons";
 import { SearchBar } from "./specialElements";
-import { useSearchBar } from "../hooks/useAddingDocHelpers";
+import { useSearchBar } from "../hooks/useAddNewConnectionBlock";
 
 const DropDownUnitWrapper = styled.div`
   display: flex;

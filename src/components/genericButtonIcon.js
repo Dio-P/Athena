@@ -133,9 +133,9 @@ const SmallButton = ({ icon, onClickFunction }) => {
   );
 };
 
-const MainButton = ({ CustomButtonContainer, type, label, clicked }) => {
+const MainButton = ({ CustomButtonContainer, type, label, clicked, onClickFunction }) => {
   return (
-    <ButtonAndTickBoxWrapper>
+    <ButtonAndTickBoxWrapper onClick={onClickFunction}>
       <WholeButtonWrapper>
         <CustomButtonContainer>
           <BtnLabelContainer>
@@ -163,6 +163,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
         type={type}
         label={label}
         clicked={clicked}
+        onClickFunction={onClickFunction}
       />
     );
   }
@@ -173,6 +174,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
         type={type}
         label={label}
         clicked={clicked}
+        onClickFunction={onClickFunction}
       />
     );
   }
@@ -182,6 +184,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
       type={type}
       label={label}
       clicked={clicked}
+      onClickFunction={onClickFunction}
     />
   );
 };
