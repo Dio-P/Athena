@@ -56,8 +56,6 @@ export const WarningElement = ({ info }) => {
   ) 
 };
 
-
-
 export const SearchBar = ({searchingQuery, search}) => (
   <SearchBarWrapper>
   <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>

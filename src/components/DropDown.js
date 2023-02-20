@@ -16,7 +16,7 @@ const DropDownUnitWrapper = styled.div`
   background-color: ${styleVariables.colours.primaryLight};
   border: solid ${styleVariables.colours.secondaryOrange};
   padding: 6px 7px;
-  overflow: hidden;  
+  overflow: hidden;
   height: 100%;
   width: 200px;
 `;
@@ -47,24 +47,24 @@ const OptionsWrapper = styled.div`
   border-radius: ${styleVariables.borderRadious.main};
 `;
 
-const SingleDropDownElement = styled.div`
+const SingleDropDownElementWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 99%;
   height: 45px;
   background-color: ${(props) =>
-    !props.dropDownButton
+    !props.isAddFolderBtn
       ? styleVariables.colours.tertiaryBlue
       : styleVariables.colours.tertiaryPink};
   border-radius: ${(props) =>
-    !props.dropDownButton ? null : styleVariables.borderRadious.main};
+    !props.isAddFolderBtn ? null : styleVariables.borderRadious.main};
   color: black;
   margin: 1px;
-  margin-top: ${(props) => props.dropDownButton && "4px"};
+  margin-top: ${(props) => props.isAddFolderBtn && "4px"};
 
   &:hover {
     background-color: ${(props) =>
-      !props.dropDownButton
+      !props.isAddFolderBtn
         ? styleVariables.colours.secondaryBlue
         : styleVariables.colours.secondaryPink};
   }
@@ -85,30 +85,46 @@ const DropDown = ({
   // folderOfNewPart,
 }) => {
   const allData = useMemo(
-    () => (folderOfNewPart ? [...preexistingData, folderOfNewPart] : preexistingData),
+    () =>
+      folderOfNewPart ? [...preexistingData, folderOfNewPart] : preexistingData,
     [preexistingData, folderOfNewPart]
   );
 
-  const {search, searchingQuery, filteredData} = useSearchBar(allData);
+  const { search, searchingQuery, filteredData } = useSearchBar(allData);
 
   const foldersToRender = !searchingQuery ? allData : filteredData;
 
+  const SingleDropdownElement = ({
+    onClickFunction,
+    label,
+    isAddFolderBtn,
+  }) => {
+    return (
+      <SingleDropDownElementWrapper
+        onClick={onClickFunction}
+        isAddFolderBtn={isAddFolderBtn}
+      >
+        <DropDownLabel>{capitaliseFirstLetters(label)}</DropDownLabel>
+      </SingleDropDownElementWrapper>
+    );
+  };
+
   return (
     <DropDownUnitWrapper>
-      <SearchBar searchingQuery={searchingQuery} search={search}/>
+      <SearchBar searchingQuery={searchingQuery} search={search} />
       <OptionsWrapper>
         {foldersToRender.map((folder) => (
-          <SingleDropDownElement onClick={() => onClickFunction(folder)}>
-            <DropDownLabel>{capitaliseFirstLetters(folder.name)}</DropDownLabel>
-          </SingleDropDownElement>
+          <SingleDropdownElement
+            onClickFunction={() => onClickFunction(folder)}
+            label={folder.name}
+          />
         ))}
       </OptionsWrapper>
-      <SingleDropDownElement
-        dropDownButton={true}
-        onClick={onClickingBtnFunction}
-      >
-        <DropDownLabel>{capitaliseFirstLetters(dDBtnLabel)}</DropDownLabel>
-      </SingleDropDownElement>
+      <SingleDropdownElement
+        onClickFunction={onClickingBtnFunction}
+        label={dDBtnLabel}
+        isAddFolderBtn={true}
+      />
     </DropDownUnitWrapper>
   );
 };
