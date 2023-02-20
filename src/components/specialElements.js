@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import styled from "@emotion/styled";
 import { warningIcon, magnifyingGlassIcon } from "../helpers/svgIcons";
 import styleVariables from "../styleVariables";
@@ -56,29 +56,16 @@ export const WarningElement = ({ info }) => {
   ) 
 };
 
-export const useSearchBar = (allData) => {
-  const [searchingQuery, setSearchingQuery] = useState(undefined);
 
-  const filteredData = useMemo(
-    () => allData.filter((folder) => folder.name.includes(searchingQuery)),
-    [searchingQuery]
-  );
 
-  const searchFolder = (e) => {
-    setSearchingQuery(e.target.value);
-  };
-
-   const Searchbar = () => (
-    <SearchBarWrapper>
-    <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>
-    <SearchInput
-      type="text"
-      name="dropDownSearch"
-      value={searchingQuery}
-      onChange={searchFolder}
-    />
-  </SearchBarWrapper>
-  );
-
-  return {Searchbar, searchingQuery, filteredData};
-}
+export const SearchBar = ({searchingQuery, search}) => (
+  <SearchBarWrapper>
+  <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>
+  <SearchInput
+    type="text"
+    name="dropDownSearch"
+    value={searchingQuery}
+    onChange={search}
+  />
+</SearchBarWrapper>
+); 
