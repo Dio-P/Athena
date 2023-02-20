@@ -16,8 +16,8 @@ export const addClickedKeyToPreexParts = (preExistingParts) => {
   }
 };
 
-export const findConserningParts = (allAppParts, newPartsAdded) => {
-  const checkedExistingPartIds = Object.values(allAppParts)
+export const findConserningParts = (dbPartsWithClickedKey, newPartsAdded) => {
+  const checkedExistingPartIds = Object.values(dbPartsWithClickedKey)
     .filter((part) => part.clicked)
     .map((part) => part.id);
   const newPartsIds = Object.values(newPartsAdded).map((part) => part.id);

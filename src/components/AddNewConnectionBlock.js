@@ -15,6 +15,7 @@ import {
 } from "../helpers/AddNewConnectionBlockHelper";
 import styleVariables from "../styleVariables";
 import { refreshIcon } from "../helpers/svgIcons";
+import PartsOptions from "../containers/PartsOptions";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -49,11 +50,10 @@ const AddNewConnectionBlock = ({
   appToDisplay,
   url,
   setUrl,
-  preexistingParts,
   newPartsAdded,
   setNewPartsAdded,
-  allAppParts,
-  setAllAppParts,
+  dbPartsWithClickedKey,
+  setDbPartsWithClickedKey,
   newPart,
   setNewPart,
   folderOfNewPart,
@@ -90,22 +90,23 @@ const AddNewConnectionBlock = ({
     [appToDisplay.name]
   );
 
-  const appPartsArray = useMemo(
-    () => allAppParts && Object.values(allAppParts),
-    [allAppParts]
-  );
+  // const appPartsArray = useMemo(
+  //   () => dbPartsWithClickedKey && Object.values(dbPartsWithClickedKey),
+  //   [dbPartsWithClickedKey]
+  // );
 
-  const newPartsAddedArray = useMemo(
-    () => newPartsAdded && Object.values(newPartsAdded),
-    [newPartsAdded]
-  );
+  // const newPartsAddedArray = useMemo(
+  //   () => newPartsAdded && Object.values(newPartsAdded),
+  //   [newPartsAdded]
+  // );
 
   const onClickingPart = (part) => {
+    console.log("onClickingPart clicked, part is:", part);
     if (part) {
-      setAllAppParts({
-        ...allAppParts,
+      setDbPartsWithClickedKey({
+        ...dbPartsWithClickedKey,
         [part.name]: {
-          ...allAppParts[part.name],
+          ...dbPartsWithClickedKey[part.name],
           clicked: !part.clicked,
         },
       });
@@ -131,7 +132,7 @@ const AddNewConnectionBlock = ({
       url: url,
       source: source,
       lastModified: "someDate",
-      concerningParts: findConserningParts(allAppParts, newPartsAdded),
+      concerningParts: findConserningParts(dbPartsWithClickedKey, newPartsAdded),
       flags: {
         isLinkUpToDate: true, //tickbox checked
       },
@@ -144,19 +145,19 @@ const AddNewConnectionBlock = ({
     });
   };
 
-  const deleteNewlyAddedPart = (part) => {
-    const folderIdIsInUse = (id) =>
-      allUniqueFolderKeys(preexistingParts, newPartsAdded).includes(id);
-    delete newPartsAdded[part.name];
-    setNewPartsAdded({ ...newPartsAdded });
-    // delete the folders key if no app is using it
-    const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
-      folderIdIsInUse(id)
-    );
+  // const deleteNewlyAddedPart = (part) => {
+  //   const folderIdIsInUse = (id) =>
+  //     allUniqueFolderKeys(preexistingParts, newPartsAdded).includes(id);
+  //   delete newPartsAdded[part.name];
+  //   setNewPartsAdded({ ...newPartsAdded });
+  //   // delete the folders key if no app is using it
+  //   const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
+  //     folderIdIsInUse(id)
+  //   );
 
-    setNewlyCreatedFolders(updatedNewFoldersFolder);
-    keepExistingParams();
-  };
+  //   setNewlyCreatedFolders(updatedNewFoldersFolder);
+  //   keepExistingParams();
+  // };
 
   return (
     <DisplayBox>
@@ -173,7 +174,12 @@ const AddNewConnectionBlock = ({
           <p>Choose an app part and display folder</p>
 
           <OptionsWraper>
-            <label htmlFor="">Existing {APP_NAME} Parts</label>
+            <PartsOptions dbPartsWithClickedKey={dbPartsWithClickedKey}
+             onClickingPart={(part) => onClickingPart(part)}
+              newPartsAdded={newPartsAdded}
+               APP_NAME={APP_NAME}
+               />
+            {/* <label htmlFor="">Existing {APP_NAME} Parts</label>
             <PopulateButtons
               data={appPartsArray}
               onClickFunction={(part) => onClickingPart(part)}
@@ -182,20 +188,20 @@ const AddNewConnectionBlock = ({
               <PopulateButtons
                 data={newPartsAddedArray}
                 onClickFunction={(part) => deleteNewlyAddedPart(part)}
-                onMouseEnterFunction={() =>
-                  setDisplay({ ...display, deleteWarningNewPart: true })
-                }
-                onMouseLeaveFunction={() =>
-                  setDisplay({ ...display, deleteWarningNewPart: false })
-                }
+                // onMouseEnterFunction={() =>
+                //   setDisplay({ ...display, deleteWarningNewPart: true })
+                // }
+                // onMouseLeaveFunction={() =>
+                //   setDisplay({ ...display, deleteWarningNewPart: false })
+                // }
                 clicked={true}
-                conditionalDisplay={
-                  display.deleteWarningNewPart && (
-                    <p>Newly added Part: Click to delete</p>
-                  )
-                }
+                // conditionalDisplay={
+                //   display.deleteWarningNewPart && (
+                //     <p>Newly added Part: Click to delete</p>
+                //   )
+                // }
               />
-            )}
+            )} */}
             <GenericButtonIcon
               onClickFunction={manageAddingNewPartParam}
               type="add"
@@ -251,6 +257,7 @@ const AddNewConnectionBlock = ({
 export default AddNewConnectionBlock;
 
 // working:
+// display worning if newly added part gets unclicked. Under the part's icon
 // for the parts and folders find a way to make them display as list in options, or do something that will make it easier if you have many
 // instead of them being green make a green stroke and a tick sign, also remove the shadow
 // add safety in the case the user just wants to add a link

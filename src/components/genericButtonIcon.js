@@ -4,8 +4,8 @@ import styleVariables from "../styleVariables";
 
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
-  width: 120%;
-  max-width: 14em;
+  width: 14em;
+  cursor: pointer;
 `;
 
 const WholeButtonWrapper = styled.div`
@@ -26,6 +26,8 @@ const SmallButtonWrapper = styled.div`
   border-radius: ${styleVariables.borderRadious.secondary};
   margin: 8px;
   align-self: end;
+  cursor: pointer;
+
 `;
 
 const SmallButtonIconContainer = styled.div`
@@ -34,7 +36,6 @@ const SmallButtonIconContainer = styled.div`
   font-size: 35px;
   height: 25px;
   margin: auto;
-  cursor: pointer;
 `;
 
 const PlainButtonIconContainer = styled.div`

@@ -18,7 +18,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
 
   const [url, setUrl] = useState("");
   const [newPartsAdded, setNewPartsAdded] = useState("");
-  const [allAppParts, setAllAppParts] = useState([]);
+  const [dbPartsWithClickedKey, setDbPartsWithClickedKey] = useState([]);
   const DEFAULT_NEW_PART = {
     name: "",
     id: uuidv4(),
@@ -31,27 +31,26 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   // there is a chance that the below needs to be on the add new connection, synce there is where the add is clicked
-  const { newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
+  // const { newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
 
 
   useEffect(() => {
-    allAppParts && console.log("allAppParts.length@@", allAppParts.length); 
-    if(preexistingParts && allAppParts?.length === 0){
-      setAllAppParts(preexistingParts);
+    if(preexistingParts){
+      setDbPartsWithClickedKey(preexistingParts);
     }
   }, [preexistingParts]);
 
   // useEffect(() => {
-  //   allAppParts && console.log("allAppParts.length@@", allAppParts.length); 
-  //   if(preexistingParts && allAppParts?.length === 0){
-  //     setAllAppParts(preexistingParts);
+  //   dbPartsWithClickedKey && console.log("dbPartsWithClickedKey.length@@", dbPartsWithClickedKey.length); 
+  //   if(preexistingParts && dbPartsWithClickedKey?.length === 0){
+  //     setDbPartsWithClickedKey(preexistingParts);
   //   }
   // }, [preexistingParts]);
 
   const onClickingRefresh = () => {
     setUrl("");
     setNewPartsAdded("");
-    setAllAppParts(appToDisplay.parts || []);
+    setDbPartsWithClickedKey(appToDisplay.parts || []);
     setNewPart(DEFAULT_NEW_PART);
     setFolderOfNewPart("");
     keepExistingParams();
@@ -77,9 +76,8 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
       setUrl={setUrl}
       newPartsAdded={newPartsAdded}
       setNewPartsAdded={setNewPartsAdded}
-      preexistingParts={preexistingParts}
-      allAppParts={allAppParts}
-      setAllAppParts={setAllAppParts}
+      dbPartsWithClickedKey={dbPartsWithClickedKey}
+      setDbPartsWithClickedKey={setDbPartsWithClickedKey}
       newPart={newPart}
       setNewPart={setNewPart}
       folderOfNewPart={folderOfNewPart}
