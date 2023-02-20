@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
 import { magnifyingGlassIcon } from "../helpers/svgIcons";
+import { useSearchBar } from "./specialElements";
 import ButtonUnit from "../containers/ButtonUnit";
 
 const DropDownUnitWrapper = styled.div`
@@ -82,26 +83,29 @@ const DropDown = ({
   dDBtnLabel,
   // folderOfNewPart,
 }) => {
-  const [searchingQuery, setSearchingQuery] = useState(undefined);
+  // const [searchingQuery, setSearchingQuery] = useState(undefined);
 
   const allData = useMemo(
     () => (folderOfNewPart ? [...preexistingData, folderOfNewPart] : preexistingData),
     [preexistingData, folderOfNewPart]
   );
 
-  const filteredData = useMemo(
-    () => allData.filter((folder) => folder.name.includes(searchingQuery)),
-    [searchingQuery]
-  );
+  const {Searchbar, searchingQuery, filteredData} = useSearchBar(allData);
+
+  // const filteredData = useMemo(
+  //   () => allData.filter((folder) => folder.name.includes(searchingQuery)),
+  //   [searchingQuery]
+  // );
 
   const foldersToRender = !searchingQuery ? allData : filteredData;
 
-  const searchFolder = (e) => {
-    setSearchingQuery(e.target.value);
-  };
+  // const searchFolder = (e) => {
+  //   setSearchingQuery(e.target.value);
+  // };
   return (
     <DropDownUnitWrapper>
-      <SearchBarWrapper>
+      <Searchbar/>
+      {/* <SearchBarWrapper>
         <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>
         <SearchInput
           type="text"
@@ -109,7 +113,7 @@ const DropDown = ({
           value={searchingQuery}
           onChange={searchFolder}
         />
-      </SearchBarWrapper>
+      </SearchBarWrapper> */}
       <OptionsWrapper>
         {foldersToRender.map((folder) => (
           <SingleDropDownElement onClick={() => onClickFunction(folder)}>

@@ -1,6 +1,10 @@
+import { useState, useMemo } from "react";
 import styled from "@emotion/styled";
-import { warningIcon } from "../helpers/svgIcons";
+import { warningIcon, magnifyingGlassIcon } from "../helpers/svgIcons";
+import styleVariables from "../styleVariables";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+
+// WarningElement element styles \/
 
 const WarningElementWrapper = styled.div`
   color: red;
@@ -17,6 +21,27 @@ const WarningIconContainer = styled.div`
   width: 20px;
 `;
 
+// useSearchBar element styles \/
+
+const SearchBarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+  margin-bottom: 3px;
+`;
+
+const MagnifyingGlassIconWrapper = styled.div`
+  width: 23px;
+  height: 23px;
+  padding: 3px;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  margin-right: 3px;
+  border-radius: ${styleVariables.borderRadious.main};
+`;
+
 export const WarningElement = ({ info }) => {
   return (
     <WarningElementWrapper>
@@ -29,4 +54,31 @@ export const WarningElement = ({ info }) => {
       {info}
     </WarningElementWrapper>
   ) 
+};
+
+export const useSearchBar = (allData) => {
+  const [searchingQuery, setSearchingQuery] = useState(undefined);
+
+  const filteredData = useMemo(
+    () => allData.filter((folder) => folder.name.includes(searchingQuery)),
+    [searchingQuery]
+  );
+
+  const searchFolder = (e) => {
+    setSearchingQuery(e.target.value);
+  };
+
+   const Searchbar = () => (
+    <SearchBarWrapper>
+    <MagnifyingGlassIconWrapper>{magnifyingGlassIcon}</MagnifyingGlassIconWrapper>
+    <SearchInput
+      type="text"
+      name="dropDownSearch"
+      value={searchingQuery}
+      onChange={searchFolder}
+    />
+  </SearchBarWrapper>
+  );
+
+  return {Searchbar, searchingQuery, filteredData};
 }
