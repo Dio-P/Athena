@@ -5,6 +5,7 @@ import styleVariables from "../styleVariables";
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
   width: 120%;
+  max-width: 14em;
 `;
 
 const WholeButtonWrapper = styled.div`

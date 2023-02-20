@@ -5,7 +5,6 @@ import styleVariables from "../styleVariables";
 import { magnifyingGlassIcon } from "../helpers/svgIcons";
 import { SearchBar } from "./specialElements";
 import { useSearchBar } from "../hooks/useAddingDocHelpers";
-import ButtonUnit from "../containers/ButtonUnit";
 
 const DropDownUnitWrapper = styled.div`
   display: flex;

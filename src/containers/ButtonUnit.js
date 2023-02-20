@@ -58,4 +58,5 @@ const ButtonUnit = ({
 )
 };
 
+// this component is now deprecated. To be replaced with generic button icon
 export default ButtonUnit

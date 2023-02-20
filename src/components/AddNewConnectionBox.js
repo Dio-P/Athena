@@ -2,11 +2,11 @@ import { useState, useMemo, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
-import ButtonUnit from "../containers/ButtonUnit";
+import GenericButtonIcon from "./GenericButtonIcon";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
-import PopulateButtonUnits from "../containers/PopulateButtonUnits";
+import PopulateButtons from "../containers/PopulateButtons";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import {
@@ -14,7 +14,6 @@ import {
   allUniqueFolderKeys,
 } from "../helpers/addNewDocHelper";
 import styleVariables from "../styleVariables";
-import GenericButtonIcon from "./GenericButtonIcon";
 import { refreshIcon } from "../helpers/svgIcons";
 
 const DisplayBox = styled.div`
@@ -175,12 +174,12 @@ const AddNewConnectionBox = ({
 
           <OptionsWraper>
             <label htmlFor="">Existing {APP_NAME} Parts</label>
-            <PopulateButtonUnits
+            <PopulateButtons
               data={appPartsArray}
               onClickFunction={(part) => onClickingPart(part)}
             />
             {newPartsAdded && (
-              <PopulateButtonUnits
+              <PopulateButtons
                 data={newPartsAddedArray}
                 onClickFunction={(part) => deleteNewlyAddedPart(part)}
                 onMouseEnterFunction={() =>
@@ -197,7 +196,7 @@ const AddNewConnectionBox = ({
                 }
               />
             )}
-            <ButtonUnit
+            <GenericButtonIcon
               onClickFunction={manageAddingNewPartParam}
               type="add"
               label={addingNewPart ? `- close` : `+ Add ${APP_NAME} Part`}
@@ -225,7 +224,7 @@ const AddNewConnectionBox = ({
                         (url && clickedFolder && part)
                         ? */}
         <AddConnectionButtonWrapper>
-          <ButtonUnit
+          <GenericButtonIcon
             label="+ Add New Connection"
             onClickFunction={onClickingAdd}
             type="add"

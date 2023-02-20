@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 import { useCallback } from "react";
 import { useEffect } from "react";
 import ButtonUnit from "./ButtonUnit"
 
-const ButtonUnitWrapper = styled.div`
+const GenericButtonIconWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const PopulateButtonUnits = ({ 
+const PopulateButtons = ({ 
   data, 
   onClickFunction,
   clicked,
@@ -17,10 +18,10 @@ const PopulateButtonUnits = ({
 
   return (
     data &&
-    <ButtonUnitWrapper>
+    <GenericButtonIconWrapper>
 
       {data.map((choice, index) => (
-        <ButtonUnit
+        <GenericButtonIcon
           key={index}
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
@@ -28,8 +29,8 @@ const PopulateButtonUnits = ({
           type={type}
         />
       ))}
-    </ButtonUnitWrapper>
+    </GenericButtonIconWrapper>
   )
 }
 
-export default PopulateButtonUnits
+export default PopulateButtons

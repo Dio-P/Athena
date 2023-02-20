@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 import AddNewPartInput from "./AddNewPartInput";
 import AddingFolderBlock from "./AddingFolderBlock";
-import ButtonUnit from "./ButtonUnit";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 
@@ -96,7 +96,7 @@ const AddingPartBlock = ({
         setFolderBeenCreated={setFolderBeenCreated}
         // manageFolderDdOpenParam={manageFolderDdOpenParam}
       />
-      <ButtonUnit
+      <GenericButtonIcon
         onClickFunction={addNewPartAndClear}
         type="add"
         label="add this part and start with another"

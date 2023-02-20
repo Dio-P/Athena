@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import PopulateButtonUnits from "./PopulateButtonUnits";
+import PopulateButtons from "./PopulateButtons";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
@@ -48,7 +48,7 @@ const AppsBox = ({ teamApps, teamName }) => {
 
       {(teamApps &&
         !appId) &&
-        <PopulateButtonUnits
+        <PopulateButtons
           data={teamApps}
           onClickFunction={(singleApp) => manageAppIdParam(singleApp)}
         />

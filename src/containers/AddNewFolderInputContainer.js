@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import ButtonUnit from "./ButtonUnit";
 import InputUnit from "./InputUnit";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
@@ -73,7 +72,7 @@ const AddNewFolderInputContainer = ({
           value={folderBeenCreated}
           onChangeFunction={setFolderBeenCreated}
         />
-        <ButtonUnit
+        <GenericButtonIcon
           onClickFunction={onClickFunction}
           type="add"
           label="add"
