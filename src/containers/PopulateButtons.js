@@ -12,7 +12,6 @@ const GenericButtonIconWrapper = styled.div`
 const PopulateButtons = ({ 
   data, 
   onClickFunction,
-  clicked,
   type,
 }) => {
 

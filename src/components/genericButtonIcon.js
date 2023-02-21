@@ -6,6 +6,7 @@ const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
   width: 14em;
   cursor: pointer;
+  margin: 7px;
 `;
 
 const WholeButtonWrapper = styled.div`

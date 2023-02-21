@@ -34,6 +34,8 @@ const PartsOptions = ({
     [newPartsAdded]
   );
 
+  const data = useMemo(() => newPartsAddedArray? [...dbPartsArray, ...newPartsAddedArray] : dbPartsArray, [dbPartsArray, newPartsAddedArray]);
+
   const isPartInDbPartsWithClickedKey = (partName) =>
     Object.keys(dbPartsWithClickedKey).includes(partName);
 
@@ -57,7 +59,7 @@ const PartsOptions = ({
     if(isPartInNewPartsAdded(part.name)){
       return setNewPartsAdded(genCorrectObj(newPartsAdded, part))
     }
-    return 
+    return undefined;
   }
 
   const onClickingPart = (part) => {
@@ -72,28 +74,9 @@ const PartsOptions = ({
       <label htmlFor="">Existing {APP_NAME} Parts</label>
       <PartsOptionsContainer>
         <PopulateButtons
-          data={dbPartsArray}
-          // data={appPartsArray}
+          data={data}
           onClickFunction={(part) => onClickingPart(part)}
         />
-        {newPartsAdded && (
-          <PopulateButtons
-            data={newPartsAddedArray}
-            onClickFunction={(part) => onClickingPart(part)}
-            // onMouseEnterFunction={() =>
-            //   setDisplay({ ...display, deleteWarningNewPart: true })
-            // }
-            // onMouseLeaveFunction={() =>
-            //   setDisplay({ ...display, deleteWarningNewPart: false })
-            // }
-            clicked={true}
-            // conditionalDisplay={
-            //   display.deleteWarningNewPart && (
-            //     <p>Newly added Part: Click to delete</p>
-            //   )
-            // }
-          />
-        )}
       </PartsOptionsContainer>
     </>
   );
