@@ -112,10 +112,11 @@ const DropDown = ({
     <DropDownUnitWrapper>
       <SearchBar searchingQuery={searchingQuery} search={search} />
       <OptionsWrapper>
-        {foldersToRender.map((folder) => (
+        {foldersToRender.map((folder, index) => (
           <SingleDropdownElement
             onClickFunction={() => onClickFunction(folder)}
             label={folder.name}
+            key={index}
           />
         ))}
       </OptionsWrapper>

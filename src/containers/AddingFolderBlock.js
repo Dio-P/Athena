@@ -81,8 +81,9 @@ const AddingFolderBlock = ({
   };
 
   const folderInfoToState = (folder) => {
+    console.log("folderInfoToState@@@, folder is: ", folder);
     setClickedFolder(folder.name);
-    // setFolderOfNewPart(folder);
+    setFolderOfNewPart(folder);
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: folder.id,

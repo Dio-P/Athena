@@ -221,6 +221,8 @@ const AddNewConnectionBlock = ({
               clickedFolder={clickedFolder}
               folderBeenCreated={folderBeenCreated}
               setFolderBeenCreated={setFolderBeenCreated}
+              newlyCreatedFolders={newlyCreatedFolders}
+              setNewlyCreatedFolders={setNewlyCreatedFolders}
               // manageFolderDdOpenParam={manageFolderDdOpenParam}
             />
           )}

@@ -36,11 +36,13 @@ const AddingPartBlock = ({
   clickedFolder,
   folderBeenCreated,
   setFolderBeenCreated,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
   // manageFolderDdOpenParam,
 }) => {
   const { keepExistingParams } = useParamsHelper();
 
-  const { newlyCreatedFolders, setNewlyCreatedFolders, setClickedFolder } =
+  const { setClickedFolder } =
     useFolderHelper();
 
   const addNewPartAndClear = () => {
@@ -53,7 +55,7 @@ const AddingPartBlock = ({
         // the above right now returns undefined
       },
     });
-    setNewlyCreatedFolders([...newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+    setNewlyCreatedFolders([newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
     setNewPart({
       ...newPart,
       name: "",
