@@ -20,7 +20,6 @@ import PartsOptions from "../containers/PartsOptions";
 const DisplayBox = styled.div`
   margin: 10px;
   position: relative;
-  height: 100%;
   border: solid black;
   border-radius: 15px;
   background-color: #fffcfa;

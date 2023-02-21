@@ -70,15 +70,18 @@ const AppPage = () => {
             // appToDisplay={appToDisplay}
           />
 
-          {appToDisplay &&
-            appToDisplay?.folders?.map((folder, index) => (
-              <Folder
-                key={index}
-                folderName={folder.name}
-                parts={folder.parts}
-                appId={appToDisplay.id}
-              />
-            ))}
+          <div>
+            {appToDisplay &&
+              appToDisplay?.folders?.map((folder, index) => (
+                <Folder
+                  key={index}
+                  folderName={folder.name}
+                  parts={folder.parts}
+                  appId={appToDisplay.id}
+                />
+              ))}
+          </div>
+
         </>
       );
     }

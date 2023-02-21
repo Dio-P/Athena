@@ -8,6 +8,7 @@ const PartsOptionsContainer = styled.div`
   margin: auto;
   overflow: scroll;
   max-height: 250px;
+  width: 90%;
 
 `;
 
