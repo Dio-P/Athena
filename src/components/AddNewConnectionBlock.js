@@ -80,9 +80,8 @@ const AddNewConnectionBlock = ({
   });
 
   // const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
-  const { clickedFolder } =
-    useFolderHelper();
-    // useFolderHelper(foldersToDisplay);
+  const { clickedFolder } = useFolderHelper();
+  // useFolderHelper(foldersToDisplay);
 
   const APP_NAME = useMemo(
     () => capitaliseFirstLetters(appToDisplay.name),
@@ -98,20 +97,6 @@ const AddNewConnectionBlock = ({
   //   () => newPartsAdded && Object.values(newPartsAdded),
   //   [newPartsAdded]
   // );
-
-  const onClickingPart = (part) => {
-    console.log("onClickingPart clicked, part is:", part);
-    if (part) {
-      setDbPartsWithClickedKey({
-        ...dbPartsWithClickedKey,
-        [part.name]: {
-          ...dbPartsWithClickedKey[part.name],
-          clicked: !part.clicked,
-        },
-      });
-    }
-    keepExistingParams();
-  };
 
   const onClickingAdd = async (e) => {
     e.preventDefault();
@@ -131,7 +116,10 @@ const AddNewConnectionBlock = ({
       url: url,
       source: source,
       lastModified: "someDate",
-      concerningParts: findConserningParts(dbPartsWithClickedKey, newPartsAdded),
+      concerningParts: findConserningParts(
+        dbPartsWithClickedKey,
+        newPartsAdded
+      ),
       flags: {
         isLinkUpToDate: true, //tickbox checked
       },
@@ -160,7 +148,11 @@ const AddNewConnectionBlock = ({
 
   return (
     <DisplayBox>
-      <GenericButtonIcon onClickFunction={onClickingRefresh} type="small" icon={refreshIcon}/>
+      <GenericButtonIcon
+        onClickFunction={onClickingRefresh}
+        type="small"
+        icon={refreshIcon}
+      />
       <FormContainer>
         <InputUnit
           inputTitle="URL"
@@ -173,34 +165,13 @@ const AddNewConnectionBlock = ({
           <p>Choose an app part and display folder</p>
 
           <OptionsWraper>
-            <PartsOptions dbPartsWithClickedKey={dbPartsWithClickedKey}
-             onClickingPart={(part) => onClickingPart(part)}
+            <PartsOptions
+              dbPartsWithClickedKey={dbPartsWithClickedKey}
+              setDbPartsWithClickedKey={setDbPartsWithClickedKey}
               newPartsAdded={newPartsAdded}
-               APP_NAME={APP_NAME}
-               />
-            {/* <label htmlFor="">Existing {APP_NAME} Parts</label>
-            <PopulateButtons
-              data={appPartsArray}
-              onClickFunction={(part) => onClickingPart(part)}
+              setNewPartsAdded={setNewPartsAdded}
+              APP_NAME={APP_NAME}
             />
-            {newPartsAdded && (
-              <PopulateButtons
-                data={newPartsAddedArray}
-                onClickFunction={(part) => deleteNewlyAddedPart(part)}
-                // onMouseEnterFunction={() =>
-                //   setDisplay({ ...display, deleteWarningNewPart: true })
-                // }
-                // onMouseLeaveFunction={() =>
-                //   setDisplay({ ...display, deleteWarningNewPart: false })
-                // }
-                clicked={true}
-                // conditionalDisplay={
-                //   display.deleteWarningNewPart && (
-                //     <p>Newly added Part: Click to delete</p>
-                //   )
-                // }
-              />
-            )} */}
             <GenericButtonIcon
               onClickFunction={manageAddingNewPartParam}
               type="add"

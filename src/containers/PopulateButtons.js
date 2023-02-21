@@ -25,7 +25,7 @@ const PopulateButtons = ({
           key={index}
           onClickFunction={() => onClickFunction(choice)}
           label={choice.name}
-          clicked={choice.clicked || clicked}
+          clicked={choice.clicked}
           type={type}
         />
       ))}

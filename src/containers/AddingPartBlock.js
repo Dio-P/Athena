@@ -50,6 +50,7 @@ const AddingPartBlock = ({
       ...newPartsAdded,
       [newPart.name]: {
         ...newPart,
+        clicked: true,
         folderToBeDisplayedIn:
           folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
         // the above right now returns undefined
