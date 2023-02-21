@@ -1,6 +1,13 @@
 import InputUnit from "./InputUnit";
+import { WarningElement } from "../components/specialElements";
 
-const AddNewPartInput = ({ newPart, setNewPartName, setNewPartGhRepo, setNewPartType }) => {
+const AddNewPartInput = ({
+  newPart,
+  setNewPartName,
+  setNewPartGhRepo,
+  setNewPartType,
+  isPartNameWarningOn,
+}) => {
   return (
     <>
       <InputUnit
@@ -11,6 +18,7 @@ const AddNewPartInput = ({ newPart, setNewPartName, setNewPartGhRepo, setNewPart
         value={newPart.name}
         onChangeFunction={setNewPartName}
       />
+      {isPartNameWarningOn && <WarningElement info="Please add a name" />}
       <InputUnit
         inputTitle={`New Part Git Hub Repo: ${newPart.ghRepo}`}
         key="newPartGitHubRepo"

@@ -7,6 +7,7 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import DropDown from "../components/DropDown";
 import NewFolderPopUp from "../components/NewFolderPopUp";
 import styleVariables from "../styleVariables";
+import { WarningElement } from "../components/specialElements";
 
 const MainAddNewFolderContainer = styled.div`
   margin-top: 4px;
@@ -50,6 +51,7 @@ const AddingFolderBlock = ({
   allNewFolders,
   folderBeenCreated,
   setFolderBeenCreated,
+  isFolderWarningOn
 }) => {
   const { manageFolderDdOpenParam, keepExistingParams, params:{
     folderDdOpen
@@ -134,6 +136,7 @@ const AddingFolderBlock = ({
           // folderBeenCreated={folderBeenCreated}
         />
         )}
+        {isFolderWarningOn && <WarningElement info="Please choose a folder"/>}
         {isNewFolderPopUpOpen
         &&
         <NewFolderPopUp

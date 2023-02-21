@@ -8,7 +8,9 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const WarningElementWrapper = styled.div`
   color: red;
-  margin: 5px 2px 8px;
+  margin: 5px 20px 8px;
+  display: flex;
+  flex-flow: row wrap;
 `;
 
 const WarningHeaderContainer = styled.div`
@@ -51,7 +53,7 @@ export const WarningElement = ({ info }) => {
         </WarningIconContainer>
         <strong>Warning: </strong>  
       </WarningHeaderContainer>
-      {info}
+      {` ${info}`}
     </WarningElementWrapper>
   ) 
 };

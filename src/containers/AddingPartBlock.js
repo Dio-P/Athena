@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import AddNewPartInput from "./AddNewPartInput";
@@ -45,7 +46,25 @@ const AddingPartBlock = ({
   const { setClickedFolder } =
     useFolderHelper();
 
+    const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
+  const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
+
+  useEffect(() => {
+    if(newPart.name || folderOfNewPart){
+      setIsPartNameWarningOn(!newPart.name);
+      setIsFolderWarningOn(!folderOfNewPart);
+    }
+  }, [newPart?.name, folderOfNewPart])
+  
+
   const addNewPartAndClear = () => {
+    if(!newPart.name || !folderOfNewPart){
+      setIsPartNameWarningOn(!newPart.name);
+      setIsFolderWarningOn(!folderOfNewPart);
+      return
+    }
+    setIsFolderWarningOn(false);
+    setIsPartNameWarningOn(false);
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
@@ -81,6 +100,7 @@ const AddingPartBlock = ({
       <AddNewPartInput
         newPart={newPart}
         setNewPartName={(input) => setNewPart({ ...newPart, name: input })}
+        isPartNameWarningOn={isPartNameWarningOn}
         setNewPartGhRepo={(input) => setNewPart({ ...newPart, ghRepo: input })}
         setNewPartType={(input) => setNewPart({ ...newPart, type: input })}
       />
@@ -97,6 +117,7 @@ const AddingPartBlock = ({
         resetFolderInfo={resetFolderInfo}
         folderBeenCreated={folderBeenCreated}
         setFolderBeenCreated={setFolderBeenCreated}
+        isFolderWarningOn={isFolderWarningOn}
         // manageFolderDdOpenParam={manageFolderDdOpenParam}
       />
       <GenericButtonIcon

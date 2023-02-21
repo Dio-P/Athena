@@ -6,7 +6,7 @@ import ButtonUnit from "./ButtonUnit"
 
 const GenericButtonIconWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
 `;
 
 const PopulateButtons = ({ 
