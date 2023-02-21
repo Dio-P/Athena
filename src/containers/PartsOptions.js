@@ -36,10 +36,10 @@ const PartsOptions = ({
 
   const data = useMemo(() => newPartsAddedArray? [...dbPartsArray, ...newPartsAddedArray] : dbPartsArray, [dbPartsArray, newPartsAddedArray]);
 
-  const isPartInDbPartsWithClickedKey = (partName) =>
+  const isPreexistingPart = (partName) =>
     Object.keys(dbPartsWithClickedKey).includes(partName);
 
-  const isPartInNewPartsAdded = (partName) =>
+  const isNewPart = (partName) =>
     Object.keys(newPartsAdded).includes(partName);
 
   const genCorrectObj = (stateContainer, part) => {
@@ -53,10 +53,10 @@ const PartsOptions = ({
   }
   
   const updateCorrectStateWithPart = (part) => {
-    if(isPartInDbPartsWithClickedKey(part.name)){
+    if(isPreexistingPart(part.name)){
       return setDbPartsWithClickedKey(genCorrectObj(dbPartsWithClickedKey, part))
     }
-    if(isPartInNewPartsAdded(part.name)){
+    if(isNewPart(part.name)){
       return setNewPartsAdded(genCorrectObj(newPartsAdded, part))
     }
     return undefined;
@@ -76,6 +76,8 @@ const PartsOptions = ({
         <PopulateButtons
           data={data}
           onClickFunction={(part) => onClickingPart(part)}
+          type="checkbox"
+          renderConditional={isNewPart}
         />
       </PartsOptionsContainer>
     </>

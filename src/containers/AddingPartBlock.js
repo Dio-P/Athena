@@ -63,8 +63,6 @@ const AddingPartBlock = ({
       setIsFolderWarningOn(!folderOfNewPart);
       return
     }
-    setIsFolderWarningOn(false);
-    setIsPartNameWarningOn(false);
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
@@ -72,7 +70,6 @@ const AddingPartBlock = ({
         clicked: true,
         folderToBeDisplayedIn:
           folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
-        // the above right now returns undefined
       },
     });
     setNewlyCreatedFolders([newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////

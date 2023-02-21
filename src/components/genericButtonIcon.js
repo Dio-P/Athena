@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
+import { WarningElement } from "./specialElements";
 
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
@@ -28,7 +29,6 @@ const SmallButtonWrapper = styled.div`
   margin: 8px;
   align-self: end;
   cursor: pointer;
-
 `;
 
 const SmallButtonIconContainer = styled.div`
@@ -135,28 +135,32 @@ const SmallButton = ({ icon, onClickFunction }) => {
   );
 };
 
-const MainButton = ({ CustomButtonContainer, type, label, clicked, onClickFunction }) => {
+const MainButton = ({
+  CustomButtonContainer,
+  type,
+  label,
+  clicked,
+  onClickFunction,
+}) => {
   return (
     <ButtonAndTickBoxWrapper onClick={onClickFunction}>
-      <WholeButtonWrapper>
-        <CustomButtonContainer>
-          <BtnLabelContainer>
-            <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
-          </BtnLabelContainer>
-          {type !== "add" && (
-            <TickBoxWrapper>
-              <TickBox>{clicked && <Tick />}</TickBox>
-            </TickBoxWrapper>
-          )}
-        </CustomButtonContainer>
-      </WholeButtonWrapper>
+      <CustomButtonContainer>
+        <BtnLabelContainer>
+          <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
+        </BtnLabelContainer>
+        {type !== "add" && (
+          <TickBoxWrapper>
+            <TickBox>{clicked && <Tick />}</TickBox>
+          </TickBoxWrapper>
+        )}
+      </CustomButtonContainer>
     </ButtonAndTickBoxWrapper>
   );
 };
 
-const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
+const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, renderConditional }) => {
   if (type === "small") {
-    return <SmallButton icon={icon} onClickFunction={onClickFunction}/>;
+    return <SmallButton icon={icon} onClickFunction={onClickFunction} />;
   }
   if (type === "add") {
     return (
@@ -169,7 +173,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
       />
     );
   }
-  if (!!clicked) {
+  if (type==="checkbox" && !!clicked) {
     return (
       <MainButton
         CustomButtonContainer={ClickedPlainButtonIconContainer}
@@ -181,13 +185,16 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction }) => {
     );
   }
   return (
-    <MainButton
-      CustomButtonContainer={PlainButtonIconContainer}
-      type={type}
-      label={label}
-      clicked={clicked}
-      onClickFunction={onClickFunction}
-    />
+    <div>
+      <MainButton
+        CustomButtonContainer={PlainButtonIconContainer}
+        type={type}
+        label={label}
+        clicked={clicked}
+        onClickFunction={onClickFunction}
+      />
+      {renderConditional(label) && <WarningElement info="will be deleted if not choosen" />}
+    </div>
   );
 };
 

@@ -13,6 +13,7 @@ const PopulateButtons = ({
   data, 
   onClickFunction,
   type,
+  renderConditional
 }) => {
 
   return (
@@ -26,6 +27,7 @@ const PopulateButtons = ({
           label={choice.name}
           clicked={choice.clicked}
           type={type}
+          renderConditional={renderConditional}
         />
       ))}
     </GenericButtonIconWrapper>
