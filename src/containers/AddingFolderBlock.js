@@ -1,12 +1,9 @@
+import { useState } from "react";
 import styled from "@emotion/styled";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
-import { arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
-import { useState } from "react";
-import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import DropDown from "../components/DropDown";
 import NewFolderPopUp from "../components/NewFolderPopUp";
-import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 
@@ -17,30 +14,9 @@ const MainAddNewFolderContainer = styled.div`
   margin: 1em;
 `;
 
-// const FolderButtonContainerWrapper = styled.div`
-//   display: flex;
-//   border: solid black;
-//   align-content: center;
-//   width: 300px;
-//   height: 35px;
-//   align-items: center;
-//   border-radius: ${styleVariables.borderRadious.secondary};
-// `;
-
-// const FolderButtonContainer = styled.div`
-//   display: flex;
-//   width: 100%;
-//   align-items: center;
-// `;
-
 const AddingFolderBodyContainer = styled.div`
   display: flex;
 `;
-
-// const ArrowContainer = styled.div`
-//   height: 20px;
-//   width: 20px;
-// `;
 
 const AddingFolderBlock = ({
   newPart,
@@ -112,12 +88,6 @@ const AddingFolderBlock = ({
     setIsNewFolderPopUpOpen(true);
   };
 
-  // const dropDownToogleButtonTitle = folderOfNewPart
-  //   ? `Folder to display new part in: ${capitaliseFirstLetters(
-  //     clickedFolder
-  //     )}`
-  //   : "Choose a folder to display part in";
-
   return (
     <MainAddNewFolderContainer>
       <GenericButtonIcon
@@ -127,12 +97,6 @@ const AddingFolderBlock = ({
         folderOfNewPart={folderOfNewPart}
         clickedFolder={clickedFolder}
       />
-      {/* <FolderButtonContainerWrapper>
-        <FolderButtonContainer onClick={manageFolderDdOpenParam}>
-          <div> {dropDownToogleButtonTitle} </div>
-          <ArrowContainer>{folderDdOpen ? arrowUpIcon : arrowDownIcon}</ArrowContainer>
-        </FolderButtonContainer>
-      </FolderButtonContainerWrapper> */}
       <AddingFolderBodyContainer>
         {isFolderDdOpen && (
           <DropDown
@@ -142,7 +106,6 @@ const AddingFolderBlock = ({
             folderOfNewPart={folderOfNewPart}
             onClickingBtnFunction={renderAddNewFolderPopUp}
             dDBtnLabel="+ Add New Folder"
-            // folderBeenCreated={folderBeenCreated}
           />
         )}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
