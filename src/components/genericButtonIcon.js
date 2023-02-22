@@ -184,23 +184,38 @@ const MainButton = ({
   );
 };
 
-const DropDownButton = ({ manageFolderDdOpenParam, isMenuOpen, folderOfNewPart, clickedFolder }) => {
+const DropDownButton = ({
+  onClickFunction,
+  isMenuOpen,
+  folderOfNewPart,
+  clickedFolder,
+}) => {
   const dropDownToogleButtonTitle = folderOfNewPart
-    ? `Folder to display new part in: ${capitaliseFirstLetters(
-      clickedFolder
-      )}`
+    ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
     <FolderButtonContainerWrapper>
-        <FolderButtonContainer onClick={manageFolderDdOpenParam}>
-          <div> {dropDownToogleButtonTitle} </div>
-          <ArrowContainer>{isMenuOpen ? arrowUpIcon : arrowDownIcon}</ArrowContainer>
-        </FolderButtonContainer>
-      </FolderButtonContainerWrapper>
-  )
-}
+      <FolderButtonContainer onClick={onClickFunction}>
+        <div> {dropDownToogleButtonTitle} </div>
+        <ArrowContainer>
+          {isMenuOpen ? arrowUpIcon : arrowDownIcon}
+        </ArrowContainer>
+      </FolderButtonContainer>
+    </FolderButtonContainerWrapper>
+  );
+};
 
-const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, renderConditional }) => {
+const GenericButtonIcon = ({
+  label,
+  clicked,
+  type,
+  icon,
+  onClickFunction,
+  renderConditional,
+  isMenuOpen,
+  folderOfNewPart,
+  clickedFolder,
+}) => {
   if (type === "small") {
     return <SmallButton icon={icon} onClickFunction={onClickFunction} />;
   }
@@ -215,7 +230,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, render
       />
     );
   }
-  if (type==="checkbox" && !!clicked) {
+  if (type === "checkbox" && !!clicked) {
     return (
       <MainButton
         CustomButtonContainer={ClickedPlainButtonIconContainer}
@@ -226,10 +241,10 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, render
       />
     );
   }
-  if (type==="dropDown") {
+  if (type === "dropDown") {
     return (
       <DropDownButton
-        manageFolderDdOpenParam={manageFolderDdOpenParam}
+        onClickFunction={onClickFunction}
         isMenuOpen={isMenuOpen}
         folderOfNewPart={folderOfNewPart}
         clickedFolder={clickedFolder}

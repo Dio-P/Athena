@@ -39,7 +39,7 @@ const PartsOptions = ({
   const options = useMemo(() => newPartsAddedArray? [...dbPartsArray, ...newPartsAddedArray] : dbPartsArray, [dbPartsArray, newPartsAddedArray]);
   const { search, searchingQuery, filteredData } = useSearchBar(options);
 
-  const data = useMemo(() => searchingQuery? filteredData : options, [searchingQuery]);
+  const data = useMemo(() => searchingQuery? filteredData : options, [options, searchingQuery]);
   const isPreexistingPart = (partName) =>
     Object.keys(dbPartsWithClickedKey).includes(partName);
 

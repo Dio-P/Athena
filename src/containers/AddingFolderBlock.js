@@ -42,7 +42,6 @@ const AddingFolderBodyContainer = styled.div`
 //   width: 20px;
 // `;
 
-
 const AddingFolderBlock = ({
   newPart,
   setNewPart,
@@ -52,11 +51,13 @@ const AddingFolderBlock = ({
   allNewFolders,
   folderBeenCreated,
   setFolderBeenCreated,
-  isFolderWarningOn
+  isFolderWarningOn,
 }) => {
-  const { manageFolderDdOpenParam, keepExistingParams, params:{
-    isFolderDdOpen
-  } } = useParamsHelper();
+  const {
+    manageFolderDdOpenParam,
+    keepExistingParams,
+    params: { isFolderDdOpen },
+  } = useParamsHelper();
 
   const {
     clickedFolder,
@@ -119,7 +120,13 @@ const AddingFolderBlock = ({
 
   return (
     <MainAddNewFolderContainer>
-      <GenericButtonIcon onClickFunction={manageFolderDdOpenParam} type="dropDown" isMenuOpen={isFolderDdOpen}/>
+      <GenericButtonIcon
+        onClickFunction={manageFolderDdOpenParam}
+        type="dropDown"
+        isMenuOpen={isFolderDdOpen}
+        folderOfNewPart={folderOfNewPart}
+        clickedFolder={clickedFolder}
+      />
       {/* <FolderButtonContainerWrapper>
         <FolderButtonContainer onClick={manageFolderDdOpenParam}>
           <div> {dropDownToogleButtonTitle} </div>
@@ -129,26 +136,25 @@ const AddingFolderBlock = ({
       <AddingFolderBodyContainer>
         {isFolderDdOpen && (
           <DropDown
-          preexistingData={allPreexistingFolders}
-          newData={allNewFolders}
-          onClickFunction={folderInfoToState}
-          folderOfNewPart={folderOfNewPart}
-          onClickingBtnFunction={renderAddNewFolderPopUp}
-          dDBtnLabel="+ Add New Folder"
-          // folderBeenCreated={folderBeenCreated}
-        />
+            preexistingData={allPreexistingFolders}
+            newData={allNewFolders}
+            onClickFunction={folderInfoToState}
+            folderOfNewPart={folderOfNewPart}
+            onClickingBtnFunction={renderAddNewFolderPopUp}
+            dDBtnLabel="+ Add New Folder"
+            // folderBeenCreated={folderBeenCreated}
+          />
         )}
-        {isFolderWarningOn && <WarningElement info="Please choose a folder"/>}
-        {isNewFolderPopUpOpen
-        &&
-        <NewFolderPopUp
-          setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
-          folderOfNewPart={folderOfNewPart}
-          onClickFunction={addNewFolderAndClear}
-          folderBeenCreated={folderBeenCreated}
-          setFolderBeenCreated={setFolderBeenCreated}
-        />
-        }
+        {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
+        {isNewFolderPopUpOpen && (
+          <NewFolderPopUp
+            setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+            folderOfNewPart={folderOfNewPart}
+            onClickFunction={addNewFolderAndClear}
+            folderBeenCreated={folderBeenCreated}
+            setFolderBeenCreated={setFolderBeenCreated}
+          />
+        )}
       </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>
   );
