@@ -2,6 +2,8 @@ import { useMemo } from "react";
 import styled from "@emotion/styled";
 import PopulateButtons from "./PopulateButtons";
 import useParamsHelper from "../hooks/useParamsHelper";
+import { useSearchBar } from "../hooks/useAddNewConnectionBlock";
+import { SearchBar } from "../components/specialElements";
 
 const PartsOptionsContainer = styled.div`
   display: flex;
@@ -34,8 +36,10 @@ const PartsOptions = ({
     [newPartsAdded]
   );
 
-  const data = useMemo(() => newPartsAddedArray? [...dbPartsArray, ...newPartsAddedArray] : dbPartsArray, [dbPartsArray, newPartsAddedArray]);
+  const options = useMemo(() => newPartsAddedArray? [...dbPartsArray, ...newPartsAddedArray] : dbPartsArray, [dbPartsArray, newPartsAddedArray]);
+  const { search, searchingQuery, filteredData } = useSearchBar(options);
 
+  const data = useMemo(() => searchingQuery? filteredData : options, [searchingQuery]);
   const isPreexistingPart = (partName) =>
     Object.keys(dbPartsWithClickedKey).includes(partName);
 
@@ -72,6 +76,7 @@ const PartsOptions = ({
   return (
     <>
       <label htmlFor="">Existing {APP_NAME} Parts</label>
+      <SearchBar searchingQuery={searchingQuery} search={search} />
       <PartsOptionsContainer>
         <PopulateButtons
           data={data}

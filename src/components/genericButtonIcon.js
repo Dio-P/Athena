@@ -193,7 +193,7 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, render
         clicked={clicked}
         onClickFunction={onClickFunction}
       />
-      {renderConditional(label) && <WarningElement info="will be deleted if not choosen" />}
+      {/* {renderConditional(label) && <WarningElement info="will be deleted if not choosen" />} */}
     </div>
   );
 };
