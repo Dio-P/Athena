@@ -61,8 +61,9 @@ const SmallButtonIconContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 35px;
-  height: 25px;
   margin: auto;
+  width: 22px;
+  height: 100%;
 `;
 
 const PlainButtonIconContainer = styled.div`
@@ -140,8 +141,9 @@ const TickBox = styled.div`
 `;
 
 const SmallButton = ({ icon, onClickFunction }) => {
+  console.log("icon", icon);
   return (
-    <SmallButtonWrapper onClick={onClickFunction} aria-label="button" >
+    <SmallButtonWrapper onClick={onClickFunction} aria-label="button">
       <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
     </SmallButtonWrapper>
   );
