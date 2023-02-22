@@ -140,10 +140,10 @@ const TickBox = styled.div`
   width: 80%;
 `;
 
-const SmallButton = ({ icon, onClickFunction }) => {
+const SmallButton = ({ icon, onClickFunction, type }) => {
   console.log("icon", icon);
   return (
-    <SmallButtonWrapper onClick={onClickFunction} aria-label="button">
+    <SmallButtonWrapper onClick={onClickFunction} aria-label={`${type} button`}>
       <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
     </SmallButtonWrapper>
   );
@@ -157,7 +157,7 @@ const MainButton = ({
   onClickFunction,
 }) => {
   return (
-    <ButtonAndTickBoxWrapper onClick={onClickFunction} aria-label="button">
+    <ButtonAndTickBoxWrapper onClick={onClickFunction} aria-label={`${type} button`}>
       <CustomButtonContainer>
         <BtnLabelContainer>
           <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
@@ -177,12 +177,13 @@ const DropDownButton = ({
   isMenuOpen,
   folderOfNewPart,
   clickedFolder,
+  type
 }) => {
   const dropDownToogleButtonTitle = folderOfNewPart
     ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
-    <FolderButtonContainerWrapper aria-label="button">
+    <FolderButtonContainerWrapper aria-label={`${type} button`}>
       <FolderButtonContainer onClick={onClickFunction}>
         <div> {dropDownToogleButtonTitle} </div>
         <ArrowContainer>
@@ -205,7 +206,7 @@ const GenericButtonIcon = ({
   clickedFolder,
 }) => {
   if (type === "small") {
-    return <SmallButton icon={icon} onClickFunction={onClickFunction} />;
+    return <SmallButton icon={icon} onClickFunction={onClickFunction} type={type} />;
   }
   if (type === "add") {
     return (
@@ -236,6 +237,7 @@ const GenericButtonIcon = ({
         isMenuOpen={isMenuOpen}
         folderOfNewPart={folderOfNewPart}
         clickedFolder={clickedFolder}
+        type={type}
       />
     );
   }

@@ -7,6 +7,7 @@ import Folder from "../components/Folder";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AddConnectionStateManager from "./AddNewConnectionStateManager";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -56,7 +57,7 @@ const AppPage = () => {
         <>
           <>
             <AppPageTitle>
-              {appToDisplay?.name}
+              {capitaliseFirstLetters(appToDisplay?.name)}
               <GenericButtonIcon
                 onClickFunction={manageAddingNewConnectionParam}
                 type="add"
