@@ -143,7 +143,7 @@ const TickBox = styled.div`
 const SmallButton = ({ icon, onClickFunction, type }) => {
   console.log("icon", icon);
   return (
-    <SmallButtonWrapper onClick={onClickFunction} aria-label={`${type} button`}>
+    <SmallButtonWrapper onClick={onClickFunction} aria-label={`${icon.props["aria-label"]} button`}>
       <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
     </SmallButtonWrapper>
   );
