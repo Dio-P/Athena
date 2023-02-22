@@ -11,7 +11,7 @@ const useParamsHelper = () => {
     appId,
     addingNewConnection,
     addingNewPart,
-    folderDdOpen,
+    isFolderDdOpen,
   } = params;
 
   const manageTeamParam = (defaultTeam) => {
@@ -53,8 +53,8 @@ const useParamsHelper = () => {
 
   const manageFolderDdOpenParam = () => {
     console.log("manageFolderDdOpenParam");
-    if (!folderDdOpen) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart, folderDdOpen: true });
+    if (!isFolderDdOpen) {
+      setSearchParams({ team, appId, addingNewConnection, addingNewPart, isFolderDdOpen: true });
     } else {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart });
     }

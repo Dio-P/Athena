@@ -1,7 +1,33 @@
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
+import { tick, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
+
+const FolderButtonContainerWrapper = styled.div`
+  display: flex;
+  border: solid black;
+  align-content: center;
+  width: 300px;
+  height: 35px;
+  align-items: center;
+  border-radius: ${styleVariables.borderRadious.secondary};
+`;
+
+const FolderButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+`;
+
+const AddingFolderBodyContainer = styled.div`
+  display: flex;
+`;
+
+const ArrowContainer = styled.div`
+  height: 20px;
+  width: 20px;
+`;
 
 const ButtonAndTickBoxWrapper = styled.div`
   display: flex;
@@ -113,19 +139,19 @@ const TickBox = styled.div`
   width: 80%;
 `;
 
-const Tick = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    aria-label="confirm icon"
-    // class="css-1n8p6mz"
-  >
-    <path
-      fill="#1ee685"
-      d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"
-    ></path>
-  </svg>
-);
+// const Tick = () => (
+//   <svg
+//     xmlns="http://www.w3.org/2000/svg"
+//     viewBox="0 0 32 32"
+//     aria-label="confirm icon"
+//     // class="css-1n8p6mz"
+//   >
+//     <path
+//       fill="#1ee685"
+//       d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"
+//     ></path>
+//   </svg>
+// );
 
 const SmallButton = ({ icon, onClickFunction }) => {
   return (
@@ -150,13 +176,29 @@ const MainButton = ({
         </BtnLabelContainer>
         {type !== "add" && (
           <TickBoxWrapper>
-            <TickBox>{clicked && <Tick />}</TickBox>
+            <TickBox>{clicked && <tick />}</TickBox>
           </TickBoxWrapper>
         )}
       </CustomButtonContainer>
     </ButtonAndTickBoxWrapper>
   );
 };
+
+const DropDownButton = ({ manageFolderDdOpenParam, isMenuOpen, folderOfNewPart, clickedFolder }) => {
+  const dropDownToogleButtonTitle = folderOfNewPart
+    ? `Folder to display new part in: ${capitaliseFirstLetters(
+      clickedFolder
+      )}`
+    : "Choose a folder to display part in";
+  return (
+    <FolderButtonContainerWrapper>
+        <FolderButtonContainer onClick={manageFolderDdOpenParam}>
+          <div> {dropDownToogleButtonTitle} </div>
+          <ArrowContainer>{isMenuOpen ? arrowUpIcon : arrowDownIcon}</ArrowContainer>
+        </FolderButtonContainer>
+      </FolderButtonContainerWrapper>
+  )
+}
 
 const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, renderConditional }) => {
   if (type === "small") {
@@ -181,6 +223,16 @@ const GenericButtonIcon = ({ label, clicked, type, icon, onClickFunction, render
         label={label}
         clicked={clicked}
         onClickFunction={onClickFunction}
+      />
+    );
+  }
+  if (type==="dropDown") {
+    return (
+      <DropDownButton
+        manageFolderDdOpenParam={manageFolderDdOpenParam}
+        isMenuOpen={isMenuOpen}
+        folderOfNewPart={folderOfNewPart}
+        clickedFolder={clickedFolder}
       />
     );
   }

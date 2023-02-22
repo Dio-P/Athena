@@ -54,3 +54,17 @@ export const refreshIcon = (
     </svg>
   </span>
 );
+
+export const tick = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    aria-label="confirm icon"
+    // class="css-1n8p6mz"
+  >
+    <path
+      fill="#1ee685"
+      d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"
+    ></path>
+  </svg>
+);

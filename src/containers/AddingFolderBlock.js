@@ -8,6 +8,7 @@ import DropDown from "../components/DropDown";
 import NewFolderPopUp from "../components/NewFolderPopUp";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const MainAddNewFolderContainer = styled.div`
   margin-top: 4px;
@@ -16,30 +17,30 @@ const MainAddNewFolderContainer = styled.div`
   margin: 1em;
 `;
 
-const FolderButtonContainerWrapper = styled.div`
-  display: flex;
-  border: solid black;
-  align-content: center;
-  width: 300px;
-  height: 35px;
-  align-items: center;
-  border-radius: ${styleVariables.borderRadious.secondary};
-`;
+// const FolderButtonContainerWrapper = styled.div`
+//   display: flex;
+//   border: solid black;
+//   align-content: center;
+//   width: 300px;
+//   height: 35px;
+//   align-items: center;
+//   border-radius: ${styleVariables.borderRadious.secondary};
+// `;
 
-const FolderButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-`;
+// const FolderButtonContainer = styled.div`
+//   display: flex;
+//   width: 100%;
+//   align-items: center;
+// `;
 
 const AddingFolderBodyContainer = styled.div`
   display: flex;
 `;
 
-const ArrowContainer = styled.div`
-  height: 20px;
-  width: 20px;
-`;
+// const ArrowContainer = styled.div`
+//   height: 20px;
+//   width: 20px;
+// `;
 
 
 const AddingFolderBlock = ({
@@ -54,7 +55,7 @@ const AddingFolderBlock = ({
   isFolderWarningOn
 }) => {
   const { manageFolderDdOpenParam, keepExistingParams, params:{
-    folderDdOpen
+    isFolderDdOpen
   } } = useParamsHelper();
 
   const {
@@ -110,22 +111,23 @@ const AddingFolderBlock = ({
     setIsNewFolderPopUpOpen(true);
   };
 
-  const dropDownToogleButtonTitle = folderOfNewPart
-    ? `Folder to display new part in: ${capitaliseFirstLetters(
-      clickedFolder
-      )}`
-    : "Choose a folder to display part in";
+  // const dropDownToogleButtonTitle = folderOfNewPart
+  //   ? `Folder to display new part in: ${capitaliseFirstLetters(
+  //     clickedFolder
+  //     )}`
+  //   : "Choose a folder to display part in";
 
   return (
     <MainAddNewFolderContainer>
-      <FolderButtonContainerWrapper>
+      <GenericButtonIcon onClickFunction={manageFolderDdOpenParam} type="dropDown" isMenuOpen={isFolderDdOpen}/>
+      {/* <FolderButtonContainerWrapper>
         <FolderButtonContainer onClick={manageFolderDdOpenParam}>
           <div> {dropDownToogleButtonTitle} </div>
           <ArrowContainer>{folderDdOpen ? arrowUpIcon : arrowDownIcon}</ArrowContainer>
         </FolderButtonContainer>
-      </FolderButtonContainerWrapper>
+      </FolderButtonContainerWrapper> */}
       <AddingFolderBodyContainer>
-        {folderDdOpen && (
+        {isFolderDdOpen && (
           <DropDown
           preexistingData={allPreexistingFolders}
           newData={allNewFolders}
