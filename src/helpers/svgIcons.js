@@ -60,7 +60,6 @@ export const tick = (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
     aria-label="confirm icon"
-    // class="css-1n8p6mz"
   >
     <path
       fill="#1ee685"

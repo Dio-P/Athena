@@ -141,7 +141,7 @@ const TickBox = styled.div`
 
 const SmallButton = ({ icon, onClickFunction }) => {
   return (
-    <SmallButtonWrapper onClick={onClickFunction}>
+    <SmallButtonWrapper onClick={onClickFunction} aria-label="button" >
       <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
     </SmallButtonWrapper>
   );
@@ -155,7 +155,7 @@ const MainButton = ({
   onClickFunction,
 }) => {
   return (
-    <ButtonAndTickBoxWrapper onClick={onClickFunction}>
+    <ButtonAndTickBoxWrapper onClick={onClickFunction} aria-label="button">
       <CustomButtonContainer>
         <BtnLabelContainer>
           <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
@@ -180,7 +180,7 @@ const DropDownButton = ({
     ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
-    <FolderButtonContainerWrapper>
+    <FolderButtonContainerWrapper aria-label="button">
       <FolderButtonContainer onClick={onClickFunction}>
         <div> {dropDownToogleButtonTitle} </div>
         <ArrowContainer>
