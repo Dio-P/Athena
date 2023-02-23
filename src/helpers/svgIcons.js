@@ -54,7 +54,7 @@ export const refreshIcon = (
   </svg>
 );
 
-export const tick = (
+export const tickIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
@@ -65,5 +65,16 @@ export const tick = (
       fill="#1ee685"
       d="M32 7.2l-2.5-2.4L11 23.3h2L2.4 12.6 0 15.1l12 12.1 20-20z"
     ></path>
+  </svg>
+);
+
+export const deleteIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    aria-label="close icon"
+    class="css-1n8p6mz"
+  >
+    <path d="M30 4.6l-2.8-2.8L2 27.4l2.8 2.8L30 4.6zM4.8 1.8L1.9 4.7l25.2 25.5 2.9-2.9L4.8 1.8z"></path>
   </svg>
 );

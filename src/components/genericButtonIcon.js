@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
-import { tick, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
+import { tickIcon, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
 
 const FolderButtonContainerWrapper = styled.div`
@@ -164,7 +164,7 @@ const MainButton = ({
         </BtnLabelContainer>
         {type !== "add" && (
           <TickBoxWrapper>
-            <TickBox>{clicked && tick}</TickBox>
+            <TickBox>{clicked && tickIcon}</TickBox>
           </TickBoxWrapper>
         )}
       </CustomButtonContainer>
