@@ -8,5 +8,6 @@
       "tags": [],
       "roles": [ "Listitem" ]
     }]
-  }
+  },
+  "parser": "babel-eslint"
 }

@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
+
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 import { tickIcon, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
@@ -27,7 +28,7 @@ const dropDownButton = {
   `,
 };
 
-const smallButton = {
+const smallBtn = {
   Wrapper: styled.div`
     display: flex;
     right: 0;
@@ -130,12 +131,12 @@ const mainBtn = {
 const SmallButton = ({ icon, onClickFunction, type }) => {
   console.log("icon", icon);
   return (
-    <smallButton.Wrapper
+    <smallBtn.Wrapper
       onClick={onClickFunction}
       aria-label={`${icon.props["aria-label"]} button`}
     >
-      <smallButton.IconContainer>{icon}</smallButton.IconContainer>
-    </smallButton.Wrapper>
+      <smallBtn.IconContainer>{icon}</smallBtn.IconContainer>
+    </smallBtn.Wrapper>
   );
 };
 
