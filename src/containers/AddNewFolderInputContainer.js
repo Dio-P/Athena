@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import InputUnit from "./InputUnit";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
+import { deleteIcon } from "../helpers/svgIcons";
 import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import useFolderHelper from "../hooks/useFolderHelper";
@@ -60,7 +61,7 @@ const AddNewFolderInputContainer = ({
       <GenericButtonIcon
         onClickFunction={() => setIsNewFolderPopUpOpen(false)}
         type="small"
-        icon={"X"}
+        icon={deleteIcon}
       />
       <Body>
         <InputUnit
