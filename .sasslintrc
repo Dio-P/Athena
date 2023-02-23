@@ -1,0 +1,19 @@
+{
+  "files": {
+    "include": [
+      "packages/optimo-editor/src/**/*.s+(a|c)ss"
+    ]
+  },
+  "rules": {
+    "leading-zero": 0,
+    "property-sort-order": 0,
+    "class-name-format": [1, { "convention": "hyphenatedbem" }],
+    "nesting-depth": [1, { "max-depth": 3 }],
+    "zero-unit": 2,
+    "shorthand-values": 2,
+    "no-attribute-selectors": 1,
+    "force-element-nesting": 0,
+    "no-important": 0,
+    "no-vendor-prefixes": 0,
+  }
+}

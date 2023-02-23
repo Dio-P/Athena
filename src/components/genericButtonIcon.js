@@ -3,149 +3,139 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
 import { tickIcon, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
+import { defaultProps } from "default-props";
+import PropTypes from 'prop-types';
 
-const FolderButtonContainerWrapper = styled.div`
-  display: flex;
-  border: solid black;
-  align-content: center;
-  width: 300px;
-  height: 35px;
-  align-items: center;
-  border-radius: ${styleVariables.borderRadious.secondary};
-`;
+const dropDownButton = {
+  ContainerWrapper: styled.div`
+    display: flex;
+    border: solid black;
+    align-content: center;
+    width: 300px;
+    height: 35px;
+    align-items: center;
+    border-radius: ${styleVariables.borderRadious.secondary};
+  `,
+  Container: styled.div`
+    display: flex;
+    width: 100%;
+    align-items: center;
+  `,
+  ArrowContainer: styled.div`
+    height: 20px;
+    width: 20px;
+  `,
+};
 
-const FolderButtonContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-`;
+const smallButton = {
+  Wrapper: styled.div`
+    display: flex;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    color: black;
+    background-color: ${styleVariables.colours.primaryPink};
+    box-shadow: ${styleVariables.boxShadow.smallButton};
+    border-radius: ${styleVariables.borderRadious.secondary};
+    margin: 8px;
+    align-self: end;
+    cursor: pointer;
+  `,
+  IconContainer: styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 35px;
+    margin: auto;
+    width: 22px;
+    height: 100%;
+  `,
+};
 
-const AddingFolderBodyContainer = styled.div`
-  display: flex;
-`;
-
-const ArrowContainer = styled.div`
-  height: 20px;
-  width: 20px;
-`;
-
-const ButtonAndTickBoxWrapper = styled.div`
-  display: flex;
-  width: 14em;
-  cursor: pointer;
-  margin: 7px;
-`;
-
-const WholeButtonWrapper = styled.div`
-  display: flex;
-  margin: auto;
-  align-items: center;
-  width: 100%;
-`;
-
-const SmallButtonWrapper = styled.div`
-  right: 0;
-  display: flex;
-  height: 35px;
-  width: 35px;
-  color: black;
-  background-color: ${styleVariables.colours.primaryPink};
-  box-shadow: ${styleVariables.boxShadow.smallButton};
-  border-radius: ${styleVariables.borderRadious.secondary};
-  margin: 8px;
-  align-self: end;
-  cursor: pointer;
-`;
-
-const SmallButtonIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 35px;
-  margin: auto;
-  width: 22px;
-  height: 100%;
-`;
-
-const PlainButtonIconContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: #1d4587;
-  width: 100%;
-  border-radius: 15px 10%;
-  margin: 20px 0px 20px 0px;
-  font-size: 18px;
-  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-`;
-
-const ClickedPlainButtonIconContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: #1d4587;
-  width: 100%;
-  border: solid #1ee685;
-  border-radius: 15px 10%;
-  margin: 20px 0px 20px 10px;
-  font-size: 18px;
-`;
-
-const AddingButtonIconContainer = styled.div`
-  display: flex;
-  align-content: center;
-  background-color: ${styleVariables.colours.primaryPink};
-  min-width: 100px;
-  min-height: 50px;
-  max-width: 140px;
-  max-height: 60px;
-  width: 90%;
-  height: 90%;
-  box-shadow: #2b2a28 0.5em 0.5em 0.3em;
-  border-radius: 15px 10%;
-  margin: 20px;
-  font-size: 14px;
-`;
-
-const BtnLabelContainer = styled.div`
-  margin: auto;
-  color: #ffffff;
-  padding: 8px;
-  min-width: 141px;
-  min-height: 50px;
-  max-width: 140px;
-  max-height: 60px;
-  display: flex;
-  align-items: center;
-  text-align: left;
-`;
-
-const BtnLabel = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const TickBoxWrapper = styled.div`
-  display: flex;
-  border-radius: 15px 10%;
-  align-items: center;
-  background-color: #1d4587;
-  width: 100%;
-  min-width: 30px;
-  max-width: 60px;
-`;
-
-const TickBox = styled.div`
-  border-radius: 15px 10%;
-  background-color: #ffffff;
-  margin: auto;
-  height: 80%;
-  width: 80%;
-`;
+const mainBtn = {
+  Wrapper: styled.div`
+    display: flex;
+    width: 14em;
+    cursor: pointer;
+    margin: 7px;
+  `,
+  AddingVersionContainer: styled.div`
+    display: flex;
+    align-content: center;
+    background-color: ${styleVariables.colours.primaryPink};
+    min-width: 100px;
+    min-height: 50px;
+    max-width: 140px;
+    max-height: 60px;
+    width: 90%;
+    height: 90%;
+    box-shadow: ${styleVariables.boxShadow.bigButton};
+    border-radius: ${styleVariables.borderRadious.main};
+    margin: 20px;
+    font-size: 14px;
+  `,
+  ClickedVersionContainer: styled.div`
+    display: flex;
+    align-content: center;
+    background-color: ${styleVariables.colours.primaryBlue};
+    width: 100%;
+    border: solid ${styleVariables.colours.primaryGreen};
+    border-radius: ${styleVariables.borderRadious.main};
+    margin: 20px 0px 20px 10px;
+    font-size: 18px;
+  `,
+  PlainVersionContainer: styled.div`
+    display: flex;
+    align-content: center;
+    background-color: ${styleVariables.colours.primaryBlue};
+    width: 100%;
+    border-radius: ${styleVariables.borderRadious.main};
+    margin: 20px 0px 20px 0px;
+    font-size: 18px;
+    box-shadow: ${styleVariables.boxShadow.bigButton};
+  `,
+  LabelContainer: styled.div`
+    margin: auto;
+    color: ${styleVariables.colours.primaryLight};
+    padding: 8px;
+    min-width: 141px;
+    min-height: 50px;
+    max-width: 140px;
+    max-height: 60px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  `,
+  Label: styled.div`
+    display: flex;
+    align-items: center;
+  `,
+  TickBoxWrapper: styled.div`
+    display: flex;
+    border-radius: ${styleVariables.borderRadious.main};
+    align-items: center;
+    background-color: ${styleVariables.colours.primaryBlue};
+    width: 100%;
+    min-width: 30px;
+    max-width: 60px;
+  `,
+  TickBox: styled.div`
+    border-radius: ${styleVariables.borderRadious.main};
+    background-color: ${styleVariables.colours.primaryLight};
+    margin: auto;
+    height: 80%;
+    width: 80%;
+  `,
+};
 
 const SmallButton = ({ icon, onClickFunction, type }) => {
   console.log("icon", icon);
   return (
-    <SmallButtonWrapper onClick={onClickFunction} aria-label={`${icon.props["aria-label"]} button`}>
-      <SmallButtonIconContainer>{icon}</SmallButtonIconContainer>
-    </SmallButtonWrapper>
+    <smallButton.Wrapper
+      onClick={onClickFunction}
+      aria-label={`${icon.props["aria-label"]} button`}
+    >
+      <smallButton.IconContainer>{icon}</smallButton.IconContainer>
+    </smallButton.Wrapper>
   );
 };
 
@@ -157,18 +147,18 @@ const MainButton = ({
   onClickFunction,
 }) => {
   return (
-    <ButtonAndTickBoxWrapper onClick={onClickFunction} aria-label={`${type} button`}>
+    <mainBtn.Wrapper onClick={onClickFunction} aria-label={`${type} button`}>
       <CustomButtonContainer>
-        <BtnLabelContainer>
-          <BtnLabel>{capitaliseFirstLetters(label)}</BtnLabel>
-        </BtnLabelContainer>
+        <mainBtn.LabelContainer>
+          <mainBtn.Label>{capitaliseFirstLetters(label)}</mainBtn.Label>
+        </mainBtn.LabelContainer>
         {type !== "add" && (
-          <TickBoxWrapper>
-            <TickBox>{clicked && tickIcon}</TickBox>
-          </TickBoxWrapper>
+          <mainBtn.TickBoxWrapper>
+            <mainBtn.TickBox>{clicked && tickIcon}</mainBtn.TickBox>
+          </mainBtn.TickBoxWrapper>
         )}
       </CustomButtonContainer>
-    </ButtonAndTickBoxWrapper>
+    </mainBtn.Wrapper>
   );
 };
 
@@ -177,20 +167,20 @@ const DropDownButton = ({
   isMenuOpen,
   folderOfNewPart,
   clickedFolder,
-  type
+  type,
 }) => {
   const dropDownToogleButtonTitle = folderOfNewPart
     ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
-    <FolderButtonContainerWrapper aria-label={`${type} button`}>
-      <FolderButtonContainer onClick={onClickFunction}>
+    <dropDownButton.ContainerWrapper aria-label={`${type} button`}>
+      <dropDownButton.Container onClick={onClickFunction}>
         <div> {dropDownToogleButtonTitle} </div>
-        <ArrowContainer>
+        <dropDownButton.ArrowContainer>
           {isMenuOpen ? arrowUpIcon : arrowDownIcon}
-        </ArrowContainer>
-      </FolderButtonContainer>
-    </FolderButtonContainerWrapper>
+        </dropDownButton.ArrowContainer>
+      </dropDownButton.Container>
+    </dropDownButton.ContainerWrapper>
   );
 };
 
@@ -206,12 +196,14 @@ const GenericButtonIcon = ({
   clickedFolder,
 }) => {
   if (type === "small") {
-    return <SmallButton icon={icon} onClickFunction={onClickFunction} type={type} />;
+    return (
+      <SmallButton icon={icon} onClickFunction={onClickFunction} type={type} />
+    );
   }
   if (type === "add") {
     return (
       <MainButton
-        CustomButtonContainer={AddingButtonIconContainer}
+        CustomButtonContainer={mainBtn.AddingVersionContainer}
         type={type}
         label={label}
         clicked={clicked}
@@ -222,7 +214,7 @@ const GenericButtonIcon = ({
   if (type === "checkbox" && !!clicked) {
     return (
       <MainButton
-        CustomButtonContainer={ClickedPlainButtonIconContainer}
+        CustomButtonContainer={mainBtn.ClickedVersionContainer}
         type={type}
         label={label}
         clicked={clicked}
@@ -244,7 +236,7 @@ const GenericButtonIcon = ({
   return (
     <div>
       <MainButton
-        CustomButtonContainer={PlainButtonIconContainer}
+        CustomButtonContainer={mainBtn.PlainVersionContainer}
         type={type}
         label={label}
         clicked={clicked}
@@ -256,6 +248,10 @@ const GenericButtonIcon = ({
 };
 
 export default GenericButtonIcon;
+
+GenericButtonIcon.propTypes = {
+
+}
 
 // make everything left align
 // for the parts:

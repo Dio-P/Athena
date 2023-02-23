@@ -43,7 +43,7 @@ const AddConnectionButtonWrapper = styled.div`
   align-text: center;
 `;
 
-const SmallButton = styleVariables.customStyledElements.SmallButton;
+// const SmallButton = styleVariables.customStyledElements.SmallButton;
 
 const AddNewConnectionBlock = ({
   appToDisplay,
