@@ -1,4 +1,3 @@
-
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";

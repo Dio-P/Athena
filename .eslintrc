@@ -1,13 +1,16 @@
 {
   "rules": {
-    "jsx-a11y/anchor-is-valid": [ "error", {
-      "components": [ "Link" ],
-      "specialLink": [ "to" ]
-    }],
-    "jsx-a11y/no-noninteractive-tabindex": [ "error", {
-      "tags": [],
-      "roles": [ "Listitem" ]
-    }]
+    // "jsx-a11y/anchor-is-valid": [ "error", {
+    //   "components": [ "Link" ],
+    //   "specialLink": [ "to" ]
+    // }],
+    // "jsx-a11y/no-noninteractive-tabindex": [ "error", {
+    //   "tags": [],
+    //   "roles": [ "Listitem" ]
+    // }]
   },
-  "parser": "babel-eslint"
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module"
+}
 }
