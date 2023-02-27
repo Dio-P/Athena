@@ -4,7 +4,7 @@ import styleVariables from "../styleVariables";
 import { tickIcon, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
 import { defaultProps } from "default-props";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const dropDownButton = {
   ContainerWrapper: styled.div`
@@ -127,12 +127,12 @@ const mainBtn = {
   `,
 };
 
-const SmallButton = ({ icon, onClickFunction, type }) => {
+const SmallButton = ({ icon, onClickFunction, type, aria }) => {
   console.log("icon", icon);
   return (
     <smallBtn.Wrapper
       onClick={onClickFunction}
-      aria-label={`${icon.props["aria-label"]} button`}
+      aria-label={aria || `${icon.props["aria-label"]} button`}
     >
       <smallBtn.IconContainer>{icon}</smallBtn.IconContainer>
     </smallBtn.Wrapper>
@@ -145,9 +145,13 @@ const MainButton = ({
   label,
   clicked,
   onClickFunction,
+  aria,
 }) => {
   return (
-    <mainBtn.Wrapper onClick={onClickFunction} aria-label={`${type} button`}>
+    <mainBtn.Wrapper
+      onClick={onClickFunction}
+      aria-label={aria || `${type} button`}
+    >
       <CustomButtonContainer>
         <mainBtn.LabelContainer>
           <mainBtn.Label>{capitaliseFirstLetters(label)}</mainBtn.Label>
@@ -168,12 +172,13 @@ const DropDownButton = ({
   folderOfNewPart,
   clickedFolder,
   type,
+  aria,
 }) => {
   const dropDownToogleButtonTitle = folderOfNewPart
     ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
-    <dropDownButton.ContainerWrapper aria-label={`${type} button`}>
+    <dropDownButton.ContainerWrapper aria-label={aria || `${type} button`}>
       <dropDownButton.Container onClick={onClickFunction}>
         <div> {dropDownToogleButtonTitle} </div>
         <dropDownButton.ArrowContainer>
@@ -194,10 +199,16 @@ const GenericButtonIcon = ({
   isMenuOpen,
   folderOfNewPart,
   clickedFolder,
+  aria,
 }) => {
   if (type === "small") {
     return (
-      <SmallButton icon={icon} onClickFunction={onClickFunction} type={type} />
+      <SmallButton
+        icon={icon}
+        onClickFunction={onClickFunction}
+        type={type}
+        aria={aria}
+      />
     );
   }
   if (type === "add") {
@@ -208,6 +219,7 @@ const GenericButtonIcon = ({
         label={label}
         clicked={clicked}
         onClickFunction={onClickFunction}
+        aria={aria}
       />
     );
   }
@@ -219,6 +231,7 @@ const GenericButtonIcon = ({
         label={label}
         clicked={clicked}
         onClickFunction={onClickFunction}
+        aria={aria}
       />
     );
   }
@@ -230,6 +243,7 @@ const GenericButtonIcon = ({
         folderOfNewPart={folderOfNewPart}
         clickedFolder={clickedFolder}
         type={type}
+        aria={aria}
       />
     );
   }
@@ -241,6 +255,7 @@ const GenericButtonIcon = ({
         label={label}
         clicked={clicked}
         onClickFunction={onClickFunction}
+        aria={aria}
       />
       {/* {renderConditional(label) && <WarningElement info="will be deleted if not choosen" />} */}
     </div>
@@ -249,9 +264,7 @@ const GenericButtonIcon = ({
 
 export default GenericButtonIcon;
 
-GenericButtonIcon.propTypes = {
-
-}
+GenericButtonIcon.propTypes = {};
 
 // make everything left align
 // for the parts:

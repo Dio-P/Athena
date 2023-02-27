@@ -8,14 +8,23 @@ import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSea
 import useParamsHelper from "../hooks/useParamsHelper";
 import AddConnectionStateManager from "./AddNewConnectionStateManager";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+import { editIcon } from "../helpers/svgIcons";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0px;
+
+`;
+
 const AppPageTitle = styled.h1`
   margin: 0px;
 `;
+
 
 const AddDocButton = styled.button`
   margin: auto;
@@ -55,16 +64,19 @@ const AppPage = () => {
     if (appToDisplay) {
       return (
         <>
-          <>
-            <AppPageTitle>
-              {capitaliseFirstLetters(appToDisplay?.name)}
-              <GenericButtonIcon
-                onClickFunction={manageAddingNewConnectionParam}
-                type="add"
-                label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
-              />
-            </AppPageTitle>
-          </>
+          <TitleContainer>
+            {capitaliseFirstLetters(appToDisplay?.name)}
+            <GenericButtonIcon
+              icon={editIcon}
+              type="small"
+              // onClickFunction={}
+            />
+          </TitleContainer>
+            <GenericButtonIcon
+              onClickFunction={manageAddingNewConnectionParam}
+              type="add"
+              label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
+            />
 
           <AddConnectionStateManager
             addingNewConnection={addingNewConnection}
