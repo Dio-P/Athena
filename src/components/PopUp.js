@@ -2,12 +2,12 @@ import OverlayElem from "./OverlayElem";
 import styled from "@emotion/styled";
 import AddNewFolderInputContainer from "../containers/AddNewFolderInputContainer";
 
-const NewFolderPopUpWrapper = styled.div`
+const PopUpContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-const NewFolderInputContainerWrapper = styled.div`
+const PopUpWrapper = styled.div`
   z-index: 101;
   position: absolute;
   width: auto;
@@ -17,27 +17,27 @@ const NewFolderInputContainerWrapper = styled.div`
   bottom: 50%;
 `;
 
-const NewFolderPopUp = ({
-  setIsNewFolderPopUpOpen,
+const PopUp = ({
+  setIsPopUpOpen,
   folderOfNewPart,
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
 }) => {
   return (
-    <NewFolderPopUpWrapper>
+    <PopUpContainer>
       <OverlayElem />
-      <NewFolderInputContainerWrapper>
+      <PopUpWrapper>
         <AddNewFolderInputContainer
-          setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+          setIsPopUpOpen={setIsPopUpOpen}
           folderOfNewPart={folderOfNewPart}
           onClickFunction={onClickFunction}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
         />
-      </NewFolderInputContainerWrapper>
-    </NewFolderPopUpWrapper>
+      </PopUpWrapper>
+    </PopUpContainer>
   );
 };
 
-export default NewFolderPopUp;
+export default PopUp;

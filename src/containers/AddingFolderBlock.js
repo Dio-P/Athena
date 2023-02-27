@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import DropDown from "../components/DropDown";
-import NewFolderPopUp from "../components/NewFolderPopUp";
+import PopUp from "../components/PopUp";
 import { WarningElement } from "../components/specialElements";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 
@@ -42,7 +42,7 @@ const AddingFolderBlock = ({
     onClickingPreExistingFolder,
   } = useFolderHelper();
 
-  const [isNewFolderPopUpOpen, setIsNewFolderPopUpOpen] = useState(false);
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   const addNewFolderAndClear = () => {
     const newFolder = {
@@ -55,7 +55,7 @@ const AddingFolderBlock = ({
       folderToBeDisplayedIn: newFolderIndexKey,
     });
 
-    setIsNewFolderPopUpOpen(false);
+    setIsPopUpOpen(false);
     setClickedFolder(folderBeenCreated);
     manageFolderDdOpenParam();
   };
@@ -84,8 +84,8 @@ const AddingFolderBlock = ({
   };
 
   const renderAddNewFolderPopUp = () => {
-    console.log("setIsNewFolderPopUpOpen to be set to true");
-    setIsNewFolderPopUpOpen(true);
+    console.log("setIsPopUpOpen to be set to true");
+    setIsPopUpOpen(true);
   };
 
   return (
@@ -109,9 +109,9 @@ const AddingFolderBlock = ({
           />
         )}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
-        {isNewFolderPopUpOpen && (
-          <NewFolderPopUp
-            setIsNewFolderPopUpOpen={setIsNewFolderPopUpOpen}
+        {isPopUpOpen && (
+          <PopUp
+            setIsPopUpOpen={setIsPopUpOpen}
             folderOfNewPart={folderOfNewPart}
             onClickFunction={addNewFolderAndClear}
             folderBeenCreated={folderBeenCreated}

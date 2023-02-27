@@ -43,7 +43,7 @@ const AddNewFolderInputContainer = ({
   addNewFolderAndClear,
   newInputTitle,
   onClickingFolder,
-  setIsNewFolderPopUpOpen,
+  setIsPopUpOpen,
   folderOfNewPart,
   onClickFunction,
   folderBeenCreated,
@@ -59,7 +59,7 @@ const AddNewFolderInputContainer = ({
   return (
     <NewFolderInputContainer>
       <GenericButtonIcon
-        onClickFunction={() => setIsNewFolderPopUpOpen(false)}
+        onClickFunction={() => setIsPopUpOpen(false)}
         type="small"
         icon={deleteIcon}
       />
