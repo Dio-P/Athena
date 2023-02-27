@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import styleVariables from "../styleVariables";
 
 const AppInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fffcfa;
+  border-radius: ${styleVariables.borderRadious.secondary};
 `;
 
 const ManageAppInput = ({appName, appType, appHgRepo, appBriefDescr}) => {

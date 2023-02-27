@@ -24,6 +24,7 @@ const PopUp = ({
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
+  folders,
 }) => {
   return (
     <PopUpContainer>
@@ -35,6 +36,7 @@ const PopUp = ({
           onClickFunction={onClickFunction}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
+          folders={folders}
         />
       </PopUpWrapper>
     </PopUpContainer>

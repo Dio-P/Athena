@@ -109,6 +109,7 @@ const AppPage = () => {
             ComponentToDisplay={EditAppContainer}
             setIsPopUpOpen={setEditPopUpIsOpen}
             // onClickFunction={}
+            folders={appToDisplay.folders}
           />
           }
 
