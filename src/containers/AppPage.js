@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
@@ -9,6 +9,8 @@ import useParamsHelper from "../hooks/useParamsHelper";
 import AddConnectionStateManager from "./AddNewConnectionStateManager";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import { editIcon } from "../helpers/svgIcons";
+import PopUp from "../components/PopUp";
+import EditAppContainer from "./EditAppContainer";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -40,14 +42,20 @@ const AddDocButton = styled.button`
 const AppPage = () => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
-
   const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
-
   const { manageAddingNewConnectionParam } = useParamsHelper();
+  
+  const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
 
   useEffect(() => {
     console.log("AppPage rendering");
   }, []);
+
+  const clickingEditApp = () => {
+    return (
+      <h1>Test</h1>
+    ) 
+  }
 
   const pickFromRenderingOptions = () => {
     if (loading) {
@@ -69,7 +77,7 @@ const AppPage = () => {
             <GenericButtonIcon
               icon={editIcon}
               type="small"
-              // onClickFunction={}
+              onClickFunction={()=>setEditPopUpIsOpen(!editPopUpIsOpen)}
             />
           </TitleContainer>
             <GenericButtonIcon
@@ -94,6 +102,15 @@ const AppPage = () => {
                 />
               ))}
           </div>
+
+          {editPopUpIsOpen
+          &&
+          <PopUp
+            ComponentToDisplay={EditAppContainer}
+            setIsPopUpOpen={setEditPopUpIsOpen}
+            // onClickFunction={}
+          />
+          }
 
         </>
       );
