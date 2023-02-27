@@ -78,3 +78,14 @@ export const deleteIcon = (
     <path d="M30 4.6l-2.8-2.8L2 27.4l2.8 2.8L30 4.6zM4.8 1.8L1.9 4.7l25.2 25.5 2.9-2.9L4.8 1.8z"></path>
   </svg>
 );
+
+export const editIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    aria-label="edit"
+    aria-hidden
+  >
+    <path d="M2.4 28.6l1 1L13.9 27l15.8-15.7-8.9-8.9L5 18.1 2.4 28.6zM15 25.2l-8.3-8.3-.5 2.3 6.6 6.6 2.2-.6zm-1-.3L3.5 27.5l.9.9L7.1 18l-1.6 2.8L21.8 4.5l-1.4.6 6.7 6.6.4-1.5-16.3 16.3 2.8-1.6zm-6.7 1.8l-2.1-2.1-1.1 3.2 3.2-1.1z"></path>
+  </svg>
+);
