@@ -18,6 +18,7 @@ const PopUpWrapper = styled.div`
 `;
 
 const PopUp = ({
+  ComponentToDisplay,
   setIsPopUpOpen,
   folderOfNewPart,
   onClickFunction,
@@ -28,7 +29,7 @@ const PopUp = ({
     <PopUpContainer>
       <OverlayElem />
       <PopUpWrapper>
-        <AddNewFolderInputContainer
+        <ComponentToDisplay
           setIsPopUpOpen={setIsPopUpOpen}
           folderOfNewPart={folderOfNewPart}
           onClickFunction={onClickFunction}

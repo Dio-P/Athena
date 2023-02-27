@@ -6,6 +6,7 @@ import DropDown from "../components/DropDown";
 import PopUp from "../components/PopUp";
 import { WarningElement } from "../components/specialElements";
 import GenericButtonIcon from "../components/GenericButtonIcon";
+import AddNewFolderInputContainer from "./AddNewFolderInputContainer";
 
 const MainAddNewFolderContainer = styled.div`
   margin-top: 4px;
@@ -111,6 +112,7 @@ const AddingFolderBlock = ({
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
         {isPopUpOpen && (
           <PopUp
+            ComponentToDisplay={AddNewFolderInputContainer}
             setIsPopUpOpen={setIsPopUpOpen}
             folderOfNewPart={folderOfNewPart}
             onClickFunction={addNewFolderAndClear}
