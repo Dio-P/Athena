@@ -14,7 +14,7 @@ const FolderContainer = styled.div`
   flex-flow: row wrap;
 `;
 
-const SingleFolderInput = ({ folder,setUpdatedFolders }) => {
+const SingleFolderDetails = ({ folder,setUpdatedFolders }) => {
   return (
     <FolderContainer>
       {folder.id}: <input name="editSingleFolder" value={folder.name} onChange={(e) => setUpdatedFolders(e.target.value)}/>
@@ -22,7 +22,7 @@ const SingleFolderInput = ({ folder,setUpdatedFolders }) => {
   );
 };
 
-const ManageFoldersInput = ({ folders }) => {
+const ManageFoldersDetails = ({ folders }) => {
   const [updatedFolders, setUpdatedFolders] = useState(undefined);
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const ManageFoldersInput = ({ folders }) => {
   return (
     <FolderInputContainer>
       {folders.map((folder) => (
-        <SingleFolderInput folder={folder} setUpdatedFolders={setUpdatedFolders}/>
+        <SingleFolderDetails folder={folder} setUpdatedFolders={setUpdatedFolders}/>
       ))}
     </FolderInputContainer>
   );
 };
 
-export default ManageFoldersInput;
+export default ManageFoldersDetails;

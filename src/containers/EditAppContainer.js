@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import { deleteIcon } from "../helpers/svgIcons";
-import ManageAppInput from "../components/ManageAppInput";
-import ManageFoldersInput from "../components/ManageFoldersInput";
+import ManageAppDetails from "../components/ManageAppDetails";
+import ManageFoldersDetails from "../components/ManageFoldersDetails";
 
 const EditAppContainerWrapper = styled.div`
   display: flex;
@@ -24,13 +24,13 @@ const EditAppContainer = ({ setIsPopUpOpen, folders }) => {
         icon={deleteIcon}
       />
       <Body>
-        <ManageAppInput
+        <ManageAppDetails
           appName={"test"}
           appType={"test"}
           appHgRepo={"test"}
           appBriefDescr={"test"}
         />
-        <ManageFoldersInput folders={folders}/>
+        <ManageFoldersDetails folders={folders}/>
       </Body>
     </EditAppContainerWrapper>
   );

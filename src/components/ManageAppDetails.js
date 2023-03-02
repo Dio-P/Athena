@@ -10,7 +10,7 @@ const AppInputContainer = styled.div`
   border-radius: ${styleVariables.borderRadious.secondary};
 `;
 
-const ManageAppInput = ({appName, appType, appHgRepo, appBriefDescr}) => {
+const ManageAppDetails = ({appName, appType, appHgRepo, appBriefDescr}) => {
   const [app, setApp] = useState({
       name: "",
       type: "",
@@ -37,4 +37,4 @@ const ManageAppInput = ({appName, appType, appHgRepo, appBriefDescr}) => {
   ) 
 }
 
-export default ManageAppInput;
+export default ManageAppDetails;
