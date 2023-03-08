@@ -9,13 +9,14 @@ const EditAppContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: ${styleVariables.colours.primaryLight}
+  background-color: ${styleVariables.colours.primaryLight};
 `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  align-items: start;
 `;
 
 const EditAppContainer = ({ setIsPopUpOpen, folders }) => {

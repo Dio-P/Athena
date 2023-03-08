@@ -4,14 +4,20 @@ import styleVariables from "../styleVariables";
 
 const FolderInputContainer = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   height: 100%;
+  margin: 20px 40px 30px 20px;
   background-color: #fffcfa;
   border-radius: ${styleVariables.borderRadious.secondary};
 `;
 
 const FolderContainer = styled.div`
   flex-flow: row wrap;
+  margin-bottom: 6px;
+  & input {
+    width: 180px;
+  }
 `;
 
 const constructUpdatedFoldersArray = (folders, updatedFolder) => {
