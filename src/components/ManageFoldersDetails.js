@@ -75,6 +75,7 @@ const ManageFoldersDetails = ({ updatedApp, setUpdatedApp }) => {
     <FolderInputContainer>
       {foldersToUpdateApp.map((folder) => (
         <SingleFolderDetails
+          key={folder.id}
           folder={folder}
           foldersToUpdateApp={foldersToUpdateApp}
           setFoldersToUpdateApp={setFoldersToUpdateApp}
