@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import { deleteIcon } from "../helpers/svgIcons";
@@ -21,7 +21,8 @@ const Body = styled.div`
 `;
 
 const EditAppContainer = ({ setIsPopUpOpen, app }) => {
-  const [updatedApp, setUpdatedApp] = useState(app);
+  const initialApp = useMemo(() => app, [app])
+  const [updatedApp, setUpdatedApp] = useState(undefined);
   // pass the whole app in here /\
   useEffect(() => {
     console.log("updatedApp", updatedApp);
@@ -42,15 +43,15 @@ const EditAppContainer = ({ setIsPopUpOpen, app }) => {
       />
       <Body>
         <ManageAppDetails
-          appName={app.name}
-          appType={app.type}
-          appHgRepo={app.gitHubRepo}
-          appBriefDescr={app.briefDescr}
-          updatedApp={updatedApp}
+          // appName={initialApp.name}
+          // appType={initialApp.type}
+          // appHgRepo={initialApp.gitHubRepo}
+          // appBriefDescr={initialApp.briefDescr}
+          app={initialApp}
           setUpdatedApp={setUpdatedApp}
         />
         <ManageFoldersDetails
-          updatedApp={updatedApp}
+          app={initialApp}
           setUpdatedApp={setUpdatedApp}
         />
       </Body>

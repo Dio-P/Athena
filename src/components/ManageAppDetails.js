@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 
@@ -16,23 +16,26 @@ const SingleInputCont = styled.div`
   width: 200px;
 `;
 
-const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr, updatedApp, setUpdatedApp }) => {
-  
-  const [newName, setNewName] = useState("");
-  const [newType, setNewType] = useState("");
-  const [newGhRepo, setNewGhRepo] = useState("");
-  const [newBriefDescr, setNewBriefDescr] = useState("");
+const ManageAppDetails = ({ app, setUpdatedApp }) => {
+  const appName = useMemo(() => app.name, [app]);
+  const appType = useMemo(() => app.type, [app]);
+  const appHgRepo = useMemo(() => app.gitHubRepo, [app]);
+  const appBriefDescr = useMemo(() => app.briefDescr, [app]);
+
+  const [newName, setNewName] = useState(appName);
+  const [newType, setNewType] = useState(appType);
+  const [newGhRepo, setNewGhRepo] = useState(appHgRepo);
+  const [newBriefDescr, setNewBriefDescr] = useState(appBriefDescr);
 
   useEffect(() => {
     setUpdatedApp({
-      ...updatedApp,
+      ...app,
       name: newName || appName,
       type: newType || appType,
       ghRepo: newGhRepo || appHgRepo,
       briefDescr: newBriefDescr || appBriefDescr,
-    })
-
-  }, [newName, newType, newGhRepo, newBriefDescr])
+    });
+  }, [newName, newType, newGhRepo, newBriefDescr]);
 
   return (
     <AppInputContainer>

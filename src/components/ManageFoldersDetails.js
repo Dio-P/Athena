@@ -29,12 +29,12 @@ const constructUpdatedFoldersArray = (folders, updatedFolder) => {
   return [...foldersWithoutChangingOne, folderName];
 };
 
-const SingleFolderDetails = ({ folder, setFoldersToUpdateApp, updatedApp }) => {
+const SingleFolderDetails = ({ folder, setFoldersToUpdateApp, app }) => {
   const [newName, setNewName] = useState("");
 
   useEffect(() => {
     setFoldersToUpdateApp(
-      constructUpdatedFoldersArray(updatedApp.folders, {
+      constructUpdatedFoldersArray(app.folders, {
         name: newName,
         id: folder.id,
         parts: folder.parts
@@ -57,8 +57,8 @@ const SingleFolderDetails = ({ folder, setFoldersToUpdateApp, updatedApp }) => {
   );
 };
 
-const ManageFoldersDetails = ({ updatedApp, setUpdatedApp }) => {
-  const [foldersToUpdateApp, setFoldersToUpdateApp] = useState(updatedApp.folders);
+const ManageFoldersDetails = ({ app, setUpdatedApp }) => {
+  const [foldersToUpdateApp, setFoldersToUpdateApp] = useState(app.folders);
 
   // useEffect(() => {
   //   setFoldersToUpdateApp(folders);
@@ -66,20 +66,20 @@ const ManageFoldersDetails = ({ updatedApp, setUpdatedApp }) => {
 
   useEffect(() => {
     setUpdatedApp({
-      ...updatedApp,
+      ...app,
       folders: foldersToUpdateApp,
     });
   }, [foldersToUpdateApp]);
 
   return (
     <FolderInputContainer>
-      {foldersToUpdateApp.map((folder) => (
+      {app.folders.map((folder) => (
         <SingleFolderDetails
           key={folder.id}
           folder={folder}
           foldersToUpdateApp={foldersToUpdateApp}
           setFoldersToUpdateApp={setFoldersToUpdateApp}
-          updatedApp={updatedApp}
+          app={app}
         />
       ))}
     </FolderInputContainer>
