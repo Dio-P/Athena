@@ -30,10 +30,10 @@ const ManageAppDetails = ({ app, setUpdatedApp }) => {
   useEffect(() => {
     setUpdatedApp({
       ...app,
-      name: newName || appName,
-      type: newType || appType,
-      ghRepo: newGhRepo || appHgRepo,
-      briefDescr: newBriefDescr || appBriefDescr,
+      name: newName,
+      type: newType,
+      ghRepo: newGhRepo,
+      briefDescr: newBriefDescr,
     });
   }, [newName, newType, newGhRepo, newBriefDescr]);
 

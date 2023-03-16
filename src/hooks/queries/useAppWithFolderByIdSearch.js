@@ -7,6 +7,9 @@ export const SEARCH_APP_BY_ID_WITH_FOLDERS_QUERY = gql`
     getAppWithFoldersById(id: $id) {
       id
       name
+      type
+      gitHubRepo
+      briefDescr
       folders {
         name
         id

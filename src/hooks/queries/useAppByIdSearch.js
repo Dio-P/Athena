@@ -7,6 +7,9 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
     getAppById(id: $id) {
       name
       id
+      type
+      gitHubRepo
+      briefDescr
       folders {
         name
         id
