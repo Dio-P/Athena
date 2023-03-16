@@ -43,10 +43,6 @@ const EditAppContainer = ({ setIsPopUpOpen, app }) => {
       />
       <Body>
         <ManageAppDetails
-          // appName={initialApp.name}
-          // appType={initialApp.type}
-          // appHgRepo={initialApp.gitHubRepo}
-          // appBriefDescr={initialApp.briefDescr}
           app={initialApp}
           setUpdatedApp={setUpdatedApp}
         />

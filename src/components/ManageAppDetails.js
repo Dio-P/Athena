@@ -13,12 +13,15 @@ const SingleInputCont = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  width: 200px;
+  width: 250px;
+  & label {
+    margin-bottom: 5px;
+  }
 `;
 
-const InputWrapper = styled.div`
+const TextareaWrapper = styled.div`
   & textarea {
-    width: 100%;
+    width: 94%;
     height: 100px;
     overflow: scroll;
     padding: 6px;
@@ -76,7 +79,7 @@ const ManageAppDetails = ({ app, setUpdatedApp }) => {
       </SingleInputCont>
       <SingleInputCont>
         <label>Brief Description</label>
-        <InputWrapper>
+        <TextareaWrapper>
           <textarea
             name="appBriefDescr"
             placeholder={appBriefDescr}
@@ -84,7 +87,7 @@ const ManageAppDetails = ({ app, setUpdatedApp }) => {
             size="3em"
             onChange={(e) => setNewBriefDescr(e.target.value)}
           />
-        </InputWrapper>
+        </TextareaWrapper>
       </SingleInputCont>
     </AppInputContainer>
   );

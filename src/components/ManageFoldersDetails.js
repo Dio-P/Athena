@@ -13,10 +13,11 @@ const FolderInputContainer = styled.div`
 `;
 
 const FolderContainer = styled.div`
-  flex-flow: row wrap;
+  display: flex;
+  flex-flow: row;
   margin-bottom: 6px;
   & input {
-    width: 180px;
+    width: 220px;
   }
 `;
 
