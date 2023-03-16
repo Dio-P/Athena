@@ -46,11 +46,6 @@ const DocIcon = ({ doc, iconNu }) => {
   const DocIconContainer =
     iconNu % 2 === 0 ? EvenIconContainerWrapper : OddIconContainerWrapper;
 
-  useEffect(() => {
-      console.log("iconNu", iconNu);
-      console.log("doc", doc);
-  }, [doc, iconNu])
-
   // const count = useMemo(() => {iconNu()}, [iconNu]);
 
   return (

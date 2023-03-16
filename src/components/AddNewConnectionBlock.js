@@ -63,7 +63,6 @@ const AddNewConnectionBlock = ({
   folderBeenCreated,
   setFolderBeenCreated,
 }) => {
-  console.log("AddNewConnectionBlock");
   const didMountRef = useRef(false);
 
   const [updatedApp, setUpdatedApp] = useState("");

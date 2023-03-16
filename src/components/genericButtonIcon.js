@@ -128,7 +128,6 @@ const mainBtn = {
 };
 
 const SmallButton = ({ icon, onClickFunction, type, aria }) => {
-  console.log("icon", icon);
   return (
     <smallBtn.Wrapper
       onClick={onClickFunction}

@@ -15,17 +15,14 @@ const useParamsHelper = () => {
   } = params;
 
   const manageTeamParam = (defaultTeam) => {
-    console.log("defaultTeam@", defaultTeam);
     if(!team){
       setSearchParams({team: defaultTeam});
     }
   };  
 
   const manageAppIdParam = (singleApp) => {
-    console.log("manageAppIdParam");
 
     if(singleApp.id && !appId){
-      console.log("singleApp true", singleApp);
       setSearchParams({ team, appId: singleApp.id }) 
     } else {
       setSearchParams({ team });
@@ -33,8 +30,6 @@ const useParamsHelper = () => {
   };
   
   const manageAddingNewConnectionParam = () => {
-    console.log("manageAddingNewConnectionParam");
-
     if (!addingNewConnection) {
       setSearchParams({ team, appId, addingNewConnection: true });
     } else {
@@ -43,7 +38,6 @@ const useParamsHelper = () => {
   };
 
   const manageAddingNewPartParam = () => {
-    console.log("manageAddingNewPartParam");
     if (!addingNewPart) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
     } else {
@@ -52,7 +46,6 @@ const useParamsHelper = () => {
   };
 
   const manageFolderDdOpenParam = () => {
-    console.log("manageFolderDdOpenParam");
     if (!isFolderDdOpen) {
       setSearchParams({ team, appId, addingNewConnection, addingNewPart, isFolderDdOpen: true });
     } else {
@@ -61,7 +54,6 @@ const useParamsHelper = () => {
   };
 
   const keepExistingParams = () => {
-    console.log("keepExistingParams");
     setSearchParams({...params});
   };
 

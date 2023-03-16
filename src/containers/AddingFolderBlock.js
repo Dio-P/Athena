@@ -62,7 +62,6 @@ const AddingFolderBlock = ({
   };
 
   const folderInfoToState = (folder) => {
-    console.log("folderInfoToState@@@, folder is: ", folder);
     setClickedFolder(folder.name);
     setFolderOfNewPart(folder);
     setNewPart({
@@ -85,7 +84,6 @@ const AddingFolderBlock = ({
   };
 
   const renderAddNewFolderPopUp = () => {
-    console.log("setIsPopUpOpen to be set to true");
     setIsPopUpOpen(true);
   };
 

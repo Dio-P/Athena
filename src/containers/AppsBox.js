@@ -33,11 +33,7 @@ const AppsBox = ({ teamApps, teamName }) => {
       appId
     }
   } = useParamsHelper();
-
-  useEffect(() => {
-    console.log("AppsBox rendered");  
-  }, [])
-
+  
   return (
     <DepartmAppsBoxContainer>
       <StyledButton onClick={manageAppIdParam}>

@@ -47,10 +47,6 @@ const AppPage = () => {
   
   const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("AppPage rendering");
-  }, []);
-
   const clickingEditApp = () => {
     return (
       <h1>Test</h1>

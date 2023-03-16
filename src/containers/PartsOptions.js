@@ -67,7 +67,6 @@ const PartsOptions = ({
   }
 
   const onClickingPart = (part) => {
-    console.log("onClickingPart clicked, part is:", part);
     if (part) {
       updateCorrectStateWithPart(part);
     }

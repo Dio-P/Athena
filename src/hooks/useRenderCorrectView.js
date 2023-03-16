@@ -11,12 +11,6 @@ const useRenderCorrectView = (loading, error, data, view) => {
   const dataMemoTrue = useMemo(() => !!data, [data]);
 
   useEffect(() => {
-    console.log("loadingMemoTrue, errorMemoTrue, dataMemoTrue", loadingMemoTrue, errorMemoTrue, dataMemoTrue);
-    console.log("loading, error, data, view", loading, error, data, view);
-    
-  }, [loadingMemoTrue, errorMemoTrue, dataMemoTrue, loading, error, data, view]);
-
-  useEffect(() => {
     if (loadingMemoTrue) {
       setRenderingView(<h3>Loading...</h3>);
     }
@@ -29,7 +23,6 @@ const useRenderCorrectView = (loading, error, data, view) => {
       );
     }
     if (dataMemoTrue) {
-      console.log('data£££', dataMemoTrue);
       setRenderingView(view);
     }
   }, [loading, error, data])

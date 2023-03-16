@@ -19,15 +19,6 @@ const useTeamAppsNamesSearch = (team) => {
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-    console.log("useTeamAppsNamesSearch", "teamMemo", teamMemo, "team", team, loading, error, data);  
-  }, []);
-
-//   useEffect(() => {
-//     console.log("team", team);
-//     console.log("teamMemo", teamMemo);
-// } , [team, teamMemo])
-
-  useEffect(() => {
     if(teamMemo){
       searchApps({ 
         variables: 

@@ -4,10 +4,6 @@ import { useEffect, useMemo } from "react";
 function App() {
   const DEFAULT_DEPARTMENT = useMemo(() => "DPub", []);
 
-  useEffect(() => {
-  console.log("app rendered");  
-}, [])
-
   return (
     <div>
       <h1>Athena</h1>

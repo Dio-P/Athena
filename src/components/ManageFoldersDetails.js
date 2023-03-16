@@ -65,7 +65,6 @@ const ManageFoldersDetails = ({ updatedApp, setUpdatedApp }) => {
   // }, [folders]);
 
   useEffect(() => {
-    console.log("foldersToUpdateApp", foldersToUpdateApp);
     setUpdatedApp({
       ...updatedApp,
       folders: foldersToUpdateApp,

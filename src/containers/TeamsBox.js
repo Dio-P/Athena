@@ -14,7 +14,6 @@ margin: 0px;
 `;
 
 const TeamsBox = ({ department }) => {
-  console.log("department", department);
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
   const {
@@ -32,10 +31,6 @@ const TeamsBox = ({ department }) => {
     loading,
     error
   ]= useTeamAppsNamesSearch(chosenTeam);
-  
-  useEffect(() => {
-    console.log("teams box rendered");  
-  }, [])
 
   useEffect(() => {
     if(!chosenTeam && team){
@@ -45,7 +40,6 @@ const TeamsBox = ({ department }) => {
 
   useEffect(() => {
     if(!team){
-      console.log("manageTeamParam", );
       manageTeamParam(chosenTeam)
     }
   }, [chosenTeam]);

@@ -41,7 +41,6 @@ const useAppByIdSearch = (id, shouldQuery) => {
 
   useEffect(() => {
     if(id && shouldQuery) {
-      console.log("it should query!!!");
       searchApp({
         variables: { id: id },
       });
