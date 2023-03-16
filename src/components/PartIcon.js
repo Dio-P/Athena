@@ -7,7 +7,7 @@ const PartsContainer = styled.div`
     display: flex
 `;
 
-const IconButton = styled.button`
+const IconButton = styled.div`
 background: none;
 color: inherit;
 
@@ -42,7 +42,7 @@ p {
     margin: auto;
 }
 
-a {
+& a {
     font-size: smaller;
     margin: auto;
     color: #FCABD1;

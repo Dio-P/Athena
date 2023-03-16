@@ -15,6 +15,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   const { keepExistingParams, params: { appId, } } = useParamsHelper();
   const id = useMemo(() => appId, [appId])
   const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
+  // now there is a query in the previous appPage that gets exactly the same object. This may be redundant if all else works.
   const preexistingParts = useMemo(
     () => addClickedKeyToPreexParts(appToDisplay.parts),
     [appToDisplay]
