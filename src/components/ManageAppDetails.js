@@ -16,16 +16,16 @@ const SingleInputCont = styled.div`
   width: 200px;
 `;
 
-const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr }) => {
-  const [app, setApp] = useState(undefined);
-
+const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr, setUpdatedApp }) => {
+  
   const [newName, setNewName] = useState("");
   const [newType, setNewType] = useState("");
   const [newGhRepo, setNewGhRepo] = useState("");
   const [newBriefDescr, setNewBriefDescr] = useState("");
 
   useEffect(() => {
-    setApp({
+    setUpdatedApp({
+      ...updatedApp,
       name: newName || appName,
       type: newType || appType,
       ghRepo: newGhRepo || appHgRepo,
@@ -33,10 +33,6 @@ const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr }) => {
     })
 
   }, [newName, newType, newGhRepo, newBriefDescr])
-
-  useEffect(() => {
-    console.log("app", app);
-  }, [app])
 
   return (
     <AppInputContainer>
