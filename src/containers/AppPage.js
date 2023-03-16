@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import Folder from "../components/Folder";
+import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useAppWithFolderByIdSearch from "../hooks/queries/useAppWithFolderByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AddConnectionStateManager from "./AddNewConnectionStateManager";
@@ -11,6 +12,7 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import { editIcon } from "../helpers/svgIcons";
 import PopUp from "../components/PopUp";
 import EditAppContainer from "./EditAppContainer";
+import { createAppByFolders } from "../helpers/updateDbDocsLogic";
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -42,10 +44,20 @@ const AddDocButton = styled.button`
 const AppPage = () => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
-  const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
+  // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
+  const [appToDisplay, loading, error] = useAppByIdSearch(appId, true);
   const { manageAddingNewConnectionParam } = useParamsHelper();
   
+  const [appByFoldersMutation, setAppByFoldersMutation] = useState(undefined);
   const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("appToDisplay", appToDisplay)
+
+    appToDisplay && (
+      setAppByFoldersMutation(createAppByFolders(appToDisplay))
+    )
+  }, [appToDisplay]);
 
   const clickingEditApp = () => {
     return (
@@ -65,11 +77,11 @@ const AppPage = () => {
         </p>
       );
     }
-    if (appToDisplay) {
+    if (appByFoldersMutation) {
       return (
         <>
           <TitleContainer>
-            {capitaliseFirstLetters(appToDisplay?.name)}
+            {capitaliseFirstLetters(appByFoldersMutation?.name)}
             <GenericButtonIcon
               icon={editIcon}
               type="small"
@@ -88,13 +100,13 @@ const AppPage = () => {
           />
 
           <div>
-            {appToDisplay &&
-              appToDisplay?.folders?.map((folder, index) => (
+            {appByFoldersMutation &&
+              appByFoldersMutation?.folders?.map((folder, index) => (
                 <Folder
                   key={index}
                   folderName={folder.name}
                   parts={folder.parts}
-                  appId={appToDisplay.id}
+                  appId={appByFoldersMutation.id}
                 />
               ))}
           </div>
