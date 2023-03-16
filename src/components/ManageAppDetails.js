@@ -16,6 +16,14 @@ const SingleInputCont = styled.div`
   width: 200px;
 `;
 
+const InputWrapper = styled.div`
+  & textarea {
+    width: 100%;
+    height: 100px;
+    overflow: scroll;
+    padding: 6px;
+  }
+`;
 const ManageAppDetails = ({ app, setUpdatedApp }) => {
   const appName = useMemo(() => app.name, [app]);
   const appType = useMemo(() => app.type, [app]);
@@ -68,12 +76,15 @@ const ManageAppDetails = ({ app, setUpdatedApp }) => {
       </SingleInputCont>
       <SingleInputCont>
         <label>Brief Description</label>
-        <input
-          name="appBriefDescr"
-          placeholder={appBriefDescr}
-          value={newBriefDescr}
-          onChange={(e) => setNewBriefDescr(e.target.value)}
-        />
+        <InputWrapper>
+          <textarea
+            name="appBriefDescr"
+            placeholder={appBriefDescr}
+            value={newBriefDescr}
+            size="3em"
+            onChange={(e) => setNewBriefDescr(e.target.value)}
+          />
+        </InputWrapper>
       </SingleInputCont>
     </AppInputContainer>
   );

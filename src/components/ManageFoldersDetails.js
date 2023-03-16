@@ -30,7 +30,7 @@ const constructUpdatedFoldersArray = (folders, updatedFolder) => {
 };
 
 const SingleFolderDetails = ({ folder, setFoldersToUpdateApp, app }) => {
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState(folder.name);
 
   useEffect(() => {
     setFoldersToUpdateApp(
@@ -59,10 +59,6 @@ const SingleFolderDetails = ({ folder, setFoldersToUpdateApp, app }) => {
 
 const ManageFoldersDetails = ({ app, setUpdatedApp }) => {
   const [foldersToUpdateApp, setFoldersToUpdateApp] = useState(app.folders);
-
-  // useEffect(() => {
-  //   setFoldersToUpdateApp(folders);
-  // }, [folders]);
 
   useEffect(() => {
     setUpdatedApp({
