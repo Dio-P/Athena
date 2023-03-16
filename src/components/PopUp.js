@@ -24,7 +24,7 @@ const PopUp = ({
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
-  folders,
+  app,
 }) => {
   return (
     <PopUpContainer>

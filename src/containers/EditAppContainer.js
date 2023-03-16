@@ -4,7 +4,7 @@ import GenericButtonIcon from "../components/GenericButtonIcon";
 import { deleteIcon } from "../helpers/svgIcons";
 import ManageAppDetails from "../components/ManageAppDetails";
 import ManageFoldersDetails from "../components/ManageFoldersDetails";
-import styleVariables from '../styleVariables';
+import styleVariables from "../styleVariables";
 
 const EditAppContainerWrapper = styled.div`
   display: flex;
@@ -22,18 +22,16 @@ const Body = styled.div`
 
 const EditAppContainer = ({ setIsPopUpOpen, app }) => {
   const [updatedApp, setUpdatedApp] = useState(app);
-// pass the whole app in here /\
+  // pass the whole app in here /\
   useEffect(() => {
-    console.log("updatedApp", updatedApp); 
+    console.log("updatedApp", updatedApp);
   }, [updatedApp]);
 
   // useEffect(() => {
-  //   setUpdatedApp(app) 
+  //   setUpdatedApp(app)
   // }, [app]);
 
-  const saveChanges = () => {
-
-  }
+  const saveChanges = () => {};
 
   return (
     <EditAppContainerWrapper>
@@ -51,9 +49,16 @@ const EditAppContainer = ({ setIsPopUpOpen, app }) => {
           updatedApp={updatedApp}
           setUpdatedApp={setUpdatedApp}
         />
-        <ManageFoldersDetails folders={app.folders} setUpdatedApp={setUpdatedApp}/>
+        <ManageFoldersDetails
+          updatedApp={updatedApp}
+          setUpdatedApp={setUpdatedApp}
+        />
       </Body>
-      <GenericButtonIcon type="add" label="update details" onClickFunction={saveChanges}/>
+      <GenericButtonIcon
+        type="add"
+        label="update details"
+        onClickFunction={saveChanges}
+      />
     </EditAppContainerWrapper>
   );
 };

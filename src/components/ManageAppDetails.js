@@ -16,7 +16,7 @@ const SingleInputCont = styled.div`
   width: 200px;
 `;
 
-const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr, setUpdatedApp }) => {
+const ManageAppDetails = ({ appName, appType, appHgRepo, appBriefDescr, updatedApp, setUpdatedApp }) => {
   
   const [newName, setNewName] = useState("");
   const [newType, setNewType] = useState("");
