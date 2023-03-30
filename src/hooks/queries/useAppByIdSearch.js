@@ -21,6 +21,7 @@ export const SEARCH_APP_BY_ID_QUERY = gql`
         type
         folderToBeDisplayedIn
       }
+      teams
       properties {
         docs {
           name

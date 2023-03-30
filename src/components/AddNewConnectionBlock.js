@@ -29,6 +29,16 @@ const DisplayBox = styled.div`
   height: 100%;
 `;
 
+const RefreshButtonContainer = styled.div`
+  display: flex;
+  float: right;
+  margin: 8px;
+`;
+
+const UrlInputContainer = styled.div`
+  margin: 40px 0 0 0;
+`;
+
 const FormContainer = styled.div`
   margin: 6px;
 `;
@@ -147,19 +157,23 @@ const AddNewConnectionBlock = ({
 
   return (
     <DisplayBox>
-      <GenericButtonIcon
-        onClickFunction={onClickingRefresh}
-        type="small"
-        icon={refreshIcon}
-      />
-      <FormContainer>
-        <InputUnit
-          inputTitle="URL"
-          type="text"
-          name="url"
-          value={url}
-          onChangeFunction={(input) => setUrl(input)}
+      <RefreshButtonContainer>
+        <GenericButtonIcon
+          onClickFunction={onClickingRefresh}
+          type="small"
+          icon={refreshIcon}
         />
+      </RefreshButtonContainer>
+      <FormContainer>
+        <UrlInputContainer>
+          <InputUnit
+            inputTitle="URL"
+            type="text"
+            name="url"
+            value={url}
+            onChangeFunction={(input) => setUrl(input)}
+          />
+        </UrlInputContainer>
         <div>
           <p>Choose an app part and display folder</p>
 
