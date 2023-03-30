@@ -13,7 +13,7 @@ const PopUpWrapper = styled.div`
   width: auto;
   margin-left: -200px;
   left: 50%;
-  margin-bottom: -200px;
+  margin-bottom: -300px;
   bottom: 50%;
 `;
 

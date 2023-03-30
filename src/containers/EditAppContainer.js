@@ -5,6 +5,7 @@ import { deleteIcon } from "../helpers/svgIcons";
 import ManageAppDetails from "../components/ManageAppDetails";
 import ManageFoldersDetails from "../components/ManageFoldersDetails";
 import styleVariables from "../styleVariables";
+import useUpdateAppById from "../hooks/queries/useAppByIdUpdate";
 
 const EditAppContainerWrapper = styled.div`
   display: flex;
@@ -23,16 +24,39 @@ const Body = styled.div`
 const EditAppContainer = ({ setIsPopUpOpen, app }) => {
   const initialApp = useMemo(() => app, [app])
   const [updatedApp, setUpdatedApp] = useState(undefined);
+  const [updateWasClicked, setUpdatedWasClicked] = useState(false);
   // pass the whole app in here /\
+  const [data, loading, error] = useUpdateAppById(updatedApp?.id, updatedApp, updateWasClicked);
+
   useEffect(() => {
     console.log("updatedApp", updatedApp);
   }, [updatedApp]);
 
-  // useEffect(() => {
-  //   setUpdatedApp(app)
-  // }, [app]);
+  useEffect(() => {
+    if(error){
+      console.log("error", error);
+    }
+    if(loading){
+      console.log("loading", loading);
+    }
+    if(data){
+      console.log("data", data);
+    }
+  }, [data, loading, error]);
 
-  const saveChanges = () => {};
+  const stringToArray = (string) => {
+    return string[0]
+    .split(",")
+    .map((team) => (
+      team.trim()
+    ))
+  }
+
+  const saveChanges = () => {
+    setUpdatedApp({...updatedApp, teams: stringToArray(updatedApp.teams)})
+    setUpdatedWasClicked(true);
+    
+  };
 
   return (
     <EditAppContainerWrapper>
