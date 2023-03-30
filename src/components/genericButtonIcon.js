@@ -40,6 +40,10 @@ const smallBtn = {
     margin: 8px;
     align-self: end;
     cursor: pointer;
+
+    & :active {
+      box-shadow: none;
+  }
   `,
   IconContainer: styled.div`
     display: flex;
@@ -72,6 +76,10 @@ const mainBtn = {
     border-radius: ${styleVariables.borderRadious.main};
     margin: 20px;
     font-size: 14px;
+
+    & :active {
+      box-shadow: none;
+  }
   `,
   ClickedVersionContainer: styled.div`
     display: flex;
