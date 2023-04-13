@@ -84,5 +84,3 @@ const ManageFoldersDetails = ({ app, setUpdatedApp }) => {
 };
 
 export default ManageFoldersDetails;
-
-// I don't like passing folder array down to the component, is there a better way ?

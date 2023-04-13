@@ -34,6 +34,7 @@ const PopUp = ({
   folderBeenCreated,
   setFolderBeenCreated,
   app,
+  part,
 }) => {
   return (
     

@@ -3,10 +3,10 @@ import styled from "@emotion/styled";
 const EditPartContainer = styled.div`
 `;
 
-const EditPart = () => {
+const EditPart = ({}) => {
   return (
     <EditPartContainer>
-      
+
     </EditPartContainer>
   ) 
 };

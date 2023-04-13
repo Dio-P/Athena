@@ -77,7 +77,6 @@ const PartIcon = ({ part, appId }) => {
                     to={`/${appId}/${part.id}`}
                     // state={part.id}
                     > 
-                        {/* here get only what you need from mongo */}
                     <IconButton>
                         <h4>
                             { partName }
