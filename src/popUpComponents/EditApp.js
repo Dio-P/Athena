@@ -7,7 +7,7 @@ import ManageFoldersDetails from "../components/ManageFoldersDetails";
 import styleVariables from "../styleVariables";
 import useUpdateAppById from "../hooks/queries/useAppByIdUpdate";
 
-const EditAppContainerWrapper = styled.div`
+const EditAppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -21,7 +21,7 @@ const Body = styled.div`
   align-items: start;
 `;
 
-const EditAppContainer = ({ setIsPopUpOpen, app }) => {
+const EditApp = ({ setIsPopUpOpen, app }) => {
   const initialApp = useMemo(() => app, [app])
   const [updatedApp, setUpdatedApp] = useState(undefined);
   const [updateWasClicked, setUpdatedWasClicked] = useState(false);
@@ -68,12 +68,13 @@ const EditAppContainer = ({ setIsPopUpOpen, app }) => {
   };
 
   return (
-    <EditAppContainerWrapper>
-      <GenericButtonIcon
-        onClickFunction={() => setIsPopUpOpen(false)}
-        type="small"
-        icon={deleteIcon}
-      />
+    // <EditAppWrapper>
+    //   <GenericButtonIcon
+    //     onClickFunction={() => setIsPopUpOpen(false)}
+    //     type="small"
+    //     icon={deleteIcon}
+    //   />
+    <>
       <Body>
         <ManageAppDetails
           app={initialApp}
@@ -89,8 +90,9 @@ const EditAppContainer = ({ setIsPopUpOpen, app }) => {
         label="update details"
         onClickFunction={saveChanges}
       />
-    </EditAppContainerWrapper>
+    </>
+    // </EditAppWrapper>
   );
 };
 
-export default EditAppContainer;
+export default EditApp;

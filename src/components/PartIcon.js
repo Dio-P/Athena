@@ -5,6 +5,8 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import GenericButtonIcon from "./GenericButtonIcon";
 import { moreIcon } from "../helpers/svgIcons";
 import AdditionalOptions from "./AdditionalOptions";
+import PopUp from "./PopUp";
+import EditPart from "../popUpComponents/EditPart";
 
 const PartsContainer = styled.div`
     display: flex
@@ -56,6 +58,7 @@ const IconButton = styled.div`
 }
 `;
 const PartIcon = ({ part, appId }) => {
+    const [editOpen, setEditOpen] = useState(false);
     const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
 
     const partName = capitaliseFirstLetters(part.name);
@@ -63,7 +66,8 @@ const PartIcon = ({ part, appId }) => {
     const ghRepo = part.ghRepo;
 
     const editPart = () => {
-        return 
+        console.log("hello");
+        setEditOpen(true);
     }
     
     return (
@@ -78,7 +82,7 @@ const PartIcon = ({ part, appId }) => {
                         <h4>
                             { partName }
                         </h4>
-                        <a href={ghRepo}> ({ghRepo}) </a>
+                        <div href={ghRepo}> ({ghRepo}) </div>
                         <p> type : { partType }</p>
 
                     </IconButton>
@@ -93,9 +97,15 @@ const PartIcon = ({ part, appId }) => {
                         options={[
                             {
                                 title: "edit",
-                                onClickFunction: 
+                                onClickFunction: editPart
                             },
                         ]}
+                    />
+                }
+                {editOpen &&
+                    <PopUp
+                        setIsPopUpOpen={setEditOpen}
+                        ComponentToDisplay={EditPart}
                     />
                 }
             </IconButton>

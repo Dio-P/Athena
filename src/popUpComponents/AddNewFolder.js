@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import InputUnit from "./InputUnit";
+import InputUnit from "../containers/InputUnit";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
 import { deleteIcon } from "../helpers/svgIcons";
@@ -7,7 +7,7 @@ import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import useFolderHelper from "../hooks/useFolderHelper";
 
-const NewFolderInputContainer = styled.div`
+const AddNewFolderContainer = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: ${styleVariables.borderRadious.secondary};
@@ -38,7 +38,7 @@ const Body = styled.div`
   padding: 15px;
 `;
 
-const AddNewFolderInputContainer = ({
+const AddNewFolder = ({
   newFolderName,
   addNewFolderAndClear,
   newInputTitle,
@@ -57,12 +57,12 @@ const AddNewFolderInputContainer = ({
   }
 
   return (
-    <NewFolderInputContainer>
-      <GenericButtonIcon
+    <AddNewFolderContainer>
+      {/* <GenericButtonIcon
         onClickFunction={() => setIsPopUpOpen(false)}
         type="small"
         icon={deleteIcon}
-      />
+      /> */}
       <Body>
         <InputUnit
           // pass the new folder logic
@@ -83,8 +83,8 @@ const AddNewFolderInputContainer = ({
           it will be deleted"
         />
       </Body>
-    </NewFolderInputContainer>
+    </AddNewFolderContainer>
   );
 };
 
-export default AddNewFolderInputContainer;
+export default AddNewFolder;

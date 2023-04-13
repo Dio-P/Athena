@@ -95,7 +95,6 @@ export const moreIcon = (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
     aria-label="more-vertical icon"
-    class="css-1n8p6mz"
   >
     <path d="M13.2 1.6v5.8h5.6V1.6h-5.6zm0 11.5v5.8h5.6v-5.8h-5.6zm0 11.5v5.8h5.6v-5.8h-5.6z"></path>
   </svg>

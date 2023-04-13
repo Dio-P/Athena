@@ -1,6 +1,8 @@
 import OverlayElem from "./OverlayElem";
 import styled from "@emotion/styled";
-import AddNewFolderInputContainer from "../containers/AddNewFolderInputContainer";
+import styleVariables from "../styleVariables";
+import GenericButtonIcon from "./GenericButtonIcon";
+import { deleteIcon } from "../helpers/svgIcons";
 
 const PopUpContainer = styled.div`
   width: 100%;
@@ -17,6 +19,13 @@ const PopUpWrapper = styled.div`
   bottom: 50%;
 `;
 
+const EditAppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: ${styleVariables.colours.primaryLight};
+`;
+
 const PopUp = ({
   ComponentToDisplay,
   setIsPopUpOpen,
@@ -27,9 +36,16 @@ const PopUp = ({
   app,
 }) => {
   return (
+    
     <PopUpContainer>
       <OverlayElem />
       <PopUpWrapper>
+      <EditAppWrapper>
+      <GenericButtonIcon
+        onClickFunction={() => setIsPopUpOpen(false)}
+        type="small"
+        icon={deleteIcon}
+      />
         <ComponentToDisplay
           setIsPopUpOpen={setIsPopUpOpen}
           folderOfNewPart={folderOfNewPart}
@@ -38,6 +54,7 @@ const PopUp = ({
           setFolderBeenCreated={setFolderBeenCreated}
           app={app}
         />
+        </EditAppWrapper>
       </PopUpWrapper>
     </PopUpContainer>
   );

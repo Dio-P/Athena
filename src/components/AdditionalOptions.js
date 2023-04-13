@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const AdditionalOptionsContainer = styled.div`
+  margin: auto;
+
 
 `;
 
@@ -15,9 +18,10 @@ const OptionWrapper = styled.div`
 `;
 
 const Option = ({option}) => {
+  const {title, onClickFunction} = option
   return (
-    <OptionWrapper>
-      {option.title}
+    <OptionWrapper onClick={onClickFunction}>
+      {capitaliseFirstLetters(title)}
     </OptionWrapper>
   )
 }
@@ -28,7 +32,10 @@ const AdditionalOptions = ({options}) => {
     <AdditionalOptionsContainer>
       {
       options.map((option)=> (
-        <Option option={option}/>
+        <Option 
+          option={option}
+          key={`${option.name}Option`}
+        />
       ))
       }
     </AdditionalOptionsContainer>

@@ -11,7 +11,7 @@ import AddConnectionStateManager from "./AddNewConnectionStateManager";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import { editIcon } from "../helpers/svgIcons";
 import PopUp from "../components/PopUp";
-import EditAppContainer from "./EditAppContainer";
+import EditApp from "../popUpComponents/EditApp";
 import { createAppByFolders } from "../helpers/updateDbDocsLogic";
 
 const AppPageContainer = styled.div`
@@ -114,7 +114,7 @@ const AppPage = () => {
           {editPopUpIsOpen
           &&
           <PopUp
-            ComponentToDisplay={EditAppContainer}
+            ComponentToDisplay={EditApp}
             setIsPopUpOpen={setEditPopUpIsOpen}
             // onClickFunction={}
             app={appToDisplay}
