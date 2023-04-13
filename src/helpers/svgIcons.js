@@ -89,3 +89,14 @@ export const editIcon = (
     <path d="M2.4 28.6l1 1L13.9 27l15.8-15.7-8.9-8.9L5 18.1 2.4 28.6zM15 25.2l-8.3-8.3-.5 2.3 6.6 6.6 2.2-.6zm-1-.3L3.5 27.5l.9.9L7.1 18l-1.6 2.8L21.8 4.5l-1.4.6 6.7 6.6.4-1.5-16.3 16.3 2.8-1.6zm-6.7 1.8l-2.1-2.1-1.1 3.2 3.2-1.1z"></path>
   </svg>
 );
+
+export const moreIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 32 32"
+    aria-label="more-vertical icon"
+    class="css-1n8p6mz"
+  >
+    <path d="M13.2 1.6v5.8h5.6V1.6h-5.6zm0 11.5v5.8h5.6v-5.8h-5.6zm0 11.5v5.8h5.6v-5.8h-5.6z"></path>
+  </svg>
+);

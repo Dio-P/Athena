@@ -41,7 +41,7 @@ const smallBtn = {
     align-self: end;
     cursor: pointer;
 
-    & :active {
+    &:active {
       box-shadow: none;
   }
   `,
@@ -77,7 +77,7 @@ const mainBtn = {
     margin: 20px;
     font-size: 14px;
 
-    & :active {
+    &:active {
       box-shadow: none;
   }
   `,
