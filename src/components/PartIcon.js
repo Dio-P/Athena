@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import GenericButtonIcon from "./GenericButtonIcon";
 import { moreIcon } from "../helpers/svgIcons";
+import AdditionalOptions from "./AdditionalOptions";
 
 const PartsContainer = styled.div`
     display: flex
@@ -60,6 +61,10 @@ const PartIcon = ({ part, appId }) => {
     const partName = capitaliseFirstLetters(part.name);
     const partType = capitaliseFirstLetters(part.type);
     const ghRepo = part.ghRepo;
+
+    const editPart = () => {
+        return 
+    }
     
     return (
         <WholeBoxContainer>
@@ -83,6 +88,16 @@ const PartIcon = ({ part, appId }) => {
                     icon={moreIcon}
                     onClickFunction={()=> setMoreOptionsOpen(!moreOptionOpen)}
                 />
+                {moreOptionOpen &&
+                    <AdditionalOptions
+                        options={[
+                            {
+                                title: "edit",
+                                onClickFunction: 
+                            },
+                        ]}
+                    />
+                }
             </IconButton>
         </WholeBoxContainer>
     )
