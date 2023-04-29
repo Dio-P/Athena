@@ -57,7 +57,7 @@ const IconButton = styled.div`
 
 }
 `;
-const PartIcon = ({ part, appId }) => {
+const PartIcon = ({ part, appId, folders }) => {
     const [editOpen, setEditOpen] = useState(false);
     const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
 
@@ -105,6 +105,8 @@ const PartIcon = ({ part, appId }) => {
                     <PopUp
                         setIsPopUpOpen={setEditOpen}
                         ComponentToDisplay={EditPart}
+                        part={part}
+                        folders={folders}
                     />
                 }
             </IconButton>

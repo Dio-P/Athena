@@ -9,10 +9,12 @@ const PopUpContainer = styled.div`
   height: 100%;
 `;
 
+// the bellow height needs to change when I find a best way to make this iteractive
 const PopUpWrapper = styled.div`
   z-index: 101;
   position: absolute;
   width: auto;
+  height: 90%;
   margin-left: -200px;
   left: 50%;
   margin-bottom: -300px;
@@ -35,6 +37,7 @@ const PopUp = ({
   setFolderBeenCreated,
   app,
   part,
+  folders,
 }) => {
   return (
     
@@ -54,6 +57,7 @@ const PopUp = ({
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
           app={app}
+          part={part}
         />
         </EditAppWrapper>
       </PopUpWrapper>

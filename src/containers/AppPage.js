@@ -107,6 +107,7 @@ const AppPage = () => {
                   folderName={folder.name}
                   parts={folder.parts}
                   appId={appByFoldersMutation.id}
+                  folders={appToDisplay.folders}
                 />
               ))}
           </div>
