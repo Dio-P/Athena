@@ -58,6 +58,7 @@ const PopUp = ({
           setFolderBeenCreated={setFolderBeenCreated}
           app={app}
           part={part}
+          folders={folders}
         />
         </EditAppWrapper>
       </PopUpWrapper>
