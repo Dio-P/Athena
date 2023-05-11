@@ -6,13 +6,16 @@ import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
 import useFolderHelper from "../hooks/useFolderHelper";
 import { addClickedKeyToPreexParts } from "../helpers/AddNewConnectionBlockHelper";
-
+;
 const AddNewConnectionBlockWrapper = styled.div`
   z-index: 1;
 `;
 
+
+
 const AddConnectionStateManager = ({ addingNewConnection }) => {
-  const { keepExistingParams, params: { appId, } } = useParamsHelper();
+  const { setClickedFolder } = useFolderHelper();
+  const { keepExistingParams, params: { appId, }, manageFolderDdOpenParam } = useParamsHelper();
   const id = useMemo(() => appId, [appId])
   const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
   // now there is a query in the previous appPage that gets exactly the same object. This may be redundant if all else works.
@@ -62,6 +65,16 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
     keepExistingParams();
   }
 
+  const folderInfoToState = (folder) => {
+    setClickedFolder(folder.name);
+    setFolderOfNewPart(folder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: folder.id,
+    });
+    manageFolderDdOpenParam();
+  };
+
   const renderedView = () => {
     if (loading) {
       return <p>Loading...</p>;
@@ -77,7 +90,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
     if (appToDisplay) {
       return (
         <AddNewConnectionBlockWrapper>
-            <AddNewConnectionBlock
+          <AddNewConnectionBlock
             // do I need appToDisplay Down?
             appToDisplay={appToDisplay}
             url={url}
@@ -96,6 +109,7 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
             setNewlyCreatedFolders={setNewlyCreatedFolders}
             folderBeenCreated={folderBeenCreated}
             setFolderBeenCreated={setFolderBeenCreated}
+            folderInfoToState={folderInfoToState}
           />
         </AddNewConnectionBlockWrapper>
       )
@@ -109,4 +123,4 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   )
 };
 
-export default AddConnectionStateManager;
+export default {AddConnectionStateManager, folderInfoToState};

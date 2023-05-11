@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import DropDown from "../components/DropDown";
+import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 
 const EditPartContainer = styled.div`
   height: 100%;
+  width: 260px;
   color: black;
 `;
 
@@ -22,6 +25,7 @@ const EditPart = ({ part, folders }) => {
   const [partType, setPartType]= useState(part.type);
   const [partGhRepo, setPartGhRepo]= useState(part.ghRepo);
   const [partFolderToBeDisplayedIn, setPartFolderToBeDisplayedIn]= useState(part.folderToBeDisplayedIn);
+  const [isFolderDropdownOpen, setIsFolderDropdownOpen]= useState(false);
 
   console.log("part", part);
   console.log("folders", folders);
@@ -46,7 +50,16 @@ const EditPart = ({ part, folders }) => {
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Folder</label>
-        <input type="text" value={partFolderToBeDisplayedIn} onChange={(e) => setPartFolderToBeDisplayedIn(e.target.value)}/>
+        {/* change the one bellow to the right button when made */}
+        <button onClick={() => setIsFolderDropdownOpen(!isFolderDropdownOpen)}>
+        {capitaliseFirstLetters(folders[partFolderToBeDisplayedIn].name)}
+        </button>
+        {isFolderDropdownOpen &&
+        <DropDown
+          preexistingData={folders}
+          dDBtnLabel="+ Add New Folder"
+        />
+        }
       </LabelInputPair>
     </EditPartContainer>
   );

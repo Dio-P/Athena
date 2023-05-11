@@ -29,6 +29,7 @@ const AddingFolderBlock = ({
   folderBeenCreated,
   setFolderBeenCreated,
   isFolderWarningOn,
+  folderInfoToState,
 }) => {
   const {
     manageFolderDdOpenParam,
@@ -61,15 +62,15 @@ const AddingFolderBlock = ({
     manageFolderDdOpenParam();
   };
 
-  const folderInfoToState = (folder) => {
-    setClickedFolder(folder.name);
-    setFolderOfNewPart(folder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: folder.id,
-    });
-    manageFolderDdOpenParam();
-  };
+  // const folderInfoToState = (folder) => {
+  //   setClickedFolder(folder.name);
+  //   setFolderOfNewPart(folder);
+  //   setNewPart({
+  //     ...newPart,
+  //     folderToBeDisplayedIn: folder.id,
+  //   });
+  //   manageFolderDdOpenParam();
+  // };
 
   // where was the bellow used ?
 

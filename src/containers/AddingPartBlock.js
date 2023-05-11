@@ -39,6 +39,7 @@ const AddingPartBlock = ({
   setFolderBeenCreated,
   newlyCreatedFolders,
   setNewlyCreatedFolders,
+  folderInfoToState,
   // manageFolderDdOpenParam,
 }) => {
   const { keepExistingParams } = useParamsHelper();
@@ -115,6 +116,7 @@ const AddingPartBlock = ({
         folderBeenCreated={folderBeenCreated}
         setFolderBeenCreated={setFolderBeenCreated}
         isFolderWarningOn={isFolderWarningOn}
+        folderInfoToState={folderInfoToState}
         // manageFolderDdOpenParam={manageFolderDdOpenParam}
       />
       <GenericButtonIcon
