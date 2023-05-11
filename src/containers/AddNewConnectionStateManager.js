@@ -13,8 +13,19 @@ const AddNewConnectionBlockWrapper = styled.div`
 
 
 
-const AddConnectionStateManager = ({ addingNewConnection }) => {
-  const { setClickedFolder } = useFolderHelper();
+const AddConnectionStateManager = ({ 
+  addingNewConnection,
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
+  folderBeenCreated,
+  setFolderBeenCreated,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
+  folderInfoToState,
+ }) => {
+  // const { setClickedFolder } = useFolderHelper();
   const { keepExistingParams, params: { appId, }, manageFolderDdOpenParam } = useParamsHelper();
   const id = useMemo(() => appId, [appId])
   const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
@@ -28,17 +39,18 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   const [url, setUrl] = useState("");
   const [newPartsAdded, setNewPartsAdded] = useState("");
   const [dbPartsWithClickedKey, setDbPartsWithClickedKey] = useState([]);
-  const DEFAULT_NEW_PART = {
-    name: "",
-    id: uuidv4(),
-    ghRepo: "",
-    type: "",
-    folderToBeDisplayedIn: "",
-  };
-  const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
-  const [folderOfNewPart, setFolderOfNewPart] = useState("");
-  const [folderBeenCreated, setFolderBeenCreated] = useState("");
-  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+  // const DEFAULT_NEW_PART = {
+  //   name: "",
+  //   id: uuidv4(),
+  //   ghRepo: "",
+  //   type: "",
+  //   folderToBeDisplayedIn: "",
+  // };
+  // const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
+  // const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  // const [folderBeenCreated, setFolderBeenCreated] = useState("");
+  // const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+
   // there is a chance that the below needs to be on the add new connection, synce there is where the add is clicked
   // const { newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
 
@@ -65,15 +77,15 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
     keepExistingParams();
   }
 
-  const folderInfoToState = (folder) => {
-    setClickedFolder(folder.name);
-    setFolderOfNewPart(folder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: folder.id,
-    });
-    manageFolderDdOpenParam();
-  };
+  // const folderInfoToState = (folder) => {
+  //   setClickedFolder(folder.name);
+  //   setFolderOfNewPart(folder);
+  //   setNewPart({
+  //     ...newPart,
+  //     folderToBeDisplayedIn: folder.id,
+  //   });
+  //   manageFolderDdOpenParam();
+  // };
 
   const renderedView = () => {
     if (loading) {
@@ -123,4 +135,4 @@ const AddConnectionStateManager = ({ addingNewConnection }) => {
   )
 };
 
-export default {AddConnectionStateManager, folderInfoToState};
+export default AddConnectionStateManager;

@@ -41,7 +41,17 @@ const AddDocButton = styled.button`
   outline: inherit;
 `;
 
-const AppPage = () => {
+const AppPage = ({
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
+  folderBeenCreated,
+  setFolderBeenCreated,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
+  folderInfoToState,
+}) => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
   // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
@@ -59,11 +69,11 @@ const AppPage = () => {
     )
   }, [appToDisplay]);
 
-  const clickingEditApp = () => {
-    return (
-      <h1>Test</h1>
-    ) 
-  }
+  // const clickingEditApp = () => {
+  //   return (
+  //     <h1>Test</h1>
+  //   ) 
+  // }
 
   const pickFromRenderingOptions = () => {
     if (loading) {
@@ -96,6 +106,15 @@ const AppPage = () => {
 
           <AddConnectionStateManager
             addingNewConnection={addingNewConnection}
+            newPart={newPart}
+            setNewPart={setNewPart}
+            folderOfNewPart={folderOfNewPart}
+            setFolderOfNewPart={setFolderOfNewPart}
+            folderBeenCreated={folderBeenCreated}
+            setFolderBeenCreated={setFolderBeenCreated}
+            newlyCreatedFolders={newlyCreatedFolders}
+            setNewlyCreatedFolders={setNewlyCreatedFolders}
+            folderInfoToState={folderInfoToState}
             // appToDisplay={appToDisplay}
           />
 
@@ -108,6 +127,7 @@ const AppPage = () => {
                   parts={folder.parts}
                   appId={appByFoldersMutation.id}
                   folders={appToDisplay.folders}
+                  folderInfoToState={folderInfoToState}
                 />
               ))}
           </div>

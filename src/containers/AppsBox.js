@@ -26,7 +26,19 @@ const StyledButton = styled.button`
   outline: inherit;
 `;
 
-const AppsBox = ({ teamApps, teamName }) => {
+const AppsBox = ({ 
+  teamApps, 
+  teamName,
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
+  folderBeenCreated,
+  setFolderBeenCreated,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
+  folderInfoToState,
+}) => {
   const { 
     manageAppIdParam, 
     params: {
@@ -49,7 +61,20 @@ const AppsBox = ({ teamApps, teamName }) => {
           onClickFunction={(singleApp) => manageAppIdParam(singleApp)}
         />
       }
-      {appId && <AppPage appIdToDisplay={appId} />}
+      {appId && 
+        <AppPage 
+          appIdToDisplay={appId}
+          newPart={newPart}
+          setNewPart={setNewPart}
+          folderOfNewPart={folderOfNewPart}
+          setFolderOfNewPart={setFolderOfNewPart}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
+          newlyCreatedFolders={newlyCreatedFolders}
+          setNewlyCreatedFolders={setNewlyCreatedFolders}
+          folderInfoToState={folderInfoToState}
+        />
+      }
     </DepartmAppsBoxContainer>
   );
 };

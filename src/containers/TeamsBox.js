@@ -13,7 +13,18 @@ const TeamsBoxTitle = styled.h3`
 margin: 0px;
 `;
 
-const TeamsBox = ({ department }) => {
+const TeamsBox = ({ 
+  department,
+  newPart,
+  setNewPart,
+  folderOfNewPart,
+  setFolderOfNewPart,
+  folderBeenCreated,
+  setFolderBeenCreated,
+  newlyCreatedFolders,
+  setNewlyCreatedFolders,
+  folderInfoToState,
+}) => {
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
   const {
@@ -84,6 +95,15 @@ const TeamsBox = ({ department }) => {
           department={chosenTeam}
           teamApps={chosenDepApps}
           teamName={chosenTeam}
+          newPart={newPart}
+          setNewPart={setNewPart}
+          folderOfNewPart={folderOfNewPart}
+          setFolderOfNewPart={setFolderOfNewPart}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
+          newlyCreatedFolders={newlyCreatedFolders}
+          setNewlyCreatedFolders={setNewlyCreatedFolders}
+          folderInfoToState={folderInfoToState}
         />
       }
     </TeamsBoxContainer>
