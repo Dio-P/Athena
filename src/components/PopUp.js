@@ -38,6 +38,7 @@ const PopUp = ({
   app,
   part,
   folders,
+  secondaryFunction,
 }) => {
   return (
     
@@ -54,6 +55,7 @@ const PopUp = ({
           setIsPopUpOpen={setIsPopUpOpen}
           folderOfNewPart={folderOfNewPart}
           onClickFunction={onClickFunction}
+          secondaryFunction={secondaryFunction}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
           app={app}

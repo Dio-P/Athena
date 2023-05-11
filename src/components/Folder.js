@@ -16,7 +16,7 @@ const FolderButton = styled.div`
   outline: inherit;
 `;
 
-const Folder = ({ folderName, parts, appId, folders }) => {
+const Folder = ({ folderName, parts, appId, folders, folderInfoToState }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
   });
@@ -58,7 +58,13 @@ const Folder = ({ folderName, parts, appId, folders }) => {
       <FolderContainer>
         {display.folderIsExpanded &&
           parts.map((part) => (
-            <PartIcon key={part.id} part={part} appId={appId} folders={folders}/>
+            <PartIcon
+              key={part.id}
+              part={part}
+              appId={appId}
+              folders={folders}
+              folderInfoToState={folderInfoToState}
+            />
           ))}
       </FolderContainer>
     </>

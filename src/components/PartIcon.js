@@ -57,7 +57,7 @@ const IconButton = styled.div`
 
 }
 `;
-const PartIcon = ({ part, appId, folders }) => {
+const PartIcon = ({ part, appId, folders, folderInfoToState }) => {
     const [editOpen, setEditOpen] = useState(false);
     const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
 
@@ -107,6 +107,7 @@ const PartIcon = ({ part, appId, folders }) => {
                         ComponentToDisplay={EditPart}
                         part={part}
                         folders={folders}
+                        secondaryFunction={folderInfoToState}
                     />
                 }
             </IconButton>

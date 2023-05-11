@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import DropDown from "../components/DropDown";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
+import PopUp from "../components/PopUp";
+import AddNewFolder from "./AddNewFolder";
 
 const EditPartContainer = styled.div`
   height: 100%;
@@ -20,12 +22,15 @@ const LabelInputPair = styled.div`
 }`;
 
 
-const EditPart = ({ part, folders }) => {
+const EditPart = ({ secondaryFunction, part, folders,  }) => {
   const [partName, setPartName]= useState(part.name);
   const [partType, setPartType]= useState(part.type);
   const [partGhRepo, setPartGhRepo]= useState(part.ghRepo);
   const [partFolderToBeDisplayedIn, setPartFolderToBeDisplayedIn]= useState(part.folderToBeDisplayedIn);
   const [isFolderDropdownOpen, setIsFolderDropdownOpen]= useState(false);
+
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+
 
   console.log("part", part);
   console.log("folders", folders);
@@ -58,8 +63,19 @@ const EditPart = ({ part, folders }) => {
         <DropDown
           preexistingData={folders}
           dDBtnLabel="+ Add New Folder"
+          onClickFunction={secondaryFunction}
         />
         }
+        {isPopUpOpen && (
+          <PopUp
+            ComponentToDisplay={AddNewFolder}
+            setIsPopUpOpen={setIsPopUpOpen}
+            folderOfNewPart={folderOfNewPart}
+            onClickFunction={addNewFolderAndClear}
+            folderBeenCreated={folderBeenCreated}
+            setFolderBeenCreated={setFolderBeenCreated}
+          />
+        )}
       </LabelInputPair>
     </EditPartContainer>
   );
