@@ -21,62 +21,80 @@ const LabelInputPair = styled.div`
   }
 }`;
 
-
-const EditPart = ({ secondaryFunction, part, folders,  }) => {
-  const [partName, setPartName]= useState(part.name);
-  const [partType, setPartType]= useState(part.type);
-  const [partGhRepo, setPartGhRepo]= useState(part.ghRepo);
-  const [partFolderToBeDisplayedIn, setPartFolderToBeDisplayedIn]= useState(part.folderToBeDisplayedIn);
-  const [isFolderDropdownOpen, setIsFolderDropdownOpen]= useState(false);
+const EditPart = ({
+  secondaryFunction,
+  part,
+  folders,
+  folderOfNewPart,
+  onClickFunction,
+  folderBeenCreated,
+  setFolderBeenCreated,
+}) => {
+  const [partName, setPartName] = useState(part.name);
+  const [partType, setPartType] = useState(part.type);
+  const [partGhRepo, setPartGhRepo] = useState(part.ghRepo);
+  const [partFolderToBeDisplayedIn, setPartFolderToBeDisplayedIn] = useState(
+    part.folderToBeDisplayedIn
+  );
+  const [isFolderDropdownOpen, setIsFolderDropdownOpen] = useState(false);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
-
 
   console.log("part", part);
   console.log("folders", folders);
 
   useEffect(() => {
     console.log("partName", partName);
-     
-  }, [partName])
+  }, [partName]);
   return (
     <EditPartContainer>
       <LabelInputPair>
         <label htmlFor="">Name</label>
-        <input type="text" value={partName} onChange={(e) => setPartName(e.target.value)}/>
+        <input
+          type="text"
+          value={partName}
+          onChange={(e) => setPartName(e.target.value)}
+        />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Type</label>
-        <input type="text" value={partType} onChange={(e) => setPartType(e.target.value)}/>
+        <input
+          type="text"
+          value={partType}
+          onChange={(e) => setPartType(e.target.value)}
+        />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Gh Repo</label>
-        <input type="text" value={partGhRepo} onChange={(e) => setPartGhRepo(e.target.value)}/>
+        <input
+          type="text"
+          value={partGhRepo}
+          onChange={(e) => setPartGhRepo(e.target.value)}
+        />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
         <button onClick={() => setIsFolderDropdownOpen(!isFolderDropdownOpen)}>
-        {capitaliseFirstLetters(folders[partFolderToBeDisplayedIn].name)}
+          {capitaliseFirstLetters(folders[partFolderToBeDisplayedIn].name)}
         </button>
-        {isFolderDropdownOpen &&
-        <DropDown
-          preexistingData={folders}
-          dDBtnLabel="+ Add New Folder"
-          onClickFunction={secondaryFunction}
-        />
-        }
-      
-          <PopUp
-            ComponentToDisplay={AddNewFolder}
-            setIsPopUpOpen={setIsPopUpOpen}
-            folderOfNewPart={folderOfNewPart}
-            onClickFunction={addNewFolderAndClear}
-            folderBeenCreated={folderBeenCreated}
-            setFolderBeenCreated={setFolderBeenCreated}
-            isPopUpOpen={isPopUpOpen}
+        {isFolderDropdownOpen && (
+          <DropDown
+            preexistingData={folders}
+            dDBtnLabel="+ Add New Folder"
+            onClickFunction={secondaryFunction}
+            onClickingBtnFunction={()=>setIsPopUpOpen(!isPopUpOpen)}
           />
-      
+        )}
+        <PopUp
+          ComponentToDisplay={AddNewFolder}
+          setIsPopUpOpen={setIsPopUpOpen}
+          folderOfNewPart={folderOfNewPart}
+          onClickFunction={onClickFunction}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
+          isPopUpOpen={isPopUpOpen}
+        />
       </LabelInputPair>
     </EditPartContainer>
   );

@@ -24,6 +24,7 @@ const TeamsBox = ({
   newlyCreatedFolders,
   setNewlyCreatedFolders,
   folderInfoToState,
+  addNewFolderAndClear,
 }) => {
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
@@ -104,6 +105,7 @@ const TeamsBox = ({
           newlyCreatedFolders={newlyCreatedFolders}
           setNewlyCreatedFolders={setNewlyCreatedFolders}
           folderInfoToState={folderInfoToState}
+          addNewFolderAndClear={addNewFolderAndClear}
         />
       }
     </TeamsBoxContainer>

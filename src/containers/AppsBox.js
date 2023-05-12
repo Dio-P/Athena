@@ -38,6 +38,7 @@ const AppsBox = ({
   newlyCreatedFolders,
   setNewlyCreatedFolders,
   folderInfoToState,
+  addNewFolderAndClear
 }) => {
   const { 
     manageAppIdParam, 
@@ -73,6 +74,8 @@ const AppsBox = ({
           newlyCreatedFolders={newlyCreatedFolders}
           setNewlyCreatedFolders={setNewlyCreatedFolders}
           folderInfoToState={folderInfoToState}
+          addNewFolderAndClear={addNewFolderAndClear}
+
         />
       }
     </DepartmAppsBoxContainer>

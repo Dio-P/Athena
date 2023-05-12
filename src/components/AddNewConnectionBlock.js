@@ -73,6 +73,7 @@ const AddNewConnectionBlock = ({
   folderBeenCreated,
   setFolderBeenCreated,
   folderInfoToState,
+  addNewFolderAndClear
 }) => {
   const didMountRef = useRef(false);
 
@@ -209,6 +210,8 @@ const AddNewConnectionBlock = ({
               newlyCreatedFolders={newlyCreatedFolders}
               setNewlyCreatedFolders={setNewlyCreatedFolders}
               folderInfoToState={folderInfoToState}
+              addNewFolderAndClear={addNewFolderAndClear}
+
               // manageFolderDdOpenParam={manageFolderDdOpenParam}
             />
           )}

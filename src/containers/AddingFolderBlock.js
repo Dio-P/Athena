@@ -30,6 +30,8 @@ const AddingFolderBlock = ({
   setFolderBeenCreated,
   isFolderWarningOn,
   folderInfoToState,
+  addNewFolderAndClear
+
 }) => {
   const {
     manageFolderDdOpenParam,
@@ -46,21 +48,21 @@ const AddingFolderBlock = ({
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
-  const addNewFolderAndClear = () => {
-    const newFolder = {
-      name: folderBeenCreated,
-      id: newFolderIndexKey,
-    };
-    setFolderOfNewPart(newFolder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: newFolderIndexKey,
-    });
+  // const addNewFolderAndClear = () => {
+  //   const newFolder = {
+  //     name: folderBeenCreated,
+  //     id: newFolderIndexKey,
+  //   };
+  //   setFolderOfNewPart(newFolder);
+  //   setNewPart({
+  //     ...newPart,
+  //     folderToBeDisplayedIn: newFolderIndexKey,
+  //   });
 
-    setIsPopUpOpen(false);
-    setClickedFolder(folderBeenCreated);
-    manageFolderDdOpenParam();
-  };
+  //   setIsPopUpOpen(false);
+  //   setClickedFolder(folderBeenCreated);
+  //   manageFolderDdOpenParam();
+  // };
 
   // const folderInfoToState = (folder) => {
   //   setClickedFolder(folder.name);

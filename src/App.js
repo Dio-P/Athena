@@ -33,6 +33,22 @@ function App() {
     manageFolderDdOpenParam();
   };
 
+  const addNewFolderAndClear = () => {
+    const newFolder = {
+      name: folderBeenCreated,
+      id: newFolderIndexKey,
+    };
+    setFolderOfNewPart(newFolder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: newFolderIndexKey,
+    });
+
+    setIsPopUpOpen(false);
+    setClickedFolder(folderBeenCreated);
+    manageFolderDdOpenParam();
+  };
+
   return (
     <div>
       <h1>Athena</h1>
@@ -48,6 +64,7 @@ function App() {
         newlyCreatedFolders={newlyCreatedFolders}
         setNewlyCreatedFolders={setNewlyCreatedFolders}
         folderInfoToState={folderInfoToState}
+        addNewFolderAndClear={addNewFolderAndClear}
       />
 
     </div>

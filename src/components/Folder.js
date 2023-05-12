@@ -16,7 +16,17 @@ const FolderButton = styled.div`
   outline: inherit;
 `;
 
-const Folder = ({ folderName, parts, appId, folders, folderInfoToState }) => {
+const Folder = ({
+  folderName,
+  parts,
+  appId,
+  folders,
+  folderInfoToState,
+  folderOfNewPart,
+  addNewFolderAndClear,
+  folderBeenCreated,
+  setFolderBeenCreated,
+}) => {
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
   });
@@ -64,6 +74,10 @@ const Folder = ({ folderName, parts, appId, folders, folderInfoToState }) => {
               appId={appId}
               folders={folders}
               folderInfoToState={folderInfoToState}
+              folderOfNewPart={folderOfNewPart}
+              addNewFolderAndClear={addNewFolderAndClear}
+              folderBeenCreated={folderBeenCreated}
+              setFolderBeenCreated={setFolderBeenCreated}
             />
           ))}
       </FolderContainer>

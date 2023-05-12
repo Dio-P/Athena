@@ -51,6 +51,7 @@ const AppPage = ({
   newlyCreatedFolders,
   setNewlyCreatedFolders,
   folderInfoToState,
+  addNewFolderAndClear,
 }) => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
@@ -115,6 +116,8 @@ const AppPage = ({
             newlyCreatedFolders={newlyCreatedFolders}
             setNewlyCreatedFolders={setNewlyCreatedFolders}
             folderInfoToState={folderInfoToState}
+            addNewFolderAndClear={addNewFolderAndClear}
+
             // appToDisplay={appToDisplay}
           />
 
@@ -128,6 +131,10 @@ const AppPage = ({
                   appId={appByFoldersMutation.id}
                   folders={appToDisplay.folders}
                   folderInfoToState={folderInfoToState}
+                  folderOfNewPart={folderOfNewPart}
+                  addNewFolderAndClear={addNewFolderAndClear}
+                  folderBeenCreated={folderBeenCreated}
+                  setFolderBeenCreated={setFolderBeenCreated}
                 />
               ))}
           </div>
