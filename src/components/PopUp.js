@@ -39,9 +39,12 @@ const PopUp = ({
   part,
   folders,
   secondaryFunction,
+  isPopUpOpen
 }) => {
   return (
-    
+    <>
+    {
+    isPopUpOpen &&
     <PopUpContainer>
       <OverlayElem />
       <PopUpWrapper>
@@ -65,6 +68,8 @@ const PopUp = ({
         </EditAppWrapper>
       </PopUpWrapper>
     </PopUpContainer>
+    }
+    </>
   );
 };
 

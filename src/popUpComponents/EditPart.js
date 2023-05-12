@@ -66,7 +66,7 @@ const EditPart = ({ secondaryFunction, part, folders,  }) => {
           onClickFunction={secondaryFunction}
         />
         }
-        {isPopUpOpen && (
+      
           <PopUp
             ComponentToDisplay={AddNewFolder}
             setIsPopUpOpen={setIsPopUpOpen}
@@ -74,8 +74,9 @@ const EditPart = ({ secondaryFunction, part, folders,  }) => {
             onClickFunction={addNewFolderAndClear}
             folderBeenCreated={folderBeenCreated}
             setFolderBeenCreated={setFolderBeenCreated}
+            isPopUpOpen={isPopUpOpen}
           />
-        )}
+      
       </LabelInputPair>
     </EditPartContainer>
   );

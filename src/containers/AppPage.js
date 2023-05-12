@@ -131,17 +131,13 @@ const AppPage = ({
                 />
               ))}
           </div>
-
-          {editPopUpIsOpen
-          &&
           <PopUp
             ComponentToDisplay={EditApp}
             setIsPopUpOpen={setEditPopUpIsOpen}
             // onClickFunction={}
             app={appToDisplay}
+            isPopUpOpen={editPopUpIsOpen}
           />
-          }
-
         </>
       );
     }

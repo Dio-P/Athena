@@ -109,7 +109,6 @@ const AddingFolderBlock = ({
           />
         )}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
-        {isPopUpOpen && (
           <PopUp
             ComponentToDisplay={AddNewFolder}
             setIsPopUpOpen={setIsPopUpOpen}
@@ -117,8 +116,8 @@ const AddingFolderBlock = ({
             onClickFunction={addNewFolderAndClear}
             folderBeenCreated={folderBeenCreated}
             setFolderBeenCreated={setFolderBeenCreated}
+            isPopUpOpen={isPopUpOpen}
           />
-        )}
       </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>
   );

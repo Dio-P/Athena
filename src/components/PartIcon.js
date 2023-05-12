@@ -101,15 +101,15 @@ const PartIcon = ({ part, appId, folders, folderInfoToState }) => {
                         ]}
                     />
                 }
-                {editOpen &&
                     <PopUp
                         setIsPopUpOpen={setEditOpen}
                         ComponentToDisplay={EditPart}
                         part={part}
                         folders={folders}
                         secondaryFunction={folderInfoToState}
+                        isPopUpOpen={editOpen}
+
                     />
-                }
             </IconButton>
         </WholeBoxContainer>
     )
