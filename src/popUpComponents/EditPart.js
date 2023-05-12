@@ -46,6 +46,11 @@ const EditPart = ({
   useEffect(() => {
     console.log("partName", partName);
   }, [partName]);
+
+  const onClickPlusClosePopup = () => {
+    onClickFunction()
+    setIsPopUpOpen(false); 
+  }
   return (
     <EditPartContainer>
       <LabelInputPair>
@@ -90,7 +95,7 @@ const EditPart = ({
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
           folderOfNewPart={folderOfNewPart}
-          onClickFunction={onClickFunction}
+          onClickFunction={onClickPlusClosePopup}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
           isPopUpOpen={isPopUpOpen}

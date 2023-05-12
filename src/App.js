@@ -15,13 +15,16 @@ function App() {
     folderToBeDisplayedIn: "",
   };
 
-  const { setClickedFolder } = useFolderHelper();
-  const { manageFolderDdOpenParam } = useParamsHelper();
-
+  
   const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
   const [folderOfNewPart, setFolderOfNewPart] = useState("");
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+  
+  // under this we need the preexisting folder so all this should move somewhere
+  // with knowledge of the app
+  const { setClickedFolder, newFolderIndexKey } = useFolderHelper(,newlyCreatedFolders);
+  const { manageFolderDdOpenParam } = useParamsHelper();
 
   const folderInfoToState = (folder) => {
     setClickedFolder(folder.name);
@@ -34,17 +37,19 @@ function App() {
   };
 
   const addNewFolderAndClear = () => {
+    console.log("inside add new folder and clear");
     const newFolder = {
       name: folderBeenCreated,
       id: newFolderIndexKey,
     };
+    console.log("newFolder", newFolder);
     setFolderOfNewPart(newFolder);
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: newFolderIndexKey,
     });
 
-    setIsPopUpOpen(false);
+    // setIsPopUpOpen(false);
     setClickedFolder(folderBeenCreated);
     manageFolderDdOpenParam();
   };
