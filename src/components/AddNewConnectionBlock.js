@@ -73,7 +73,8 @@ const AddNewConnectionBlock = ({
   folderBeenCreated,
   setFolderBeenCreated,
   folderInfoToState,
-  addNewFolderAndClear
+  addNewFolderAndClear,
+  preexistingFolders
 }) => {
   const didMountRef = useRef(false);
 
@@ -202,7 +203,7 @@ const AddNewConnectionBlock = ({
               folderOfNewPart={folderOfNewPart}
               setFolderOfNewPart={setFolderOfNewPart}
               addingNewFolder={addingNewFolder}
-              allPreexistingFolders={appToDisplay.folders}
+              preexistingFolders={preexistingFolders}
               allNewFolders={newlyCreatedFolders}
               clickedFolder={clickedFolder}
               folderBeenCreated={folderBeenCreated}

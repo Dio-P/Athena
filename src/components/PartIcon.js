@@ -56,12 +56,16 @@ const IconButton = styled.div`
 const PartIcon = ({
   part,
   appId,
-  folders,
+  //   folders,
+  preexistingFolders,
+  newlyCreatedFolders,
   folderInfoToState,
   folderOfNewPart,
   addNewFolderAndClear,
   folderBeenCreated,
   setFolderBeenCreated,
+  newFolderFromEditPart,
+  setNewFolderFromEditPart,
 }) => {
   const [editOpen, setEditOpen] = useState(false);
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
@@ -107,13 +111,17 @@ const PartIcon = ({
           setIsPopUpOpen={setEditOpen}
           ComponentToDisplay={EditPart}
           part={part}
-          folders={folders}
+          //   folders={folders}
+          preexistingFolders={preexistingFolders}
+          newlyCreatedFolders={newlyCreatedFolders}
           secondaryFunction={folderInfoToState}
           isPopUpOpen={editOpen}
           folderOfNewPart={folderOfNewPart}
           onClickFunction={addNewFolderAndClear}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
+          newFolderFromEditPart={newFolderFromEditPart}
+          setNewFolderFromEditPart={setNewFolderFromEditPart}
         />
       </IconButton>
     </WholeBoxContainer>

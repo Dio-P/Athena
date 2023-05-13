@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
@@ -13,6 +13,9 @@ import { editIcon } from "../helpers/svgIcons";
 import PopUp from "../components/PopUp";
 import EditApp from "../popUpComponents/EditApp";
 import { createAppByFolders } from "../helpers/updateDbDocsLogic";
+import useFolderHelper from "../hooks/useFolderHelper";
+import { v4 as uuidv4 } from "uuid";
+
 
 const AppPageContainer = styled.div`
   margin-left: 10px;
@@ -41,26 +44,78 @@ const AddDocButton = styled.button`
   outline: inherit;
 `;
 
-const AppPage = ({
-  newPart,
-  setNewPart,
-  folderOfNewPart,
-  setFolderOfNewPart,
-  folderBeenCreated,
-  setFolderBeenCreated,
-  newlyCreatedFolders,
-  setNewlyCreatedFolders,
-  folderInfoToState,
-  addNewFolderAndClear,
-}) => {
+const AppPage = () => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
+  const id = useMemo(() => appId, [appId]) //N
+
   // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
   const [appToDisplay, loading, error] = useAppByIdSearch(appId, true);
   const { manageAddingNewConnectionParam } = useParamsHelper();
   
   const [appByFoldersMutation, setAppByFoldersMutation] = useState(undefined);
   const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
+
+  console.log("appToDisplay in appPage", appToDisplay);
+  const preexistingFolders = useMemo(() => appToDisplay && appToDisplay.folders, [appToDisplay])
+  console.log("preexistingFolders@@", preexistingFolders);
+
+  useEffect(() => {
+    console.log("preexistingFolders@@@", preexistingFolders);
+  }, [preexistingFolders]);
+  
+  const DEFAULT_NEW_PART = {
+    name: "",
+    id: uuidv4(),
+    ghRepo: "",
+    type: "",
+    folderToBeDisplayedIn: "",
+  };
+  
+  
+  const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
+  const [folderOfNewPart, setFolderOfNewPart] = useState("");
+  const [newFolderFromEditPart, setNewFolderFromEditPart] = useState("");
+  const [folderBeenCreated, setFolderBeenCreated] = useState("");
+  const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
+
+  console.log("preexistingFolders@", preexistingFolders);
+  console.log("newlyCreatedFolders", newlyCreatedFolders);
+  
+  const { setClickedFolder, newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
+  console.log("newFolderIndexKey", newFolderIndexKey);
+  // under this we need the preexisting folder so all this should move somewhere
+  // with knowledge of the app
+  // const { setClickedFolder, newFolderIndexKey } = useFolderHelper(,newlyCreatedFolders);
+  const { manageFolderDdOpenParam } = useParamsHelper();
+
+  const folderInfoToState = (folder) => {
+    setClickedFolder(folder.name);
+    setFolderOfNewPart(folder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: folder.id,
+    });
+    manageFolderDdOpenParam();
+  };
+
+  const addNewFolderAndClear = () => {
+    console.log("inside add new folder and clear");
+    const newFolder = {
+      name: folderBeenCreated,
+      id: newFolderIndexKey,
+    };
+    console.log("newFolder", newFolder);
+    setFolderOfNewPart(newFolder);
+    // setNewPart({
+    //   ...newPart,
+    //   folderToBeDisplayedIn: newFolderIndexKey,
+    // });
+
+    // // setIsPopUpOpen(false);
+    // setClickedFolder(folderBeenCreated);
+    manageFolderDdOpenParam();
+  };
 
   useEffect(() => {
     console.log("appToDisplay", appToDisplay)
@@ -106,9 +161,13 @@ const AppPage = ({
             />
 
           <AddConnectionStateManager
+            appToDisplay={appToDisplay}
+            loading={loading}
+            error={error}
             addingNewConnection={addingNewConnection}
             newPart={newPart}
             setNewPart={setNewPart}
+            preexistingFolders={preexistingFolders}
             folderOfNewPart={folderOfNewPart}
             setFolderOfNewPart={setFolderOfNewPart}
             folderBeenCreated={folderBeenCreated}
@@ -129,12 +188,16 @@ const AppPage = ({
                   folderName={folder.name}
                   parts={folder.parts}
                   appId={appByFoldersMutation.id}
-                  folders={appToDisplay.folders}
+                  // folders={appToDisplay.folders}
+                  preexistingFolders={preexistingFolders}
+                  newlyCreatedFolders={newlyCreatedFolders}
                   folderInfoToState={folderInfoToState}
                   folderOfNewPart={folderOfNewPart}
                   addNewFolderAndClear={addNewFolderAndClear}
                   folderBeenCreated={folderBeenCreated}
                   setFolderBeenCreated={setFolderBeenCreated}
+                  newFolderFromEditPart={newFolderFromEditPart}
+                  setNewFolderFromEditPart={setNewFolderFromEditPart}
                 />
               ))}
           </div>

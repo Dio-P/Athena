@@ -29,6 +29,10 @@ const EditPart = ({
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
+  preexistingFolders,
+  newlyCreatedFolders,
+  newFolderFromEditPart,
+  setNewFolderFromEditPart,
 }) => {
   const [partName, setPartName] = useState(part.name);
   const [partType, setPartType] = useState(part.type);
@@ -48,9 +52,9 @@ const EditPart = ({
   }, [partName]);
 
   const onClickPlusClosePopup = () => {
-    onClickFunction()
-    setIsPopUpOpen(false); 
-  }
+    onClickFunction();
+    setIsPopUpOpen(false);
+  };
   return (
     <EditPartContainer>
       <LabelInputPair>
@@ -88,16 +92,16 @@ const EditPart = ({
             preexistingData={folders}
             dDBtnLabel="+ Add New Folder"
             onClickFunction={secondaryFunction}
-            onClickingBtnFunction={()=>setIsPopUpOpen(!isPopUpOpen)}
+            onClickingBtnFunction={() => setIsPopUpOpen(!isPopUpOpen)}
+            newFolder={newFolderFromEditPart}
           />
         )}
         <PopUp
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
-          folderOfNewPart={folderOfNewPart}
+          newFolderFromEditPart={newFolderFromEditPart}
+          setNewFolderFromEditPart={setNewFolderFromEditPart}
           onClickFunction={onClickPlusClosePopup}
-          folderBeenCreated={folderBeenCreated}
-          setFolderBeenCreated={setFolderBeenCreated}
           isPopUpOpen={isPopUpOpen}
         />
       </LabelInputPair>

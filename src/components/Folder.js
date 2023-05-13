@@ -20,12 +20,16 @@ const Folder = ({
   folderName,
   parts,
   appId,
-  folders,
+  // folders,
+  preexistingFolders,
+  newlyCreatedFolders,
   folderInfoToState,
   folderOfNewPart,
   addNewFolderAndClear,
   folderBeenCreated,
   setFolderBeenCreated,
+  newFolderFromEditPart,
+  setNewFolderFromEditPart,
 }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
@@ -72,12 +76,16 @@ const Folder = ({
               key={part.id}
               part={part}
               appId={appId}
-              folders={folders}
+              // folders={folders}
+              preexistingFolders={preexistingFolders}
+              newlyCreatedFolders={newlyCreatedFolders}
               folderInfoToState={folderInfoToState}
               folderOfNewPart={folderOfNewPart}
               addNewFolderAndClear={addNewFolderAndClear}
               folderBeenCreated={folderBeenCreated}
               setFolderBeenCreated={setFolderBeenCreated}
+              newFolderFromEditPart={newFolderFromEditPart}
+              setNewFolderFromEditPart={setNewFolderFromEditPart}
             />
           ))}
       </FolderContainer>

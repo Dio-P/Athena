@@ -3,6 +3,8 @@ import useParamsHelper from "./useParamsHelper";
 
 
 const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
+  console.log("preexistingFolders", preexistingFolders);
+  console.log("newlyCreatedFolders", newlyCreatedFolders);
   const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
 
   const {

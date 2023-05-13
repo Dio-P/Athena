@@ -15,16 +15,6 @@ margin: 0px;
 
 const TeamsBox = ({ 
   department,
-  newPart,
-  setNewPart,
-  folderOfNewPart,
-  setFolderOfNewPart,
-  folderBeenCreated,
-  setFolderBeenCreated,
-  newlyCreatedFolders,
-  setNewlyCreatedFolders,
-  folderInfoToState,
-  addNewFolderAndClear,
 }) => {
   const didMountRef = useRef(false);
   const departmentMemo = useMemo(() => department, [department]);
@@ -93,19 +83,8 @@ const TeamsBox = ({
       {(chosenTeam && chosenDepApps)
       &&
         <AppsBox
-          department={chosenTeam}
           teamApps={chosenDepApps}
           teamName={chosenTeam}
-          newPart={newPart}
-          setNewPart={setNewPart}
-          folderOfNewPart={folderOfNewPart}
-          setFolderOfNewPart={setFolderOfNewPart}
-          folderBeenCreated={folderBeenCreated}
-          setFolderBeenCreated={setFolderBeenCreated}
-          newlyCreatedFolders={newlyCreatedFolders}
-          setNewlyCreatedFolders={setNewlyCreatedFolders}
-          folderInfoToState={folderInfoToState}
-          addNewFolderAndClear={addNewFolderAndClear}
         />
       }
     </TeamsBoxContainer>

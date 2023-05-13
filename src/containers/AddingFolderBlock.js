@@ -21,73 +21,42 @@ const AddingFolderBodyContainer = styled.div`
 
 const AddingFolderBlock = ({
   newPart,
-  setNewPart,
   folderOfNewPart,
-  setFolderOfNewPart,
-  allPreexistingFolders,
-  allNewFolders,
+  setNewPart,
+  preexistingFolders,
+  newlyCreatedFolders,
+  // allNewFolders,
   folderBeenCreated,
   setFolderBeenCreated,
   isFolderWarningOn,
   folderInfoToState,
-  addNewFolderAndClear
-
+  addNewFolderAndClear,
 }) => {
   const {
     manageFolderDdOpenParam,
-    keepExistingParams,
     params: { isFolderDdOpen },
   } = useParamsHelper();
 
-  const {
-    clickedFolder,
-    setClickedFolder,
-    newFolderIndexKey,
-    onClickingPreExistingFolder,
-  } = useFolderHelper();
+  console.log("preexistingFolders$", preexistingFolders);
+  console.log("newlyCreatedFolders$", newlyCreatedFolders);
+
+  const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper(preexistingFolders, newlyCreatedFolders);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
-  // const addNewFolderAndClear = () => {
-  //   const newFolder = {
-  //     name: folderBeenCreated,
-  //     id: newFolderIndexKey,
-  //   };
-  //   setFolderOfNewPart(newFolder);
-  //   setNewPart({
-  //     ...newPart,
-  //     folderToBeDisplayedIn: newFolderIndexKey,
-  //   });
+  const onClickPlusClosePopup = () => {
+    addNewFolderAndClear();
+    console.log("newPart and folderToBeDisplayedIn", {
+      ...newPart,
+      folderToBeDisplayedIn: newFolderIndexKey,
+    });
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: newFolderIndexKey,
+    });
+    setIsPopUpOpen(false);
 
-  //   setIsPopUpOpen(false);
-  //   setClickedFolder(folderBeenCreated);
-  //   manageFolderDdOpenParam();
-  // };
-
-  // const folderInfoToState = (folder) => {
-  //   setClickedFolder(folder.name);
-  //   setFolderOfNewPart(folder);
-  //   setNewPart({
-  //     ...newPart,
-  //     folderToBeDisplayedIn: folder.id,
-  //   });
-  //   manageFolderDdOpenParam();
-  // };
-
-  // where was the bellow used ?
-
-  // <ButtonUnit
-  //         onClickFunction={resetFolderInfo}
-  //         type="add"
-  //         label={`folder name: ${folderOfNewPart.name} click to edit`}
-  //       />
-  const resetFolderInfo = () => {
-    setFolderOfNewPart("");
-    keepExistingParams();
-  };
-
-  const renderAddNewFolderPopUp = () => {
-    setIsPopUpOpen(true);
+    setClickedFolder(folderBeenCreated);
   };
 
   return (
@@ -102,24 +71,24 @@ const AddingFolderBlock = ({
       <AddingFolderBodyContainer>
         {isFolderDdOpen && (
           <DropDown
-            preexistingData={allPreexistingFolders}
-            newData={allNewFolders}
+            preexistingData={preexistingFolders}
+            newData={newlyCreatedFolders}
             onClickFunction={folderInfoToState}
-            folderOfNewPart={folderOfNewPart}
-            onClickingBtnFunction={renderAddNewFolderPopUp}
+            newFolder={folderOfNewPart}
+            onClickingBtnFunction={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
           />
         )}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
-          <PopUp
-            ComponentToDisplay={AddNewFolder}
-            setIsPopUpOpen={setIsPopUpOpen}
-            folderOfNewPart={folderOfNewPart}
-            onClickFunction={addNewFolderAndClear}
-            folderBeenCreated={folderBeenCreated}
-            setFolderBeenCreated={setFolderBeenCreated}
-            isPopUpOpen={isPopUpOpen}
-          />
+        <PopUp
+          ComponentToDisplay={AddNewFolder}
+          setIsPopUpOpen={setIsPopUpOpen}
+          folderOfNewPart={folderOfNewPart}
+          onClickFunction={onClickPlusClosePopup}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
+          isPopUpOpen={isPopUpOpen}
+        />
       </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>
   );

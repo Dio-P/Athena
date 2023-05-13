@@ -1,10 +1,8 @@
-import { useEffect } from "react";
 import PopulateButtons from "./PopulateButtons";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
-import styleVariables from "../styleVariables";
 
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
@@ -29,16 +27,6 @@ const StyledButton = styled.button`
 const AppsBox = ({ 
   teamApps, 
   teamName,
-  newPart,
-  setNewPart,
-  folderOfNewPart,
-  setFolderOfNewPart,
-  folderBeenCreated,
-  setFolderBeenCreated,
-  newlyCreatedFolders,
-  setNewlyCreatedFolders,
-  folderInfoToState,
-  addNewFolderAndClear
 }) => {
   const { 
     manageAppIdParam, 
@@ -63,20 +51,7 @@ const AppsBox = ({
         />
       }
       {appId && 
-        <AppPage 
-          appIdToDisplay={appId}
-          newPart={newPart}
-          setNewPart={setNewPart}
-          folderOfNewPart={folderOfNewPart}
-          setFolderOfNewPart={setFolderOfNewPart}
-          folderBeenCreated={folderBeenCreated}
-          setFolderBeenCreated={setFolderBeenCreated}
-          newlyCreatedFolders={newlyCreatedFolders}
-          setNewlyCreatedFolders={setNewlyCreatedFolders}
-          folderInfoToState={folderInfoToState}
-          addNewFolderAndClear={addNewFolderAndClear}
-
-        />
+        <AppPage/>
       }
     </DepartmAppsBoxContainer>
   );

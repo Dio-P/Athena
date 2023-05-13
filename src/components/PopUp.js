@@ -39,36 +39,43 @@ const PopUp = ({
   part,
   folders,
   secondaryFunction,
-  isPopUpOpen
+  isPopUpOpen,
+  preexistingFolders,
+  newlyCreatedFolders,
+  newFolderFromEditPart,
+  setNewFolderFromEditPart,
 }) => {
   return (
     <>
-    {
-    isPopUpOpen &&
-    <PopUpContainer>
-      <OverlayElem />
-      <PopUpWrapper>
-      <EditAppWrapper>
-      <GenericButtonIcon
-        onClickFunction={() => setIsPopUpOpen(false)}
-        type="small"
-        icon={deleteIcon}
-      />
-        <ComponentToDisplay
-          setIsPopUpOpen={setIsPopUpOpen}
-          folderOfNewPart={folderOfNewPart}
-          onClickFunction={onClickFunction}
-          secondaryFunction={secondaryFunction}
-          folderBeenCreated={folderBeenCreated}
-          setFolderBeenCreated={setFolderBeenCreated}
-          app={app}
-          part={part}
-          folders={folders}
-        />
-        </EditAppWrapper>
-      </PopUpWrapper>
-    </PopUpContainer>
-    }
+      {isPopUpOpen && (
+        <PopUpContainer>
+          <OverlayElem />
+          <PopUpWrapper>
+            <EditAppWrapper>
+              <GenericButtonIcon
+                onClickFunction={() => setIsPopUpOpen(false)}
+                type="small"
+                icon={deleteIcon}
+              />
+              <ComponentToDisplay
+                setIsPopUpOpen={setIsPopUpOpen}
+                folderOfNewPart={folderOfNewPart}
+                onClickFunction={onClickFunction}
+                secondaryFunction={secondaryFunction}
+                folderBeenCreated={folderBeenCreated}
+                setFolderBeenCreated={setFolderBeenCreated}
+                app={app}
+                part={part}
+                // folders={folders}
+                preexistingFolders={preexistingFolders}
+                newlyCreatedFolders={newlyCreatedFolders}
+                newFolderFromEditPart={newFolderFromEditPart}
+                setNewFolderFromEditPart={setNewFolderFromEditPart}
+              />
+            </EditAppWrapper>
+          </PopUpWrapper>
+        </PopUpContainer>
+      )}
     </>
   );
 };
