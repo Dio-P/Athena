@@ -44,7 +44,7 @@ const AddNewFolder = ({
   newInputTitle,
   onClickingFolder,
   setIsPopUpOpen,
-  folderOfNewPart,
+  newFolder,
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,

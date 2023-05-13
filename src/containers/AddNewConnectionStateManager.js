@@ -21,8 +21,8 @@ const AddConnectionStateManager = ({
   newPart,
   setNewPart,
   preexistingFolders,
-  folderOfNewPart,
-  setFolderOfNewPart,
+  newFolder,
+  setNewFolder,
   folderBeenCreated,
   setFolderBeenCreated,
   newlyCreatedFolders,
@@ -56,7 +56,7 @@ const AddConnectionStateManager = ({
     setNewPartsAdded("");
     setDbPartsWithClickedKey(appToDisplay.parts || []);
     setNewPart(DEFAULT_NEW_PART);
-    setFolderOfNewPart("");
+    setNewFolder("");
     keepExistingParams();
   }
 
@@ -85,8 +85,8 @@ const AddConnectionStateManager = ({
             setDbPartsWithClickedKey={setDbPartsWithClickedKey}
             newPart={newPart}
             setNewPart={setNewPart}
-            folderOfNewPart={folderOfNewPart}
-            setFolderOfNewPart={setFolderOfNewPart}
+            newFolder={newFolder}
+            setNewFolder={setNewFolder}
             onClickingRefresh={onClickingRefresh}
             preexistingFolders={preexistingFolders}
             newlyCreatedFolders={newlyCreatedFolders}

@@ -24,15 +24,14 @@ const LabelInputPair = styled.div`
 const EditPart = ({
   secondaryFunction,
   part,
-  folders,
-  folderOfNewPart,
+  // folders,
+  newFolder,
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
   preexistingFolders,
   newlyCreatedFolders,
-  newFolderFromEditPart,
-  setNewFolderFromEditPart,
+  setNewFolder,
 }) => {
   const [partName, setPartName] = useState(part.name);
   const [partType, setPartType] = useState(part.type);
@@ -45,7 +44,7 @@ const EditPart = ({
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   console.log("part", part);
-  console.log("folders", folders);
+  // console.log("folders!@#", folders);
 
   useEffect(() => {
     console.log("partName", partName);
@@ -85,23 +84,25 @@ const EditPart = ({
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
         <button onClick={() => setIsFolderDropdownOpen(!isFolderDropdownOpen)}>
-          {capitaliseFirstLetters(folders[partFolderToBeDisplayedIn].name)}
+          {/* is there a case where the name will not be in the preexisting folders? */}
+          {capitaliseFirstLetters(preexistingFolders[partFolderToBeDisplayedIn].name)}
         </button>
         {isFolderDropdownOpen && (
           <DropDown
-            preexistingData={folders}
+            preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
             onClickFunction={secondaryFunction}
             onClickingBtnFunction={() => setIsPopUpOpen(!isPopUpOpen)}
-            newFolder={newFolderFromEditPart}
+            newFolder={newFolder}
           />
         )}
         <PopUp
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
-          newFolderFromEditPart={newFolderFromEditPart}
-          setNewFolderFromEditPart={setNewFolderFromEditPart}
+          newFolder={newFolder}
           onClickFunction={onClickPlusClosePopup}
+          folderBeenCreated={folderBeenCreated}
+          setFolderBeenCreated={setFolderBeenCreated}
           isPopUpOpen={isPopUpOpen}
         />
       </LabelInputPair>

@@ -78,15 +78,15 @@ const DropDown = ({
   preexistingData,
   newData,
   onClickFunction,
-  folderOfNewPart,
+  newFolder,
   onClickingBtnFunction,
   dDBtnLabel,
-  // folderOfNewPart,
+  // newFolder,
 }) => {
   const allData = useMemo(
     () =>
-      folderOfNewPart ? [...preexistingData, folderOfNewPart] : preexistingData,
-    [preexistingData, folderOfNewPart]
+      newFolder ? [...preexistingData, newFolder] : preexistingData,
+    [preexistingData, newFolder]
   );
 
   const { search, searchingQuery, filteredData } = useSearchBar(allData);

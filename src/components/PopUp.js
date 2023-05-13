@@ -31,7 +31,7 @@ const EditAppWrapper = styled.div`
 const PopUp = ({
   ComponentToDisplay,
   setIsPopUpOpen,
-  folderOfNewPart,
+  newFolder,
   onClickFunction,
   folderBeenCreated,
   setFolderBeenCreated,
@@ -42,8 +42,7 @@ const PopUp = ({
   isPopUpOpen,
   preexistingFolders,
   newlyCreatedFolders,
-  newFolderFromEditPart,
-  setNewFolderFromEditPart,
+  setNewFolder,
 }) => {
   return (
     <>
@@ -59,7 +58,7 @@ const PopUp = ({
               />
               <ComponentToDisplay
                 setIsPopUpOpen={setIsPopUpOpen}
-                folderOfNewPart={folderOfNewPart}
+                newFolder={newFolder}
                 onClickFunction={onClickFunction}
                 secondaryFunction={secondaryFunction}
                 folderBeenCreated={folderBeenCreated}
@@ -69,8 +68,7 @@ const PopUp = ({
                 // folders={folders}
                 preexistingFolders={preexistingFolders}
                 newlyCreatedFolders={newlyCreatedFolders}
-                newFolderFromEditPart={newFolderFromEditPart}
-                setNewFolderFromEditPart={setNewFolderFromEditPart}
+                setNewFolder={setNewFolder}
               />
             </EditAppWrapper>
           </PopUpWrapper>

@@ -21,7 +21,7 @@ const AddingFolderBodyContainer = styled.div`
 
 const AddingFolderBlock = ({
   newPart,
-  folderOfNewPart,
+  newFolder,
   setNewPart,
   preexistingFolders,
   newlyCreatedFolders,
@@ -65,7 +65,7 @@ const AddingFolderBlock = ({
         onClickFunction={manageFolderDdOpenParam}
         type="dropDown"
         isMenuOpen={isFolderDdOpen}
-        folderOfNewPart={folderOfNewPart}
+        newFolder={newFolder}
         clickedFolder={clickedFolder}
       />
       <AddingFolderBodyContainer>
@@ -74,7 +74,7 @@ const AddingFolderBlock = ({
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
             onClickFunction={folderInfoToState}
-            newFolder={folderOfNewPart}
+            newFolder={newFolder}
             onClickingBtnFunction={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
           />
@@ -83,7 +83,7 @@ const AddingFolderBlock = ({
         <PopUp
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
-          folderOfNewPart={folderOfNewPart}
+          newFolder={newFolder}
           onClickFunction={onClickPlusClosePopup}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}

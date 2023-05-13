@@ -65,8 +65,8 @@ const AddNewConnectionBlock = ({
   setDbPartsWithClickedKey,
   newPart,
   setNewPart,
-  folderOfNewPart,
-  setFolderOfNewPart,
+  newFolder,
+  setNewFolder,
   onClickingRefresh,
   newlyCreatedFolders,
   setNewlyCreatedFolders,
@@ -200,8 +200,8 @@ const AddNewConnectionBlock = ({
               setNewPartsAdded={setNewPartsAdded}
               newPart={newPart}
               setNewPart={setNewPart}
-              folderOfNewPart={folderOfNewPart}
-              setFolderOfNewPart={setFolderOfNewPart}
+              newFolder={newFolder}
+              setNewFolder={setNewFolder}
               addingNewFolder={addingNewFolder}
               preexistingFolders={preexistingFolders}
               allNewFolders={newlyCreatedFolders}

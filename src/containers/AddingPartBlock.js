@@ -29,8 +29,8 @@ const AddingPartBlock = ({
   setNewPartsAdded,
   newPart,
   setNewPart,
-  folderOfNewPart,
-  setFolderOfNewPart,
+  newFolder,
+  setNewFolder,
   // folderDdOpen,
   preexistingFolders,
   // newFoldersToBeAddedToAll,
@@ -52,17 +52,17 @@ const AddingPartBlock = ({
   const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
 
   useEffect(() => {
-    if(newPart.name || folderOfNewPart){
+    if(newPart.name || newFolder){
       setIsPartNameWarningOn(!newPart.name);
-      setIsFolderWarningOn(!folderOfNewPart);
+      setIsFolderWarningOn(!newFolder);
     }
-  }, [newPart?.name, folderOfNewPart])
+  }, [newPart?.name, newFolder])
   
 
   const addNewPartAndClear = () => {
-    if(!newPart.name || !folderOfNewPart){
+    if(!newPart.name || !newFolder){
       setIsPartNameWarningOn(!newPart.name);
-      setIsFolderWarningOn(!folderOfNewPart);
+      setIsFolderWarningOn(!newFolder);
       return
     }
     setNewPartsAdded({
@@ -71,10 +71,10 @@ const AddingPartBlock = ({
         ...newPart,
         clicked: true,
         folderToBeDisplayedIn:
-          folderOfNewPart.id || Object.values(folderOfNewPart)[0].id,
+          newFolder.id || Object.values(newFolder)[0].id,
       },
     });
-    setNewlyCreatedFolders([newlyCreatedFolders, folderOfNewPart]); //////////////////////////////////
+    setNewlyCreatedFolders([newlyCreatedFolders, newFolder]); //////////////////////////////////
     setNewPart({
       ...newPart,
       name: "",
@@ -82,12 +82,12 @@ const AddingPartBlock = ({
       type: "",
     });
     setClickedFolder("");
-    setFolderOfNewPart("");
+    setNewFolder("");
     keepExistingParams();
   };
 
   const resetFolderInfo = () => {
-    setFolderOfNewPart("");
+    setNewFolder("");
     keepExistingParams();
   };
 
@@ -106,8 +106,8 @@ const AddingPartBlock = ({
       <AddingFolderBlock
         newPart={newPart}
         setNewPart={setNewPart}
-        folderOfNewPart={folderOfNewPart}
-        setFolderOfNewPart={setFolderOfNewPart}
+        newFolder={newFolder}
+        setNewFolder={setNewFolder}
         // folderDdOpen={folderDdOpen}
         preexistingFolders={preexistingFolders}
         newlyCreatedFolders={newlyCreatedFolders}

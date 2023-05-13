@@ -12,7 +12,6 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   } = useParamsHelper();
 
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
-  // const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
   const [clickedFolder, setClickedFolder] = useState("");
 
   const preexistingFoldersLength = useMemo(() => preExistingFoldersMemo && (preExistingFoldersMemo.length - 1 || 0), [preExistingFoldersMemo]);

@@ -60,12 +60,11 @@ const PartIcon = ({
   preexistingFolders,
   newlyCreatedFolders,
   folderInfoToState,
-  folderOfNewPart,
+  newFolder,
   addNewFolderAndClear,
   folderBeenCreated,
   setFolderBeenCreated,
-  newFolderFromEditPart,
-  setNewFolderFromEditPart,
+  setNewFolder,
 }) => {
   const [editOpen, setEditOpen] = useState(false);
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
@@ -116,12 +115,11 @@ const PartIcon = ({
           newlyCreatedFolders={newlyCreatedFolders}
           secondaryFunction={folderInfoToState}
           isPopUpOpen={editOpen}
-          folderOfNewPart={folderOfNewPart}
+          newFolder={newFolder}
           onClickFunction={addNewFolderAndClear}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
-          newFolderFromEditPart={newFolderFromEditPart}
-          setNewFolderFromEditPart={setNewFolderFromEditPart}
+          setNewFolder={setNewFolder}
         />
       </IconButton>
     </WholeBoxContainer>

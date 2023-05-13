@@ -74,8 +74,7 @@ const AppPage = () => {
   
   
   const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
-  const [folderOfNewPart, setFolderOfNewPart] = useState("");
-  const [newFolderFromEditPart, setNewFolderFromEditPart] = useState("");
+  const [newFolder, setNewFolder] = useState("");
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
 
@@ -91,7 +90,7 @@ const AppPage = () => {
 
   const folderInfoToState = (folder) => {
     setClickedFolder(folder.name);
-    setFolderOfNewPart(folder);
+    setNewFolder(folder);
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: folder.id,
@@ -106,7 +105,7 @@ const AppPage = () => {
       id: newFolderIndexKey,
     };
     console.log("newFolder", newFolder);
-    setFolderOfNewPart(newFolder);
+    setNewFolder(newFolder);
     // setNewPart({
     //   ...newPart,
     //   folderToBeDisplayedIn: newFolderIndexKey,
@@ -168,8 +167,8 @@ const AppPage = () => {
             newPart={newPart}
             setNewPart={setNewPart}
             preexistingFolders={preexistingFolders}
-            folderOfNewPart={folderOfNewPart}
-            setFolderOfNewPart={setFolderOfNewPart}
+            newFolder={newFolder}
+            setNewFolder={setNewFolder}
             folderBeenCreated={folderBeenCreated}
             setFolderBeenCreated={setFolderBeenCreated}
             newlyCreatedFolders={newlyCreatedFolders}
@@ -192,12 +191,11 @@ const AppPage = () => {
                   preexistingFolders={preexistingFolders}
                   newlyCreatedFolders={newlyCreatedFolders}
                   folderInfoToState={folderInfoToState}
-                  folderOfNewPart={folderOfNewPart}
+                  newFolder={newFolder}
                   addNewFolderAndClear={addNewFolderAndClear}
                   folderBeenCreated={folderBeenCreated}
                   setFolderBeenCreated={setFolderBeenCreated}
-                  newFolderFromEditPart={newFolderFromEditPart}
-                  setNewFolderFromEditPart={setNewFolderFromEditPart}
+                  setNewFolder={setNewFolder}
                 />
               ))}
           </div>

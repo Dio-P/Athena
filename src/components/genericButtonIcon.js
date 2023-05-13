@@ -176,12 +176,12 @@ const MainButton = ({
 const DropDownButton = ({
   onClickFunction,
   isMenuOpen,
-  folderOfNewPart,
+  newFolder,
   clickedFolder,
   type,
   aria,
 }) => {
-  const dropDownToogleButtonTitle = folderOfNewPart
+  const dropDownToogleButtonTitle = newFolder
     ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
     : "Choose a folder to display part in";
   return (
@@ -204,7 +204,7 @@ const GenericButtonIcon = ({
   onClickFunction,
   renderConditional,
   isMenuOpen,
-  folderOfNewPart,
+  newFolder,
   clickedFolder,
   aria,
 }) => {
@@ -247,7 +247,7 @@ const GenericButtonIcon = ({
       <DropDownButton
         onClickFunction={onClickFunction}
         isMenuOpen={isMenuOpen}
-        folderOfNewPart={folderOfNewPart}
+        newFolder={newFolder}
         clickedFolder={clickedFolder}
         type={type}
         aria={aria}
