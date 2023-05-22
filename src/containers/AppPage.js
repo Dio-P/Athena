@@ -74,6 +74,7 @@ const AppPage = () => {
   
   
   const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
+  const [updatedPart, setUpdatedPart] = useState(undefined);
   const [newFolder, setNewFolder] = useState("");
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
@@ -89,6 +90,7 @@ const AppPage = () => {
   const { manageFolderDdOpenParam } = useParamsHelper();
 
   const folderInfoToState = (folder) => {
+    console.log("inside folderInfoToState");
     setClickedFolder(folder.name);
     setNewFolder(folder);
     setNewPart({
@@ -97,6 +99,24 @@ const AppPage = () => {
     });
     manageFolderDdOpenParam();
   };
+
+  const settingNewPartFolder = (folder) => {
+    folderInfoToState(folder);
+    setNewPart({
+      ...newPart,
+      folderToBeDisplayedIn: folder.id,
+    });
+    manageFolderDdOpenParam();
+  }
+
+  const updatingPartFolder = (folder, part) => {
+    folderInfoToState(folder);
+    setUpdatedPart({
+      ...part,
+      folderToBeDisplayedIn: folder.id,
+    });
+    manageFolderDdOpenParam();
+  }
 
   const addNewFolderAndClear = () => {
     console.log("inside add new folder and clear");
@@ -115,6 +135,22 @@ const AppPage = () => {
     // setClickedFolder(folderBeenCreated);
     manageFolderDdOpenParam();
   };
+
+  // to be deleted
+  useEffect(() => {
+    console.log("newFolder@@", newFolder);
+     
+  }, [newFolder])
+
+  useEffect(() => {
+    console.log("updatedPart@@", updatedPart);
+     
+  }, [updatedPart])
+
+  useEffect(() => {
+    console.log("newPart@@", newPart);
+     
+  }, [newPart])
 
   useEffect(() => {
     console.log("appToDisplay", appToDisplay)
@@ -173,7 +209,7 @@ const AppPage = () => {
             setFolderBeenCreated={setFolderBeenCreated}
             newlyCreatedFolders={newlyCreatedFolders}
             setNewlyCreatedFolders={setNewlyCreatedFolders}
-            folderInfoToState={folderInfoToState}
+            settingNewPartFolder={settingNewPartFolder}
             addNewFolderAndClear={addNewFolderAndClear}
 
             // appToDisplay={appToDisplay}
@@ -190,7 +226,7 @@ const AppPage = () => {
                   // folders={appToDisplay.folders}
                   preexistingFolders={preexistingFolders}
                   newlyCreatedFolders={newlyCreatedFolders}
-                  folderInfoToState={folderInfoToState}
+                  updatingPartFolder={updatingPartFolder}
                   newFolder={newFolder}
                   addNewFolderAndClear={addNewFolderAndClear}
                   folderBeenCreated={folderBeenCreated}

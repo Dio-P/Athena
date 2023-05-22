@@ -27,7 +27,7 @@ const AddConnectionStateManager = ({
   setFolderBeenCreated,
   newlyCreatedFolders,
   setNewlyCreatedFolders,
-  folderInfoToState,
+  settingNewPartFolder,
   addNewFolderAndClear
  }) => {
   // const { setClickedFolder } = useFolderHelper();
@@ -93,7 +93,7 @@ const AddConnectionStateManager = ({
             setNewlyCreatedFolders={setNewlyCreatedFolders}
             folderBeenCreated={folderBeenCreated}
             setFolderBeenCreated={setFolderBeenCreated}
-            folderInfoToState={folderInfoToState}
+            settingNewPartFolder={settingNewPartFolder}
             addNewFolderAndClear={addNewFolderAndClear}
 
           />

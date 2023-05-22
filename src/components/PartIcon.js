@@ -59,7 +59,7 @@ const PartIcon = ({
   //   folders,
   preexistingFolders,
   newlyCreatedFolders,
-  folderInfoToState,
+  updatingPartFolder,
   newFolder,
   addNewFolderAndClear,
   folderBeenCreated,
@@ -113,7 +113,7 @@ const PartIcon = ({
           //   folders={folders}
           preexistingFolders={preexistingFolders}
           newlyCreatedFolders={newlyCreatedFolders}
-          secondaryFunction={folderInfoToState}
+          secondaryFunction={updatingPartFolder}
           isPopUpOpen={editOpen}
           newFolder={newFolder}
           onClickFunction={addNewFolderAndClear}

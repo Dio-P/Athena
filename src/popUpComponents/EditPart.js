@@ -4,6 +4,7 @@ import DropDown from "../components/DropDown";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import PopUp from "../components/PopUp";
 import AddNewFolder from "./AddNewFolder";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const EditPartContainer = styled.div`
   height: 100%;
@@ -33,10 +34,16 @@ const EditPart = ({
   newlyCreatedFolders,
   setNewFolder,
 }) => {
+
+  const {
+    manageFolderDdOpenParam,
+    params: { isFolderDdOpen },
+  } = useParamsHelper();
+
   const [partName, setPartName] = useState(part.name);
   const [partType, setPartType] = useState(part.type);
   const [partGhRepo, setPartGhRepo] = useState(part.ghRepo);
-  const [partFolderToBeDisplayedIn, setPartFolderToBeDisplayedIn] = useState(
+  const [partFolderToBeDisplayedIn, setFolderToBeDisplayedIn] = useState(
     part.folderToBeDisplayedIn
   );
   const [isFolderDropdownOpen, setIsFolderDropdownOpen] = useState(false);
@@ -83,15 +90,15 @@ const EditPart = ({
       <LabelInputPair>
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
-        <button onClick={() => setIsFolderDropdownOpen(!isFolderDropdownOpen)}>
+        <button onClick={() => manageFolderDdOpenParam()}>
           {/* is there a case where the name will not be in the preexisting folders? */}
           {capitaliseFirstLetters(preexistingFolders[partFolderToBeDisplayedIn].name)}
         </button>
-        {isFolderDropdownOpen && (
+        {isFolderDdOpen && (
           <DropDown
             preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
-            onClickFunction={secondaryFunction}
+            onClickFunction={secondaryFunction}//////!!!!!!!!
             onClickingBtnFunction={() => setIsPopUpOpen(!isPopUpOpen)}
             newFolder={newFolder}
           />

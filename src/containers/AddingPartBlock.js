@@ -39,7 +39,7 @@ const AddingPartBlock = ({
   setFolderBeenCreated,
   newlyCreatedFolders,
   setNewlyCreatedFolders,
-  folderInfoToState,
+  settingNewPartFolder,
   addNewFolderAndClear
   // manageFolderDdOpenParam,
 }) => {
@@ -117,7 +117,7 @@ const AddingPartBlock = ({
         folderBeenCreated={folderBeenCreated}
         setFolderBeenCreated={setFolderBeenCreated}
         isFolderWarningOn={isFolderWarningOn}
-        folderInfoToState={folderInfoToState}
+        settingNewPartFolder={settingNewPartFolder}
         addNewFolderAndClear={addNewFolderAndClear}
 
         // manageFolderDdOpenParam={manageFolderDdOpenParam}

@@ -23,7 +23,7 @@ const Folder = ({
   // folders,
   preexistingFolders,
   newlyCreatedFolders,
-  folderInfoToState,
+  updatingPartFolder,
   newFolder,
   addNewFolderAndClear,
   folderBeenCreated,
@@ -78,7 +78,7 @@ const Folder = ({
               // folders={folders}
               preexistingFolders={preexistingFolders}
               newlyCreatedFolders={newlyCreatedFolders}
-              folderInfoToState={folderInfoToState}
+              updatingPartFolder={updatingPartFolder}
               newFolder={newFolder}
               addNewFolderAndClear={addNewFolderAndClear}
               folderBeenCreated={folderBeenCreated}

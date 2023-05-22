@@ -29,7 +29,7 @@ const AddingFolderBlock = ({
   folderBeenCreated,
   setFolderBeenCreated,
   isFolderWarningOn,
-  folderInfoToState,
+  settingNewPartFolder,
   addNewFolderAndClear,
 }) => {
   const {
@@ -73,7 +73,7 @@ const AddingFolderBlock = ({
           <DropDown
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
-            onClickFunction={folderInfoToState}
+            onClickFunction={settingNewPartFolder}
             newFolder={newFolder}
             onClickingBtnFunction={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
