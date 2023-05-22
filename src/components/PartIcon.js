@@ -65,6 +65,7 @@ const PartIcon = ({
   folderBeenCreated,
   setFolderBeenCreated,
   setNewFolder,
+  updateApp,
 }) => {
   const [editOpen, setEditOpen] = useState(false);
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
@@ -114,6 +115,7 @@ const PartIcon = ({
           preexistingFolders={preexistingFolders}
           newlyCreatedFolders={newlyCreatedFolders}
           secondaryFunction={updatingPartFolder}
+          tertiaryFunction={updateApp}
           isPopUpOpen={editOpen}
           newFolder={newFolder}
           onClickFunction={addNewFolderAndClear}

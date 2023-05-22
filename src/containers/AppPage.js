@@ -90,7 +90,7 @@ const AppPage = () => {
   const { manageFolderDdOpenParam } = useParamsHelper();
 
   const folderInfoToState = (folder) => {
-    console.log("inside folderInfoToState");
+    console.log("inside folderInfoToState", folder);
     setClickedFolder(folder.name);
     setNewFolder(folder);
     setNewPart({
@@ -110,6 +110,8 @@ const AppPage = () => {
   }
 
   const updatingPartFolder = (folder, part) => {
+    console.log("folder!@!", folder);
+    console.log("part!@!", part);
     folderInfoToState(folder);
     setUpdatedPart({
       ...part,
@@ -135,6 +137,11 @@ const AppPage = () => {
     // setClickedFolder(folderBeenCreated);
     manageFolderDdOpenParam();
   };
+
+  const updateApp = () => {
+    console.log("hello from update app");
+    // this is where the update mutation is gonna be called 
+  }
 
   // to be deleted
   useEffect(() => {
@@ -232,6 +239,7 @@ const AppPage = () => {
                   folderBeenCreated={folderBeenCreated}
                   setFolderBeenCreated={setFolderBeenCreated}
                   setNewFolder={setNewFolder}
+                  updateApp={updateApp}
                 />
               ))}
           </div>

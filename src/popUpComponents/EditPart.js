@@ -5,6 +5,7 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import PopUp from "../components/PopUp";
 import AddNewFolder from "./AddNewFolder";
 import useParamsHelper from "../hooks/useParamsHelper";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const EditPartContainer = styled.div`
   height: 100%;
@@ -24,6 +25,7 @@ const LabelInputPair = styled.div`
 
 const EditPart = ({
   secondaryFunction,
+  tertiaryFunction, //updateApp
   part,
   // folders,
   newFolder,
@@ -61,6 +63,19 @@ const EditPart = ({
     onClickFunction();
     setIsPopUpOpen(false);
   };
+
+  const updateFolderAndClose = (folder) => {
+    console.log("folder in update!!!", folder);
+
+    secondaryFunction(folder, part);
+    setFolderToBeDisplayedIn();
+  };
+
+  const updateAppAndClose = () => {
+    tertiaryFunction();
+    // close 
+  }
+
   return (
     <EditPartContainer>
       <LabelInputPair>
@@ -98,7 +113,7 @@ const EditPart = ({
           <DropDown
             preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
-            onClickFunction={secondaryFunction}//////!!!!!!!!
+            onClickFunction={updateFolderAndClose}//////!!!!!!!!
             onClickingBtnFunction={() => setIsPopUpOpen(!isPopUpOpen)}
             newFolder={newFolder}
           />
@@ -113,6 +128,11 @@ const EditPart = ({
           isPopUpOpen={isPopUpOpen}
         />
       </LabelInputPair>
+      <GenericButtonIcon
+        label="Update"
+        type="add"
+        onClickFunction={updateAppAndClose}
+      />
     </EditPartContainer>
   );
 };

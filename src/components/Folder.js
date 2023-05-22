@@ -29,6 +29,7 @@ const Folder = ({
   folderBeenCreated,
   setFolderBeenCreated,
   setNewFolder,
+  updateApp,
 }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
@@ -84,6 +85,7 @@ const Folder = ({
               folderBeenCreated={folderBeenCreated}
               setFolderBeenCreated={setFolderBeenCreated}
               setNewFolder={setNewFolder}
+              updateApp={updateApp}
             />
           ))}
       </FolderContainer>
