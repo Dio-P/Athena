@@ -47,33 +47,21 @@ const EditApp = ({ setIsPopUpOpen, app }) => {
   // find why the bellow ends up with a string and not an array
   // ones it gets a string and then an array.
   const stringToArray = (string) => {
-    console.log("string", string);
-    console.log("type of string", typeof string);
     const arrayOfTeams = string[0].split(",");
-    console.log("arrayOfTeams", arrayOfTeams);
     const trimTeams = arrayOfTeams.map((team) => (
       team.trim()
     ))
-    console.log("trimTeams", trimTeams);
     return trimTeams;
   }
 
   const saveChanges = async() => {
     const teamsToArray = await stringToArray(updatedApp.teams);
-    console.log("teamsToArray", teamsToArray);
     setUpdatedApp({...updatedApp, teams: teamsToArray})
-    console.log("updatedApp", updatedApp);
     setUpdatedWasClicked(true);
     
   };
 
   return (
-    // <EditAppWrapper>
-    //   <GenericButtonIcon
-    //     onClickFunction={() => setIsPopUpOpen(false)}
-    //     type="small"
-    //     icon={deleteIcon}
-    //   />
     <>
       <Body>
         <ManageAppDetails
@@ -91,7 +79,6 @@ const EditApp = ({ setIsPopUpOpen, app }) => {
         onClickFunction={saveChanges}
       />
     </>
-    // </EditAppWrapper>
   );
 };
 

@@ -6,6 +6,7 @@ import PopUp from "../components/PopUp";
 import AddNewFolder from "./AddNewFolder";
 import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
+import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
 
 const EditPartContainer = styled.div`
   height: 100%;
@@ -24,6 +25,7 @@ const LabelInputPair = styled.div`
 }`;
 
 const EditPart = ({
+  setIsPopUpOpen,
   secondaryFunction,
   tertiaryFunction, //updateApp
   part,
@@ -42,38 +44,48 @@ const EditPart = ({
     params: { isFolderDdOpen },
   } = useParamsHelper();
 
-  const [partName, setPartName] = useState(part.name);
-  const [partType, setPartType] = useState(part.type);
-  const [partGhRepo, setPartGhRepo] = useState(part.ghRepo);
-  const [partFolderToBeDisplayedIn, setFolderToBeDisplayedIn] = useState(
-    part.folderToBeDisplayedIn
-  );
-  const [isFolderDropdownOpen, setIsFolderDropdownOpen] = useState(false);
+  const [updatedPart, setUpdatedPart] = useState({
+    name: part.name,
+    id: part.id,
+    ghRepo: part.ghRepo,
+    type: part.type,
+    folderToBeDisplayedIn: part.folderToBeDisplayedIn,
+    // appParent:, 
+    // do I need to add the docs?
+  })
+  // const [isFolderDropdownOpen, setIsFolderDropdownOpen] = useState(false);
 
-  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
+  const [isAddFolderPopUpOpen, setAddFolderIsPopUpOpen] = useState(false);
 
-  console.log("part", part);
-  // console.log("folders!@#", folders);
+  const [updateWasClicked, setUpdatedWasClicked] = useState(false);
+  const [data, loading, error] = usePartByIdUpdate(part.id, updatedPart , updateWasClicked);
 
   useEffect(() => {
-    console.log("partName", partName);
-  }, [partName]);
+    if(error){
+      console.log("error", error);
+    }
+    if(loading){
+      console.log("loading", loading);
+    }
+    if(data){
+      console.log("data", data);
+    }
+  }, [data, loading, error]);
 
   const onClickPlusClosePopup = () => {
     onClickFunction();
-    setIsPopUpOpen(false);
+    setAddFolderIsPopUpOpen(false);
   };
 
   const updateFolderAndClose = (folder) => {
-    console.log("folder in update!!!", folder);
-
     secondaryFunction(folder, part);
     setFolderToBeDisplayedIn();
   };
 
-  const updateAppAndClose = () => {
-    tertiaryFunction();
-    // close 
+  const updatePartAndClose = () => {
+    console.log("updatedPart", updatedPart);
+    setUpdatedWasClicked(true);
+    // setIsPopUpOpen(false);
   }
 
   return (
@@ -82,24 +94,24 @@ const EditPart = ({
         <label htmlFor="">Name</label>
         <input
           type="text"
-          value={partName}
-          onChange={(e) => setPartName(e.target.value)}
+          value={updatedPart.name}
+          onChange={(e) => setUpdatedPart({...updatedPart, name: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Type</label>
         <input
           type="text"
-          value={partType}
-          onChange={(e) => setPartType(e.target.value)}
+          value={updatedPart.type}
+          onChange={(e) => setUpdatedPart({...updatedPart, type: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Gh Repo</label>
         <input
           type="text"
-          value={partGhRepo}
-          onChange={(e) => setPartGhRepo(e.target.value)}
+          value={updatedPart.ghRepo}
+          onChange={(e) => setUpdatedPart({...updatedPart, ghRepo: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
@@ -107,17 +119,18 @@ const EditPart = ({
         {/* change the one bellow to the right button when made */}
         <button onClick={() => manageFolderDdOpenParam()}>
           {/* is there a case where the name will not be in the preexisting folders? */}
-          {capitaliseFirstLetters(preexistingFolders[partFolderToBeDisplayedIn].name)}
+          {capitaliseFirstLetters(preexistingFolders[updatedPart.folderToBeDisplayedIn].name)}
         </button>
         {isFolderDdOpen && (
           <DropDown
             preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
             onClickFunction={updateFolderAndClose}//////!!!!!!!!
-            onClickingBtnFunction={() => setIsPopUpOpen(!isPopUpOpen)}
+            onClickingBtnFunction={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
             newFolder={newFolder}
           />
         )}
+      </LabelInputPair>
         <PopUp
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
@@ -125,13 +138,12 @@ const EditPart = ({
           onClickFunction={onClickPlusClosePopup}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
-          isPopUpOpen={isPopUpOpen}
+          isPopUpOpen={isAddFolderPopUpOpen}
         />
-      </LabelInputPair>
       <GenericButtonIcon
         label="Update"
         type="add"
-        onClickFunction={updateAppAndClose}
+        onClickFunction={updatePartAndClose}
       />
     </EditPartContainer>
   );
