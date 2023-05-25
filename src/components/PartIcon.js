@@ -7,6 +7,7 @@ import { moreIcon } from "../helpers/svgIcons";
 import AdditionalOptions from "./AdditionalOptions";
 import PopUp from "./PopUp";
 import EditPart from "../popUpComponents/EditPart";
+import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
 
 const PartsContainer = styled.div`
   display: flex;
@@ -65,19 +66,45 @@ const PartIcon = ({
   folderBeenCreated,
   setFolderBeenCreated,
   setNewFolder,
-  updateApp,
+  // updateApp,
+  // setEditedPart,
+  // editPartData,
+  // editPartLoading,
+  // editPartError,
+  // editPartOpen,
+  // setEditPartOpen
 }) => {
-  const [editOpen, setEditOpen] = useState(false);
+  
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
 
   const partName = capitaliseFirstLetters(part.name);
   const partType = capitaliseFirstLetters(part.type);
   const ghRepo = part.ghRepo;
 
-  const editPart = () => {
-    console.log("hello");
-    setEditOpen(true);
-  };
+  const [editedPart, setEditedPart] = useState({
+    name: part.name,
+    id: part.id,
+    ghRepo: part.ghRepo,
+    type: part.type,
+    folderToBeDisplayedIn: part.folderToBeDisplayedIn,
+    // appParent:, 
+    // do I need to add the docs?
+  })
+  const [editPartOpen, setEditPartOpen] = useState(false);
+  const [editPartWasClicked, setEditPartWasClicked] = useState(false);
+  const [editPartData, editPartLoading, editPartError] = usePartByIdUpdate(part.id, editedPart , editPartWasClicked);
+
+  // leave only the setEdit and remove the function.
+  // const editPart = () => {
+  //   console.log("hello");
+  //   setEditPartOpen(true);
+  // };
+
+  // rename that to editPartAndClose
+  const editPartAndClose = () => {
+    setEditPartWasClicked(true);
+    setEditPartOpen(false);
+  }
 
   return (
     <WholeBoxContainer>
@@ -102,26 +129,32 @@ const PartIcon = ({
             options={[
               {
                 title: "edit",
-                onClickFunction: editPart,
+                onClickFunction: () => setEditPartOpen(true),
               },
             ]}
           />
         )}
         <PopUp
-          setIsPopUpOpen={setEditOpen}
+          setIsPopUpOpen={setEditPartOpen}
           ComponentToDisplay={EditPart}
           part={part}
           //   folders={folders}
           preexistingFolders={preexistingFolders}
           newlyCreatedFolders={newlyCreatedFolders}
           secondaryFunction={updatingPartFolder}
-          tertiaryFunction={updateApp}
-          isPopUpOpen={editOpen}
+          // tertiaryFunction={updateApp}
+          isPopUpOpen={editPartOpen}
           newFolder={newFolder}
           onClickFunction={addNewFolderAndClear}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
           setNewFolder={setNewFolder}
+          editedPart={editedPart}
+          setEditedPart={setEditedPart}
+          editPartData={editPartData} 
+          editPartLoading={editPartLoading} 
+          editPartError={editPartError}
+          editPartAndClose={editPartAndClose}
         />
       </IconButton>
     </WholeBoxContainer>

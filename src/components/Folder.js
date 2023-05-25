@@ -30,6 +30,12 @@ const Folder = ({
   setFolderBeenCreated,
   setNewFolder,
   updateApp,
+  setEditedPart,
+  editPartData,
+  editPartLoading,
+  editPartError,
+  editPartOpen,
+  setEditPartOpen,
 }) => {
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
@@ -86,6 +92,12 @@ const Folder = ({
               setFolderBeenCreated={setFolderBeenCreated}
               setNewFolder={setNewFolder}
               updateApp={updateApp}
+              setEditedPart={setEditedPart}
+              editPartData={editPartData} 
+              editPartLoading={editPartLoading} 
+              editPartError={editPartError}
+              editPartOpen={editPartOpen}
+              setEditPartOpen={setEditPartOpen}
             />
           ))}
       </FolderContainer>

@@ -37,6 +37,12 @@ const EditPart = ({
   preexistingFolders,
   newlyCreatedFolders,
   setNewFolder,
+  editedPart,
+  setEditedPart,
+  editPartData, 
+  editPartLoading, 
+  editPartError,
+  editPartAndClose
 }) => {
 
   const {
@@ -44,33 +50,22 @@ const EditPart = ({
     params: { isFolderDdOpen },
   } = useParamsHelper();
 
-  const [updatedPart, setUpdatedPart] = useState({
-    name: part.name,
-    id: part.id,
-    ghRepo: part.ghRepo,
-    type: part.type,
-    folderToBeDisplayedIn: part.folderToBeDisplayedIn,
-    // appParent:, 
-    // do I need to add the docs?
-  })
+  
   // const [isFolderDropdownOpen, setIsFolderDropdownOpen] = useState(false);
 
   const [isAddFolderPopUpOpen, setAddFolderIsPopUpOpen] = useState(false);
 
-  const [updateWasClicked, setUpdatedWasClicked] = useState(false);
-  const [data, loading, error] = usePartByIdUpdate(part.id, updatedPart , updateWasClicked);
-
   useEffect(() => {
-    if(error){
-      console.log("error", error);
+    if(editPartError){
+      console.log("editPartError", editPartError);
     }
-    if(loading){
-      console.log("loading", loading);
+    if(editPartLoading){
+      console.log("editPartLoading", editPartLoading);
     }
-    if(data){
-      console.log("data", data);
+    if(editPartData){
+      console.log("editPartData", editPartData);
     }
-  }, [data, loading, error]);
+  }, [editPartData, editPartLoading, editPartError]);
 
   const onClickPlusClosePopup = () => {
     onClickFunction();
@@ -82,11 +77,11 @@ const EditPart = ({
     setFolderToBeDisplayedIn();
   };
 
-  const updatePartAndClose = () => {
-    console.log("updatedPart", updatedPart);
-    setUpdatedWasClicked(true);
-    // setIsPopUpOpen(false);
-  }
+  // const updatePartAndClose = () => {
+  //   console.log("editedPart", editedPart);
+  //   setEditPartWasClicked(true);
+  //   // setIsPopUpOpen(false);
+  // }
 
   return (
     <EditPartContainer>
@@ -94,24 +89,24 @@ const EditPart = ({
         <label htmlFor="">Name</label>
         <input
           type="text"
-          value={updatedPart.name}
-          onChange={(e) => setUpdatedPart({...updatedPart, name: e.target.value})}
+          value={editedPart.name}
+          onChange={(e) => setEditedPart({...editedPart, name: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Type</label>
         <input
           type="text"
-          value={updatedPart.type}
-          onChange={(e) => setUpdatedPart({...updatedPart, type: e.target.value})}
+          value={editedPart.type}
+          onChange={(e) => setEditedPart({...editedPart, type: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
         <label htmlFor="">Gh Repo</label>
         <input
           type="text"
-          value={updatedPart.ghRepo}
-          onChange={(e) => setUpdatedPart({...updatedPart, ghRepo: e.target.value})}
+          value={editedPart.ghRepo}
+          onChange={(e) => setEditedPart({...editedPart, ghRepo: e.target.value})}
         />
       </LabelInputPair>
       <LabelInputPair>
@@ -119,11 +114,11 @@ const EditPart = ({
         {/* change the one bellow to the right button when made */}
         <button onClick={() => manageFolderDdOpenParam()}>
           {/* is there a case where the name will not be in the preexisting folders? */}
-          {capitaliseFirstLetters(preexistingFolders[updatedPart.folderToBeDisplayedIn].name)}
+          {capitaliseFirstLetters(preexistingFolders[editedPart.folderToBeDisplayedIn].name)}
         </button>
         {isFolderDdOpen && (
           <DropDown
-            preexistingData={preexistingFolders}
+            preexistingeditPartData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
             onClickFunction={updateFolderAndClose}//////!!!!!!!!
             onClickingBtnFunction={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
@@ -141,9 +136,9 @@ const EditPart = ({
           isPopUpOpen={isAddFolderPopUpOpen}
         />
       <GenericButtonIcon
-        label="Update"
+        label="Edit Part"
         type="add"
-        onClickFunction={updatePartAndClose}
+        onClickFunction={editPartAndClose}
       />
     </EditPartContainer>
   );

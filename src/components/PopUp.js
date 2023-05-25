@@ -44,6 +44,12 @@ const PopUp = ({
   preexistingFolders,
   newlyCreatedFolders,
   setNewFolder,
+  editedPart,
+  setEditedPart,
+  editPartData,
+  editPartLoading,
+  editPartError,
+  editPartAndClose
 }) => {
   return (
     <>
@@ -62,7 +68,7 @@ const PopUp = ({
                 newFolder={newFolder}
                 onClickFunction={onClickFunction}
                 secondaryFunction={secondaryFunction}
-                tertiaryFunction={tertiaryFunction}
+                // tertiaryFunction={tertiaryFunction}
                 folderBeenCreated={folderBeenCreated}
                 setFolderBeenCreated={setFolderBeenCreated}
                 app={app}
@@ -71,6 +77,12 @@ const PopUp = ({
                 preexistingFolders={preexistingFolders}
                 newlyCreatedFolders={newlyCreatedFolders}
                 setNewFolder={setNewFolder}
+                editedPart={editedPart}
+                setEditedPart={setEditedPart}
+                editPartData={editPartData} 
+                editPartLoading={editPartLoading} 
+                editPartError={editPartError}
+                editPartAndClose={editPartAndClose}
               />
             </EditAppWrapper>
           </PopUpWrapper>

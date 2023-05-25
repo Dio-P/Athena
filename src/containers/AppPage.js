@@ -75,6 +75,7 @@ const AppPage = () => {
   
   const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
   const [updatedPart, setUpdatedPart] = useState(undefined);
+  
   const [newFolder, setNewFolder] = useState("");
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
@@ -84,6 +85,8 @@ const AppPage = () => {
   
   const { setClickedFolder, newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
   console.log("newFolderIndexKey", newFolderIndexKey);
+
+ 
   // under this we need the preexisting folder so all this should move somewhere
   // with knowledge of the app
   // const { setClickedFolder, newFolderIndexKey } = useFolderHelper(,newlyCreatedFolders);
@@ -138,10 +141,7 @@ const AppPage = () => {
     manageFolderDdOpenParam();
   };
 
-  const updateApp = () => {
-    console.log("hello from update app");
-    // this is where the update mutation is gonna be called 
-  }
+ 
 
   // to be deleted
   useEffect(() => {
@@ -239,7 +239,13 @@ const AppPage = () => {
                   folderBeenCreated={folderBeenCreated}
                   setFolderBeenCreated={setFolderBeenCreated}
                   setNewFolder={setNewFolder}
-                  updateApp={updateApp}
+                  // updateApp={updateApp}
+                  // setEditedPart={setEditedPart}
+                  // editPartData={editPartData} 
+                  // editPartLoading={editPartLoading} 
+                  // editPartError={editPartError}
+                  // editPartOpen={editPartOpen}
+                  // setEditPartOpen={setEditPartOpen}
                 />
               ))}
           </div>
