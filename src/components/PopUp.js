@@ -46,9 +46,10 @@ const PopUp = ({
   setNewFolder,
   editedPart,
   setEditedPart,
-  editPartData,
-  editPartLoading,
-  editPartError,
+  editPartMutation,
+  // editPartData,
+  // editPartLoading,
+  // editPartError,
   editPartAndClose
 }) => {
   return (
@@ -79,9 +80,10 @@ const PopUp = ({
                 setNewFolder={setNewFolder}
                 editedPart={editedPart}
                 setEditedPart={setEditedPart}
-                editPartData={editPartData} 
-                editPartLoading={editPartLoading} 
-                editPartError={editPartError}
+                editPartMutation={editPartMutation}
+                // editPartData={editPartData} 
+                // editPartLoading={editPartLoading} 
+                // editPartError={editPartError}
                 editPartAndClose={editPartAndClose}
               />
             </EditAppWrapper>

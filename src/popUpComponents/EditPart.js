@@ -27,9 +27,9 @@ const LabelInputPair = styled.div`
 const EditPart = ({
   setIsPopUpOpen,
   secondaryFunction,
-  tertiaryFunction, //updateApp
+  tertiaryFunction,
   part,
-  // folders,
+  folders,
   newFolder,
   onClickFunction,
   folderBeenCreated,
@@ -39,9 +39,10 @@ const EditPart = ({
   setNewFolder,
   editedPart,
   setEditedPart,
-  editPartData, 
-  editPartLoading, 
-  editPartError,
+  editPartMutation,
+  // editPartData, 
+  // editPartLoading, 
+  // editPartError,
   editPartAndClose
 }) => {
 
@@ -56,16 +57,16 @@ const EditPart = ({
   const [isAddFolderPopUpOpen, setAddFolderIsPopUpOpen] = useState(false);
 
   useEffect(() => {
-    if(editPartError){
-      console.log("editPartError", editPartError);
+    if(editPartMutation.error){
+      console.log("editPartMutation.error", editPartMutation.error);
     }
-    if(editPartLoading){
-      console.log("editPartLoading", editPartLoading);
+    if(editPartMutation.loading){
+      console.log("editPartMutation.loading", editPartMutation.loading);
     }
-    if(editPartData){
-      console.log("editPartData", editPartData);
+    if(editPartMutation.data){
+      console.log("editPartMutation.data", editPartMutation.data);
     }
-  }, [editPartData, editPartLoading, editPartError]);
+  }, [editPartMutation.data, editPartMutation.loading, editPartMutation.error]);
 
   const onClickPlusClosePopup = () => {
     onClickFunction();
@@ -120,7 +121,7 @@ const EditPart = ({
           <DropDown
             preexistingeditPartData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
-            onClickFunction={updateFolderAndClose}//////!!!!!!!!
+            onClickFunction={updateFolderAndClose}
             onClickingBtnFunction={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
             newFolder={newFolder}
           />

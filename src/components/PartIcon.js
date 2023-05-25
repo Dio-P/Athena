@@ -92,7 +92,7 @@ const PartIcon = ({
   })
   const [editPartOpen, setEditPartOpen] = useState(false);
   const [editPartWasClicked, setEditPartWasClicked] = useState(false);
-  const [editPartData, editPartLoading, editPartError] = usePartByIdUpdate(part.id, editedPart , editPartWasClicked);
+  const { editPartMutation } = usePartByIdUpdate(part.id, editedPart , editPartWasClicked);
 
   // leave only the setEdit and remove the function.
   // const editPart = () => {
@@ -151,9 +151,10 @@ const PartIcon = ({
           setNewFolder={setNewFolder}
           editedPart={editedPart}
           setEditedPart={setEditedPart}
-          editPartData={editPartData} 
-          editPartLoading={editPartLoading} 
-          editPartError={editPartError}
+          editPartMutation={editPartMutation}
+          // editPartData={editPartData} 
+          // editPartLoading={editPartLoading} 
+          // editPartError={editPartError}
           editPartAndClose={editPartAndClose}
         />
       </IconButton>
