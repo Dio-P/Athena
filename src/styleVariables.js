@@ -22,6 +22,17 @@ const styleVariables = {
     bigButton: "#2b2a28 0.5em 0.5em 0.3em",
     smallButton: "#2b2a28 0.2em 0.2em 0.1em",
   },
+  popupElements:{
+    LabelInputPair: styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 5px 20px ;
+    & label {
+      margin-bottom: 5px;
+    }
+  }`,
+  },
   // customStyledElements: {
   //   SmallButton: styled.div`
   //   display: flex;

@@ -42,7 +42,23 @@ const AppsBox = ({
     }
   } = useParamsHelper();
 
-  const [newApp, setNewApp] = useState();
+  const [newApp, setNewApp] = useState( {
+    name: "",
+    type: "",
+    gitHubRepo: "",
+    briefDescr: "",
+    teams: [teamName],
+    facing: {
+      user: false,//radio button
+      audience: false,//radio button
+    },
+    folders: [],
+    parts: [],
+    // connections: [],
+    properties: {
+      docs: []
+    }
+  });
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
   
   return (

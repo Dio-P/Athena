@@ -7,22 +7,13 @@ import AddNewFolder from "./AddNewFolder";
 import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
+import styleVariables from "../styleVariables";
 
 const EditPartContainer = styled.div`
   height: 100%;
   width: 260px;
   color: black;
 `;
-
-const LabelInputPair = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin: 5px 20px ;
-  & label {
-    margin-bottom: 5px;
-  }
-}`;
 
 const EditPart = ({
   setIsPopUpOpen,
@@ -86,31 +77,31 @@ const EditPart = ({
 
   return (
     <EditPartContainer>
-      <LabelInputPair>
+      <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Name</label>
         <input
           type="text"
           value={editedPart.name}
           onChange={(e) => setEditedPart({...editedPart, name: e.target.value})}
         />
-      </LabelInputPair>
-      <LabelInputPair>
+      </styleVariables.popupElements.LabelInputPair>
+      <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Type</label>
         <input
           type="text"
           value={editedPart.type}
           onChange={(e) => setEditedPart({...editedPart, type: e.target.value})}
         />
-      </LabelInputPair>
-      <LabelInputPair>
+      </styleVariables.popupElements.LabelInputPair>
+      <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Gh Repo</label>
         <input
           type="text"
           value={editedPart.ghRepo}
           onChange={(e) => setEditedPart({...editedPart, ghRepo: e.target.value})}
         />
-      </LabelInputPair>
-      <LabelInputPair>
+      </styleVariables.popupElements.LabelInputPair>
+      <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
         <button onClick={() => manageFolderDdOpenParam()}>
@@ -126,7 +117,7 @@ const EditPart = ({
             newFolder={newFolder}
           />
         )}
-      </LabelInputPair>
+      </styleVariables.popupElements.LabelInputPair>
         <PopUp
           ComponentToDisplay={AddNewFolder}
           setIsPopUpOpen={setIsPopUpOpen}
