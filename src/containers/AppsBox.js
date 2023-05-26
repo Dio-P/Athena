@@ -3,6 +3,10 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
+import GenericButtonIcon from "../components/GenericButtonIcon";
+import { useState } from "react";
+import PopUp from "../components/PopUp";
+import AddNewApp from "../popUpComponents/AddNewApp";
 
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
@@ -24,6 +28,9 @@ const StyledButton = styled.button`
   outline: inherit;
 `;
 
+const TeamAppsBlock = styled.div`
+`;
+
 const AppsBox = ({ 
   teamApps, 
   teamName,
@@ -34,6 +41,9 @@ const AppsBox = ({
       appId
     }
   } = useParamsHelper();
+
+  const [newApp, setNewApp] = useState();
+  const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
   
   return (
     <DepartmAppsBoxContainer>
@@ -45,13 +55,28 @@ const AppsBox = ({
 
       {(teamApps &&
         !appId) &&
-        <PopulateButtons
-          data={teamApps}
-          onClickFunction={(singleApp) => manageAppIdParam(singleApp)}
-        />
+        <TeamAppsBlock>
+          <GenericButtonIcon
+            type="add"
+            label="+ Add App"
+            onClickFunction={() => setIsAddAppPopupOpen(!isAddAppPopupOpen)}
+          />
+          <PopulateButtons
+            data={teamApps}
+            onClickFunction={(singleApp) => manageAppIdParam(singleApp)}
+          />
+        </TeamAppsBlock>
       }
       {appId && 
         <AppPage/>
+      }
+      {isAddAppPopupOpen &&
+        <PopUp
+          ComponentToDisplay={AddNewApp}
+          isPopUpOpen={isAddAppPopupOpen}
+          newApp={newApp}
+          setNewApp={setNewApp}
+        />
       }
     </DepartmAppsBoxContainer>
   );

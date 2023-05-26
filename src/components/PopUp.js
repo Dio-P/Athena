@@ -50,7 +50,9 @@ const PopUp = ({
   // editPartData,
   // editPartLoading,
   // editPartError,
-  editPartAndClose
+  editPartAndClose,
+  newApp,
+  setNewApp,
 }) => {
   return (
     <>
@@ -85,6 +87,8 @@ const PopUp = ({
                 // editPartLoading={editPartLoading} 
                 // editPartError={editPartError}
                 editPartAndClose={editPartAndClose}
+                newApp={newApp}
+                setNewApp={setNewApp}
               />
             </EditAppWrapper>
           </PopUpWrapper>
