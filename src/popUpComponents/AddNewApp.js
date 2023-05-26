@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
+import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const AddNewAppContainer = styled.div`
   display: flex;
@@ -40,6 +41,11 @@ const AddNewApp = ({newApp, setNewApp}) => {
           onChange={(e) => setNewApp({...newApp, briefDescr: e.target.value})}
         />
       </styleVariables.popupElements.LabelInputPair>
+      <GenericButtonIcon
+        label="Add"
+        type="add"
+        // onClickFunction={appAppAndClose}
+      />
     </AddNewAppContainer>
   )
 }
