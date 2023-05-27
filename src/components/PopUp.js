@@ -15,9 +15,9 @@ const PopUpWrapper = styled.div`
   position: absolute;
   width: auto;
   height: 90%;
-  margin-left: -200px;
+  margin-left: -400px;
   left: 50%;
-  margin-bottom: -300px;
+  margin-bottom: -400px;
   bottom: 50%;
 `;
 

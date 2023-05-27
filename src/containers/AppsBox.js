@@ -90,6 +90,7 @@ const AppsBox = ({
         <PopUp
           ComponentToDisplay={AddNewApp}
           isPopUpOpen={isAddAppPopupOpen}
+          setIsPopUpOpen={setIsAddAppPopupOpen}
           newApp={newApp}
           setNewApp={setNewApp}
         />
