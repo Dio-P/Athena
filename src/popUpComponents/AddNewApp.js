@@ -60,6 +60,7 @@ const AddNewApp = ({newApp, setNewApp}) => {
                 />
               )
             })
+            // slice second element onwards teams.slice(1).map
           }
         </div>
         <input
