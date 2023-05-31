@@ -1,7 +1,7 @@
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
-import { tickIcon, arrowDownIcon, arrowUpIcon } from "../helpers/svgIcons";
+import { tickIcon, arrowDownIcon, arrowUpIcon, deleteIcon } from "../helpers/svgIcons";
 import { WarningElement } from "./specialElements";
 import { defaultProps } from "default-props";
 import PropTypes from "prop-types";
@@ -138,21 +138,35 @@ const mainBtn = {
 const TagBtn = {
   Container: styled.div`
     display: flex;
+    color: white;
     background-color: ${styleVariables.colours.primaryBlue};
-    height: 40px;
-    width: 20px;
+    height: 20px;
+    width: 60px;
   `,
-  XBoxWrapper: styled.div`
+  LabelIconWrapper: styled.div`
+    width: 100%;
+  `,
+  XBoxWrapper: styled.button`
     height: 40px;
     width: 5px;
   `
 }
 
-const TagButton = () => {
+const TagButton = ({label, onClickFunction, aria, withDelete}) => {
+  console.log("in tag button @");
   return (
-    <TagBtn.Wrapper>
-
-    </TagBtn.Wrapper>
+    <TagBtn.Container
+    aria-label={aria || `${type} button`}
+    >
+      {label}
+     {withDelete && 
+      <XBoxWrapper
+        onClick={onClickFunction}
+      >
+        {deleteIcon}
+      </XBoxWrapper>
+      }
+    </TagBtn.Container>
   );
 };
 
@@ -279,11 +293,20 @@ const GenericButtonIcon = ({
     return (
       <TagButton
         onClickFunction={onClickFunction}
-        isMenuOpen={isMenuOpen}
-        newFolder={newFolder}
-        clickedFolder={clickedFolder}
+        label={label}
         type={type}
         aria={aria}
+        withDelete={true}
+      />
+    );
+  }
+  if (type === "tag") {
+    return (
+      <TagButton
+        label={label}
+        type={type}
+        aria={aria}
+        withDelete={false}
       />
     );
   }

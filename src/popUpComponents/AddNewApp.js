@@ -43,7 +43,25 @@ const AddNewApp = ({newApp, setNewApp}) => {
       </styleVariables.popupElements.LabelInputPair>
       <styleVariables.popupElements.LabelInputPair>
         <label>Team(s) Responsible</label>
-        <div></div>
+        <div>
+          <GenericButtonIcon
+            type={"tag"}
+            label={newApp.teams[0]}
+            aria={`${newApp.teams[0]}team icon`}
+          />
+          {(newApp.teams > 1) &&
+            newApp.teams.map((team, index) => {
+              return (index !==0) && (
+                <GenericButtonIcon
+                  key={newApp.teams[index]}
+                  type="tagWithX"
+                  aria={`${newApp.teams[index]} team icon`}
+                  // onClickFunction={//removeteam}
+                />
+              )
+            })
+          }
+        </div>
         <input
           type="text"
           value={newApp.briefDescr}
