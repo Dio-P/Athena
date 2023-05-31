@@ -46,7 +46,7 @@ const AddDocButton = styled.button`
 
 const AppPage = () => {
   let [searchParams] = useSearchParams();
-  const { addingNewConnection, appId } = Object.fromEntries([...searchParams]);
+  const { addingNewConnection, appId, team } = Object.fromEntries([...searchParams]);
   const id = useMemo(() => appId, [appId]) //N
 
   // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
@@ -70,6 +70,7 @@ const AppPage = () => {
     ghRepo: "",
     type: "",
     folderToBeDisplayedIn: "",
+    teams:[team],
   };
   
   

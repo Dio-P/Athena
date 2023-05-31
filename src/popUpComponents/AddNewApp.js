@@ -41,6 +41,15 @@ const AddNewApp = ({newApp, setNewApp}) => {
           onChange={(e) => setNewApp({...newApp, briefDescr: e.target.value})}
         />
       </styleVariables.popupElements.LabelInputPair>
+      <styleVariables.popupElements.LabelInputPair>
+        <label>Team(s) Responsible</label>
+        <div></div>
+        <input
+          type="text"
+          value={newApp.briefDescr}
+          onChange={(e) => setNewApp({...newApp, teams: [...teams, e.target.value]})}
+        />
+      </styleVariables.popupElements.LabelInputPair>
       <GenericButtonIcon
         label="Add"
         type="add"

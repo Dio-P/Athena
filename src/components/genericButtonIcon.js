@@ -135,6 +135,27 @@ const mainBtn = {
   `,
 };
 
+const TagBtn = {
+  Container: styled.div`
+    display: flex;
+    background-color: ${styleVariables.colours.primaryBlue};
+    height: 40px;
+    width: 20px;
+  `,
+  XBoxWrapper: styled.div`
+    height: 40px;
+    width: 5px;
+  `
+}
+
+const TagButton = () => {
+  return (
+    <TagBtn.Wrapper>
+
+    </TagBtn.Wrapper>
+  );
+};
+
 const SmallButton = ({ icon, onClickFunction, type, aria }) => {
   return (
     <smallBtn.Wrapper
@@ -245,6 +266,18 @@ const GenericButtonIcon = ({
   if (type === "dropDown") {
     return (
       <DropDownButton
+        onClickFunction={onClickFunction}
+        isMenuOpen={isMenuOpen}
+        newFolder={newFolder}
+        clickedFolder={clickedFolder}
+        type={type}
+        aria={aria}
+      />
+    );
+  }
+  if (type === "tagWithX") {
+    return (
+      <TagButton
         onClickFunction={onClickFunction}
         isMenuOpen={isMenuOpen}
         newFolder={newFolder}
