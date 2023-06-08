@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 import GenericButtonIcon from "../components/GenericButtonIcon";
+import DropDown from "../components/DropDown";
 
 const AddNewAppContainer = styled.div`
   display: flex;
@@ -53,7 +54,6 @@ const AddNewApp = ({newApp, setNewApp}) => {
           {(newApp.teams > 1) &&
             newApp.teams.map((team, index) => {
               return (index !==0) && (
-                // what did Ben tell you that could be done here? slice?
                 <GenericButtonIcon
                   key={newApp.teams[index]}
                   type="tagWithX"
@@ -64,6 +64,12 @@ const AddNewApp = ({newApp, setNewApp}) => {
             })
             // slice second element onwards teams.slice(1).map
           }
+          {/* dropDown with available teams only (all teams - already chosen)
+          we need a call that will be getting all teams 
+          we need to be able to have empty teams so probably a separate collection 
+          start with mocking this*/}
+          <DropDown /> 
+          {/* freshlyAddedValue */}
         </div>
       </styleVariables.popupElements.LabelInputPair>
       <GenericButtonIcon

@@ -64,18 +64,18 @@ const DropDown = ({
   preexistingData,
   newData,
   updateChosenValue,
-  newFolder,
+  freshlyAddedValue,
   onClickingAdditionalOption,
   dDBtnLabel,
   isDropdownOpen,
   chosenValue,
-  setChooseValue
+  // setChooseValue
   // newFolder,
 }) => {
   const allData = useMemo(
     () =>
-      newFolder ? [...preexistingData, newFolder] : preexistingData,
-    [preexistingData, newFolder]
+      freshlyAddedValue ? [...preexistingData, freshlyAddedValue] : preexistingData,
+    [preexistingData, freshlyAddedValue]
   );
 
   const { search, searchingQuery, filteredData } = useSearchBar(allData);
@@ -107,7 +107,7 @@ const DropDown = ({
         onClickFunction={manageFolderDdOpenParam}
         type="dropDown"
         isMenuOpen={isDdOpen}
-        newFolder={newFolder}
+        freshlyAddedValue={freshlyAddedValue}
         chosenValue={chosenValue}
       />
       {isDropdownOpen &&

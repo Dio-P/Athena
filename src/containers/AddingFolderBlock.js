@@ -81,7 +81,7 @@ const AddingFolderBlock = ({
           <DropDown
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
-            newFolder={newFolder}
+            freshlyAddedValue={newFolder}
             onClickingAdditionalOption={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
             isDropdownOpen={isDdOpen}

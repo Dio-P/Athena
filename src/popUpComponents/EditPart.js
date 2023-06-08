@@ -66,7 +66,7 @@ const EditPart = ({
 
   const updateFolderAndClose = (folder) => {
     secondaryFunction(folder, part);
-    setFolderToBeDisplayedIn();
+    // setFolderToBeDisplayedIn();
   };
 
   // const updatePartAndClose = () => {
@@ -104,19 +104,21 @@ const EditPart = ({
       <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
-        <button onClick={() => manageFolderDdOpenParam()}>
+        {/* <button onClick={() => manageFolderDdOpenParam()}> */}
           {/* is there a case where the name will not be in the preexisting folders? */}
-          {capitaliseFirstLetters(preexistingFolders[editedPart.folderToBeDisplayedIn].name)}
-        </button>
-        {isDdOpen && (
+          {/* {capitaliseFirstLetters(preexistingFolders[editedPart.folderToBeDisplayedIn].name)} */}
+        {/* </button> */}
+        {/* {isDdOpen && ( */}
           <DropDown
-            preexistingeditPartData={preexistingFolders}
+            preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
-            onClickFunction={updateFolderAndClose}
+            chosenValue={preexistingFolders[editedPart.folderToBeDisplayedIn].name}
+            updateChosenValue={updateFolderAndClose}
             onClickingAdditionalOption={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
-            newFolder={newFolder}
+            freshlyAddedValue={newFolder}
+            isDropdownOpen={isDdOpen}
           />
-        )}
+        {/* )} */}
       </styleVariables.popupElements.LabelInputPair>
         <PopUp
           ComponentToDisplay={AddNewFolder}

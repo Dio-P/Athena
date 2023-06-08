@@ -211,15 +211,15 @@ const MainButton = ({
 const DropDownButton = ({
   onClickFunction,
   isMenuOpen,
-  newFolder,
+  freshlyAddedValue,
   chosenValue,
   type,
   aria,
 }) => {
-  console.log("newFolder^&%", newFolder);
+  console.log("freshlyAddedValue^&%", freshlyAddedValue);
   console.log("chosenValue&*^", chosenValue);
-  const folderName = newFolder.name || chosenValue
-  const dropDownButtonTitle = (newFolder || chosenValue)
+  const folderName = freshlyAddedValue.name || chosenValue
+  const dropDownButtonTitle = (freshlyAddedValue || chosenValue)
     ? `Folder to display new part in: ${capitaliseFirstLetters(folderName)}`
     : "Choose a folder to display part in";
   return (
@@ -242,7 +242,7 @@ const GenericButtonIcon = ({
   onClickFunction,
   renderConditional,
   isMenuOpen,
-  newFolder,
+  freshlyAddedValue,
   chosenValue,
   aria,
 }) => {
@@ -285,7 +285,7 @@ const GenericButtonIcon = ({
       <DropDownButton
         onClickFunction={onClickFunction}
         isMenuOpen={isMenuOpen}
-        newFolder={newFolder}
+        freshlyAddedValue={freshlyAddedValue}
         chosenValue={chosenValue}
         type={type}
         aria={aria}
