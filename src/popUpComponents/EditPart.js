@@ -113,7 +113,7 @@ const EditPart = ({
             preexistingData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
             chosenValue={preexistingFolders[editedPart.folderToBeDisplayedIn].name}
-            updateChosenValue={updateFolderAndClose}
+            updateChosenValue={(folder) => setEditedPart({...editedPart, folderToBeDisplayedIn: folder.id })}
             onClickingAdditionalOption={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
             freshlyAddedValue={newFolder}
             isDropdownOpen={isDdOpen}

@@ -63,12 +63,12 @@ const DropDownLabel = styled.div`
 const DropDown = ({
   preexistingData,
   newData,
-  updateChosenValue,
   freshlyAddedValue,
   onClickingAdditionalOption,
   dDBtnLabel,
   isDropdownOpen,
   chosenValue,
+  updateChosenValue,
   // setChooseValue
   // newFolder,
 }) => {
