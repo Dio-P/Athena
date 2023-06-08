@@ -91,7 +91,7 @@ const AppPage = () => {
   // under this we need the preexisting folder so all this should move somewhere
   // with knowledge of the app
   // const { setClickedFolder, newFolderIndexKey } = useFolderHelper(,newlyCreatedFolders);
-  const { manageFolderDdOpenParam } = useParamsHelper();
+  const { manageDdOpenParam } = useParamsHelper();
 
   // const onClickingPreExistingFolder = (value) => {
   //   setClickedFolder(value);
@@ -108,7 +108,7 @@ const AppPage = () => {
     //   ...newPart,
     //   folderToBeDisplayedIn: folder.id,
     // });
-    // manageFolderDdOpenParam();
+    // manageDdOpenParam();
   };
   // useEffect(() => {
   //   console.log("clickedFolder!!!", clickedFolder); 
@@ -121,7 +121,7 @@ const AppPage = () => {
       ...newPart,
       folderToBeDisplayedIn: folder.id,
     });
-    manageFolderDdOpenParam();
+    manageDdOpenParam();
   }
 
   const updatingPartFolder = (folder, part) => {
@@ -132,7 +132,7 @@ const AppPage = () => {
       ...part,
       folderToBeDisplayedIn: folder.id,
     });
-    manageFolderDdOpenParam();
+    manageDdOpenParam();
   }
 
   const addNewFolderAndClear = () => {
@@ -150,7 +150,7 @@ const AppPage = () => {
 
     // // setIsPopUpOpen(false);
     // setClickedFolder(folderBeenCreated);
-    manageFolderDdOpenParam();
+    manageDdOpenParam();
   };
 
  

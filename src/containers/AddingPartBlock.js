@@ -42,7 +42,7 @@ const AddingPartBlock = ({
   setNewlyCreatedFolders,
   settingNewPartFolder,
   addNewFolderAndClear
-  // manageFolderDdOpenParam,
+  // manageDdOpenParam,
 }) => {
   const { keepExistingParams } = useParamsHelper();
 
@@ -119,7 +119,7 @@ const AddingPartBlock = ({
         settingNewPartFolder={settingNewPartFolder}
         addNewFolderAndClear={addNewFolderAndClear}
 
-        // manageFolderDdOpenParam={manageFolderDdOpenParam}
+        // manageDdOpenParam={manageDdOpenParam}
       />
       <GenericButtonIcon
         onClickFunction={addNewPartAndClear}

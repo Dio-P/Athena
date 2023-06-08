@@ -84,7 +84,7 @@ const AddNewConnectionBlock = ({
 
   const {
     manageAddingNewPartParam,
-    manageFolderDdOpenParam,
+    manageDdOpenParam,
     keepExistingParams,
     params: { addingNewPart, addingNewFolder },
   } = useParamsHelper();
@@ -216,7 +216,7 @@ const AddNewConnectionBlock = ({
               clickedFolder={clickedFolder}
               setClickedFolder={setClickedFolder}
 
-              // manageFolderDdOpenParam={manageFolderDdOpenParam}
+              // manageDdOpenParam={manageDdOpenParam}
             />
           )}
         </div>

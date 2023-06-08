@@ -71,7 +71,7 @@ const AddingFolderBlock = ({
   return (
     <MainAddNewFolderContainer>
       {/* <GenericButtonIcon
-        onClickFunction={manageFolderDdOpenParam}
+        onClickFunction={manageDdOpenParam}
         type="dropDown"
         isMenuOpen={isDdOpen}
         newFolder={newFolder}

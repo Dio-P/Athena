@@ -103,7 +103,7 @@ const EditPart = ({
       <styleVariables.popupElements.LabelInputPair>
         <label htmlFor="">Folder</label>
         {/* change the one bellow to the right button when made */}
-        {/* <button onClick={() => manageFolderDdOpenParam()}> */}
+        {/* <button onClick={() => manageDdOpenParam()}> */}
           {/* is there a case where the name will not be in the preexisting folders? */}
           {/* {capitaliseFirstLetters(preexistingFolders[editedPart.folderToBeDisplayedIn].name)} */}
         {/* </button> */}

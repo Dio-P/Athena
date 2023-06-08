@@ -90,6 +90,7 @@ const PopUp = ({
                 editPartAndClose={editPartAndClose}
                 newApp={newApp}
                 setNewApp={setNewApp}
+                onClickDDOption={onClickDDOption}
               />
             </EditAppWrapper>
           </PopUpWrapper>

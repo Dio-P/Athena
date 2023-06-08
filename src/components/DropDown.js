@@ -81,7 +81,7 @@ const DropDown = ({
 
   const { search, searchingQuery, filteredData } = useSearchBar(allData);
   const {
-    manageFolderDdOpenParam,
+    manageDdOpenParam,
     params: { isDdOpen },
   } = useParamsHelper();
 
@@ -105,7 +105,7 @@ const DropDown = ({
   return (
     <DropDownContainer>
       <GenericButtonIcon
-        onClickFunction={manageFolderDdOpenParam}
+        onClickFunction={manageDdOpenParam}
         type="dropDown"
         isMenuOpen={isDdOpen}
         freshlyAddedValue={freshlyAddedValue}

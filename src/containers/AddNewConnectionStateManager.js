@@ -33,7 +33,7 @@ const AddConnectionStateManager = ({
   setClickedFolder
  }) => {
   // const { setClickedFolder } = useFolderHelper();
-  const { keepExistingParams, params: { appId, }, manageFolderDdOpenParam } = useParamsHelper();
+  const { keepExistingParams, params: { appId, }, manageDdOpenParam } = useParamsHelper();
   // const id = useMemo(() => appId, [appId])
   // const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
   // now there is a query in the previous appPage that gets exactly the same object. This may be redundant if all else works.

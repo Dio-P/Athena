@@ -70,12 +70,15 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
             label={newApp.teams[0]}
             aria={`${newApp.teams[0]}team icon`}
           />
-          {(newApp.teams > 1) &&
+          {console.log("newApp.teams.length", newApp.teams.length, newApp.teams.length > 1)}
+          {console.log("newApp.teams.slice(1)", newApp.teams.slice(1))}
+          {(newApp.teams.length > 1) &&
             newApp.teams.slice(1).map((team, index) => {
               <GenericButtonIcon
-                key={newApp.teams[index]}
+                label={team.name}
+                key={team.name}
                 type="tagWithX"
-                aria={`${newApp.teams[index]} team icon`}
+                aria={`${team.name} team icon`}
                 // onClickFunction={//removeteam}
               />
             })

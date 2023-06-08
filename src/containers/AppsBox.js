@@ -35,7 +35,8 @@ const AppsBox = ({
   teamApps, 
   teamName,
 }) => {
-  const { 
+  const {
+    manageDdOpenParam,
     manageAppIdParam, 
     params: {
       appId
@@ -61,7 +62,8 @@ const AppsBox = ({
   });
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
   const addTeamAndClose = (newTeam) => {
-     setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]})
+     setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]});
+     manageDdOpenParam();
   }
   
   return (
