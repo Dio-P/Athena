@@ -19,9 +19,9 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
 
   const didMountRef = useRef(false);
 
-  useEffect(() => {
-    console.log("clickedFolder@@", clickedFolder);
-  }, [clickedFolder])
+  // useEffect(() => {
+  //   console.log("clickedFolder@@", clickedFolder);
+  // }, [clickedFolder])
 
   useEffect(() => {
       if(preExistingFoldersMemo && !!didMountRef.current){

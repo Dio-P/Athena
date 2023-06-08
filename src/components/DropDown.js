@@ -2,9 +2,14 @@ import { useMemo, useState } from "react";
 import styled from "@emotion/styled";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import styleVariables from "../styleVariables";
-import { magnifyingGlassIcon } from "../helpers/svgIcons";
 import { SearchBar } from "./specialElements";
 import { useSearchBar } from "../hooks/useAddNewConnectionBlock";
+import GenericButtonIcon from "./GenericButtonIcon";
+import useParamsHelper from "../hooks/useParamsHelper";
+
+const DropDownContainer = styled.div`
+  display: flex;
+`;
 
 const DropDownUnitWrapper = styled.div`
   display: flex;
@@ -18,25 +23,6 @@ const DropDownUnitWrapper = styled.div`
   overflow: hidden;
   height: 100%;
   width: 200px;
-`;
-
-const SearchBarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  width: 200px;
-  margin-bottom: 3px;
-`;
-
-const MagnifyingGlassIconWrapper = styled.div`
-  width: 23px;
-  height: 23px;
-  padding: 3px;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  margin-right: 3px;
-  border-radius: ${styleVariables.borderRadious.main};
 `;
 
 const OptionsWrapper = styled.div`
@@ -79,8 +65,10 @@ const DropDown = ({
   newData,
   onClickFunction,
   newFolder,
-  onClickingBtnFunction,
+  onClickingAdditionalOption,
   dDBtnLabel,
+  isDropdownOpen,
+  chosenValue
   // newFolder,
 }) => {
   const allData = useMemo(
@@ -90,8 +78,12 @@ const DropDown = ({
   );
 
   const { search, searchingQuery, filteredData } = useSearchBar(allData);
+  const {
+    manageFolderDdOpenParam,
+    params: { isDdOpen },
+  } = useParamsHelper();
 
-  const foldersToRender = !searchingQuery ? allData : filteredData;
+  const optionsToRender = !searchingQuery ? allData : filteredData;
 
   const SingleDropdownElement = ({
     onClickFunction,
@@ -109,23 +101,34 @@ const DropDown = ({
   };
 
   return (
-    <DropDownUnitWrapper>
-      <SearchBar searchingQuery={searchingQuery} search={search} />
-      <OptionsWrapper>
-        {foldersToRender.map((folder, index) => (
-          <SingleDropdownElement
-            onClickFunction={() => onClickFunction(folder)}
-            label={folder.name}
-            key={index}
-          />
-        ))}
-      </OptionsWrapper>
-      <SingleDropdownElement
-        onClickFunction={onClickingBtnFunction}
-        label={dDBtnLabel}
-        isAddFolderBtn={true}
+    <DropDownContainer>
+      <GenericButtonIcon
+        onClickFunction={manageFolderDdOpenParam}
+        type="dropDown"
+        isMenuOpen={isDdOpen}
+        newFolder={newFolder}
+        chosenValue={chosenValue}
       />
-    </DropDownUnitWrapper>
+      {isDropdownOpen &&
+        <DropDownUnitWrapper>
+          <SearchBar searchingQuery={searchingQuery} search={search} />
+          <OptionsWrapper>
+            {optionsToRender.map((folder, index) => (
+              <SingleDropdownElement
+                onClickFunction={() => onClickFunction(folder)}
+                label={folder.name}
+                key={index}
+              />
+            ))}
+          </OptionsWrapper>
+          <SingleDropdownElement
+            onClickFunction={onClickingAdditionalOption}
+            label={dDBtnLabel}
+            isAddFolderBtn={true}
+          />
+        </DropDownUnitWrapper>
+      }
+    </DropDownContainer>
   );
 };
 

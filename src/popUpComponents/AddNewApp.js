@@ -4,6 +4,7 @@ import GenericButtonIcon from "../components/GenericButtonIcon";
 
 const AddNewAppContainer = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 const AddNewApp = ({newApp, setNewApp}) => {
   return (
@@ -52,6 +53,7 @@ const AddNewApp = ({newApp, setNewApp}) => {
           {(newApp.teams > 1) &&
             newApp.teams.map((team, index) => {
               return (index !==0) && (
+                // what did Ben tell you that could be done here? slice?
                 <GenericButtonIcon
                   key={newApp.teams[index]}
                   type="tagWithX"
@@ -63,11 +65,6 @@ const AddNewApp = ({newApp, setNewApp}) => {
             // slice second element onwards teams.slice(1).map
           }
         </div>
-        <input
-          type="text"
-          value={newApp.briefDescr}
-          onChange={(e) => setNewApp({...newApp, teams: [...teams, e.target.value]})}
-        />
       </styleVariables.popupElements.LabelInputPair>
       <GenericButtonIcon
         label="Add"

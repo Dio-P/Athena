@@ -39,7 +39,7 @@ const EditPart = ({
 
   const {
     manageFolderDdOpenParam,
-    params: { isFolderDdOpen },
+    params: { isDdOpen },
   } = useParamsHelper();
 
   
@@ -108,12 +108,12 @@ const EditPart = ({
           {/* is there a case where the name will not be in the preexisting folders? */}
           {capitaliseFirstLetters(preexistingFolders[editedPart.folderToBeDisplayedIn].name)}
         </button>
-        {isFolderDdOpen && (
+        {isDdOpen && (
           <DropDown
             preexistingeditPartData={preexistingFolders}
             dDBtnLabel="+ Add New Folder"
             onClickFunction={updateFolderAndClose}
-            onClickingBtnFunction={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
+            onClickingAdditionalOption={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
             newFolder={newFolder}
           />
         )}

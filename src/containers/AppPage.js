@@ -105,6 +105,7 @@ const AppPage = () => {
   };
 
   const settingNewPartFolder = (folder) => {
+    console.log("folder from settingNewPartFolder@", folder);
     folderInfoToState(folder);
     setNewPart({
       ...newPart,

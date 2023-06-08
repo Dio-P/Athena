@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
@@ -34,7 +34,7 @@ const AddingFolderBlock = ({
 }) => {
   const {
     manageFolderDdOpenParam,
-    params: { isFolderDdOpen },
+    params: { isDdOpen },
   } = useParamsHelper();
 
   console.log("preexistingFolders$", preexistingFolders);
@@ -59,26 +59,36 @@ const AddingFolderBlock = ({
     setClickedFolder(folderBeenCreated);
   };
 
+  useEffect(() => {
+    if(clickedFolder) {
+
+      console.log("clickedFolder@@@", clickedFolder);
+    }
+ 
+  }, [clickedFolder])
+
   return (
     <MainAddNewFolderContainer>
-      <GenericButtonIcon
+      {/* <GenericButtonIcon
         onClickFunction={manageFolderDdOpenParam}
         type="dropDown"
-        isMenuOpen={isFolderDdOpen}
+        isMenuOpen={isDdOpen}
         newFolder={newFolder}
         clickedFolder={clickedFolder}
-      />
+      /> */}
       <AddingFolderBodyContainer>
-        {isFolderDdOpen && (
+        {/* {isDdOpen && ( */}
           <DropDown
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
             onClickFunction={settingNewPartFolder}
             newFolder={newFolder}
-            onClickingBtnFunction={() => setIsPopUpOpen(true)}
+            onClickingAdditionalOption={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
+            isDropdownOpen={isDdOpen}
+            chosenValue={clickedFolder}
           />
-        )}
+        {/* )} */}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
         <PopUp
           ComponentToDisplay={AddNewFolder}
