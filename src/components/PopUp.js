@@ -53,6 +53,7 @@ const PopUp = ({
   editPartAndClose,
   newApp,
   setNewApp,
+  onClickDDOption
 }) => {
   return (
     <>

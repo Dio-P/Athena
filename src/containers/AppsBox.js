@@ -60,6 +60,9 @@ const AppsBox = ({
     }
   });
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
+  const addTeamAndClose = (newTeam) => {
+     setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]})
+  }
   
   return (
     <DepartmAppsBoxContainer>
@@ -93,6 +96,7 @@ const AppsBox = ({
           setIsPopUpOpen={setIsAddAppPopupOpen}
           newApp={newApp}
           setNewApp={setNewApp}
+          onClickDDOption={addTeamAndClose}
         />
       }
     </DepartmAppsBoxContainer>

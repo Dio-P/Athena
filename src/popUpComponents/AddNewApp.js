@@ -22,7 +22,7 @@ const AddNewAppContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AddNewApp = ({newApp, setNewApp}) => {
+const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
   const {
     params: { isDdOpen },
   } = useParamsHelper();
@@ -91,6 +91,7 @@ const AddNewApp = ({newApp, setNewApp}) => {
             ))}
             providingAdditionalOption={false}
             isDropdownOpen={isDdOpen}
+            onClickOption={onClickDDOption}
           /> 
           {/* freshlyAddedValue */}
         </div>

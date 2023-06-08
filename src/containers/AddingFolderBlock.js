@@ -86,7 +86,7 @@ const AddingFolderBlock = ({
             dDBtnLabel="+ Add New Folder"
             isDropdownOpen={isDdOpen}
             chosenValue={clickedFolder}
-            updateChosenValue={settingNewPartFolder}
+            onClickOption={settingNewPartFolder}
             providingAdditionalOption={true}
           />
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}

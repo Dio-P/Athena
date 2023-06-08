@@ -68,8 +68,8 @@ const DropDown = ({
   dDBtnLabel,
   isDropdownOpen,
   chosenValue,
-  updateChosenValue,
-  providingAdditionalOption
+  onClickOption,
+  providingAdditionalOption,
   // setChooseValue
   // newFolder,
 }) => {
@@ -88,13 +88,13 @@ const DropDown = ({
   const optionsToRender = !searchingQuery ? allData : filteredData;
 
   const SingleDropdownElement = ({
-    updateChosenValue,
+    onClickOption,
     label,
     isAddFolderBtn,
   }) => {
     return (
       <SingleDropDownElementWrapper
-        onClick={updateChosenValue}
+        onClick={onClickOption}
         isAddFolderBtn={isAddFolderBtn}
       >
         <DropDownLabel>{capitaliseFirstLetters(label)}</DropDownLabel>
@@ -117,7 +117,7 @@ const DropDown = ({
           <OptionsWrapper>
             {optionsToRender.map((folder, index) => (
               <SingleDropdownElement
-                updateChosenValue={() => updateChosenValue(folder)}
+                onClickOption={() => onClickOption(folder)}
                 label={folder.name}
                 key={index}
               />
@@ -125,7 +125,7 @@ const DropDown = ({
           </OptionsWrapper>
           {providingAdditionalOption &&
             <SingleDropdownElement
-              updateChosenValue={onClickingAdditionalOption}
+              onClickOption={onClickingAdditionalOption}
               label={dDBtnLabel}
               isAddFolderBtn={true}
             />
