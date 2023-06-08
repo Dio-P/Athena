@@ -212,17 +212,20 @@ const DropDownButton = ({
   onClickFunction,
   isMenuOpen,
   newFolder,
-  clickedFolder,
+  chosenValue,
   type,
   aria,
 }) => {
-  const dropDownToogleButtonTitle = newFolder
-    ? `Folder to display new part in: ${capitaliseFirstLetters(clickedFolder)}`
+  console.log("newFolder^&%", newFolder);
+  console.log("chosenValue&*^", chosenValue);
+  const folderName = newFolder.name || chosenValue
+  const dropDownButtonTitle = (newFolder || chosenValue)
+    ? `Folder to display new part in: ${capitaliseFirstLetters(folderName)}`
     : "Choose a folder to display part in";
   return (
     <dropDownButton.ContainerWrapper aria-label={aria || `${type} button`}>
       <dropDownButton.Container onClick={onClickFunction}>
-        <div> {dropDownToogleButtonTitle} </div>
+        <div> {dropDownButtonTitle} </div>
         <dropDownButton.ArrowContainer>
           {isMenuOpen ? arrowUpIcon : arrowDownIcon}
         </dropDownButton.ArrowContainer>
@@ -240,7 +243,7 @@ const GenericButtonIcon = ({
   renderConditional,
   isMenuOpen,
   newFolder,
-  clickedFolder,
+  chosenValue,
   aria,
 }) => {
   if (type === "small") {
@@ -283,7 +286,7 @@ const GenericButtonIcon = ({
         onClickFunction={onClickFunction}
         isMenuOpen={isMenuOpen}
         newFolder={newFolder}
-        clickedFolder={clickedFolder}
+        chosenValue={chosenValue}
         type={type}
         aria={aria}
       />

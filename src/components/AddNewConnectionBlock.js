@@ -74,7 +74,9 @@ const AddNewConnectionBlock = ({
   setFolderBeenCreated,
   settingNewPartFolder,
   addNewFolderAndClear,
-  preexistingFolders
+  preexistingFolders,
+  clickedFolder,
+  setClickedFolder,
 }) => {
   const didMountRef = useRef(false);
 
@@ -92,7 +94,7 @@ const AddNewConnectionBlock = ({
   });
 
   // const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
-  const { clickedFolder } = useFolderHelper();
+  // const { clickedFolder } = useFolderHelper();
   // useFolderHelper(foldersToDisplay);
 
   const APP_NAME = useMemo(
@@ -205,13 +207,14 @@ const AddNewConnectionBlock = ({
               addingNewFolder={addingNewFolder}
               preexistingFolders={preexistingFolders}
               allNewFolders={newlyCreatedFolders}
-              clickedFolder={clickedFolder}
               folderBeenCreated={folderBeenCreated}
               setFolderBeenCreated={setFolderBeenCreated}
               newlyCreatedFolders={newlyCreatedFolders}
               setNewlyCreatedFolders={setNewlyCreatedFolders}
               settingNewPartFolder={settingNewPartFolder}
               addNewFolderAndClear={addNewFolderAndClear}
+              clickedFolder={clickedFolder}
+              setClickedFolder={setClickedFolder}
 
               // manageFolderDdOpenParam={manageFolderDdOpenParam}
             />

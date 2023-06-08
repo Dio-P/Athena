@@ -63,12 +63,13 @@ const DropDownLabel = styled.div`
 const DropDown = ({
   preexistingData,
   newData,
-  onClickFunction,
+  updateChosenValue,
   newFolder,
   onClickingAdditionalOption,
   dDBtnLabel,
   isDropdownOpen,
-  chosenValue
+  chosenValue,
+  setChooseValue
   // newFolder,
 }) => {
   const allData = useMemo(
@@ -86,13 +87,13 @@ const DropDown = ({
   const optionsToRender = !searchingQuery ? allData : filteredData;
 
   const SingleDropdownElement = ({
-    onClickFunction,
+    updateChosenValue,
     label,
     isAddFolderBtn,
   }) => {
     return (
       <SingleDropDownElementWrapper
-        onClick={onClickFunction}
+        onClick={updateChosenValue}
         isAddFolderBtn={isAddFolderBtn}
       >
         <DropDownLabel>{capitaliseFirstLetters(label)}</DropDownLabel>
@@ -115,14 +116,14 @@ const DropDown = ({
           <OptionsWrapper>
             {optionsToRender.map((folder, index) => (
               <SingleDropdownElement
-                onClickFunction={() => onClickFunction(folder)}
+                updateChosenValue={() => updateChosenValue(folder)}
                 label={folder.name}
                 key={index}
               />
             ))}
           </OptionsWrapper>
           <SingleDropdownElement
-            onClickFunction={onClickingAdditionalOption}
+            updateChosenValue={onClickingAdditionalOption}
             label={dDBtnLabel}
             isAddFolderBtn={true}
           />

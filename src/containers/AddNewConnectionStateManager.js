@@ -28,7 +28,9 @@ const AddConnectionStateManager = ({
   newlyCreatedFolders,
   setNewlyCreatedFolders,
   settingNewPartFolder,
-  addNewFolderAndClear
+  addNewFolderAndClear,
+  clickedFolder,
+  setClickedFolder
  }) => {
   // const { setClickedFolder } = useFolderHelper();
   const { keepExistingParams, params: { appId, }, manageFolderDdOpenParam } = useParamsHelper();
@@ -95,7 +97,8 @@ const AddConnectionStateManager = ({
             setFolderBeenCreated={setFolderBeenCreated}
             settingNewPartFolder={settingNewPartFolder}
             addNewFolderAndClear={addNewFolderAndClear}
-
+            clickedFolder={clickedFolder}
+            setClickedFolder={setClickedFolder}
           />
         </AddNewConnectionBlockWrapper>
       )

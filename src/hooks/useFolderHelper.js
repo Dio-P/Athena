@@ -19,6 +19,9 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
 
   const didMountRef = useRef(false);
 
+  useEffect(() => {
+    console.log("setClickedFolder folder was clicked");
+  }, [setClickedFolder])
   // useEffect(() => {
   //   console.log("clickedFolder@@", clickedFolder);
   // }, [clickedFolder])

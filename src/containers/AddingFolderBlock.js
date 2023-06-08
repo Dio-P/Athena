@@ -31,16 +31,17 @@ const AddingFolderBlock = ({
   isFolderWarningOn,
   settingNewPartFolder,
   addNewFolderAndClear,
+  clickedFolder,
+  setClickedFolder
 }) => {
   const {
-    manageFolderDdOpenParam,
     params: { isDdOpen },
   } = useParamsHelper();
 
   console.log("preexistingFolders$", preexistingFolders);
   console.log("newlyCreatedFolders$", newlyCreatedFolders);
 
-  const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper(preexistingFolders, newlyCreatedFolders);
+  // const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper(preexistingFolders, newlyCreatedFolders);
 
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
@@ -77,18 +78,16 @@ const AddingFolderBlock = ({
         clickedFolder={clickedFolder}
       /> */}
       <AddingFolderBodyContainer>
-        {/* {isDdOpen && ( */}
           <DropDown
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
-            onClickFunction={settingNewPartFolder}
             newFolder={newFolder}
             onClickingAdditionalOption={() => setIsPopUpOpen(true)}
             dDBtnLabel="+ Add New Folder"
             isDropdownOpen={isDdOpen}
             chosenValue={clickedFolder}
+            updateChosenValue={settingNewPartFolder}
           />
-        {/* )} */}
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
         <PopUp
           ComponentToDisplay={AddNewFolder}

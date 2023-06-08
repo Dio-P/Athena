@@ -84,7 +84,7 @@ const AppPage = () => {
   console.log("preexistingFolders@", preexistingFolders);
   console.log("newlyCreatedFolders", newlyCreatedFolders);
   
-  const { setClickedFolder, newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
+  const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
   console.log("newFolderIndexKey", newFolderIndexKey);
 
  
@@ -93,16 +93,26 @@ const AppPage = () => {
   // const { setClickedFolder, newFolderIndexKey } = useFolderHelper(,newlyCreatedFolders);
   const { manageFolderDdOpenParam } = useParamsHelper();
 
+  // const onClickingPreExistingFolder = (value) => {
+  //   setClickedFolder(value);
+  //   keepExistingParams();
+
+
+  // }
+
   const folderInfoToState = (folder) => {
     console.log("inside folderInfoToState", folder);
     setClickedFolder(folder.name);
-    setNewFolder(folder);
-    setNewPart({
-      ...newPart,
-      folderToBeDisplayedIn: folder.id,
-    });
-    manageFolderDdOpenParam();
+    // setNewFolder(folder); ///this is maybe necessary!!!!!!!! 
+    // setNewPart({
+    //   ...newPart,
+    //   folderToBeDisplayedIn: folder.id,
+    // });
+    // manageFolderDdOpenParam();
   };
+  // useEffect(() => {
+  //   console.log("clickedFolder!!!", clickedFolder); 
+  // }, [clickedFolder])
 
   const settingNewPartFolder = (folder) => {
     console.log("folder from settingNewPartFolder@", folder);
@@ -220,6 +230,8 @@ const AppPage = () => {
             setNewlyCreatedFolders={setNewlyCreatedFolders}
             settingNewPartFolder={settingNewPartFolder}
             addNewFolderAndClear={addNewFolderAndClear}
+            clickedFolder={clickedFolder}
+            setClickedFolder={setClickedFolder}
 
             // appToDisplay={appToDisplay}
           />

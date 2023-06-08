@@ -35,6 +35,7 @@ const AddingPartBlock = ({
   preexistingFolders,
   // newFoldersToBeAddedToAll,
   clickedFolder,
+  setClickedFolder,
   folderBeenCreated,
   setFolderBeenCreated,
   newlyCreatedFolders,
@@ -44,9 +45,6 @@ const AddingPartBlock = ({
   // manageFolderDdOpenParam,
 }) => {
   const { keepExistingParams } = useParamsHelper();
-
-  const { setClickedFolder } =
-    useFolderHelper();
 
     const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
   const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
@@ -111,7 +109,8 @@ const AddingPartBlock = ({
         // folderDdOpen={folderDdOpen}
         preexistingFolders={preexistingFolders}
         newlyCreatedFolders={newlyCreatedFolders}
-        newclickedFolder={clickedFolder}
+        clickedFolder={clickedFolder}
+        setClickedFolder={setClickedFolder}
         newInputTitle={`New Part Name: ${newPart.type}`}
         resetFolderInfo={resetFolderInfo}
         folderBeenCreated={folderBeenCreated}
