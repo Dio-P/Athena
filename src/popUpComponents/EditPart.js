@@ -38,7 +38,6 @@ const EditPart = ({
 }) => {
 
   const {
-    manageFolderDdOpenParam,
     params: { isDdOpen },
   } = useParamsHelper();
 
@@ -117,6 +116,7 @@ const EditPart = ({
             onClickingAdditionalOption={() => setAddFolderIsPopUpOpen(!isAddFolderPopUpOpen)}
             freshlyAddedValue={newFolder}
             isDropdownOpen={isDdOpen}
+            providingAdditionalOption={true}
           />
         {/* )} */}
       </styleVariables.popupElements.LabelInputPair>

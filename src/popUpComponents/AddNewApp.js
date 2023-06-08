@@ -2,12 +2,31 @@ import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import DropDown from "../components/DropDown";
+import useParamsHelper from "../hooks/useParamsHelper";
+
+const MOCK_TEAMS_LIST = [
+  {
+    id: 0,
+    name: "DPub",
+    alternativeNames : ["content publishing"]
+  },
+  {
+    id: 1,
+    name: "Metadata",
+    alternativeNames : []
+
+  }
+];
 
 const AddNewAppContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const AddNewApp = ({newApp, setNewApp}) => {
+  const {
+    params: { isDdOpen },
+  } = useParamsHelper();
+
   return (
     <AddNewAppContainer>
       <styleVariables.popupElements.LabelInputPair>
@@ -52,15 +71,13 @@ const AddNewApp = ({newApp, setNewApp}) => {
             aria={`${newApp.teams[0]}team icon`}
           />
           {(newApp.teams > 1) &&
-            newApp.teams.map((team, index) => {
-              return (index !==0) && (
-                <GenericButtonIcon
-                  key={newApp.teams[index]}
-                  type="tagWithX"
-                  aria={`${newApp.teams[index]} team icon`}
-                  // onClickFunction={//removeteam}
-                />
-              )
+            newApp.teams.slice(1).map((team, index) => {
+              <GenericButtonIcon
+                key={newApp.teams[index]}
+                type="tagWithX"
+                aria={`${newApp.teams[index]} team icon`}
+                // onClickFunction={//removeteam}
+              />
             })
             // slice second element onwards teams.slice(1).map
           }
@@ -68,7 +85,13 @@ const AddNewApp = ({newApp, setNewApp}) => {
           we need a call that will be getting all teams 
           we need to be able to have empty teams so probably a separate collection 
           start with mocking this*/}
-          <DropDown /> 
+          <DropDown
+            preexistingData={MOCK_TEAMS_LIST.filter((team)=> (
+              !newApp.teams.includes(team.name)
+            ))}
+            providingAdditionalOption={false}
+            isDropdownOpen={isDdOpen}
+          /> 
           {/* freshlyAddedValue */}
         </div>
       </styleVariables.popupElements.LabelInputPair>

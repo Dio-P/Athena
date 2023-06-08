@@ -218,7 +218,7 @@ const DropDownButton = ({
 }) => {
   console.log("freshlyAddedValue^&%", freshlyAddedValue);
   console.log("chosenValue&*^", chosenValue);
-  const folderName = freshlyAddedValue.name || chosenValue
+  const folderName = freshlyAddedValue?.name || chosenValue
   const dropDownButtonTitle = (freshlyAddedValue || chosenValue)
     ? `Folder to display new part in: ${capitaliseFirstLetters(folderName)}`
     : "Choose a folder to display part in";
@@ -289,6 +289,7 @@ const GenericButtonIcon = ({
         chosenValue={chosenValue}
         type={type}
         aria={aria}
+        providingAdditionalOption={true}
       />
     );
   }

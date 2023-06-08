@@ -87,6 +87,7 @@ const AddingFolderBlock = ({
             isDropdownOpen={isDdOpen}
             chosenValue={clickedFolder}
             updateChosenValue={settingNewPartFolder}
+            providingAdditionalOption={true}
           />
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
         <PopUp

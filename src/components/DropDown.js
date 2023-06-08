@@ -69,6 +69,7 @@ const DropDown = ({
   isDropdownOpen,
   chosenValue,
   updateChosenValue,
+  providingAdditionalOption
   // setChooseValue
   // newFolder,
 }) => {
@@ -122,11 +123,13 @@ const DropDown = ({
               />
             ))}
           </OptionsWrapper>
-          <SingleDropdownElement
-            updateChosenValue={onClickingAdditionalOption}
-            label={dDBtnLabel}
-            isAddFolderBtn={true}
-          />
+          {providingAdditionalOption &&
+            <SingleDropdownElement
+              updateChosenValue={onClickingAdditionalOption}
+              label={dDBtnLabel}
+              isAddFolderBtn={true}
+            />
+          }
         </DropDownUnitWrapper>
       }
     </DropDownContainer>
