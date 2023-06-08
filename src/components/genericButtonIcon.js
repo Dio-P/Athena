@@ -153,18 +153,18 @@ const TagBtn = {
 }
 
 const TagButton = ({label, onClickFunction, aria, withDelete}) => {
-  console.log("in tag button @");
+  console.log("in tag button @", label, onClickFunction, aria, withDelete);
   return (
     <TagBtn.Container
     aria-label={aria || `${type} button`}
     >
       {label}
      {withDelete && 
-      <XBoxWrapper
+      <TagBtn.XBoxWrapper
         onClick={onClickFunction}
       >
         {deleteIcon}
-      </XBoxWrapper>
+      </TagBtn.XBoxWrapper>
       }
     </TagBtn.Container>
   );

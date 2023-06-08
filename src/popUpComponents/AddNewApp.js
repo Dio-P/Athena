@@ -73,15 +73,15 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
           {console.log("newApp.teams.length", newApp.teams.length, newApp.teams.length > 1)}
           {console.log("newApp.teams.slice(1)", newApp.teams.slice(1))}
           {(newApp.teams.length > 1) &&
-            newApp.teams.slice(1).map((team, index) => {
+            newApp.teams.slice(1).map((team) => (
               <GenericButtonIcon
-                label={team.name}
-                key={team.name}
+                label={team}
+                key={team}
                 type="tagWithX"
-                aria={`${team.name} team icon`}
+                aria={`${team} team icon`}
                 // onClickFunction={//removeteam}
               />
-            })
+            ))
             // slice second element onwards teams.slice(1).map
           }
           {/* dropDown with available teams only (all teams - already chosen)
