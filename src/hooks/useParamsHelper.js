@@ -46,10 +46,11 @@ const useParamsHelper = () => {
   };
 
   const manageDdOpenParam = () => {
+    const {isDdOpen, ...paramsNoDPOpen} = params
     if (!isDdOpen) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart, isDdOpen: true });
+      setSearchParams({ ...params, isDdOpen: true });
     } else {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart });
+      setSearchParams({ paramsNoDPOpen });
     }
   };
 

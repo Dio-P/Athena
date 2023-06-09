@@ -47,8 +47,10 @@ const AddDocButton = styled.button`
 const AppPage = () => {
   let [searchParams] = useSearchParams();
   const { addingNewConnection, appId, team } = Object.fromEntries([...searchParams]);
-  const id = useMemo(() => appId, [appId]) //N
 
+  useEffect(() => {
+    console.log("appId&&&&", appId); 
+  }, [appId])
   // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
   const [appToDisplay, loading, error] = useAppByIdSearch(appId, true);
   const { manageAddingNewConnectionParam } = useParamsHelper();
@@ -56,13 +58,13 @@ const AppPage = () => {
   const [appByFoldersMutation, setAppByFoldersMutation] = useState(undefined);
   const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
 
-  console.log("appToDisplay in appPage", appToDisplay);
+  // console.log("appToDisplay in appPage", appToDisplay);
   const preexistingFolders = useMemo(() => appToDisplay && appToDisplay.folders, [appToDisplay])
-  console.log("preexistingFolders@@", preexistingFolders);
+  // console.log("preexistingFolders@@", preexistingFolders);
 
-  useEffect(() => {
-    console.log("preexistingFolders@@@", preexistingFolders);
-  }, [preexistingFolders]);
+  // useEffect(() => {
+    // console.log("preexistingFolders@@@", preexistingFolders);
+  // }, [preexistingFolders]);
   
   const DEFAULT_NEW_PART = {
     name: "",
@@ -81,11 +83,11 @@ const AppPage = () => {
   const [folderBeenCreated, setFolderBeenCreated] = useState("");
   const [newlyCreatedFolders, setNewlyCreatedFolders] = useState([]);
 
-  console.log("preexistingFolders@", preexistingFolders);
-  console.log("newlyCreatedFolders", newlyCreatedFolders);
+  // console.log("preexistingFolders@", preexistingFolders);
+  // console.log("newlyCreatedFolders", newlyCreatedFolders);
   
   const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper( preexistingFolders, newlyCreatedFolders);
-  console.log("newFolderIndexKey", newFolderIndexKey);
+  // console.log("newFolderIndexKey", newFolderIndexKey);
 
  
   // under this we need the preexisting folder so all this should move somewhere
@@ -101,7 +103,7 @@ const AppPage = () => {
   // }
 
   const folderInfoToState = (folder) => {
-    console.log("inside folderInfoToState", folder);
+    // console.log("inside folderInfoToState", folder);
     setClickedFolder(folder.name);
     // setNewFolder(folder); ///this is maybe necessary!!!!!!!! 
     // setNewPart({
@@ -115,7 +117,7 @@ const AppPage = () => {
   // }, [clickedFolder])
 
   const settingNewPartFolder = (folder) => {
-    console.log("folder from settingNewPartFolder@", folder);
+    // console.log("folder from settingNewPartFolder@", folder);
     folderInfoToState(folder);
     setNewPart({
       ...newPart,
@@ -125,8 +127,8 @@ const AppPage = () => {
   }
 
   const updatingPartFolder = (folder, part) => {
-    console.log("folder!@!", folder);
-    console.log("part!@!", part);
+    // console.log("folder!@!", folder);
+    // console.log("part!@!", part);
     folderInfoToState(folder);
     setUpdatedPart({
       ...part,
@@ -136,7 +138,7 @@ const AppPage = () => {
   }
 
   const addNewFolderAndClear = () => {
-    console.log("inside add new folder and clear");
+    // console.log("inside add new folder and clear");
     const newFolder = {
       name: folderBeenCreated,
       id: newFolderIndexKey,
@@ -156,23 +158,23 @@ const AppPage = () => {
  
 
   // to be deleted
-  useEffect(() => {
-    console.log("newFolder@@", newFolder);
+  // useEffect(() => {
+    // console.log("newFolder@@", newFolder);
      
-  }, [newFolder])
+  // }, [newFolder])
+
+  // useEffect(() => {
+  //   console.log("updatedPart@@", updatedPart);
+     
+  // }, [updatedPart])
+
+  // useEffect(() => {
+  //   console.log("newPart@@", newPart);
+     
+  // }, [newPart])
 
   useEffect(() => {
-    console.log("updatedPart@@", updatedPart);
-     
-  }, [updatedPart])
-
-  useEffect(() => {
-    console.log("newPart@@", newPart);
-     
-  }, [newPart])
-
-  useEffect(() => {
-    console.log("appToDisplay", appToDisplay)
+    // console.log("appToDisplay", appToDisplay)
 
     appToDisplay && (
       setAppByFoldersMutation(createAppByFolders(appToDisplay))
