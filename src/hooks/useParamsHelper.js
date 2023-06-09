@@ -30,27 +30,29 @@ const useParamsHelper = () => {
   };
   
   const manageAddingNewConnectionParam = () => {
+    const {addingNewPart, ...paramsWithoutAddingNewConnection} = params
     if (!addingNewConnection) {
-      setSearchParams({ team, appId, addingNewConnection: true });
+      setSearchParams({ ...params, addingNewConnection: true });
     } else {
-      setSearchParams({ team, appId });
+      setSearchParams({ paramsWithoutAddingNewConnection });
     }
   };
 
   const manageAddingNewPartParam = () => {
+    const {addingNewPart, ...paramsWithoutAddingNewPart} = params
     if (!addingNewPart) {
-      setSearchParams({ team, appId, addingNewConnection, addingNewPart: true });
+      setSearchParams({ ...params, addingNewPart: true });
     } else {
-      setSearchParams({ team, appId, addingNewConnection });
+      setSearchParams({ paramsWithoutAddingNewPart });
     }
   };
 
   const manageDdOpenParam = () => {
-    const {isDdOpen, ...paramsNoDPOpen} = params
+    const {isDdOpen, ...paramsWithoutDPOpen} = params
     if (!isDdOpen) {
       setSearchParams({ ...params, isDdOpen: true });
     } else {
-      setSearchParams({ paramsNoDPOpen });
+      setSearchParams({ paramsWithoutDPOpen });
     }
   };
 
