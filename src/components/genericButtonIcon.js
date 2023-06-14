@@ -141,17 +141,21 @@ const TagBtn = {
     color: white;
     background-color: ${styleVariables.colours.primaryBlue};
     height: 20px;
-    width: 80px;
+    width: 90px;
     margin: 5px;
     padding: 3px;
     align-items: center;
   `,
-  LabelIconWrapper: styled.div`
-    width: 100%;
+  Label : styled.div`
   `,
-  XBoxWrapper: styled.button`
-    height: 40px;
-    width: 5px;
+  // LabelIconWrapper: styled.div`
+  //   width: 100%;
+  //   height: 100%;
+  // `,
+  XBoxWrapper: styled.div`
+    height: 100%;
+    width: 25px;
+    margin: 1px 2px 1px 2px;
   `
 }
 
@@ -161,7 +165,9 @@ const TagButton = ({label, onClickFunction, aria, withDelete}) => {
     <TagBtn.Container
     aria-label={aria || `${type} button`}
     >
-      {label}
+      <TagBtn.Label>
+        {label}
+      </TagBtn.Label>
      {withDelete && 
       <TagBtn.XBoxWrapper
         onClick={onClickFunction}
