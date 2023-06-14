@@ -61,9 +61,18 @@ const AppsBox = ({
     }
   });
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
+
   const addTeamAndClose = (newTeam) => {
      setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]});
     //  manageDdOpenParam();
+  }
+
+  const removeAdditionalTeam = (team) => {
+      const indexOfTeamToRemove = newApp.teams.indexOf(team);
+      console.log('newApp.teams', newApp.teams);
+      setNewApp({ ...newApp, teams: newApp.teams.splice(indexOfTeamToRemove, 1)})
+      console.log('newApp.teams2', newApp.teams);
+
   }
   
   return (
@@ -99,6 +108,7 @@ const AppsBox = ({
           newApp={newApp}
           setNewApp={setNewApp}
           onClickDDOption={addTeamAndClose}
+          removeAdditionalTeam={removeAdditionalTeam}
         />
       }
     </DepartmAppsBoxContainer>

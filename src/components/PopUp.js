@@ -53,7 +53,8 @@ const PopUp = ({
   editPartAndClose,
   newApp,
   setNewApp,
-  onClickDDOption
+  onClickDDOption,
+  removeAdditionalTeam
 }) => {
   return (
     <>
@@ -91,6 +92,7 @@ const PopUp = ({
                 newApp={newApp}
                 setNewApp={setNewApp}
                 onClickDDOption={onClickDDOption}
+                removeAdditionalTeam={removeAdditionalTeam}
               />
             </EditAppWrapper>
           </PopUpWrapper>

@@ -28,7 +28,7 @@ const TeamsResponsibleBox = styled.div`
   flex-flow: row;
 `;
 
-const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
+const AddNewApp = ({newApp, setNewApp, onClickDDOption, removeAdditionalTeam}) => {
   const {
     params: { isDdOpen },
   } = useParamsHelper();
@@ -86,7 +86,7 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
                   key={team}
                   type="tagWithX"
                   aria={`${team} team icon`}
-                  // onClickFunction={//removeteam}
+                  onClickFunction={removeAdditionalTeam}
                 />
               ))
               // slice second element onwards teams.slice(1).map

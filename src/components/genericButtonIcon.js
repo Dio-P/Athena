@@ -146,8 +146,6 @@ const TagBtn = {
     padding: 3px;
     align-items: center;
   `,
-  Label : styled.div`
-  `,
   // LabelIconWrapper: styled.div`
   //   width: 100%;
   //   height: 100%;
@@ -165,9 +163,7 @@ const TagButton = ({label, onClickFunction, aria, withDelete}) => {
     <TagBtn.Container
     aria-label={aria || `${type} button`}
     >
-      <TagBtn.Label>
-        {label}
-      </TagBtn.Label>
+      {label}
      {withDelete && 
       <TagBtn.XBoxWrapper
         onClick={onClickFunction}
