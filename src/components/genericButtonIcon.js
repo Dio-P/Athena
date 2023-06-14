@@ -141,7 +141,10 @@ const TagBtn = {
     color: white;
     background-color: ${styleVariables.colours.primaryBlue};
     height: 20px;
-    width: 60px;
+    width: 80px;
+    margin: 5px;
+    padding: 3px;
+    align-items: center;
   `,
   LabelIconWrapper: styled.div`
     width: 100%;

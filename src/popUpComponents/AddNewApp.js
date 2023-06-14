@@ -22,6 +22,12 @@ const AddNewAppContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const TeamsResponsibleBox = styled.div`
+  display: flex;
+  flex-flow: row;
+`;
+
 const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
   const {
     params: { isDdOpen },
@@ -65,25 +71,27 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption}) => {
       <styleVariables.popupElements.LabelInputPair>
         <label>Team(s) Responsible</label>
         <div>
-          <GenericButtonIcon
-            type={"tag"}
-            label={newApp.teams[0]}
-            aria={`${newApp.teams[0]}team icon`}
-          />
-          {console.log("newApp.teams.length", newApp.teams.length, newApp.teams.length > 1)}
-          {console.log("newApp.teams.slice(1)", newApp.teams.slice(1))}
-          {(newApp.teams.length > 1) &&
-            newApp.teams.slice(1).map((team) => (
-              <GenericButtonIcon
-                label={team}
-                key={team}
-                type="tagWithX"
-                aria={`${team} team icon`}
-                // onClickFunction={//removeteam}
-              />
-            ))
-            // slice second element onwards teams.slice(1).map
-          }
+          <TeamsResponsibleBox>
+            <GenericButtonIcon
+              type={"tag"}
+              label={newApp.teams[0]}
+              aria={`${newApp.teams[0]}team icon`}
+            />
+            {console.log("newApp.teams.length", newApp.teams.length, newApp.teams.length > 1)}
+            {console.log("newApp.teams.slice(1)", newApp.teams.slice(1))}
+            {(newApp.teams.length > 1) &&
+              newApp.teams.slice(1).map((team) => (
+                <GenericButtonIcon
+                  label={team}
+                  key={team}
+                  type="tagWithX"
+                  aria={`${team} team icon`}
+                  // onClickFunction={//removeteam}
+                />
+              ))
+              // slice second element onwards teams.slice(1).map
+            }
+          </TeamsResponsibleBox>
           {/* dropDown with available teams only (all teams - already chosen)
           we need a call that will be getting all teams 
           we need to be able to have empty teams so probably a separate collection 
