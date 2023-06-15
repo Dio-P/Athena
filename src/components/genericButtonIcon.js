@@ -203,7 +203,7 @@ const MainButton = ({
         <mainBtn.LabelContainer>
           <mainBtn.Label>{capitaliseFirstLetters(label)}</mainBtn.Label>
         </mainBtn.LabelContainer>
-        {type !== "add" && (
+        {type === "checkbox" && (
           <mainBtn.TickBoxWrapper>
             <mainBtn.TickBox>{clicked && tickIcon}</mainBtn.TickBox>
           </mainBtn.TickBoxWrapper>
