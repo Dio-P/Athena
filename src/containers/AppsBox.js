@@ -72,6 +72,7 @@ const AppsBox = ({
 
       console.log('indexOfTeamToRemove', indexOfTeamToRemove);
       console.log('newApp.teams@@', newApp.teams);
+      console.log('newApp.teams.splice(indexOfTeamToRemove, 1)', newApp.teams.splice(indexOfTeamToRemove, 1));
       setNewApp({ ...newApp, teams: newApp.teams.splice(indexOfTeamToRemove, 1)})
       console.log('newApp.teams2', newApp.teams);
 
