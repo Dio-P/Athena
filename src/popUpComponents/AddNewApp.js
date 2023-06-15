@@ -28,7 +28,7 @@ const TeamsResponsibleBox = styled.div`
   flex-flow: row;
 `;
 
-const AddNewApp = ({newApp, setNewApp, onClickDDOption, removeAdditionalTeam}) => {
+const AddNewApp = ({newApp, setNewApp, onClickDDOption, removeAdditionalTeam, onClickFunction}) => {
   const {
     params: { isDdOpen },
   } = useParamsHelper();
@@ -77,8 +77,6 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption, removeAdditionalTeam}) =
               label={newApp.teams[0]}
               aria={`${newApp.teams[0]}team icon`}
             />
-            {console.log("newApp.teams.length", newApp.teams.length, newApp.teams.length > 1)}
-            {console.log("newApp.teams.slice(1)", newApp.teams.slice(1))}
             {(newApp.teams.length > 1) &&
               newApp.teams.slice(1).map((team) => (
                 <GenericButtonIcon
@@ -110,7 +108,7 @@ const AddNewApp = ({newApp, setNewApp, onClickDDOption, removeAdditionalTeam}) =
       <GenericButtonIcon
         label="Add"
         type="add"
-        // onClickFunction={appAppAndClose}
+        onClickFunction={onClickFunction}
       />
     </AddNewAppContainer>
   )

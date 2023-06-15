@@ -7,6 +7,47 @@ import GenericButtonIcon from "../components/GenericButtonIcon";
 import { useState } from "react";
 import PopUp from "../components/PopUp";
 import AddNewApp from "../popUpComponents/AddNewApp";
+import { useMutation } from '@apollo/client';
+import gql from "graphql-tag";
+// import { ObjectID } from "bson";
+import { v4 as uuidv4 } from "uuid";
+
+
+
+
+const ADD_NEW_APP = gql`
+  mutation ($newApp: AppInput!) {
+    addNewApp(newApp: $newApp) {
+      name
+      id
+      type
+      gitHubRepo
+      briefDescr
+      folders {
+        name
+        id
+      }
+      parts {
+        name
+        id
+        ghRepo
+        type
+        folderToBeDisplayedIn
+      }
+      teams
+      properties {
+        docs {
+          name
+          url
+          id
+          source
+          lastModified
+          concerningParts
+        }
+      }
+    }
+  }
+`;
 
 const DepartmAppsBoxContainer = styled.div`
   margin-left: 10px;
@@ -42,17 +83,19 @@ const AppsBox = ({
       appId
     }
   } = useParamsHelper();
+  // const newObjectId = ObjectID()
 
   const [newApp, setNewApp] = useState( {
+    id: uuidv4(), 
     name: "",
     type: "",
     gitHubRepo: "",
     briefDescr: "",
     teams: [teamName],
-    facing: {
-      user: false,//radio button
-      audience: false,//radio button
-    },
+    // facing: {
+    //   user: false,//radio button
+    //   audience: false,//radio button
+    // },
     folders: [],
     parts: [],
     // connections: [],
@@ -60,16 +103,28 @@ const AppsBox = ({
       docs: []
     }
   });
+
+
+const [addNewApp, { loading, error, data }] = useMutation(
+  ADD_NEW_APP
+);
+
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
 
   const addTeamAndClose = (newTeam) => {
      setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]});
-    //  manageDdOpenParam();
   }
 
   const removeAdditionalTeam = (team) => {
       const indexOfTeamToRemove = newApp.teams.indexOf(team);
       setNewApp({ ...newApp, teams: newApp.teams.splice(indexOfTeamToRemove -1, 1)})
+  }
+
+  const addAppAndCLose = () => {
+    console.log("newApp*$$$", newApp);
+    addNewApp({
+      variables: { newApp : newApp },
+    }) 
   }
   
   return (
@@ -106,6 +161,7 @@ const AppsBox = ({
           setNewApp={setNewApp}
           onClickDDOption={addTeamAndClose}
           removeAdditionalTeam={removeAdditionalTeam}
+          onClickFunction={addAppAndCLose}
         />
       }
     </DepartmAppsBoxContainer>
