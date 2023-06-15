@@ -30,11 +30,11 @@ const useParamsHelper = () => {
   };
   
   const manageAddingNewConnectionParam = () => {
-    const {addingNewPart, ...paramsWithoutAddingNewConnection} = params
+    const {addingNewConnection, ...paramsWithoutAddingNewConnection} = params
     if (!addingNewConnection) {
       setSearchParams({ ...params, addingNewConnection: true });
     } else {
-      setSearchParams({ paramsWithoutAddingNewConnection });
+      setSearchParams({ ...paramsWithoutAddingNewConnection });
     }
   };
 
@@ -43,7 +43,34 @@ const useParamsHelper = () => {
     if (!addingNewPart) {
       setSearchParams({ ...params, addingNewPart: true });
     } else {
-      setSearchParams({ paramsWithoutAddingNewPart });
+      setSearchParams({ ...paramsWithoutAddingNewPart });
+    }
+  };
+
+  const manageEditingPartParam = () => {
+    const {editingPart, ...paramsWithoutEditingPart} = params
+    if (!editingPart) {
+      setSearchParams({ ...params, editingPart: true });
+    } else {
+      setSearchParams({ ...paramsWithoutEditingPart });
+    }
+  };
+
+  const manageAddingNewAppParam = () => {
+    const {addingNewApp, ...paramsWithoutAddingNewApp} = params
+    if (!addingNewApp) {
+      setSearchParams({ ...params, addingNewApp: true });
+    } else {
+      setSearchParams({ ...paramsWithoutAddingNewApp });
+    }
+  };
+
+  const manageEditingAppParam = () => {
+    const {editingApp, ...paramsWithoutEditingApp} = params
+    if (!editingApp) {
+      setSearchParams({ ...params, editingApp: true });
+    } else {
+      setSearchParams({ ...paramsWithoutEditingApp });
     }
   };
 
@@ -52,7 +79,7 @@ const useParamsHelper = () => {
     if (!isDdOpen) {
       setSearchParams({ ...params, isDdOpen: true });
     } else {
-      setSearchParams({ paramsWithoutDPOpen });
+      setSearchParams({ ...paramsWithoutDPOpen });
     }
   };
 
@@ -62,7 +89,10 @@ const useParamsHelper = () => {
 
   return {
     manageTeamParam, 
-    manageAddingNewPartParam, 
+    manageAddingNewPartParam,
+    manageEditingPartParam,
+    manageAddingNewAppParam,
+    manageEditingAppParam, 
     manageDdOpenParam, 
     keepExistingParams, 
     manageAddingNewConnectionParam, 

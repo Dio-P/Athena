@@ -53,7 +53,13 @@ const AppPage = () => {
   }, [appId])
   // const [appToDisplay, loading, error] = useAppWithFolderByIdSearch(appId);
   const [appToDisplay, loading, error] = useAppByIdSearch(appId, true);
-  const { manageAddingNewConnectionParam } = useParamsHelper();
+  const { 
+    manageAddingNewConnectionParam,
+    manageEditingAppParam, 
+    params: {
+      editingApp
+    } 
+  } = useParamsHelper();
   
   const [appByFoldersMutation, setAppByFoldersMutation] = useState(undefined);
   const [editPopUpIsOpen, setEditPopUpIsOpen] = useState(false);
@@ -207,13 +213,13 @@ const AppPage = () => {
             <GenericButtonIcon
               icon={editIcon}
               type="small"
-              onClickFunction={()=>setEditPopUpIsOpen(!editPopUpIsOpen)}
+              onClickFunction={manageEditingAppParam}
             />
           </TitleContainer>
             <GenericButtonIcon
               onClickFunction={manageAddingNewConnectionParam}
               type="add"
-              label={(addingNewConnection ? "- " : "+ ") + "Add URL"}
+              label={(addingNewConnection ? "- " : "+ ") + "Add Doc"}
             />
 
           <AddConnectionStateManager
@@ -267,10 +273,10 @@ const AppPage = () => {
           </div>
           <PopUp
             ComponentToDisplay={EditApp}
-            setIsPopUpOpen={setEditPopUpIsOpen}
+            setIsPopUpOpen={manageEditingAppParam}
             // onClickFunction={}
             app={appToDisplay}
-            isPopUpOpen={editPopUpIsOpen}
+            isPopUpOpen={editingApp}
           />
         </>
       );

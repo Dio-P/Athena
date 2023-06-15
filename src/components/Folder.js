@@ -37,6 +37,7 @@ const Folder = ({
   editPartOpen,
   setEditPartOpen,
 }) => {
+
   const [display, setDisplay] = useState({
     folderIsExpanded: false,
   });

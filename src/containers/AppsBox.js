@@ -4,7 +4,7 @@ import useParamsHelper from "../hooks/useParamsHelper";
 import AppPage from "./AppPage";
 import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/GenericButtonIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUp from "../components/PopUp";
 import AddNewApp from "../popUpComponents/AddNewApp";
 import { useMutation } from '@apollo/client';
@@ -78,9 +78,11 @@ const AppsBox = ({
 }) => {
   const {
     manageDdOpenParam,
+    manageAddingNewAppParam,
     manageAppIdParam, 
     params: {
-      appId
+      appId,
+      addingNewApp
     }
   } = useParamsHelper();
   // const newObjectId = ObjectID()
@@ -110,6 +112,10 @@ const [addNewApp, { loading, error, data }] = useMutation(
 );
 
   const [isAddAppPopupOpen, setIsAddAppPopupOpen] = useState(false);
+
+  useEffect(() => {
+    setIsAddAppPopupOpen(addingNewApp)
+  }, [addingNewApp]);
 
   const addTeamAndClose = (newTeam) => {
      setNewApp({...newApp, teams: [...newApp.teams, newTeam.name]});
@@ -141,7 +147,7 @@ const [addNewApp, { loading, error, data }] = useMutation(
           <GenericButtonIcon
             type="add"
             label="+ Add App"
-            onClickFunction={() => setIsAddAppPopupOpen(!isAddAppPopupOpen)}
+            onClickFunction={manageAddingNewAppParam}
           />
           <PopulateButtons
             data={teamApps}
@@ -152,18 +158,16 @@ const [addNewApp, { loading, error, data }] = useMutation(
       {appId && 
         <AppPage/>
       }
-      {isAddAppPopupOpen &&
-        <PopUp
-          ComponentToDisplay={AddNewApp}
-          isPopUpOpen={isAddAppPopupOpen}
-          setIsPopUpOpen={setIsAddAppPopupOpen}
-          newApp={newApp}
-          setNewApp={setNewApp}
-          onClickDDOption={addTeamAndClose}
-          removeAdditionalTeam={removeAdditionalTeam}
-          onClickFunction={addAppAndCLose}
-        />
-      }
+      <PopUp
+        ComponentToDisplay={AddNewApp}
+        isPopUpOpen={addingNewApp}
+        setIsPopUpOpen={manageAddingNewAppParam}
+        newApp={newApp}
+        setNewApp={setNewApp}
+        onClickDDOption={addTeamAndClose}
+        removeAdditionalTeam={removeAdditionalTeam}
+        onClickFunction={addAppAndCLose}
+      />
     </DepartmAppsBoxContainer>
   );
 };

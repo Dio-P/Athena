@@ -8,6 +8,7 @@ import AdditionalOptions from "./AdditionalOptions";
 import PopUp from "./PopUp";
 import EditPart from "../popUpComponents/EditPart";
 import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
+import useParamsHelper from "../hooks/useParamsHelper";
 
 const PartsContainer = styled.div`
   display: flex;
@@ -74,6 +75,12 @@ const PartIcon = ({
   // editPartOpen,
   // setEditPartOpen
 }) => {
+  const {
+    manageEditingPartParam,
+    params: {
+      editingPart
+    }
+  } = useParamsHelper();
   
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
 
@@ -129,13 +136,14 @@ const PartIcon = ({
             options={[
               {
                 title: "edit",
-                onClickFunction: () => setEditPartOpen(true),
+                onClickFunction: manageEditingPartParam,
               },
             ]}
           />
         )}
         <PopUp
-          setIsPopUpOpen={setEditPartOpen}
+          isPopUpOpen={editingPart}
+          setIsPopUpOpen={manageEditingPartParam}
           ComponentToDisplay={EditPart}
           part={part}
           //   folders={folders}
@@ -143,7 +151,6 @@ const PartIcon = ({
           newlyCreatedFolders={newlyCreatedFolders}
           secondaryFunction={updatingPartFolder}
           // tertiaryFunction={updateApp}
-          isPopUpOpen={editPartOpen}
           newFolder={newFolder}
           onClickFunction={addNewFolderAndClear}
           folderBeenCreated={folderBeenCreated}
