@@ -34,7 +34,7 @@ const AdditionalOptions = ({options}) => {
       options.map((option)=> (
         <Option 
           option={option}
-          key={`${option.name}Option`}
+          key={`${option.title}Option`}
         />
       ))
       }

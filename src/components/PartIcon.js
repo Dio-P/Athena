@@ -9,6 +9,7 @@ import PopUp from "./PopUp";
 import EditPart from "../popUpComponents/EditPart";
 import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
 import useParamsHelper from "../hooks/useParamsHelper";
+import Delete from "../popUpComponents/Delete";
 
 const PartsContainer = styled.div`
   display: flex;
@@ -77,12 +78,11 @@ const PartIcon = ({
 }) => {
   const {
     manageEditingPartParam,
-    params: {
-      editingPart
-    }
+    params: { editingPart },
   } = useParamsHelper();
-  
+
   const [moreOptionOpen, setMoreOptionsOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const partName = capitaliseFirstLetters(part.name);
   const partType = capitaliseFirstLetters(part.type);
@@ -94,12 +94,16 @@ const PartIcon = ({
     ghRepo: part.ghRepo,
     type: part.type,
     folderToBeDisplayedIn: part.folderToBeDisplayedIn,
-    // appParent:, 
+    // appParent:,
     // do I need to add the docs?
-  })
+  });
   const [editPartOpen, setEditPartOpen] = useState(false);
   const [editPartWasClicked, setEditPartWasClicked] = useState(false);
-  const { editPartMutation } = usePartByIdUpdate(part.id, editedPart , editPartWasClicked);
+  const { editPartMutation } = usePartByIdUpdate(
+    part.id,
+    editedPart,
+    editPartWasClicked
+  );
 
   // leave only the setEdit and remove the function.
   // const editPart = () => {
@@ -111,7 +115,7 @@ const PartIcon = ({
   const editPartAndClose = () => {
     setEditPartWasClicked(true);
     setEditPartOpen(false);
-  }
+  };
 
   return (
     <WholeBoxContainer>
@@ -138,6 +142,10 @@ const PartIcon = ({
                 title: "edit",
                 onClickFunction: manageEditingPartParam,
               },
+              {
+                title: "delete",
+                onClickFunction: ()=>setIsPopupOpen(!isPopupOpen),
+              },
             ]}
           />
         )}
@@ -159,10 +167,16 @@ const PartIcon = ({
           editedPart={editedPart}
           setEditedPart={setEditedPart}
           editPartMutation={editPartMutation}
-          // editPartData={editPartData} 
-          // editPartLoading={editPartLoading} 
+          // editPartData={editPartData}
+          // editPartLoading={editPartLoading}
           // editPartError={editPartError}
           editPartAndClose={editPartAndClose}
+        />
+        <PopUp
+          ComponentToDisplay={Delete}
+          isPopUpOpen={isPopupOpen}
+          setIsPopUpOpen={()=>setIsPopupOpen(!isPopupOpen)}
+          data={capitaliseFirstLetters(part.name)}
         />
       </IconButton>
     </WholeBoxContainer>

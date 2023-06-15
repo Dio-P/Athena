@@ -54,7 +54,8 @@ const PopUp = ({
   newApp,
   setNewApp,
   onClickDDOption,
-  removeAdditionalTeam
+  removeAdditionalTeam,
+  data
 }) => {
   return (
     <>
@@ -93,6 +94,7 @@ const PopUp = ({
                 setNewApp={setNewApp}
                 onClickDDOption={onClickDDOption}
                 removeAdditionalTeam={removeAdditionalTeam}
+                data={data}
               />
             </EditAppWrapper>
           </PopUpWrapper>
