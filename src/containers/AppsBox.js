@@ -69,13 +69,7 @@ const AppsBox = ({
 
   const removeAdditionalTeam = (team) => {
       const indexOfTeamToRemove = newApp.teams.indexOf(team);
-
-      console.log('indexOfTeamToRemove', indexOfTeamToRemove);
-      console.log('newApp.teams@@', newApp.teams);
-      console.log('newApp.teams.splice(indexOfTeamToRemove, 1)', newApp.teams.splice(indexOfTeamToRemove, 1));
-      setNewApp({ ...newApp, teams: newApp.teams.splice(indexOfTeamToRemove, 1)})
-      console.log('newApp.teams2', newApp.teams);
-
+      setNewApp({ ...newApp, teams: newApp.teams.splice(indexOfTeamToRemove -1, 1)})
   }
   
   return (
