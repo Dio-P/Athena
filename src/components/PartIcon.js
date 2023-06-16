@@ -114,7 +114,8 @@ const PartIcon = ({
   // rename that to editPartAndClose
   const editPartAndClose = () => {
     setEditPartWasClicked(true);
-    setEditPartOpen(false);
+    manageEditingPartParam();
+    // setEditPartOpen(false);
   };
 
   return (
