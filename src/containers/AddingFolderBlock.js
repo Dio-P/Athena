@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import DropDown from "../components/DropDown";
 import PopUp from "../components/PopUp";
 import { WarningElement } from "../components/specialElements";
-import GenericButtonIcon from "../components/GenericButtonIcon";
 import AddNewFolder from "../popUpComponents/AddNewFolder";
 
 const MainAddNewFolderContainer = styled.div`
@@ -32,10 +30,12 @@ const AddingFolderBlock = ({
   settingNewPartFolder,
   addNewFolderAndClear,
   clickedFolder,
-  setClickedFolder
+  setClickedFolder,
+  newFolderIndexKey
 }) => {
   const {
-    params: { isDdOpen },
+    manageAddNewFolderParam,
+    params: { isDdOpen, addingNewFolder },
   } = useParamsHelper();
 
   console.log("preexistingFolders$", preexistingFolders);
@@ -47,16 +47,12 @@ const AddingFolderBlock = ({
 
   const onClickPlusClosePopup = () => {
     addNewFolderAndClear();
-    console.log("newPart and folderToBeDisplayedIn", {
-      ...newPart,
-      folderToBeDisplayedIn: newFolderIndexKey,
-    });
     setNewPart({
       ...newPart,
       folderToBeDisplayedIn: newFolderIndexKey,
     });
-    setIsPopUpOpen(false);
-
+    // setIsPopUpOpen(false);
+    manageAddNewFolderParam();
     setClickedFolder(folderBeenCreated);
   };
 
@@ -82,7 +78,7 @@ const AddingFolderBlock = ({
             preexistingData={preexistingFolders}
             newData={newlyCreatedFolders}
             freshlyAddedValue={newFolder}
-            onClickingAdditionalOption={() => setIsPopUpOpen(true)}
+            onClickingAdditionalOption={manageAddNewFolderParam}
             dDBtnLabel="+ Add New Folder"
             isDropdownOpen={isDdOpen}
             chosenValue={clickedFolder}
@@ -92,12 +88,12 @@ const AddingFolderBlock = ({
         {isFolderWarningOn && <WarningElement info="Please choose a folder" />}
         <PopUp
           ComponentToDisplay={AddNewFolder}
-          setIsPopUpOpen={setIsPopUpOpen}
+          isPopUpOpen={addingNewFolder}
+          setIsPopUpOpen={manageAddNewFolderParam}
           newFolder={newFolder}
           onClickFunction={onClickPlusClosePopup}
           folderBeenCreated={folderBeenCreated}
           setFolderBeenCreated={setFolderBeenCreated}
-          isPopUpOpen={isPopUpOpen}
         />
       </AddingFolderBodyContainer>
     </MainAddNewFolderContainer>

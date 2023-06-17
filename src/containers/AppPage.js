@@ -240,6 +240,7 @@ const AppPage = () => {
             addNewFolderAndClear={addNewFolderAndClear}
             clickedFolder={clickedFolder}
             setClickedFolder={setClickedFolder}
+            newFolderIndexKey={newFolderIndexKey}
 
             // appToDisplay={appToDisplay}
           />

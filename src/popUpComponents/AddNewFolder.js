@@ -2,10 +2,7 @@ import styled from "@emotion/styled";
 import InputUnit from "../containers/InputUnit";
 import styleVariables from "../styleVariables";
 import { WarningElement } from "../components/specialElements";
-import { deleteIcon } from "../helpers/svgIcons";
-import useParamsHelper from "../hooks/useParamsHelper";
 import GenericButtonIcon from "../components/GenericButtonIcon";
-import useFolderHelper from "../hooks/useFolderHelper";
 
 const AddNewFolderContainer = styled.div`
   display: flex;
@@ -49,12 +46,6 @@ const AddNewFolder = ({
   folderBeenCreated,
   setFolderBeenCreated,
 }) => {
-
-  const { setClickedFolder } = useFolderHelper();
-
-  const onAddingNewFolder = () => {
-    
-  }
 
   return (
     <AddNewFolderContainer>

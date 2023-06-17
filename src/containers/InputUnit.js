@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
-
+import { regex } from "../helpers/validators";
 
 const InputContainer = styled.div`
   text-align: left;
@@ -10,6 +11,7 @@ const InputContainer = styled.div`
   width: 95%;
   min-height: 20px;
   margin: auto;
+}
 `;
 
 const InputLabel = styled.div`
@@ -29,9 +31,30 @@ const InputBox = styled.input`
   cursor: text;
   margin: 0em;
   padding: 0px;
+
+  &:valid {
+    background-color: ivory;
+    border: none;
+    outline: 2px solid deepskyblue;
+    border-radius: 5px;
+    accent-color: gold;
+
+  &:input:invalid {
+      background-color: ivory;
+      border: none;
+      outline: 2px solid red;
+      border-radius: 5px;
+  }
 `;
 
-const InputUnit = ({ inputTitle, type, name, value, onChangeFunction }) => {
+const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required }) => {
+
+  useEffect(() => {
+    if(regex[type]){
+      const isValid = regex[type].test(value);
+      console.log("isValid***", isValid);
+    }
+  }, [value]);
   return (
     <InputContainer>
       <InputLabel>{inputTitle}</InputLabel>
@@ -40,6 +63,7 @@ const InputUnit = ({ inputTitle, type, name, value, onChangeFunction }) => {
         name={name}
         value={value}
         onChange={(e) => onChangeFunction(e.target.value)}
+        required={required}
       />
     </InputContainer>
   );

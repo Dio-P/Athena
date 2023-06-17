@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import GenericButtonIcon from "../components/GenericButtonIcon";
 import AddNewPartInput from "./AddNewPartInput";
 import AddingFolderBlock from "./AddingFolderBlock";
-import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
@@ -57,7 +56,8 @@ const AddingPartBlock = ({
   newlyCreatedFolders,
   setNewlyCreatedFolders,
   settingNewPartFolder,
-  addNewFolderAndClear
+  addNewFolderAndClear,
+  newFolderIndexKey,
   // manageDdOpenParam,
 }) => {
   const { keepExistingParams, params: {
@@ -77,6 +77,7 @@ const AddingPartBlock = ({
   
 
   const addNewPartAndClear = () => {
+    console.log("inside addNewPartAndClear");
     if(!newPart.name || !newFolder){
       setIsPartNameWarningOn(!newPart.name);
       setIsFolderWarningOn(!newFolder);
@@ -143,6 +144,7 @@ const AddingPartBlock = ({
         isFolderWarningOn={isFolderWarningOn}
         settingNewPartFolder={settingNewPartFolder}
         addNewFolderAndClear={addNewFolderAndClear}
+        newFolderIndexKey={newFolderIndexKey}
 
         // manageDdOpenParam={manageDdOpenParam}
       />

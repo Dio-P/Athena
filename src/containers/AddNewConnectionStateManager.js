@@ -1,12 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
 import styled from "@emotion/styled";
-import { v4 as uuidv4 } from "uuid";
 import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
-import useAppByIdSearch from "../hooks/queries/useAppByIdSearch";
 import useParamsHelper from "../hooks/useParamsHelper";
-import useFolderHelper from "../hooks/useFolderHelper";
 import { addClickedKeyToPreexParts } from "../helpers/AddNewConnectionBlockHelper";
-;
+
 const AddNewConnectionBlockWrapper = styled.div`
   z-index: 1;
 `;
@@ -30,7 +27,8 @@ const AddConnectionStateManager = ({
   settingNewPartFolder,
   addNewFolderAndClear,
   clickedFolder,
-  setClickedFolder
+  setClickedFolder,
+  newFolderIndexKey,
  }) => {
   // const { setClickedFolder } = useFolderHelper();
   const { keepExistingParams, params: { appId, }, manageDdOpenParam } = useParamsHelper();
@@ -99,6 +97,7 @@ const AddConnectionStateManager = ({
             addNewFolderAndClear={addNewFolderAndClear}
             clickedFolder={clickedFolder}
             setClickedFolder={setClickedFolder}
+            newFolderIndexKey={newFolderIndexKey}
           />
         </AddNewConnectionBlockWrapper>
       )

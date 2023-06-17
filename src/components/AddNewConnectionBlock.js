@@ -6,8 +6,6 @@ import GenericButtonIcon from "./GenericButtonIcon";
 import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
-import PopulateButtons from "../containers/PopulateButtons";
-import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
 import {
   findConserningParts,
@@ -77,6 +75,7 @@ const AddNewConnectionBlock = ({
   preexistingFolders,
   clickedFolder,
   setClickedFolder,
+  newFolderIndexKey,
 }) => {
   const didMountRef = useRef(false);
 
@@ -173,10 +172,11 @@ const AddNewConnectionBlock = ({
         <UrlInputContainer>
           <InputUnit
             inputTitle="URL"
-            type="text"
+            type="url"
             name="url"
             value={url}
             onChangeFunction={(input) => setUrl(input)}
+            required={true}
           />
         </UrlInputContainer>
         <div>
@@ -215,6 +215,7 @@ const AddNewConnectionBlock = ({
               addNewFolderAndClear={addNewFolderAndClear}
               clickedFolder={clickedFolder}
               setClickedFolder={setClickedFolder}
+              newFolderIndexKey={newFolderIndexKey}
 
               // manageDdOpenParam={manageDdOpenParam}
             />

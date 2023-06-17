@@ -1,6 +1,8 @@
 
-
+// all this logic needs to be rewritten
 const findConnectionParameters = async (link) => {
+  console.log("inside findConnectionParameters@@", link);
+
   const linkParts = link
   .split("/")
   .filter((fragment) => (
@@ -22,6 +24,7 @@ const findConnectionParameters = async (link) => {
   }
 
   const findSource = () => {
+    console.log("linkParts***", linkParts);
     const firstLinkFragment = linkParts[1].split(".");
     if(firstLinkFragment.includes("paper")){
       return "paper";
@@ -38,6 +41,8 @@ const findConnectionParameters = async (link) => {
     if(firstLinkFragment.includes("jira")){
       return "jira";
     }
+
+    return firstLinkFragment[1]
 
   }
   

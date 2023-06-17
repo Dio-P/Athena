@@ -74,6 +74,15 @@ const useParamsHelper = () => {
     }
   };
 
+  const manageAddNewFolderParam = () => {
+    const {addingNewFolder, ...paramsWithoutAddingNewFolder} = params
+    if (!addingNewFolder) {
+      setSearchParams({ ...params, addingNewFolder: true });
+    } else {
+      setSearchParams({ ...paramsWithoutAddingNewFolder });
+    }
+  };
+
   const manageDdOpenParam = () => {
     const {isDdOpen, ...paramsWithoutDPOpen} = params
     if (!isDdOpen) {
@@ -96,7 +105,8 @@ const useParamsHelper = () => {
     manageDdOpenParam, 
     keepExistingParams, 
     manageAddingNewConnectionParam, 
-    manageAppIdParam, 
+    manageAppIdParam,
+    manageAddNewFolderParam,
     params
   }
 };

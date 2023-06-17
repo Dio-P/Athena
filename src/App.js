@@ -1,9 +1,6 @@
 import Header from "./containers/Header";
 import TeamsBox from "./containers/TeamsBox";
 import { useEffect, useMemo, useState } from "react";
-import useFolderHelper from "./hooks/useFolderHelper";
-import useParamsHelper from "./hooks/useParamsHelper";
-import { v4 as uuidv4 } from "uuid";
 
 function App() {
   const DEFAULT_DEPARTMENT = useMemo(() => "DPub", []);
