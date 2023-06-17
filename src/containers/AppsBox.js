@@ -130,7 +130,8 @@ const [addNewApp, { loading, error, data }] = useMutation(
     console.log("newApp*$$$", newApp);
     addNewApp({
       variables: { newApp : newApp },
-    }) 
+    });
+    manageAddingNewAppParam();
   }
   
   return (

@@ -5,6 +5,22 @@ import AddNewPartInput from "./AddNewPartInput";
 import AddingFolderBlock from "./AddingFolderBlock";
 import useFolderHelper from "../hooks/useFolderHelper";
 import useParamsHelper from "../hooks/useParamsHelper";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+
+const ADD_NEW_PART = gql`
+  mutation($appId: ID!, $newPart: partInput!, $additionalFolders: [FolderInput]) {
+    addNewPart(appID: $appId, newPart: $newPart, additionalFolders: $additionalFolders) {
+      name
+      id
+      ghRepo
+      type
+      folderToBeDisplayedIn
+      appParent
+      docs
+    }
+  }
+`;
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -44,7 +60,10 @@ const AddingPartBlock = ({
   addNewFolderAndClear
   // manageDdOpenParam,
 }) => {
-  const { keepExistingParams } = useParamsHelper();
+  const { keepExistingParams, params: {
+    appId
+  } } = useParamsHelper();
+  const[addNewPart, {loading, error , data}] = useMutation(ADD_NEW_PART);
 
     const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
   const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
@@ -73,6 +92,12 @@ const AddingPartBlock = ({
       },
     });
     setNewlyCreatedFolders([newlyCreatedFolders, newFolder]); //////////////////////////////////
+    // addNewPart({variables:{
+      // appID: appId,
+    //   newPart: newPartsAdded,
+    //   additionalFolders: newlyCreatedFolders,
+    // }});
+    // move the mutation into a hook to be queried when all is updated
     setNewPart({
       ...newPart,
       name: "",
