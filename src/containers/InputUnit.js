@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import styleVariables from "../styleVariables";
 import { regex } from "../helpers/validators";
+import { WarningElement } from "../components/specialElements";
 
 const InputContainer = styled.div`
   text-align: left;
@@ -31,30 +32,21 @@ const InputBox = styled.input`
   cursor: text;
   margin: 0em;
   padding: 0px;
-
-  &:valid {
-    background-color: ivory;
-    border: none;
-    outline: 2px solid deepskyblue;
-    border-radius: 5px;
-    accent-color: gold;
-
-  &:input:invalid {
-      background-color: ivory;
-      border: none;
-      outline: 2px solid red;
-      border-radius: 5px;
-  }
 `;
 
 const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required }) => {
 
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
-    if(regex[type]){
-      const isValid = regex[type].test(value);
-      console.log("isValid***", isValid);
+    if(value && regex[type]){
+      const isValid = regex[type].validator.test(value);
+      setIsInvalid(!isValid);
+      setErrorMessage(regex[type].warningMessage)
     }
   }, [value]);
+
   return (
     <InputContainer>
       <InputLabel>{inputTitle}</InputLabel>
@@ -65,8 +57,16 @@ const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required }
         onChange={(e) => onChangeFunction(e.target.value)}
         required={required}
       />
+      {isInvalid &&
+      <WarningElement
+        info={errorMessage}
+      />
+      }
     </InputContainer>
   );
 };
 
 export default InputUnit;
+
+// fix invaled not working
+// add com
