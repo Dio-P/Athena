@@ -163,7 +163,7 @@ const AddNewConnectionBlock = ({
     };
     setUpdatedApp({
       ...appToDisplay,
-      docs: [...appToDisplay.docs, newDoc],
+      docs: [...appToDisplay.properties.docs, newDoc],
       folders: [...appToDisplay.folders, ...filterFoldersToAll],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
