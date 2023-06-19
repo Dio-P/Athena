@@ -106,10 +106,6 @@ const AddNewConnectionBlock = ({
     deleteWarningNewPart: false,
   });
 
-  // const foldersToDisplay = appToDisplay && didMountRef && appToDisplay.folders;
-  // const { clickedFolder } = useFolderHelper();
-  // useFolderHelper(foldersToDisplay);
-
   const APP_NAME = useMemo(
     () => capitaliseFirstLetters(appToDisplay.name),
     [appToDisplay.name]
@@ -132,11 +128,15 @@ const AddNewConnectionBlock = ({
     // }});
 
   const onClickingAddNewConnection = async (e) => {
+    console.log("newPartsAdded@@@1", newPartsAdded);
+
     if(!isAllValid) {
       // display something to warn the user if we are here
       return;
     }
     e.preventDefault();
+    console.log("newPartsAdded@@@2", newPartsAdded);
+    console.log("newPartsAdded@@@2", newPartsAdded);
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
       new Set(
@@ -144,6 +144,11 @@ const AddNewConnectionBlock = ({
       )
     );
     const filterFoldersToAll = {};
+    console.log("newlyCreatedFolders@@", newlyCreatedFolders, );
+    console.log("newFoldersKeys@@", newFoldersKeys);
+    // this can be refactored to Object.entries
+    // for some reason the newFolder has not been passed to newlyCreatedFolders
+    // and the function above returns the whole object instead of just indexes
     newFoldersKeys.map(
       (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key])
     );
@@ -161,10 +166,11 @@ const AddNewConnectionBlock = ({
         isLinkUpToDate: true, //tickbox checked
       },
     };
+    console.log("filterFoldersToAll@@", filterFoldersToAll);
     setUpdatedApp({
       ...appToDisplay,
       docs: [...appToDisplay.properties.docs, newDoc],
-      folders: [...appToDisplay.folders, ...filterFoldersToAll],
+      folders: [...appToDisplay?.folders, ...filterFoldersToAll],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
     setAddNewConnectionWasClicked(true);

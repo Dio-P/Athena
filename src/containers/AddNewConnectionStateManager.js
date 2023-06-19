@@ -30,7 +30,6 @@ const AddConnectionStateManager = ({
   setClickedFolder,
   newFolderIndexKey,
  }) => {
-  // const { setClickedFolder } = useFolderHelper();
   const { keepExistingParams, params: { appId, }, manageDdOpenParam } = useParamsHelper();
   // const id = useMemo(() => appId, [appId])
   // const [appToDisplay, loading, error] = useAppByIdSearch(id, !!addingNewConnection);
@@ -51,6 +50,10 @@ const AddConnectionStateManager = ({
     }
   }, [preexistingParts]);
 
+  useEffect(() => {
+    console.log("newPartsAdded@@@", newPartsAdded);
+  }, [newPartsAdded]);
+
   const onClickingRefresh = () => {
     setUrl("");
     setNewPartsAdded("");
@@ -59,6 +62,9 @@ const AddConnectionStateManager = ({
     setNewFolder("");
     keepExistingParams();
   }
+
+  console.log("newPartsAdded last thing before", newPartsAdded);
+
 
   const renderedView = () => {
     if (loading) {

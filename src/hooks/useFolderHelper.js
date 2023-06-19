@@ -5,7 +5,6 @@ import useParamsHelper from "./useParamsHelper";
 const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   console.log("preexistingFolders", preexistingFolders);
   console.log("newlyCreatedFolders", newlyCreatedFolders);
-  const preExistingFoldersMemo = useMemo(() => preexistingFolders, [preexistingFolders])
 
   const {
     keepExistingParams
@@ -14,24 +13,22 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [clickedFolder, setClickedFolder] = useState("");
 
-  const preexistingFoldersLength = useMemo(() => preExistingFoldersMemo && (preExistingFoldersMemo.length - 1 || 0), [preExistingFoldersMemo]);
+  const preexistingFoldersLength = useMemo(() => preexistingFolders && (preexistingFolders.length - 1 || 0), [preexistingFolders]);
   const newlyCreatedFoldersLength = useMemo(() => newlyCreatedFolders && (newlyCreatedFolders.length + 1 || 1), [newlyCreatedFolders]);
 
-  const didMountRef = useRef(false);
-
-  useEffect(() => {
-    console.log("setClickedFolder folder was clicked");
-  }, [setClickedFolder])
+  // useEffect(() => {
+  //   console.log("setClickedFolder folder was clicked");
+  // }, [setClickedFolder])
   // useEffect(() => {
   //   console.log("clickedFolder@@", clickedFolder);
   // }, [clickedFolder])
 
   useEffect(() => {
-      if(preExistingFoldersMemo && !!didMountRef.current){
+      if(preexistingFolders){
+        console.log("NewFolderIndexKey:", preexistingFoldersLength+ newlyCreatedFoldersLength);
         setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
       }
-      didMountRef.current = true;
-    }, [preExistingFoldersMemo, newlyCreatedFolders]);
+    }, [preexistingFolders, newlyCreatedFolders]);
 
       const onClickingPreExistingFolder = (value) => {
         setClickedFolder(value);

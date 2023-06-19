@@ -41,8 +41,6 @@ const AddingFolderBlock = ({
   console.log("preexistingFolders$", preexistingFolders);
   console.log("newlyCreatedFolders$", newlyCreatedFolders);
 
-  // const { clickedFolder, setClickedFolder, newFolderIndexKey } = useFolderHelper(preexistingFolders, newlyCreatedFolders);
-
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
 
   const onClickPlusClosePopup = () => {

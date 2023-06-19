@@ -91,6 +91,12 @@ const AddingPartBlock = ({
       setIsFolderWarningOn(!newFolder);
       return
     }
+    console.log("newPart@@", newPart);
+    console.log("newFolder@@", newFolder);
+    console.log("folderToBeDisplayedIn:@@", {folderToBeDisplayedIn:
+    newFolder.id || Object.values(newFolder)[0].id});
+
+
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
