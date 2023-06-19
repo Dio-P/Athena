@@ -8,15 +8,15 @@ const mockApp = {
   folders: [
     {
       name: "general documentation",
-      id: 0
+      id: "0"
      },
     {
      name: "client",
-     id: 1
+     id: "1"
     },
     {
      name: "server",
-     id: 2
+     id: "2"
     },
    ],
   parts: [
@@ -25,14 +25,14 @@ const mockApp = {
       id: "somePartId1",
       ghRepo: "www.someGitHubLink.com",
       type: "documentation",
-      folderToBeDisplayedIn: 0,
+      folderToBeDisplayedIn: "0",
     },
     {
       name: "published postgres",
       id: "somePartId2",
       ghRepo: "www.someGitHubLink.com",
       type: "data base",
-      folderToBeDisplayedIn: 1,
+      folderToBeDisplayedIn: "1",
     }
   ],
   connections: [
