@@ -79,6 +79,7 @@ const AddNewConnectionBlock = ({
 }) => {
   const didMountRef = useRef(false);
 
+  const [isAllValid, setIsAllValid] = useState(false);
   const [updatedApp, setUpdatedApp] = useState("");
 
   const {
@@ -110,8 +111,14 @@ const AddNewConnectionBlock = ({
   //   () => newPartsAdded && Object.values(newPartsAdded),
   //   [newPartsAdded]
   // );
+// to be set bellow to add the part to the database if new part ?
+   // addNewPart({variables:{
+      // appID: appId,
+    //   newPart: newPartsAdded,
+    //   additionalFolders: newlyCreatedFolders,
+    // }});
 
-  const onClickingAdd = async (e) => {
+  const onClickingAddNewConnection = async (e) => {
     e.preventDefault();
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
@@ -143,6 +150,7 @@ const AddNewConnectionBlock = ({
       folders: [...appToDisplay.folders, ...filterFoldersToAll],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
+    // run the query instead of the above. Make certain that is unclickable if something is not valid.
   };
 
   // const deleteNewlyAddedPart = (part) => {
@@ -216,34 +224,16 @@ const AddNewConnectionBlock = ({
               clickedFolder={clickedFolder}
               setClickedFolder={setClickedFolder}
               newFolderIndexKey={newFolderIndexKey}
-
-              // manageDdOpenParam={manageDdOpenParam}
             />
           )}
         </div>
-        {/* {
-                        (url && clickedFolder && part)
-                        ? */}
         <AddConnectionButtonWrapper>
           <GenericButtonIcon
             label="+ Add New Connection"
-            onClickFunction={onClickingAdd}
+            onClickFunction={onClickingAddNewConnection}
             type="add"
           />
         </AddConnectionButtonWrapper>
-        {/* <button type="submit" onClick={onClickingAdd}>
-          Add
-        </button> */}
-        {/* :
-                            <button onClick>Add</button>
-                        } */}
-
-        {/* {url
-                        &&
-                            <UrlInputBox onClick={onClickingAdd}>
-                                {`add: ${url}`}
-                            </UrlInputBox>
-                        } */}
       </FormContainer>
     </DisplayBox>
   );
@@ -283,20 +273,3 @@ export default AddNewConnectionBlock;
 
 // add logic, when clicking done, to not add dublicate object to folder it allready exist
 
-// Priorities:
-// add new doc logic
-// tidy it up
-// finalise the styling
-// change folder structure into something easier
-// add display part logic
-// add edit part logic
-// add comments logic
-// and see how easy it is to connect with bbc users and login.
-// start adding testing try tdd from here on
-// add GraphQl and connect with server
-// add links using string Query or something else
-// add docker if you want
-// add aws logic to have it online
-
-// turn server to typescript
-// expand on busines logic add technologies and initials
