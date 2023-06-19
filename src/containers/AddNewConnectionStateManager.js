@@ -55,6 +55,7 @@ const AddConnectionStateManager = ({
   }, [newPartsAdded]);
 
   const onClickingRefresh = () => {
+    console.log("refresh**********");
     setUrl("");
     setNewPartsAdded("");
     setDbPartsWithClickedKey(appToDisplay.parts || []);

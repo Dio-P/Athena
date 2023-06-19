@@ -93,20 +93,28 @@ const AddingPartBlock = ({
     }
     console.log("newPart@@", newPart);
     console.log("newFolder@@", newFolder);
-    console.log("folderToBeDisplayedIn:@@", {folderToBeDisplayedIn:
-    newFolder.id || Object.values(newFolder)[0].id});
+   
+    const folderToBeDisplayedIn = newFolder.id || Object.values(newFolder)[0].id;
 
+    console.log("NewPartsAdded*******", {
+      ...newPartsAdded,
+      [newPart.name]: {
+        ...newPart,
+        clicked: true,
+        folderToBeDisplayedIn,
+      },
+    } );
 
     setNewPartsAdded({
       ...newPartsAdded,
       [newPart.name]: {
         ...newPart,
         clicked: true,
-        folderToBeDisplayedIn:
-          newFolder.id || Object.values(newFolder)[0].id,
+        folderToBeDisplayedIn,
       },
     });
-    setNewlyCreatedFolders([newlyCreatedFolders, newFolder]); //////////////////////////////////
+    console.log("newlyCreatedFolders**(((((((((((((((", newlyCreatedFolders);
+    setNewlyCreatedFolders([...newlyCreatedFolders, newFolder]); //////////////////////////////////
     // *******DO NOT SET THIS HERE************
     // addNewPart({variables:{
       // appID: appId,

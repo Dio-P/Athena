@@ -13,9 +13,17 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   const [newFolderIndexKey, setNewFolderIndexKey] = useState(undefined);
   const [clickedFolder, setClickedFolder] = useState("");
 
-  const preexistingFoldersLength = useMemo(() => preexistingFolders && (preexistingFolders.length - 1 || 0), [preexistingFolders]);
-  const newlyCreatedFoldersLength = useMemo(() => newlyCreatedFolders && (newlyCreatedFolders.length + 1 || 1), [newlyCreatedFolders]);
+  console.log("preexistingFolders******!!!!!", preexistingFolders);
+  console.log("newlyCreatedFolders*************&&&&&&&&&&",newlyCreatedFolders );
+  const preexistingFoldersLength = useMemo(() => preexistingFolders && 
+    (preexistingFolders.length > 0? (preexistingFolders.length - 1) : 0)
+    , [preexistingFolders]);
 
+  const newlyCreatedFoldersLength = useMemo(() => newlyCreatedFolders && 
+    (newlyCreatedFolders.length? newlyCreatedFolders.length + 1 : 1)
+    , [newlyCreatedFolders]);
+  console.log("preexistingFoldersLength*********£££££££", preexistingFoldersLength);
+  console.log("newlyCreatedFoldersLength*********£££££££", newlyCreatedFoldersLength);
   // useEffect(() => {
   //   console.log("setClickedFolder folder was clicked");
   // }, [setClickedFolder])

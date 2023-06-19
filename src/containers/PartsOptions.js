@@ -61,6 +61,7 @@ const PartsOptions = ({
       return setDbPartsWithClickedKey(genCorrectObj(dbPartsWithClickedKey, part))
     }
     if(isNewPart(part.name)){
+      console.log("is New Part*************");
       return setNewPartsAdded(genCorrectObj(newPartsAdded, part))
     }
     return undefined;
