@@ -136,7 +136,6 @@ const AddNewConnectionBlock = ({
     }
     e.preventDefault();
     console.log("newPartsAdded@@@2", newPartsAdded);
-    console.log("newPartsAdded@@@2", newPartsAdded);
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
       new Set(
@@ -150,8 +149,11 @@ const AddNewConnectionBlock = ({
     // for some reason the newFolder has not been passed to newlyCreatedFolders
     // and the function above returns the whole object instead of just indexes
     newFoldersKeys.map(
-      (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key])
+      (key) => (filterFoldersToAll[key - 1] = newlyCreatedFolders[key - 1])
+      // (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key - 1])
     );
+    console.log("filterFoldersToAll!@@!@!@@@£@£@£@", filterFoldersToAll);
+
     const newDoc = {
       name: name,
       id: uuidv4(),
@@ -170,7 +172,7 @@ const AddNewConnectionBlock = ({
     setUpdatedApp({
       ...appToDisplay,
       docs: [...appToDisplay.properties.docs, newDoc],
-      folders: [...appToDisplay?.folders, ...filterFoldersToAll],
+      folders: [...appToDisplay?.folders, ...Object.values(filterFoldersToAll)],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
     setAddNewConnectionWasClicked(true);
