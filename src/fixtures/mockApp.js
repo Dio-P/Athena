@@ -1,4 +1,5 @@
 const mockApp = {
+  id: "63d7f613fac7d7bdf43ea344",
   name: "optimo",
   type: "app",
   gitHubRepo: "someLink.github.com",
@@ -24,14 +25,14 @@ const mockApp = {
       id: "somePartId1",
       ghRepo: "www.someGitHubLink.com",
       type: "documentation",
-      folderToBeDisplayedIn: "0",
+      folderToBeDisplayedIn: 0,
     },
     {
       name: "published postgres",
       id: "somePartId2",
       ghRepo: "www.someGitHubLink.com",
       type: "data base",
-      folderToBeDisplayedIn: "1",
+      folderToBeDisplayedIn: 1,
     }
   ],
   connections: [
@@ -55,9 +56,6 @@ const mockApp = {
         source: "Confluence",
         lastModified: "someDate",
         concerningParts: ["somePartId1", "somePartId2"],
-        flags: {
-          isLinkUpToDate: true,
-        }
       },
       {
         name: "Some Doc2",
@@ -66,22 +64,6 @@ const mockApp = {
         source: "Confluence",
         lastModified: "someDate",
         concerningParts: ["somePartId1", "somePartId2"],
-        interactions: {
-          isLinkUpToDate: true,
-          comments: [
-            {
-              text: "some coment",
-              type: "requestOrSimpleComment",
-              user: "someUserId",
-              date: "someDate",
-              flag: ["add another flag", "add another flag"],
-              openRequest: {
-                type: "type of request",
-                requestFrom: "otherUserId"
-              }
-            }
-          ]
-        }
       }
     ]
 

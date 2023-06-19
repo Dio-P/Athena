@@ -1,7 +1,7 @@
 export const updateWithFolders = (folders, parts, docs) => {
-  console.log("folders in", folders);
-  console.log("parts in", parts);
-  console.log("docs in", docs);
+  // console.log("folders in", folders);
+  // console.log("parts in", parts);
+  // console.log("docs in", docs);
   const updatedFolders = folders.map((folder) => ({
     ...folder,
     parts: putPartIdToUpdatedFolder(`${folder.id}`, parts, docs),
@@ -10,9 +10,11 @@ export const updateWithFolders = (folders, parts, docs) => {
 };
 
 export const putPartIdToUpdatedFolder = (folderId, parts, docs) => {
+  console.log("folderId:", folderId, "typeof folderId", typeof folderId,"parts:", parts, "typeof parts[0].folderToBeDisplayedIn:", typeof parts[0].folderToBeDisplayedIn,"docs:", docs);
   const folderParts = parts.filter(
-    (part) => part.folderToBeDisplayedIn === folderId
+    (part) => part.folderToBeDisplayedIn == folderId
   );
+  console.log("folderParts", folderParts);
   const updatedFolderParts = folderParts.map((part) => ({
     ...part,
     docs: findPartsDocs(docs, `${part.id}`),
