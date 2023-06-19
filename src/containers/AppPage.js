@@ -135,6 +135,10 @@ const AppPage = () => {
     )
   }, [appToDisplay]);
 
+  useEffect(() => {
+    console.log("appByFoldersMutation$$$", JSON.stringify(appByFoldersMutation)); 
+  }, [appByFoldersMutation]);
+
   const pickFromRenderingOptions = () => {
     if (loading) {
       return <p>Loading...</p>;
