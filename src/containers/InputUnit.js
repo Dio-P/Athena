@@ -34,15 +34,16 @@ const InputBox = styled.input`
   padding: 0px;
 `;
 
-const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required }) => {
+const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required, isValueInvalid, setIsValueInvalid }) => {
 
-  const [isInvalid, setIsInvalid] = useState(false);
+  // const [isInvalid, setIsInvalid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if(value && regex[type]){
       const isValid = regex[type].validator.test(value);
-      setIsInvalid(!isValid);
+      // setIsInvalid(!isValid);
+      setIsValueInvalid(!isValid);
       setErrorMessage(regex[type].warningMessage)
     }
   }, [value]);
@@ -57,7 +58,7 @@ const InputUnit = ({ inputTitle, type, name, value, onChangeFunction, required }
         onChange={(e) => onChangeFunction(e.target.value)}
         required={required}
       />
-      {isInvalid &&
+      {isValueInvalid &&
       <WarningElement
         info={errorMessage}
       />

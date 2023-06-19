@@ -203,6 +203,8 @@ const AddNewConnectionBlock = ({
             value={url}
             onChangeFunction={(input) => setUrl(input)}
             required={true}
+            isValueInvalid={isUrlWarningOn}
+            setIsValueInvalid={setIsUrlWarningOn}
           />
         </UrlInputContainer>
         <div>
