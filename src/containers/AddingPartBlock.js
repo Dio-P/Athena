@@ -7,19 +7,22 @@ import useParamsHelper from "../hooks/useParamsHelper";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
-const ADD_NEW_PART = gql`
-  mutation($appId: ID!, $newPart: partInput!, $additionalFolders: [FolderInput]) {
-    addNewPart(appID: $appId, newPart: $newPart, additionalFolders: $additionalFolders) {
-      name
-      id
-      ghRepo
-      type
-      folderToBeDisplayedIn
-      appParent
-      docs
-    }
-  }
-`;
+// const ADD_NEW_PART = gql`
+//   mutation($appId: ID!, $newPart: partInput!, $additionalFolders: [FolderInput]) {
+//     addNewPart(appID: $appId, newPart: $newPart, additionalFolders: $additionalFolders) {
+//       name
+//       id
+//       ghRepo
+//       type
+//       folderToBeDisplayedIn
+//       appParent
+//       docs
+//     }
+//   }
+// `;
+
+  // const[addNewPart, {loading, error , data}] = useMutation(ADD_NEW_PART);
+
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -58,15 +61,20 @@ const AddingPartBlock = ({
   settingNewPartFolder,
   addNewFolderAndClear,
   newFolderIndexKey,
-  // manageDdOpenParam,
+  isUrlWarningOn,
+  setIsUrlWarningOn,
+  isPartNameWarningOn,
+  setIsPartNameWarningOn,
+  isFolderWarningOn,
+  setIsFolderWarningOn,
 }) => {
   const { keepExistingParams, params: {
     appId
   } } = useParamsHelper();
-  const[addNewPart, {loading, error , data}] = useMutation(ADD_NEW_PART);
 
-    const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
-  const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
+  // const [isUrlWarningOn, setIsUrlWarningOn] = useState(false);
+  // const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
+  // const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
 
   useEffect(() => {
     if(newPart.name || newFolder){

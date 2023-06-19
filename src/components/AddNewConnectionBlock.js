@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "@emotion/styled";
 import findConnectionParameters from "../helpers/findConnectionParameters";
@@ -14,6 +14,7 @@ import {
 import styleVariables from "../styleVariables";
 import { refreshIcon } from "../helpers/svgIcons";
 import PartsOptions from "../containers/PartsOptions";
+import useUpdateAppById from "../hooks/queries/useAppByIdUpdate";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -79,15 +80,27 @@ const AddNewConnectionBlock = ({
 }) => {
   const didMountRef = useRef(false);
 
-  const [isAllValid, setIsAllValid] = useState(false);
   const [updatedApp, setUpdatedApp] = useState("");
+  const [addNewConnectionWasClicked, setAddNewConnectionWasClicked] = useState(false);
+  
+  const [isAllValid, setIsAllValid] = useState(false);
+  const [isUrlWarningOn, setIsUrlWarningOn] = useState(false);
+  const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
+  const [isFolderWarningOn, setIsFolderWarningOn] = useState(false);
 
   const {
     manageAddingNewPartParam,
     manageDdOpenParam,
     keepExistingParams,
-    params: { addingNewPart, addingNewFolder },
+    params: { addingNewPart, addingNewFolder, partId },
   } = useParamsHelper();
+
+  const [data, loading, error] = useUpdateAppById(partId, updatedApp, !!addNewConnectionWasClicked);
+
+  useEffect(() => {
+    !!url && !isUrlWarningOn &&!isPartNameWarningOn && !isFolderWarningOn &&
+    setIsAllValid(true);
+  }, [url, isUrlWarningOn, isPartNameWarningOn, isFolderWarningOn]);
 
   const [display, setDisplay] = useState({
     deleteWarningNewPart: false,
@@ -119,6 +132,10 @@ const AddNewConnectionBlock = ({
     // }});
 
   const onClickingAddNewConnection = async (e) => {
+    if(!isAllValid) {
+      // display something to warn the user if we are here
+      return;
+    }
     e.preventDefault();
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
@@ -150,6 +167,7 @@ const AddNewConnectionBlock = ({
       folders: [...appToDisplay.folders, ...filterFoldersToAll],
       parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
     });
+    setAddNewConnectionWasClicked(true);
     // run the query instead of the above. Make certain that is unclickable if something is not valid.
   };
 
@@ -224,6 +242,12 @@ const AddNewConnectionBlock = ({
               clickedFolder={clickedFolder}
               setClickedFolder={setClickedFolder}
               newFolderIndexKey={newFolderIndexKey}
+              isUrlWarningOn={isUrlWarningOn}
+              setIsUrlWarningOn={setIsUrlWarningOn}
+              isPartNameWarningOn={isPartNameWarningOn}
+              setIsPartNameWarningOn={setIsPartNameWarningOn}
+              isFolderWarningOn={isFolderWarningOn}
+              setIsFolderWarningOn={setIsFolderWarningOn}
             />
           )}
         </div>
