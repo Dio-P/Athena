@@ -53,7 +53,14 @@ const useAppByIdSearch = (id, shouldQuery) => {
 
   useEffect(() => {
     if (data && data.getAppById) {
-      const newApp = data.getAppById;
+      
+      const newApp = {
+        ...data.getAppById,
+        parts: data.getAppById.parts.map((part) => ({
+          ...part,
+          folderToBeDisplayedIn: Number(part.folderToBeDisplayedIn)
+          }))
+      };
       setAppToDisplay({ ...newApp });
     }
   }, [data]);

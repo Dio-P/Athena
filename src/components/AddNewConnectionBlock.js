@@ -92,10 +92,10 @@ const AddNewConnectionBlock = ({
     manageAddingNewPartParam,
     manageDdOpenParam,
     keepExistingParams,
-    params: { addingNewPart, addingNewFolder, partId },
+    params: { addingNewPart, addingNewFolder, appId },
   } = useParamsHelper();
 
-  const [data, loading, error] = useUpdateAppById(partId, updatedApp, !!addNewConnectionWasClicked);
+  const [data, loading, error] = useUpdateAppById(appId, updatedApp, !!addNewConnectionWasClicked);
 
   useEffect(() => {
     !!url && !isUrlWarningOn &&!isPartNameWarningOn && !isFolderWarningOn &&

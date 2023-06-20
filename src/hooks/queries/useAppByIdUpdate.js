@@ -37,14 +37,14 @@ export const UPDATE_APP_BY_ID = gql`
 `;
 
 const useUpdateAppById = (id, app, shouldQuery) => {
-
+  console.log("insideUpdateAppById££££", id, app, shouldQuery);
   const [updateApp, { loading, error, data }] = useMutation(
     UPDATE_APP_BY_ID
   );
 
   useEffect(() => {
     if(id && app && shouldQuery) {
-      console.log("app in Mutation", app);
+      console.log("app in Mutation£££££", app);
       updateApp({
         variables: { id: id, app: app },
       });
