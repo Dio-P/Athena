@@ -3,7 +3,7 @@ import {
   allFoldersIdStringsToNum,
 } from "./appConstructionHelper";
 
-const allPartsInputMock = [
+const allPartsMockInput = [
   {
     clicked: true,
     folderToBeDisplayedIn: 1,
@@ -22,26 +22,26 @@ const allPartsInputMock = [
   },
 ];
 
-const allFoldersInputMock = [
+const allFoldersMockInput = [
   { id: "1", name: "folder1" },
   { id: "2", name: "folder2" },
   { id: "3", name: "folder3" },
 ];
 
 describe("allPartsFolderToBeDisplValueToStr", () => {
-  const newPartsArray = allPartsFolderToBeDisplValueToStr(allPartsInputMock);
+  const newAllPartsArray = allPartsFolderToBeDisplValueToStr(allPartsMockInput);
 
   it("should remove the clicked value from the part", () => {
-    expect(newPartsArray).not.toContain("clicked: true");
+    expect(newAllPartsArray).not.toContain("clicked: true");
   });
   it("should change folderToBeDisplayedIn values to a strings", () => {
-    expect(typeof newPartsArray[0].folderToBeDisplayedIn).toBe("string");
-    expect(typeof newPartsArray[1].folderToBeDisplayedIn).toBe("string");
+    expect(typeof newAllPartsArray[0].folderToBeDisplayedIn).toBe("string");
+    expect(typeof newAllPartsArray[1].folderToBeDisplayedIn).toBe("string");
   });
 });
 
 describe("allFoldersIdStringsToNum", () => {
-  const newAllFoldersArray = allFoldersIdStringsToNum(allFoldersInputMock);
+  const newAllFoldersArray = allFoldersIdStringsToNum(allFoldersMockInput);
 
   it("should change all id  values to Ints", () => {
     expect(typeof newAllFoldersArray[0].id).toBe("number");

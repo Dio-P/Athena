@@ -20,7 +20,7 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
     , [preexistingFolders]);
 
   const newlyCreatedFoldersLength = useMemo(() => newlyCreatedFolders && 
-    (newlyCreatedFolders.length? newlyCreatedFolders.length + 1 : 1)
+    (newlyCreatedFolders.length > 0? (newlyCreatedFolders.length -1) : 0)
     , [newlyCreatedFolders]);
   console.log("preexistingFoldersLength*********£££££££", preexistingFoldersLength);
   console.log("newlyCreatedFoldersLength*********£££££££", newlyCreatedFoldersLength);
@@ -33,7 +33,7 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
 
   useEffect(() => {
       if(preexistingFolders){
-        console.log("NewFolderIndexKey:", preexistingFoldersLength+ newlyCreatedFoldersLength);
+        console.log("NewFolderIndexKey:", (preexistingFoldersLength)+ newlyCreatedFoldersLength);
         setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
       }
     }, [preexistingFolders, newlyCreatedFolders]);

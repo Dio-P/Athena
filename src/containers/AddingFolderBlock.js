@@ -47,7 +47,7 @@ const AddingFolderBlock = ({
     addNewFolderAndClear();
     setNewPart({
       ...newPart,
-      folderToBeDisplayedIn: newFolderIndexKey,
+      folderToBeDisplayedIn: newFolderIndexKey, //////here?
     });
     // setIsPopUpOpen(false);
     manageAddNewFolderParam();

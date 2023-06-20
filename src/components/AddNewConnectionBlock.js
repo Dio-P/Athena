@@ -131,6 +131,8 @@ const AddNewConnectionBlock = ({
     const newFoldersKeys = Array.from(
       new Set(
         Object.values(newPartsAdded).map((part) => part.folderToBeDisplayedIn)
+        // this returns the index of the folder that each part of the newParts added should be displayedIn
+        // then we make it a set to avoid duplications
       )
     );
     const filterFoldersToAll = {};
@@ -140,7 +142,8 @@ const AddNewConnectionBlock = ({
     // for some reason the newFolder has not been passed to newlyCreatedFolders
     // and the function above returns the whole object instead of just indexes
     newFoldersKeys.map(
-      (key) => (filterFoldersToAll[key - 1] = newlyCreatedFolders[key - 1])
+      // should the bellow reference the index (-1) or index
+      (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key])
       // (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key - 1])
     );
     console.log("filterFoldersToAll!@@!@!@@@£@£@£@", filterFoldersToAll);
