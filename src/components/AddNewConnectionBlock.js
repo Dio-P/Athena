@@ -15,6 +15,7 @@ import styleVariables from "../styleVariables";
 import { refreshIcon } from "../helpers/svgIcons";
 import PartsOptions from "../containers/PartsOptions";
 import useUpdateAppById from "../hooks/queries/useAppByIdUpdate";
+import { allPartsFolderToBeDisplValueToStr, allFoldersIdStringsToNum  } from "../helpers/appConstructionHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -115,41 +116,13 @@ const AddNewConnectionBlock = ({
     console.log("updatedApp$$$$$", updatedApp); 
   }, [updatedApp]);
 
-  // const appPartsArray = useMemo(
-  //   () => dbPartsWithClickedKey && Object.values(dbPartsWithClickedKey),
-  //   [dbPartsWithClickedKey]
-  // );
-
-  // const newPartsAddedArray = useMemo(
-  //   () => newPartsAdded && Object.values(newPartsAdded),
-  //   [newPartsAdded]
-  // );
-// to be set bellow to add the part to the database if new part ?
-   // addNewPart({variables:{
-      // appID: appId,
-    //   newPart: newPartsAdded,
-    //   additionalFolders: newlyCreatedFolders,
-    // }});
-
-  const allPartsNumericStringsToNumbers = (allParts) => {
-    // removeClickedValue
-    return allParts.map(({clicked, ...partWithoutClicked}) => ({
-      ...partWithoutClicked,
-      folderToBeDisplayedIn: `${partWithoutClicked.folderToBeDisplayedIn}`
-      }));
-  };
-  const allFoldersNumericStringsToNumbers = (allFolders) => {
-    return allFolders.map((folder) => ({
-      ...folder,
-      id: Number(folder.id)
-      }));
-  }
-
   const onClickingAddNewConnection = async (e) => {
     console.log("newPartsAdded@@@1", newPartsAdded);
 
     if(!isAllValid) {
       // display something to warn the user if we are here
+      // don't know what the bellow does
+      // browser.alarms.create("there are values that are invalid")
       return;
     }
     e.preventDefault();
@@ -191,8 +164,8 @@ const AddNewConnectionBlock = ({
     setUpdatedApp({
       ...appToDisplay,
       properties: {...appToDisplay.properties, docs: [...appToDisplay.properties.docs, newDoc]},
-      folders: allFoldersNumericStringsToNumbers([...appToDisplay?.folders, ...Object.values(filterFoldersToAll)]),
-      parts: allPartsNumericStringsToNumbers([...appToDisplay.parts, ...Object.values(newPartsAdded)]),
+      folders: allFoldersIdStringsToNum([...appToDisplay?.folders, ...Object.values(filterFoldersToAll)]),
+      parts: allPartsFolderToBeDisplValueToStr([...appToDisplay.parts, ...Object.values(newPartsAdded)]),
     });
     setAddNewConnectionWasClicked(true);
     // run the query instead of the above. Make certain that is unclickable if something is not valid.
