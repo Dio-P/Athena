@@ -54,15 +54,18 @@ const useAppByIdSearch = (id, shouldQuery) => {
   useEffect(() => {
     if (data && data.getAppById) {
       
-      const newApp = {
-        ...data.getAppById,
-        parts: data.getAppById.parts.map((part) => ({
-          ...part,
-          folderToBeDisplayedIn: Number(part.folderToBeDisplayedIn)
-          }))
-      };
+      // const newApp = {
+      //   ...data.getAppById,
+      //   parts: data.getAppById.parts.map((part) => ({
+      //     ...part,
+      //     folderToBeDisplayedIn: Number(part.folderToBeDisplayedIn)
+      //     }))
+      const newApp = data.getAppById;
+      console.log("newApp$$$$", newApp);
+        // check if you are indeed getting strings here
       setAppToDisplay({ ...newApp });
-    }
+    };
+    
   }, [data]);
 
   return [appToDisplay, loading, error];

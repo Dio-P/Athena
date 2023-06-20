@@ -111,6 +111,10 @@ const AddNewConnectionBlock = ({
     [appToDisplay.name]
   );
 
+  useEffect(() => {
+    console.log("updatedApp$$$$$", updatedApp); 
+  }, [updatedApp]);
+
   // const appPartsArray = useMemo(
   //   () => dbPartsWithClickedKey && Object.values(dbPartsWithClickedKey),
   //   [dbPartsWithClickedKey]
@@ -126,6 +130,20 @@ const AddNewConnectionBlock = ({
     //   newPart: newPartsAdded,
     //   additionalFolders: newlyCreatedFolders,
     // }});
+
+  const allPartsNumericStringsToNumbers = (allParts) => {
+    // removeClickedValue
+    return allParts.map(({clicked, ...partWithoutClicked}) => ({
+      ...partWithoutClicked,
+      folderToBeDisplayedIn: `${partWithoutClicked.folderToBeDisplayedIn}`
+      }));
+  };
+  const allFoldersNumericStringsToNumbers = (allFolders) => {
+    return allFolders.map((folder) => ({
+      ...folder,
+      id: Number(folder.id)
+      }));
+  }
 
   const onClickingAddNewConnection = async (e) => {
     console.log("newPartsAdded@@@1", newPartsAdded);
@@ -169,11 +187,12 @@ const AddNewConnectionBlock = ({
       },
     };
     console.log("filterFoldersToAll@@", filterFoldersToAll);
+    console.log("appToDisplay@@", appToDisplay);
     setUpdatedApp({
       ...appToDisplay,
-      docs: [...appToDisplay.properties.docs, newDoc],
-      folders: [...appToDisplay?.folders, ...Object.values(filterFoldersToAll)],
-      parts: [...appToDisplay.parts, ...Object.values(newPartsAdded)],
+      properties: {...appToDisplay.properties, docs: [...appToDisplay.properties.docs, newDoc]},
+      folders: allFoldersNumericStringsToNumbers([...appToDisplay?.folders, ...Object.values(filterFoldersToAll)]),
+      parts: allPartsNumericStringsToNumbers([...appToDisplay.parts, ...Object.values(newPartsAdded)]),
     });
     setAddNewConnectionWasClicked(true);
     // run the query instead of the above. Make certain that is unclickable if something is not valid.

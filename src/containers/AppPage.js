@@ -55,7 +55,7 @@ const AppPage = () => {
     ghRepo: "",
     type: "",
     folderToBeDisplayedIn: "",
-    teams:[team],
+    // teams:[team],
   };
   
   
