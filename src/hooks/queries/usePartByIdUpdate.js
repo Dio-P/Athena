@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 
-export const Update_PART_BY_ID_QUERY = gql`
+export const UPDATE_PART_BY_ID_QUERY = gql`
   mutation ($id: String!, $updatedPart: PartInput!) {
     updatePartById(id: $id, updatedPart: $updatedPart ) {
       name
@@ -39,7 +39,7 @@ export const Update_PART_BY_ID_QUERY = gql`
 const usePartByIdUpdate = (id, updatedPart, shouldMutate) => {
 
   const [updatePart, { loading, error, data }] = useMutation(
-    Update_PART_BY_ID_QUERY
+    UPDATE_PART_BY_ID_QUERY
   );
 
   useEffect(() => {

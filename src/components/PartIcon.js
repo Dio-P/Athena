@@ -9,15 +9,8 @@ import PopUp from "./PopUp";
 import EditPart from "../popUpComponents/EditPart";
 import usePartByIdUpdate from "../hooks/queries/usePartByIdUpdate";
 import useParamsHelper from "../hooks/useParamsHelper";
+import usePartByIdDelete from "../hooks/queries/usePartByIdDelete";
 import Delete from "../popUpComponents/Delete";
-
-const PartsContainer = styled.div`
-  display: flex;
-`;
-
-const MoreIconContainer = styled.div`
-  width: 20px;
-`;
 
 const WholeBoxContainer = styled.div`
   display: flex;
@@ -97,7 +90,6 @@ const PartIcon = ({
     // appParent:,
     // do I need to add the docs?
   });
-  const [editPartOpen, setEditPartOpen] = useState(false);
   const [editPartWasClicked, setEditPartWasClicked] = useState(false);
   const { editPartMutation } = usePartByIdUpdate(
     part.id,
@@ -105,17 +97,18 @@ const PartIcon = ({
     editPartWasClicked
   );
 
-  // leave only the setEdit and remove the function.
-  // const editPart = () => {
-  //   console.log("hello");
-  //   setEditPartOpen(true);
-  // };
+  const [deletePartWasClicked, setDeletePartWasClicked] = useState(false);
 
-  // rename that to editPartAndClose
+  const {} = usePartByIdDelete(part.id, deletePartWasClicked);
+
   const editPartAndClose = () => {
     setEditPartWasClicked(true);
     manageEditingPartParam();
-    // setEditPartOpen(false);
+  };
+
+  const deletePartAndClose = () => {
+    setDeletePartWasClicked(true);
+    setIsPopupOpen(false)  
   };
 
   return (
@@ -178,6 +171,7 @@ const PartIcon = ({
           isPopUpOpen={isPopupOpen}
           setIsPopUpOpen={()=>setIsPopupOpen(!isPopupOpen)}
           data={capitaliseFirstLetters(part.name)}
+          deleteEntityFunction={deletePartAndClose}
         />
       </IconButton>
     </WholeBoxContainer>
