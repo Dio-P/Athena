@@ -7,15 +7,14 @@ import capitaliseFirstLetters from "../helpers/capitaliseFirstLetters";
 import InputUnit from "../containers/InputUnit";
 import AddingPartBlock from "../containers/AddingPartBlock";
 import useParamsHelper from "../hooks/useParamsHelper";
-import {
-  findConserningParts,
-  allUniqueFolderKeys,
-} from "../helpers/AddNewConnectionBlockHelper";
-import styleVariables from "../styleVariables";
+import { findConserningParts } from "../helpers/AddNewConnectionBlockHelper";
 import { refreshIcon } from "../helpers/svgIcons";
 import PartsOptions from "../containers/PartsOptions";
 import useUpdateAppById from "../hooks/queries/useAppByIdUpdate";
-import { allPartsFolderToBeDisplValueToStr, allFoldersIdStringsToNum  } from "../helpers/appConstructionHelper";
+import {
+  allPartsFolderToBeDisplValueToStr,
+  allFoldersIdStringsToNum,
+} from "../helpers/appConstructionHelper";
 
 const DisplayBox = styled.div`
   margin: 10px;
@@ -53,8 +52,6 @@ const AddConnectionButtonWrapper = styled.div`
   align-text: center;
 `;
 
-// const SmallButton = styleVariables.customStyledElements.SmallButton;
-
 const AddNewConnectionBlock = ({
   appToDisplay,
   url,
@@ -79,11 +76,10 @@ const AddNewConnectionBlock = ({
   setClickedFolder,
   newFolderIndexKey,
 }) => {
-  const didMountRef = useRef(false);
-
   const [updatedApp, setUpdatedApp] = useState("");
-  const [addNewConnectionWasClicked, setAddNewConnectionWasClicked] = useState(false);
-  
+  const [addNewConnectionWasClicked, setAddNewConnectionWasClicked] =
+    useState(false);
+
   const [isAllValid, setIsAllValid] = useState(false);
   const [isUrlWarningOn, setIsUrlWarningOn] = useState(false);
   const [isPartNameWarningOn, setIsPartNameWarningOn] = useState(false);
@@ -91,62 +87,49 @@ const AddNewConnectionBlock = ({
 
   const {
     manageAddingNewPartParam,
-    manageDdOpenParam,
-    keepExistingParams,
     params: { addingNewPart, addingNewFolder, appId },
   } = useParamsHelper();
 
-  const [data, loading, error] = useUpdateAppById(appId, updatedApp, !!addNewConnectionWasClicked);
+  const [data, loading, error] = useUpdateAppById(
+    appId,
+    updatedApp,
+    !!addNewConnectionWasClicked
+  );
 
   useEffect(() => {
-    !!url && !isUrlWarningOn &&!isPartNameWarningOn && !isFolderWarningOn &&
-    setIsAllValid(true);
+    !!url &&
+      !isUrlWarningOn &&
+      !isPartNameWarningOn &&
+      !isFolderWarningOn &&
+      setIsAllValid(true);
   }, [url, isUrlWarningOn, isPartNameWarningOn, isFolderWarningOn]);
-
-  const [display, setDisplay] = useState({
-    deleteWarningNewPart: false,
-  });
 
   const APP_NAME = useMemo(
     () => capitaliseFirstLetters(appToDisplay.name),
     [appToDisplay.name]
   );
 
-  useEffect(() => {
-    console.log("updatedApp$$$$$", updatedApp); 
-  }, [updatedApp]);
-
   const onClickingAddNewConnection = async (e) => {
-    console.log("newPartsAdded@@@1", newPartsAdded);
-
-    if(!isAllValid) {
+    if (!isAllValid) {
       // display something to warn the user if we are here
       // don't know what the bellow does
       // browser.alarms.create("there are values that are invalid")
       return;
     }
     e.preventDefault();
-    console.log("newPartsAdded@@@2", newPartsAdded);
     const { name, source } = await findConnectionParameters(url);
     const newFoldersKeys = Array.from(
       new Set(
         Object.values(newPartsAdded).map((part) => part.folderToBeDisplayedIn)
-        // this returns the index of the folder that each part of the newParts added should be displayedIn
-        // then we make it a set to avoid duplications
       )
     );
     const filterFoldersToAll = {};
-    console.log("newlyCreatedFolders@@", newlyCreatedFolders, );
-    console.log("newFoldersKeys@@", newFoldersKeys);
-    // this can be refactored to Object.entries
-    // for some reason the newFolder has not been passed to newlyCreatedFolders
-    // and the function above returns the whole object instead of just indexes
-    newFoldersKeys.map(
-      // should the bellow reference the index (-1) or index
-      (key) => (filterFoldersToAll[key] = newlyCreatedFolders.find(folder => folder.id =key))
-      // (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key - 1])
+    newFoldersKeys.forEach(
+      (key) =>
+        (filterFoldersToAll[key] = newlyCreatedFolders.find(
+          (folder) => (folder.id = key)
+        ))
     );
-    console.log("filterFoldersToAll!@@!@!@@@£@£@£@", filterFoldersToAll);
 
     const newDoc = {
       name: name,
@@ -162,31 +145,24 @@ const AddNewConnectionBlock = ({
         isLinkUpToDate: true, //tickbox checked
       },
     };
-    console.log("filterFoldersToAll@@", filterFoldersToAll);
-    console.log("appToDisplay@@", appToDisplay);
+
     setUpdatedApp({
       ...appToDisplay,
-      properties: {...appToDisplay.properties, docs: [...appToDisplay.properties.docs, newDoc]},
-      folders: allFoldersIdStringsToNum([...appToDisplay?.folders, ...Object.values(filterFoldersToAll)]),
-      parts: allPartsFolderToBeDisplValueToStr([...appToDisplay.parts, ...Object.values(newPartsAdded)]),
+      properties: {
+        ...appToDisplay.properties,
+        docs: [...appToDisplay.properties.docs, newDoc],
+      },
+      folders: allFoldersIdStringsToNum([
+        ...appToDisplay?.folders,
+        ...Object.values(filterFoldersToAll),
+      ]),
+      parts: allPartsFolderToBeDisplValueToStr([
+        ...appToDisplay.parts,
+        ...Object.values(newPartsAdded),
+      ]),
     });
     setAddNewConnectionWasClicked(true);
-    // run the query instead of the above. Make certain that is unclickable if something is not valid.
   };
-
-  // const deleteNewlyAddedPart = (part) => {
-  //   const folderIdIsInUse = (id) =>
-  //     allUniqueFolderKeys(preexistingParts, newPartsAdded).includes(id);
-  //   delete newPartsAdded[part.name];
-  //   setNewPartsAdded({ ...newPartsAdded });
-  //   // delete the folders key if no app is using it
-  //   const updatedNewFoldersFolder = newlyCreatedFolders.filter(({ id }) =>
-  //     folderIdIsInUse(id)
-  //   );
-
-  //   setNewlyCreatedFolders(updatedNewFoldersFolder);
-  //   keepExistingParams();
-  // };
 
   return (
     <DisplayBox>
@@ -301,4 +277,3 @@ export default AddNewConnectionBlock;
 // I am not sure that each part has a particular repo (let's leave name were it is for now)
 
 // add logic, when clicking done, to not add dublicate object to folder it allready exist
-
