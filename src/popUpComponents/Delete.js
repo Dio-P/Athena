@@ -17,7 +17,7 @@ const ButtonsContainer = styled.div`
   display: flex;
 `;
 
-const Delete = ({ isPopUpOpen, data }) => {
+const Delete = ({ isPopUpOpen, setIsPopUpOpen, data }) => {
 
   return (
     <DeleteComponentContainer>
@@ -28,10 +28,12 @@ const Delete = ({ isPopUpOpen, data }) => {
         <GenericButtonIcon
           label="Yes"
           type="add"
+          // onClickFunction={}
         />
         <GenericButtonIcon
           label="No"
           type="add"
+          onClickFunction={() => setIsPopUpOpen(false)}
         />
       </ButtonsContainer>
     </DeleteComponentContainer>
