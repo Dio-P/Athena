@@ -143,7 +143,7 @@ const AddNewConnectionBlock = ({
     // and the function above returns the whole object instead of just indexes
     newFoldersKeys.map(
       // should the bellow reference the index (-1) or index
-      (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key])
+      (key) => (filterFoldersToAll[key] = newlyCreatedFolders.find(folder => folder.id =key))
       // (key) => (filterFoldersToAll[key] = newlyCreatedFolders[key - 1])
     );
     console.log("filterFoldersToAll!@@!@!@@@£@£@£@", filterFoldersToAll);
