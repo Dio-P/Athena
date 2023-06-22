@@ -76,6 +76,7 @@ const AppsBox = ({
   teamApps, 
   teamName,
   setNewAppWasJustAdded,
+  refetch
 }) => {
   const {
     manageDdOpenParam,
@@ -83,10 +84,10 @@ const AppsBox = ({
     manageAppIdParam, 
     params: {
       appId,
-      addingNewApp
+      team,
+      addingNewApp,
     }
   } = useParamsHelper();
-  // const newObjectId = ObjectID()
 
   const [newApp, setNewApp] = useState( {
     id: uuidv4(), 
@@ -95,13 +96,8 @@ const AppsBox = ({
     gitHubRepo: "",
     briefDescr: "",
     teams: [teamName],
-    // facing: {
-    //   user: false,//radio button
-    //   audience: false,//radio button
-    // },
     folders: [],
     parts: [],
-    // connections: [],
     properties: {
       docs: []
     }
@@ -132,7 +128,10 @@ const [addNewApp, { loading, error, data }] = useMutation(
     addNewApp({
       variables: { newApp : newApp },
     });
-    setNewAppWasJustAdded(true);
+    refetch({ 
+      variables: 
+        { team: team } 
+      })
     manageAddingNewAppParam();
   }
   

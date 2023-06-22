@@ -11,21 +11,15 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
   }
 `
 
-const useTeamAppsNamesSearch = (team, newAppWasJustAdded, setNewAppWasJustAdded) => {
+const useTeamAppsNamesSearch = (team) => {
 
   // const teamMemo = useMemo(() => team, [team])
   const [apps, setApps] = useState("");
 
-  const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
+  const [searchApps, {loading, error, data, refetch}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-    console.log("newAppWasJustAdded inside useTeamsAppNames", newAppWasJustAdded); 
-  }, [newAppWasJustAdded])
-
-  useEffect(() => {
-    console.log("to query ", team, newAppWasJustAdded);
-
-    if(team && newAppWasJustAdded){
+    if(team){
       console.log("querying");
       searchApps({ 
         variables: 
@@ -33,7 +27,7 @@ const useTeamAppsNamesSearch = (team, newAppWasJustAdded, setNewAppWasJustAdded)
         })
     }
     
-  }, [team, newAppWasJustAdded])
+  }, [team])
 
   useEffect(() => {
     
@@ -48,13 +42,12 @@ const useTeamAppsNamesSearch = (team, newAppWasJustAdded, setNewAppWasJustAdded)
         }
       ));
       setApps([...newApps]);
-      setNewAppWasJustAdded(false);
     };
     
   }, [data]);
 
 
-  return [apps, loading, error];
+  return [apps, loading, error, refetch];
 }
 
 export default useTeamAppsNamesSearch 
