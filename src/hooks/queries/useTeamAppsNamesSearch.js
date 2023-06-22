@@ -11,25 +11,36 @@ export const SEARCH_TEAM_APPS_QUERY = gql`
   }
 `
 
-const useTeamAppsNamesSearch = (team) => {
+const useTeamAppsNamesSearch = (team, newAppWasJustAdded, setNewAppWasJustAdded) => {
 
-  const teamMemo = useMemo(() => team, [team])
+  // const teamMemo = useMemo(() => team, [team])
   const [apps, setApps] = useState("");
 
   const [searchApps, {loading, error, data}] = useLazyQuery(SEARCH_TEAM_APPS_QUERY);
 
   useEffect(() => {
-    if(teamMemo){
+    console.log("newAppWasJustAdded inside useTeamsAppNames", newAppWasJustAdded); 
+  }, [newAppWasJustAdded])
+
+  useEffect(() => {
+    console.log("to query ", team, newAppWasJustAdded);
+
+    if(team && newAppWasJustAdded){
+      console.log("querying");
       searchApps({ 
         variables: 
-          { team: teamMemo } 
+          { team: team } 
         })
     }
     
-  }, [teamMemo])
+  }, [team, newAppWasJustAdded])
 
   useEffect(() => {
+    
+    console.log("to get the data ");
     if(data && data.getAppsByTeam){
+
+      console.log("getting the data");
       const newApps = data.getAppsByTeam.map(app => (
         {
           name: app.name,
@@ -37,6 +48,7 @@ const useTeamAppsNamesSearch = (team) => {
         }
       ));
       setApps([...newApps]);
+      setNewAppWasJustAdded(false);
     };
     
   }, [data]);

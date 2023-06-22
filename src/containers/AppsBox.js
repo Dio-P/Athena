@@ -75,6 +75,7 @@ const TeamAppsBlock = styled.div`
 const AppsBox = ({ 
   teamApps, 
   teamName,
+  setNewAppWasJustAdded,
 }) => {
   const {
     manageDdOpenParam,
@@ -131,6 +132,7 @@ const [addNewApp, { loading, error, data }] = useMutation(
     addNewApp({
       variables: { newApp : newApp },
     });
+    setNewAppWasJustAdded(true);
     manageAddingNewAppParam();
   }
   

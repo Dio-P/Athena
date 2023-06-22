@@ -28,12 +28,13 @@ const TeamsBox = ({
 
   const [chosenTeam, setChosenTeam] = useState(undefined);
   const [chosenDepApps, setChosenDepApps] = useState("");
+  const [newAppWasJustAdded, setNewAppWasJustAdded] = useState(true);
 
   const [
     apps,
     loading,
     error
-  ]= useTeamAppsNamesSearch(chosenTeam);
+  ]= useTeamAppsNamesSearch(chosenTeam, newAppWasJustAdded, setNewAppWasJustAdded);
 
   useEffect(() => {
     if(!chosenTeam && team){
@@ -86,6 +87,7 @@ const TeamsBox = ({
         <AppsBox
           teamApps={chosenDepApps}
           teamName={chosenTeam}
+          setNewAppWasJustAdded={setNewAppWasJustAdded}
         />
       }
     </TeamsBoxContainer>
