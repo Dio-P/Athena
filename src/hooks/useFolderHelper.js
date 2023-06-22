@@ -34,7 +34,7 @@ const useFolderHelper = (preexistingFolders, newlyCreatedFolders) => {
   useEffect(() => {
       if(preexistingFolders){
         console.log("NewFolderIndexKey:", (preexistingFoldersLength)+ newlyCreatedFoldersLength);
-        setNewFolderIndexKey(preexistingFoldersLength + newlyCreatedFoldersLength)
+        setNewFolderIndexKey(`${preexistingFoldersLength + newlyCreatedFoldersLength}`)
       }
     }, [preexistingFolders, newlyCreatedFolders]);
 

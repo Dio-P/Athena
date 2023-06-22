@@ -124,6 +124,7 @@ const AddNewConnectionBlock = ({
       )
     );
     const filterFoldersToAll = {};
+    console.log("newlyCreatedFolders", newlyCreatedFolders);
     newFoldersKeys.forEach(
       (key) =>
         (filterFoldersToAll[key] = newlyCreatedFolders.find(

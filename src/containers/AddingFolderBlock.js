@@ -54,13 +54,13 @@ const AddingFolderBlock = ({
     setClickedFolder(folderBeenCreated);
   };
 
-  useEffect(() => {
-    if(clickedFolder) {
+  // useEffect(() => {
+  //   if(clickedFolder) {
 
-      console.log("clickedFolder@@@", clickedFolder);
-    }
+  //     console.log("clickedFolder@@@", clickedFolder);
+  //   }
  
-  }, [clickedFolder])
+  // }, [clickedFolder])
 
   return (
     <MainAddNewFolderContainer>

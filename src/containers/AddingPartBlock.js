@@ -115,14 +115,7 @@ const AddingPartBlock = ({
     });
     console.log("newlyCreatedFolders**(((((((((((((((", newlyCreatedFolders);
     setNewlyCreatedFolders([...newlyCreatedFolders, newFolder]); //////////////////////////////////
-    // *******DO NOT SET THIS HERE************
-    // addNewPart({variables:{
-      // appID: appId,
-    //   newPart: newPartsAdded,
-    //   additionalFolders: newlyCreatedFolders,
-    // }});
-    // move the mutation into a hook to be queried when all is updated
-    // I am not sure that I want to set the app now. Maybe at add connection to avoid confusion
+    
     setNewPart({
       ...newPart,
       name: "",
