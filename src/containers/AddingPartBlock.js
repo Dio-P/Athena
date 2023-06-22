@@ -6,6 +6,8 @@ import AddingFolderBlock from "./AddingFolderBlock";
 import useParamsHelper from "../hooks/useParamsHelper";
 import { useMutation } from "@apollo/client";
 import gql from "graphql-tag";
+import { v4 as uuidv4 } from "uuid";
+
 
 // const ADD_NEW_PART = gql`
 //   mutation($appId: ID!, $newPart: partInput!, $additionalFolders: [FolderInput]) {
@@ -118,9 +120,11 @@ const AddingPartBlock = ({
     
     setNewPart({
       ...newPart,
+      id: uuidv4(),
       name: "",
       ghRepo: "",
       type: "",
+      
     });
     setClickedFolder("");
     setNewFolder("");

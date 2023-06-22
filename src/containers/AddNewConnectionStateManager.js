@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import AddNewConnectionBlock from "../components/AddNewConnectionBlock";
 import useParamsHelper from "../hooks/useParamsHelper";
 import { addClickedKeyToPreexParts } from "../helpers/AddNewConnectionBlockHelper";
+import { v4 as uuidv4 } from "uuid";
 
 const AddNewConnectionBlockWrapper = styled.div`
   z-index: 1;
@@ -59,7 +60,14 @@ const AddConnectionStateManager = ({
     setUrl("");
     setNewPartsAdded("");
     setDbPartsWithClickedKey(appToDisplay.parts || []);
-    setNewPart(DEFAULT_NEW_PART);
+    setNewPart({
+      name: "",
+      id: uuidv4(),
+      ghRepo: "",
+      type: "",
+      folderToBeDisplayedIn: "",
+      // teams:[team],
+    });
     setNewFolder("");
     keepExistingParams();
   }

@@ -49,17 +49,24 @@ const AppPage = () => {
 
   const preexistingFolders = useMemo(() => appToDisplay && appToDisplay.folders, [appToDisplay])
   
-  const DEFAULT_NEW_PART = {
+  // const DEFAULT_NEW_PART = {
+  //   name: "",
+  //   id: uuidv4(),
+  //   ghRepo: "",
+  //   type: "",
+  //   folderToBeDisplayedIn: "",
+  //   // teams:[team],
+  // };
+  
+  
+  const [newPart, setNewPart] = useState({
     name: "",
     id: uuidv4(),
     ghRepo: "",
     type: "",
     folderToBeDisplayedIn: "",
     // teams:[team],
-  };
-  
-  
-  const [newPart, setNewPart] = useState(DEFAULT_NEW_PART);
+  });
   const [updatedPart, setUpdatedPart] = useState(undefined);
   
   const [newFolder, setNewFolder] = useState("");
