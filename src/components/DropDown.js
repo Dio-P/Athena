@@ -73,6 +73,7 @@ const DropDown = ({
   // setChooseValue
   // newFolder,
 }) => {
+  
   const allData = useMemo(
     () =>
       freshlyAddedValue ? [...preexistingData, freshlyAddedValue] : preexistingData,
